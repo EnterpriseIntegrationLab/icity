@@ -19,15 +19,15 @@
         <owl:imports rdf:resource="https://w3id.org/icity/iCity-Time/1.0/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
         <vann:preferredNamespacePrefix>icity-Change</vann:preferredNamespacePrefix>
-        <dc:description>Many of the concepts identified in the urban system ontologies are subject to change. For example, a Vehicle will have one location at one time, and another location at a later time; it may have only one passenger at one time, and four passengers at a later time. Similarly, many attributes of Persons, Households, and even Transportation Networks are subject to change. An approach to representing changing properties, or fluents, that leverages the 4-dimensionalist perspective was proposed by (Welty, Fikes, and Makarios, 2006). We adopt a similar approach, based on a re-interpretation by Krieger (2008) requiring the division of classes that are subject to change into two parts: invariant and variant parts of the concept; we refer to these as TimeVaryingConcept and Manifestation classes, respectively. By distinguishing between these class types and recognizing the properties that are (and aren't) subject to change, the ontology supports the capture of both the static and dynamic aspects of a particular entity. </dc:description>
+        <dc:title>iCity Change Ontology</dc:title>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-		<rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Vehicle ontology is designed to capture concepts related to vehicles.
+        <adms:relatedDocumentation>Under development. Refer to Report of iCity Ontology v1.</adms:relatedDocumentation>
+        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Vehicle ontology is designed to capture concepts related to vehicles.
 		Changes from previous version:
 		-Added property to indicate when another two objects are part of the same TimeVaryingConcept: sameTimeVaryingConcept
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
-        <adms:relatedDocumentation>Under development. Refer to Report of iCity Ontology v1.</adms:relatedDocumentation>
         <dc:issued>November 29, 2016</dc:issued>
-        <dc:title>iCity Change Ontology</dc:title>
+        <dc:description>Many of the concepts identified in the urban system ontologies are subject to change. For example, a Vehicle will have one location at one time, and another location at a later time; it may have only one passenger at one time, and four passengers at a later time. Similarly, many attributes of Persons, Households, and even Transportation Networks are subject to change. An approach to representing changing properties, or fluents, that leverages the 4-dimensionalist perspective was proposed by (Welty, Fikes, and Makarios, 2006). We adopt a similar approach, based on a re-interpretation by Krieger (2008) requiring the division of classes that are subject to change into two parts: invariant and variant parts of the concept; we refer to these as TimeVaryingEntity and Manifestation classes, respectively. By distinguishing between these class types and recognizing the properties that are (and aren&apos;t) subject to change, the ontology supports the capture of both the static and dynamic aspects of a particular entity.</dc:description>
     </owl:Ontology>
     
 
@@ -204,6 +204,22 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingEntity -->
+
+    <owl:ObjectProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingEntity">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-Change/1.1/ChangeOntologyProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+        <rdfs:comment>Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/iCity-Change/1.1/ChangeOntologyProperty -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-Change/1.1/ChangeOntologyProperty">
@@ -241,22 +257,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept -->
-
-    <owl:ObjectProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-Change/1.1/ChangeOntologyProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
-            </rdf:Description>
-        </owl:propertyChainAxiom>
-        <rdfs:comment>Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object.</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -284,11 +284,11 @@ above the local reference ellipsoid).</rdfs:comment>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity"/>
                     </owl:Restriction>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -297,7 +297,7 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-Change/1.1/manifestationOf"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -310,21 +310,21 @@ above the local reference ellipsoid).</rdfs:comment>
         <owl:disjointWith>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept"/>
                     <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
+                    <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity"/>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:disjointWith>
-        <terms:description>A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
+        <terms:description>A Manifestation of some TimeVaryingEntity at a particular point/interval in time.
 A Manifestation exists at some Instant.
-The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.</terms:description>
+The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingEntity - and only time varying concents - in the manifestationOf relation.</terms:description>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept -->
+    <!-- https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingConcept">
+    <owl:Class rdf:about="https://w3id.org/icity/iCity-Change/1.1/TimeVaryingEntity">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -355,16 +355,16 @@ The class of Manifestations is equivalent to the class of things that are manife
         <owl:disjointWith>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/Manifestation"/>
                     <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
+                    <rdf:Description rdf:about="https://w3id.org/icity/iCity-Change/1.1/Manifestation"/>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:disjointWith>
-        <terms:description>A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
-A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
-Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
-A TimeVaryingConcept exists at some Interval.
-The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.</terms:description>
+        <terms:description>A class that is subject to change is defined as a type of TimeVaryingEntity (e.g. Vehicle may be a subclass of TimeVaryingEntity). The TimeVaryingEntity itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingEntitys as perdurants (things that occur over time, i.e. processes).
+A TimeVaryingEntity has Manifestations that demonstrate their changing (variant) properties over time.
+Different types (subclasses) of TimeVaryingEntity may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
+A TimeVaryingEntity exists at some Interval.
+The class of TimeVaryingEntitys is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.</terms:description>
     </owl:Class>
     
 
@@ -477,5 +477,5 @@ basic geo vocab
 
 
 
-<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 
