@@ -23,10 +23,11 @@
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/Activity/">
-        <owl:versionIRI rdf:resource="https://w3id.org/icity/Activity/1.1/"/>
+        <owl:versionIRI rdf:resource="https://w3id.org/icity/Activity/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
+        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#date">https://w3id.org/icity/Activity/1.1/</owl:priorVersion>
         <dc:title>iCity Activity Ontology</dc:title>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Activity ontology is designed to capture concepts related to activities.
 		Changes from previous version:
@@ -41,7 +42,7 @@
 Please refer to report on iCity Ontology v1, 
 Also 2017 WOP Submssion &quot;A Design Pattern for Representing Preconditions and Effects in OWL&quot;</adms:relatedDocumentation>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-        <dc:issued>November 29, 2016</dc:issued>
+        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 6, 2017</dc:issued>
         <dc:description>Ontology to capture concepts related to activities.</dc:description>
     </owl:Ontology>
     
@@ -195,12 +196,6 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
-
-    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
     
 
 
@@ -510,6 +505,12 @@ above the local reference ellipsoid).</rdfs:comment>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <dc:description>An Activity describes something that occurs in the domain.
 An Activity may be further defined by (decomposed into) Subactivities.
 An Activity may have precondition and/or effect State.
@@ -676,12 +677,6 @@ A state  cannot be both non-terminal and terminal.
     
 
 
-    <!-- https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature -->
-
-    <owl:Class rdf:about="https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -785,17 +780,6 @@ basic geo vocab
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
         <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
         <rdfs:label>lat/long</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:label>location</rdfs:label>
-        <rdfs:comment>The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- </rdfs:comment>
     </rdf:Description>
 </rdf:RDF>
 
