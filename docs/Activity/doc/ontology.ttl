@@ -7,13 +7,13 @@
 @base <https://w3id.org/icity/Activity/> .
 
 <https://w3id.org/icity/Activity/> rdf:type owl:Ontology ;
-                                    owl:versionIRI <https://w3id.org/icity/Activity/1.1/> ;
+                                    owl:versionIRI <https://w3id.org/icity/Activity/1.2/> ;
                                     owl:imports <https://w3id.org/icity/Change/1.1/> ,
-                                                <https://w3id.org/icity/SpatialLoc/1.0/> ;
+                                                <https://w3id.org/icity/SpatialLoc/1.2/> ;
                                     <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/"^^xsd:string ;
                                     <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi"^^xsd:string ;
                                     <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to activities."^^xsd:string ;
-                                    <http://purl.org/dc/elements/1.1/issued> "November 29, 2016"^^xsd:string ;
+                                    <http://purl.org/dc/elements/1.1/issued> "November 6, 2017"^^xsd:date ;
                                     <http://purl.org/dc/elements/1.1/title> "iCity Activity Ontology"^^xsd:string ;
                                     <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-activity"^^xsd:string ;
                                     rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Activity ontology is designed to capture concepts related to activities.
@@ -23,7 +23,8 @@
 		-added beginOf and endOf properties
 		-added axioms for preconditionOf, effectOf, and achievedAt properties
 		Copyright @ 2016 Megan Katsumi, iCity Research Group"""^^xsd:string ;
-                                    owl:versionInfo 1.1 ;
+                                    owl:priorVersion "https://w3id.org/icity/Activity/1.1/"^^xsd:date ;
+                                    owl:versionInfo 1.2 ;
                                     <http://www.w3.org/ns/adms#relatedDocumentation> """Version 1. under development. 
 Please refer to report on iCity Ontology v1, 
 Also 2017 WOP Submssion \"A Design Pattern for Representing Preconditions and Effects in OWL\""""^^xsd:string .
@@ -109,6 +110,15 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
+                                                   rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """^^xsd:string ;
+                                                   rdfs:label "location"^^xsd:string ;
                                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
@@ -131,8 +141,124 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #    Object Properties
 #################################################################
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
+###  http://www.opengis.net/ont/geosparql#ehContains
+<http://www.opengis.net/ont/geosparql#ehContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehCoveredBy
+<http://www.opengis.net/ont/geosparql#ehCoveredBy> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehCovers
+<http://www.opengis.net/ont/geosparql#ehCovers> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehDisjoint
+<http://www.opengis.net/ont/geosparql#ehDisjoint> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehEquals
+<http://www.opengis.net/ont/geosparql#ehEquals> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehInside
+<http://www.opengis.net/ont/geosparql#ehInside> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehMeet
+<http://www.opengis.net/ont/geosparql#ehMeet> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#ehOverlap
+<http://www.opengis.net/ont/geosparql#ehOverlap> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+<http://www.opengis.net/ont/geosparql#hasGeometry> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8dc
+<http://www.opengis.net/ont/geosparql#rcc8dc> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8ec
+<http://www.opengis.net/ont/geosparql#rcc8ec> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8eq
+<http://www.opengis.net/ont/geosparql#rcc8eq> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8ntpp
+<http://www.opengis.net/ont/geosparql#rcc8ntpp> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8ntppi
+<http://www.opengis.net/ont/geosparql#rcc8ntppi> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8po
+<http://www.opengis.net/ont/geosparql#rcc8po> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8tpp
+<http://www.opengis.net/ont/geosparql#rcc8tpp> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#rcc8tppi
+<http://www.opengis.net/ont/geosparql#rcc8tppi> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfContains
+<http://www.opengis.net/ont/geosparql#sfContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfCrosses
+<http://www.opengis.net/ont/geosparql#sfCrosses> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfDisjoint
+<http://www.opengis.net/ont/geosparql#sfDisjoint> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfEquals
+<http://www.opengis.net/ont/geosparql#sfEquals> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfIntersects
+<http://www.opengis.net/ont/geosparql#sfIntersects> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfOverlaps
+<http://www.opengis.net/ont/geosparql#sfOverlaps> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfTouches
+<http://www.opengis.net/ont/geosparql#sfTouches> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#sfWithin
+<http://www.opengis.net/ont/geosparql#sfWithin> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#hasTopConcept
+<http://www.w3.org/2004/02/skos/core#hasTopConcept> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+<http://www.w3.org/2004/02/skos/core#inScheme> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#member
+<http://www.w3.org/2004/02/skos/core#member> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#memberList
+<http://www.w3.org/2004/02/skos/core#memberList> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#semanticRelation
+<http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
@@ -202,7 +328,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                         ( [ owl:inverseOf <https://w3id.org/icity/Activity/1.1/hasDecomp>
                                                                           ]
                                                                           <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt>
-                                                                          <https://w3id.org/icity/Trip/1.1//1.1#during>
+                                                                          <http://www.w3.org/2006/time#intervalDuring>
                                                                         ) ,
                                                                         ( [ owl:inverseOf <https://w3id.org/icity/Activity/1.1/preconditionOf>
                                                                           ]
@@ -328,61 +454,85 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                     rdf:type owl:FunctionalProperty .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty
-<https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                                   <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the iCity-SpatialLoc ontology."^^xsd:string .
+###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty
+<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL."^^xsd:string .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/hasAltitude
-<https://w3id.org/icity/SpatialLoc/1.0/hasAltitude> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty> .
+###  https://w3id.org/icity/SpatialLoc/hasLocation
+<https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                rdfs:domain <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space."^^xsd:string .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/hasLatitude
-<https://w3id.org/icity/SpatialLoc/1.0/hasLatitude> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty> .
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#asGML
+<http://www.opengis.net/ont/geosparql#asGML> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/hasLocation
-<https://w3id.org/icity/SpatialLoc/1.0/hasLocation> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty> ;
-                                                    rdfs:range <https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature> ;
-                                                    rdfs:comment "Objects may be associated with a location that is defined as a SpatialFeature."^^xsd:string .
+###  http://www.opengis.net/ont/geosparql#asWKT
+<http://www.opengis.net/ont/geosparql#asWKT> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/hasLongitude
-<https://w3id.org/icity/SpatialLoc/1.0/hasLongitude> rdf:type owl:ObjectProperty ;
-                                                     rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyProperty> .
+###  http://www.opengis.net/ont/geosparql#coordinateDimension
+<http://www.opengis.net/ont/geosparql#coordinateDimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
-###  https://w3id.org/icity/Trip/1.1//1.1#during
-<https://w3id.org/icity/Trip/1.1//1.1#during> rdf:type owl:ObjectProperty .
+###  http://www.opengis.net/ont/geosparql#dimension
+<http://www.opengis.net/ont/geosparql#dimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#hasSerialization
+<http://www.opengis.net/ont/geosparql#hasSerialization> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#isEmpty
+<http://www.opengis.net/ont/geosparql#isEmpty> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#isSimple
+<http://www.opengis.net/ont/geosparql#isSimple> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.opengis.net/ont/geosparql#spatialDimension
+<http://www.opengis.net/ont/geosparql#spatialDimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.w3.org/2004/02/skos/core#notation
+<http://www.w3.org/2004/02/skos/core#notation> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty
+<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                   rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL."^^xsd:string .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://geovocab.org/spatial#Feature
-<http://geovocab.org/spatial#Feature> owl:equivalentClass <https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature> .
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+<http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
-<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasAltitude> ;
-                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
-                                                                ] ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLatitude> ;
-                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
-                                                                ] ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLongitude> ;
-                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
-                                                                ] .
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
+rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2004/02/skos/core#Collection
+<http://www.w3.org/2004/02/skos/core#Collection> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 ###  https://w3id.org/icity/Activity/1.1/Activity
@@ -425,8 +575,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                  owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                                                ] ,
                                                                [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> ;
-                                                                 owl:allValuesFrom <https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature>
+                                                                 owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
+                                                                 owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                ] ;
                                                <http://purl.org/dc/elements/1.1/description> """An Activity describes something that occurs in the domain.
 An Activity may be further defined by (decomposed into) Subactivities.
@@ -619,14 +769,9 @@ A TimeVaryingConcept exists at some Interval.
 The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation."""^^xsd:string .
 
 
-###  https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature
-<https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature> rdf:type owl:Class ;
-                                                       rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyThing> .
-
-
-###  https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyThing
-<https://w3id.org/icity/SpatialLoc/1.0/SpatialLocOntologyThing> rdf:type owl:Class ;
-                                                                <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the iCity-SpatialLoc ontology."^^xsd:string .
+###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing
+<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> rdf:type owl:Class ;
+                                                            rdfs:comment "Created for organizational purposes, to identify the classes imported from geoSPARQL."^^xsd:string .
 
 
 #################################################################
@@ -727,17 +872,6 @@ basic geo vocab
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate."^^xsd:string ;
                                                    rdfs:label "lat/long"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ;
-                                                   rdfs:label "location"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/
