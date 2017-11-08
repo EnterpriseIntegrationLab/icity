@@ -24,7 +24,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/Activity/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Activity/1.1/"/>
-        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
         <dc:title>iCity Activity Ontology</dc:title>
@@ -159,7 +159,9 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
+    </owl:AnnotationProperty>
     
 
 
@@ -198,9 +200,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
-    </rdf:Description>
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
     
 
 
@@ -285,7 +285,7 @@ above the local reference ellipsoid).</rdfs:comment>
                 <owl:inverseOf rdf:resource="https://w3id.org/icity/Activity/1.1/hasDecomp"/>
             </rdf:Description>
             <rdf:Description rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt"/>
-            <rdf:Description rdf:about="https://w3id.org/icity/Trip/1.1//1.1#during"/>
+            <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalDuring"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description>
@@ -441,18 +441,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/SpatialLoc/1.0/hasLocation -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
-    
-
-
-    <!-- https://w3id.org/icity/Trip/1.1//1.1#during -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Trip/1.1//1.1#during"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -520,12 +508,6 @@ above the local reference ellipsoid).</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/1.1/occursAt"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>An Activity describes something that occurs in the domain.
