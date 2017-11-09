@@ -19,13 +19,16 @@
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="https://w3id.org/icity/OM/1.0/"
      xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:OM="https://w3id.org/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/TransportationSystem/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/TransportationSystem/1.2/"/>
-        <owl:imports rdf:resource="https://w3id.org/icity/Foundation/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OTN/1.0/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <vann:preferredNamespacePrefix>icity-transportation</vann:preferredNamespacePrefix>
         <dc:description>While most existing work attempts to describe the network based on its physical constructs, we model the network flow and the physical infrastructure separately. The motivation for this is that the constraints on transportation flow are something that is applied to the physical infrastructure. These constraints are distinct from the physical characteristics  and so should be defined separately. Although some constraints may be related, such as flow constraints imposed by the size of the lane that an arc accesses, this is a specific relationship that should be captured rather than conflating the concepts. For example, there is nothing to stop a vehicle from going the wrong way on a road, except for the flow of traffic that is imposed on the system (and these constraints may change with time). This results in the identification of two key concepts: the Transportation Network (a directed graph), and the Transportation Infrastructure (a physical feature where transportation occurs).
@@ -38,8 +41,8 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">October 2017</dc:issued>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">Under development. Please see report on iCity Ontology v1.2</adms:relatedDocumentation>
         <dc:creator>Megan Katsumi</dc:creator>
-        <vann:preferredNamespaceUri rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">https://w3id.org/icity/TransportationSystem/</vann:preferredNamespaceUri>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
+        <owl:priorVersion>https://w3id.org/icity/TransportationSystem/1.2/</owl:priorVersion>
         <dc:title>iCity Transportation System Ontology</dc:title>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-TransportationSystem ontology is designed to capture concepts related to the transportation system.
 		Changes from previous version:
@@ -151,6 +154,12 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- https://w3id.org/icity/Change/1.1/existsAt -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/existsAt"/>
+    
+
+
     <!-- https://w3id.org/icity/Change/1.1/hasManifestation -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/hasManifestation"/>
@@ -184,24 +193,6 @@ Associated location coordinates with the Node class.
     <!-- https://w3id.org/icity/Mereology/1.0//1.0#hasComponent -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#hasComponent"/>
-    
-
-
-    <!-- https://w3id.org/icity/TransportationSystem/inMunicipality -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/inMunicipality">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
-        <rdfs:comment>Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District.</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/TransportationSystem/inPlanningDistrict -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/inPlanningDistrict">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
-        <rdfs:comment>Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District.</rdfs:comment>
-    </owl:ObjectProperty>
     
 
 
@@ -422,6 +413,24 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/inMunicipality -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/inMunicipality">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
+        <rdfs:comment>Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/TransportationSystem/inPlanningDistrict -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/inPlanningDistrict">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
+        <rdfs:comment>Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/signalLength -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/signalLength">
@@ -502,39 +511,39 @@ Associated location coordinates with the Node class.
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/TimeVaryingConcept -->
+    <!-- http://www.wurvoc.org/vocabularies/om-1.8/Quantity -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+    <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
     
 
 
-    <!-- https://w3id.org/icity/Time/1.0/CalendarPeriod -->
+    <!-- https://w3id.org/icity/Change/Manifestation -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Time/1.0/CalendarPeriod"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Change/Manifestation"/>
+    
+
+
+    <!-- https://w3id.org/icity/Change/TimeVaryingConcept -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+    
+
+
+    <!-- https://w3id.org/icity/OM/MonetaryValue -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/MonetaryValue"/>
+    
+
+
+    <!-- https://w3id.org/icity/Time/CalendarPeriod -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
     
 
 
     <!-- https://w3id.org/icity/Time/1.0/TimePeriod -->
 
     <owl:Class rdf:about="https://w3id.org/icity/Time/1.0/TimePeriod"/>
-    
-
-
-    <!-- https://w3id.org/icity/TransportationSystem/Municipality -->
-
-    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Municipality">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
-        <rdfs:comment>An urban administrative division with jurisdiction over some area. 	We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- https://w3id.org/icity/TransportationSystem/PlanningDistrict -->
-
-    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/PlanningDistrict">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
-        <rdfs:comment>We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear.</rdfs:comment>
-    </owl:Class>
     
 
 
@@ -548,7 +557,7 @@ Associated location coordinates with the Node class.
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="https://w3id.org/icity/Time/1.0/CalendarPeriod"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
                             <rdf:Description rdf:about="https://w3id.org/icity/Time/1.0/TimePeriod"/>
                         </owl:unionOf>
                     </owl:Class>
@@ -578,7 +587,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -601,7 +610,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasToll"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -660,7 +669,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -745,12 +754,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasToll"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -830,7 +839,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -863,6 +872,15 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/Municipality -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Municipality">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:comment>An urban administrative division with jurisdiction over some area. 	We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/Network -->
 
     <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Network">
@@ -880,7 +898,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -923,7 +941,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -974,7 +992,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -985,7 +1003,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/associatedLocation"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1045,7 +1063,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1061,6 +1079,15 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 <owl:onClass rdf:resource="https://w3id.org/icity/TransportationSystem/NodeId"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/TransportationSystem/PlanningDistrict -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/PlanningDistrict">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:comment>We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear.</rdfs:comment>
     </owl:Class>
     
 
@@ -1106,7 +1133,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplexPD"/>
     </owl:Class>
     
@@ -1129,7 +1156,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1165,7 +1192,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1229,7 +1256,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
     </owl:Class>
     
@@ -1252,7 +1279,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
     </owl:Class>
     
