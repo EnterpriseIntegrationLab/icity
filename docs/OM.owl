@@ -5,6 +5,7 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
@@ -18,19 +19,24 @@
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/OM/">
-        <owl:versionIRI rdf:resource="https://w3id.org/icity/OM/1.0/"/>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://w3id.org/icity/OM/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Time/1.0/"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
-        <dc:description>Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as "10 m", with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure's numerical value is given in (e.g. metres).
-		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.</dc:description>
-        <dc:creator>Megan Katsumi</dc:creator>
-        <vann:preferredNamespaceUri>https://w3id.org/icity/OM/</vann:preferredNamespaceUri>
-        <vann:preferredNamespacePrefix>icity-om</vann:preferredNamespacePrefix>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-        <dc:issued>November 29, 2016</dc:issued>
         <dc:title>The Ontology of Units of Measure</dc:title>
-		<rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
+        <dc:creator>Megan Katsumi</dc:creator>
+        <dc:description>Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as &quot;10 m&quot;, with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure&apos;s numerical value is given in (e.g. metres).
+		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.</dc:description>
+        <vann:preferredNamespacePrefix>icity-om</vann:preferredNamespacePrefix>
+        <dc:issued>November 8, 2017</dc:issued>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
+        <owl:priorVersion>https://w3id.org/icity/OM/1.0/</owl:priorVersion>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
+		Copyright @ 2016 Megan Katsumi, iCity Research Group
+
+Changes from previous version:
+-combined with MonetaryValue ontology
+-added units required for network representation (lane capacity, etc).</rdfs:comment>
     </owl:Ontology>
     
 
@@ -49,14 +55,6 @@
     <!-- http://creativecommons.org/ns#license -->
 
     <owl:AnnotationProperty rdf:about="http://creativecommons.org/ns#license"/>
-    
-
-
-    <!-- https://w3id.org/icity/OM/OMOntologyAnnotationProperty -->
-
-    <owl:AnnotationProperty rdf:about="https://w3id.org/icity/OM/OMOntologyAnnotationProperty">
-        <dc:description>Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology.</dc:description>
-    </owl:AnnotationProperty>
     
 
 
@@ -421,6 +419,14 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/OM/OMOntologyAnnotationProperty -->
+
+    <owl:AnnotationProperty rdf:about="https://w3id.org/icity/OM/OMOntologyAnnotationProperty">
+        <dc:description>Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology.</dc:description>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -478,14 +484,6 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- https://w3id.org/icity/OM/OMOntologyDataProperty -->
-
-    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/OMOntologyDataProperty">
-        <dc:description>Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology.</dc:description>
-    </owl:DatatypeProperty>
     
 
 
@@ -593,6 +591,22 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/OM/OMOntologyDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/OMOntologyDataProperty">
+        <dc:description>Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology.</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/OM/hasRelativeYear -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/hasRelativeYear">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -607,7 +621,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -615,7 +629,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Amount_of_substance_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Amount_of_substance_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -623,7 +637,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Area_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Area_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -631,7 +645,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Currency -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Currency">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -639,7 +653,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Length_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Length_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -647,7 +661,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Mass_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Mass_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -656,6 +670,12 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Measure">
         <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -678,6 +698,18 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity">
         <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/value"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -685,7 +717,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Speed_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Speed_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -709,8 +741,103 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit -->
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/LaneCapacity_unit -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/LaneCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment>Capacity of traffic throughput for a lane (e.g. vehicles per time unit)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/LinkCapacity_unit -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/LinkCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment>Nominal link capacity (per arc or lane) of traffic throughput.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/MonetaryValue -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/MonetaryValue">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Measure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Currency"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/OM/hasRelativeYear"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Monetary Value has a numerical value that is relative to a particular date (year).
+A Monetary Value is measured with some currency.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/Position_unit -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/Position_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment>Reference systems to indicate geographic position.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/icity/OM/NAD83 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/NAD83">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/Position_unit"/>
+        <rdfs:comment>North American Datum of 1983. A geodetic reference system.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/WGS84 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/WGS84">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/Position_unit"/>
+        <rdfs:comment>World Geodetic System of 1984. The reference system used by GPS.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/vehicles_per_hour -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/vehicles_per_hour">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/LaneCapacity_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/vehicles_per_hour_per_lane -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/vehicles_per_hour_per_lane">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/LinkCapacity_unit"/>
+    </owl:NamedIndividual>
     
 
 
@@ -822,5 +949,5 @@ basic geo vocab
 
 
 
-<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 
