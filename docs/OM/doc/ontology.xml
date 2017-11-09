@@ -5,6 +5,7 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
@@ -13,23 +14,28 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:OM="https://w3id.org/icity/OM/1.0/"
+     xmlns:OM="https://w3id.org/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/OM/">
-        <owl:versionIRI rdf:resource="https://w3id.org/icity/OM/1.0/"/>
+        <owl:versionIRI rdf:resource="https://w3id.org/icity/OM/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Time/1.0/"/>
         <ns:license rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Megan Katsumi</dc:creator>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as &quot;10 m&quot;, with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure&apos;s numerical value is given in (e.g. metres).
 		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.</dc:description>
-        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#string">November 29, 2016</dc:issued>
+        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#string">November 8, 2017</dc:issued>
         <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Ontology of Units of Measure</dc:title>
         <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">icity-om</vann:preferredNamespacePrefix>
-        <vann:preferredNamespaceUri rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/icity/OM/1.0/</vann:preferredNamespaceUri>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
+		Copyright @ 2016 Megan Katsumi, iCity Research Group
+
+Changes from previous version:
+-combined with MonetaryValue ontology
+-added units required for network representation (lane capacity, etc).</rdfs:comment>
+        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/icity/OM/1.0/</owl:priorVersion>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
     </owl:Ontology>
     
@@ -135,7 +141,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/authorList">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -144,7 +150,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/chapter">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -153,7 +159,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/degree">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -162,7 +168,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/edition">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -171,7 +177,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/isbn10">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -180,7 +186,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/isbn13">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -189,7 +195,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/issuer">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -198,7 +204,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/pageEnd">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -207,7 +213,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/pageStart">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -216,7 +222,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/reproducedIn">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -225,7 +231,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/shortTitle">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -234,7 +240,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/uri">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -243,7 +249,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/volume">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -252,7 +258,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -261,7 +267,7 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -280,7 +286,7 @@
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid).</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">altitude</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     </owl:AnnotationProperty>
     
@@ -292,7 +298,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat">
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 latitude of a SpatialThing (decimal degrees).</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">latitude</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     </owl:AnnotationProperty>
     
@@ -322,7 +328,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#long">
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 longitude of a SpatialThing (decimal degrees).</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">longitude</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     </owl:AnnotationProperty>
     
@@ -332,7 +338,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/adms#relatedDocumentation">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -341,7 +347,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/WV/illustration">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -350,7 +356,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/WV/logo">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -359,7 +365,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/LaTeX_command">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -368,7 +374,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/LaTeX_symbol">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -377,7 +383,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/abbreviation">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -386,7 +392,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/alternativeLabel">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -395,7 +401,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/alternative_LaTeX_symbol">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -404,7 +410,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/alternative_label">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -413,7 +419,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/alternative_symbol">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -422,7 +428,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/definition_description">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -431,7 +437,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/external_link">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -440,7 +446,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/longcomment">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -449,7 +455,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/symbol">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyAnnotationProperty"/>
     </owl:AnnotationProperty>
     
 
@@ -461,10 +467,10 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty -->
+    <!-- https://w3id.org/icity/OM/OMOntologyAnnotationProperty -->
 
 
-    <owl:AnnotationProperty rdf:about="https://w3id.org/icity/OM/1.0/OMOntologyAnnotationProperty">
+    <owl:AnnotationProperty rdf:about="https://w3id.org/icity/OM/OMOntologyAnnotationProperty">
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology.</dc:description>
     </owl:AnnotationProperty>
     
@@ -479,6 +485,213 @@ above the local reference ellipsoid).</rdfs:comment>
      -->
 
 
+    
+
+
+    <!-- http://www.w3.org/2006/time#after -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#after">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#before -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#before">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#dayOfWeek -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#dayOfWeek">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasBeginning -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hasBeginning">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasDateTimeDescription -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hasDateTimeDescription">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasDurationDescription -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hasDurationDescription">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasEnd -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hasEnd">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#inDateTime -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#inDateTime">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#inside -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#inside">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalAfter -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalAfter">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalContains -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalContains">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalDuring -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalDuring">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalEquals -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalEquals">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalFinishedBy -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalFinishedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalFinishes -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalFinishes">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalMeets -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalMeets">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalMetBy -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalMetBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalOverlappedBy -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalOverlappedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalOverlaps -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalOverlaps">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalStartedBy -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalStartedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#intervalStarts -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalStarts">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#timeZone -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#timeZone">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#unitType -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#unitType">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyProperty"/>
+    </rdf:Description>
     
 
 
@@ -525,6 +738,15 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Time/TimeOntologyProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Time/TimeOntologyProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Property added for organizational purposes, to identify properties defined in the Time Ontology.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -537,11 +759,164 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.w3.org/2006/time#day -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#day">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#dayOfYear -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#dayOfYear">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#days -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#days">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hour -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hour">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hours -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#hours">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#inXSDDateTime -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#inXSDDateTime">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#minute -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#minute">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#minutes -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#minutes">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#month -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#month">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#months -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#months">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#second -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#second">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#seconds -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#seconds">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#week -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#week">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#weeks -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#weeks">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#xsdDateTime -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#xsdDateTime">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#year -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#year">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#years -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#years">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyDataProperty"/>
+    </rdf:Description>
+    
+
+
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent -->
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -550,7 +925,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_electric_current_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -559,7 +934,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_length_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -568,7 +943,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_luminous_intensity_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -577,7 +952,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_mass_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -586,7 +961,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_thermodynamic_temperature_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -595,7 +970,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_time_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -604,7 +979,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/definition_factor">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -613,7 +988,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/definition_off-set">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -622,7 +997,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/exponent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -631,7 +1006,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/factor">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -640,7 +1015,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/numerical_value">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -649,16 +1024,34 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/rank">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- https://w3id.org/icity/OM/1.0/OMOntologyDataProperty -->
+    <!-- https://w3id.org/icity/OM/OMOntologyDataProperty -->
 
 
-    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/1.0/OMOntologyDataProperty">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/OMOntologyDataProperty">
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology.</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/OM/hasRelativeYear -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/OM/hasRelativeYear">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/OM/OMOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Time/TimeOntologyDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Time/TimeOntologyDataProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data property added for organizational purposes, to identify data properties defined in the Time Ontology.</dc:description>
     </owl:DatatypeProperty>
     
 
@@ -675,11 +1068,65 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.w3.org/2006/time#DateTimeDescription -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DateTimeDescription">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DayOfWeek -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DayOfWeek">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DurationDescription -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DurationDescription">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#TemporalEntity -->
+
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#TemporalUnit -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalUnit">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/timezone#TimeZone -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/timezone#TimeZone">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Time/TimeOntologyThing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit -->
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -688,7 +1135,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Amount_of_substance_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -697,7 +1144,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Area_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -706,7 +1153,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Currency">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -715,7 +1162,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Length_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -724,7 +1171,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Mass_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -734,6 +1181,12 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Measure">
         <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -759,6 +1212,18 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity">
         <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/value"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -767,7 +1232,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Speed_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
     
 
@@ -794,8 +1259,139 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit">
-        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
     </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/LaneCapacity_unit -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/LaneCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capacity of traffic throughput for a lane (e.g. vehicles per time unit)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/LinkCapacity_unit -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/LinkCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nominal link capacity (per arc or lane) of traffic throughput.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/MonetaryValue -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/MonetaryValue">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Measure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Currency"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/OM/hasRelativeYear"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Monetary Value has a numerical value that is relative to a particular date (year).
+A Monetary Value is measured with some currency.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/OM/Position_unit -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/Position_unit">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reference systems to indicate geographic position.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Time/CalendarPeriod -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Time/CalendarPeriod">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Time/TimeOntologyThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Time/TimeOntologyThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class added for organizational purposes, to identify classes defined in the Time Ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Time/TimePeriod -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Time/TimePeriod">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- https://w3id.org/icity/OM/NAD83 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/NAD83">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/Position_unit"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">North American Datum of 1983. A geodetic reference system.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/WGS84 -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/WGS84">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/Position_unit"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">World Geodetic System of 1984. The reference system used by GPS.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/vehicles_per_hour -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/vehicles_per_hour">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/LaneCapacity_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/icity/OM/vehicles_per_hour_per_lane -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/icity/OM/vehicles_per_hour_per_lane">
+        <rdf:type rdf:resource="https://w3id.org/icity/OM/LinkCapacity_unit"/>
+    </owl:NamedIndividual>
     
 
 

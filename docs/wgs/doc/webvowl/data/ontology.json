@@ -2,7 +2,7 @@
   "_comment" : "Created with OWL2VOWL (version 0.3.2-SNAPSHOT), http://vowl.visualdataweb.org",
   "header" : {
     "languages" : [ "undefined" ],
-    "baseIris" : [ "https://w3id.org/icity/wgs/1.0", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://www.w3.org/2001/XMLSchema", "http://xmlns.com/foaf/0.1" ],
+    "baseIris" : [ "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://www.w3.org/2001/XMLSchema", "http://xmlns.com/foaf/0.1", "https://w3id.org/icity/wgs" ],
     "title" : {
       "undefined" : "iCity wgs Ontology"
     },
@@ -43,7 +43,7 @@
       "preferredNamespaceUri" : [ {
         "identifier" : "preferredNamespaceUri",
         "language" : "undefined",
-        "value" : "https://w3id.org/icity/wgs/1.0/",
+        "value" : "https://w3id.org/icity/wgs/",
         "type" : "label"
       } ],
       "versionInfo" : [ {
@@ -74,22 +74,34 @@
     "individualCount" : 0
   },
   "class" : [ {
-    "id" : "9",
+    "id" : "6",
+    "type" : "owl:Class"
+  }, {
+    "id" : "8",
     "type" : "owl:Class"
   }, {
     "id" : "1",
     "type" : "owl:Thing"
   }, {
-    "id" : "5",
+    "id" : "9",
     "type" : "owl:Thing"
-  }, {
-    "id" : "7",
-    "type" : "owl:Class"
   }, {
     "id" : "2",
     "type" : "owl:Class"
   } ],
   "classAttribute" : [ {
+    "iri" : "https://w3id.org/icity/wgs/wgsOntologyThing",
+    "baseIri" : "https://w3id.org/icity/wgs",
+    "instances" : 0,
+    "description" : {
+      "undefined" : "Class added for organizational purposes, to identify classes defined in the wgs Ontology."
+    },
+    "label" : {
+      "IRI-based" : "wgsOntologyThing"
+    },
+    "subClasses" : [ "2" ],
+    "id" : "6"
+  }, {
     "iri" : "http://www.w3.org/2003/01/geo/wgs84_pos#Point",
     "baseIri" : "http://www.w3.org/2003/01/geo/wgs84_pos",
     "instances" : 0,
@@ -101,7 +113,7 @@
       "undefined" : " \nUniquely identified by lat/long/alt. i.e.\n\nspaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),\n  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).\n\nsameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).\n  "
     },
     "attributes" : [ "external" ],
-    "id" : "9",
+    "id" : "8",
     "superClasses" : [ "2" ]
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
@@ -113,23 +125,10 @@
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
-    "id" : "5",
+    "id" : "9",
     "label" : {
       "undefined" : "Thing"
     }
-  }, {
-    "iri" : "https://w3id.org/icity/wgs/1.0/wgsOntologyThing",
-    "baseIri" : "https://w3id.org/icity/wgs/1.0",
-    "instances" : 0,
-    "description" : {
-      "undefined" : "Class added for organizational purposes, to identify classes defined in the wgs Ontology."
-    },
-    "label" : {
-      "IRI-based" : "wgsOntologyThing"
-    },
-    "subClasses" : [ "2" ],
-    "attributes" : [ "external" ],
-    "id" : "7"
   }, {
     "iri" : "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing",
     "baseIri" : "http://www.w3.org/2003/01/geo/wgs84_pos",
@@ -138,28 +137,28 @@
       "IRI-based" : "SpatialThing",
       "undefined" : "SpatialThing"
     },
-    "subClasses" : [ "9" ],
+    "subClasses" : [ "8" ],
     "comment" : {
       "undefined" : "Anything with spatial extent, i.e. size, shape, or position.\n e.g. people, places, bowling balls, as well as abstract areas like cubes.\n"
     },
     "attributes" : [ "external" ],
     "id" : "2",
-    "superClasses" : [ "7" ]
+    "superClasses" : [ "6" ]
   } ],
   "property" : [ {
     "id" : "0",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "3",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "6",
+    "id" : "5",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "8",
+    "id" : "7",
     "type" : "rdfs:SubClassOf"
   }, {
     "id" : "4",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "3",
     "type" : "owl:objectProperty"
   } ],
   "propertyAttribute" : [ {
@@ -178,39 +177,39 @@
     "attributes" : [ "object", "external" ],
     "id" : "0"
   }, {
-    "iri" : "https://w3id.org/icity/wgs/1.0/wgsOntologyProperty",
-    "baseIri" : "https://w3id.org/icity/wgs/1.0",
-    "range" : "5",
+    "range" : "6",
+    "domain" : "2",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "5"
+  }, {
+    "range" : "2",
+    "domain" : "8",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "7"
+  }, {
+    "iri" : "https://w3id.org/icity/wgs/wgsOntologyProperty",
+    "baseIri" : "https://w3id.org/icity/wgs",
+    "range" : "9",
     "description" : {
       "undefined" : "Property added for organizational purposes, to identify properties defined in the wgs Ontology."
     },
     "label" : {
       "IRI-based" : "wgsOntologyProperty"
     },
-    "domain" : "5",
-    "subproperty" : [ "0" ],
-    "attributes" : [ "object", "external" ],
-    "id" : "3"
-  }, {
-    "range" : "7",
-    "domain" : "2",
-    "attributes" : [ "object", "anonymous" ],
-    "id" : "6"
-  }, {
-    "range" : "2",
     "domain" : "9",
-    "attributes" : [ "object", "anonymous" ],
-    "id" : "8"
+    "subproperty" : [ "0" ],
+    "attributes" : [ "object" ],
+    "id" : "4"
   }, {
     "iri" : "http://xmlns.com/foaf/0.1/based_near",
     "baseIri" : "http://xmlns.com/foaf/0.1",
-    "range" : "5",
+    "range" : "9",
     "label" : {
       "IRI-based" : "based_near"
     },
-    "domain" : "5",
+    "domain" : "9",
     "subproperty" : [ "0" ],
     "attributes" : [ "object", "external" ],
-    "id" : "4"
+    "id" : "3"
   } ]
 }
