@@ -19,12 +19,15 @@
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="https://w3id.org/icity/OM/1.0/"
      xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:OM="https://w3id.org/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="https://w3id.org/icity/iCity-SpatialLoc/">
-        <owl:versionIRI rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.2/"/>
-        <owl:imports rdf:resource="https://w3id.org/icity/Foundation/1.1/"/>
+    <owl:Ontology rdf:about="https://w3id.org/icity/Building/">
+        <owl:versionIRI rdf:resource="https://w3id.org/icity/Building/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
         <dc:title>iCity Building Ontology</dc:title>
@@ -39,7 +42,6 @@
 There may be many different types (subclasses) of buildings, such as House, Apartment Building, Office Building, and so on.
 </dc:description>
         <vann:preferredNamespacePrefix>icity-building</vann:preferredNamespacePrefix>
-        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#date">https://w3id.org/icity/iCity-SpatialLoc/1.1/</owl:priorVersion>
     </owl:Ontology>
     
 
@@ -156,7 +158,9 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
+    </owl:AnnotationProperty>
     
 
 
@@ -196,77 +200,81 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://schema.org/address -->
 
     <owl:ObjectProperty rdf:about="http://schema.org/address">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgProperty"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
-    </rdf:Description>
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty -->
+    <!-- https://w3id.org/icity/Building/BuildingOntologyProperty -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty">
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/BuildingOntologyProperty">
         <dc:description>Added for organizational purposes, to identify properties defined in the Building ontology.</dc:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgProperty -->
+    <!-- https://w3id.org/icity/Building/SchemaOrgProperty -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgProperty">
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/SchemaOrgProperty">
         <dc:description>Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/hasFacility -->
+    <!-- https://w3id.org/icity/Building/hasFacility -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasFacility">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasFacility">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRent -->
+    <!-- https://w3id.org/icity/Building/hasRent -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRent">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasRent">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/hasUnitSize -->
+    <!-- https://w3id.org/icity/Building/hasUnitSize -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasUnitSize">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasUnitSize">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/locatedOn -->
+    <!-- https://w3id.org/icity/Building/locatedOn -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/locatedOn">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/locatedOn">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
         <dc:description>A Building is located on some parcel of land.</dc:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/hasManifestation -->
+    <!-- https://w3id.org/icity/Change/existsAt -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt"/>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/manifestationOf -->
+    <!-- https://w3id.org/icity/Change/hasManifestation -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/hasManifestation"/>
+    
+
+
+    <!-- https://w3id.org/icity/Change/manifestationOf -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/manifestationOf"/>
     
 
 
@@ -288,6 +296,12 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/SpatialLoc/1.0/hasLocation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -299,18 +313,18 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyDataProperty -->
+    <!-- https://w3id.org/icity/Building/BuildingOntologyDataProperty -->
 
-    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyDataProperty">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Building/BuildingOntologyDataProperty">
         <dc:description>Added for organizational purposes, to identify data properties defined in the Building ontology.</dc:description>
     </owl:DatatypeProperty>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRooms -->
+    <!-- https://w3id.org/icity/Building/hasRooms -->
 
-    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRooms">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyDataProperty"/>
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Building/hasRooms">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -329,59 +343,65 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://schema.org/PostalAddress -->
 
     <owl:Class rdf:about="http://schema.org/PostalAddress">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgThing"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/ApartmentBuilding -->
+    <!-- http://www.wurvoc.org/vocabularies/om-1.8/Quantity -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/ApartmentBuilding">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+    <owl:Class rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+    
+
+
+    <!-- https://w3id.org/icity/Building/ApartmentBuilding -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/ApartmentBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/Building -->
+    <!-- https://w3id.org/icity/Building/Building -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/Building">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingPD"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingPD"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnit"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/hasValue"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/SpatialFeature"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -398,36 +418,36 @@ A Building contains one or many units.</dc:description>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing -->
+    <!-- https://w3id.org/icity/Building/BuildingOntologyThing -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingOntologyThing">
         <dc:description>Added for organizational purposes, to identify classes defined in the Building ontology.</dc:description>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingPD -->
+    <!-- https://w3id.org/icity/Building/BuildingPD -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingPD">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingPD">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/Building"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Building"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -437,46 +457,46 @@ A Building contains one or many units.</dc:description>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnit -->
+    <!-- https://w3id.org/icity/Building/BuildingUnit -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnit">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingUnit">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnitPD"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnitPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnitPD"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnitPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRent"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasRent"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasUnitSize"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasUnitSize"/>
                 <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/hasValue"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -489,25 +509,25 @@ A BuildingUnit has an address</dc:description>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnitPD -->
+    <!-- https://w3id.org/icity/Building/BuildingUnitPD -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnitPD">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingUnitPD">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnit"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingUnit"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/address"/>
@@ -516,13 +536,13 @@ A BuildingUnit has an address</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasFacility"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Facility"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasFacility"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Facility"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -531,12 +551,12 @@ A BuildingUnit has an address</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#containedIn"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Building/Building"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/hasRooms"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasRooms"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -546,55 +566,55 @@ A BuildingUnit has an address</dc:description>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/Facility -->
+    <!-- https://w3id.org/icity/Building/Facility -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/Facility">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/BuildingOntologyThing"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Building/Facility">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/House -->
+    <!-- https://w3id.org/icity/Building/House -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/House">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Building/House">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/IndustrialBuilding -->
+    <!-- https://w3id.org/icity/Building/IndustrialBuilding -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/IndustrialBuilding">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Building/IndustrialBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/OfficeBuilding -->
+    <!-- https://w3id.org/icity/Building/OfficeBuilding -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/OfficeBuilding">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/iCity-SpatialLoc/1.1/Building"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Building/OfficeBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgThing -->
+    <!-- https://w3id.org/icity/Building/SchemaOrgThing -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/iCity-SpatialLoc/1.1/SchemaOrgThing">
+    <owl:Class rdf:about="https://w3id.org/icity/Building/SchemaOrgThing">
         <dc:description>Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/TimeVaryingConcept -->
+    <!-- https://w3id.org/icity/Change/TimeVaryingConcept -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept"/>
     
 
 
-    <!-- https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue -->
+    <!-- https://w3id.org/icity/Change/Manifestation -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Change/Manifestation"/>
     
 
 
