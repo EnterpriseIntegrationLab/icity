@@ -1154,6 +1154,74 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/Intersection -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Intersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/IntersectionPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/IntersectionPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="https://w3id.org/icity/TransportationSystem/accessesComplex"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:allValuesFrom rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/TransportationSystem/IntersectionPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/IntersectionPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Intersection"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Intersection"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="https://w3id.org/icity/TransportationSystem/accessesComplex"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/NodePD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/Link -->
 
 
@@ -1693,6 +1761,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
