@@ -28,20 +28,21 @@
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <vann:preferredNamespacePrefix>icity-landuse</vann:preferredNamespacePrefix>
-        <dc:title>iCity Land Use Ontology</dc:title>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
+        <dc:title>iCity Land Use Ontology</dc:title>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The iCity-LandUse Ontology captures concepts related to land use and cover over time. The ontology reuses and extends the Land Based Classification Standards (LBCS) Ontology  presented by (Montenegro, Gomes, Urbano, and Duarte, 2011) for this purpose.
 		
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
 Changes from prior version:
-- revised foundational ontologies</dc:description>
-        <dc:creator>Megan Katsumi</dc:creator>
+- revised foundational ontologies
+- added CLUMP and AAFC land use classifications</dc:description>
         <owl:priorVersion>https://w3id.org/icity/LandUse/1.1/</owl:priorVersion>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
+        <dc:creator>Megan Katsumi</dc:creator>
         <dc:issued>November 7, 2017</dc:issued>
-        <adms:relatedDocumentation>Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-LandUse Ontology is designed to capture concepts related to land use.</rdfs:comment>
+        <adms:relatedDocumentation>Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -229,11 +230,66 @@ Changes from prior version:
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/LandUseOntologyDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/LandUse/LandUseOntologyDataProperty"/>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/hasAAFCCode -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/LandUse/hasAAFCCode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyDataProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/hasCLUMPCode -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/LandUse/hasCLUMPCode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyDataProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.opengis.net/ont/geosparql#Feature -->
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Interval -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#TemporalEntity -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
     
 
 
@@ -246,6 +302,12 @@ Changes from prior version:
     <!-- https://w3id.org/icity/Change/TimeVaryingConcept -->
 
     <owl:Class rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+    
+
+
+    <!-- https://w3id.org/icity/LBCS/LBCSThing -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LBCS/LBCSThing"/>
     
 
 
@@ -335,10 +397,121 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
     
 
 
+    <!-- https://w3id.org/icity/LandUse/AAFCClassification -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/AAFCClassification">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+        <rdfs:comment>Agriculture and Agri-Foods Canada Classification is a type (subclass of) land use classification. The codes are based on the IPCC (International Panel on Climate Change) protocol.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/AAFCCropland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/AAFCCropland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>51</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Annual and perennial
+TBD: Should this be the same as the CLUMPCropland class?</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/AAFCWater -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/AAFCWater">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>31</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Natural and human-made.
+TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/ActivityClassification -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/ActivityClassification">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LBCSClassification"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/CLUMPClassification -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/CLUMPClassification">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/CLUMPCropland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/CLUMPCropland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>A</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>A - Cropland </dc:description>
+        <rdfs:comment>&apos;A&apos; Cropland - Land used for annual field crops such as grain, oilseeds, sugar beets, tobacco, potatoes, field vegetables and canning crops. Associated fallow, and land being cleared for field crops are also included. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/CLUMPWater -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/CLUMPWater">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>Z</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>Z - Water areas </dc:description>
+        <rdfs:comment>&apos;Z&apos; Additional code added during data integration for water areas based on the CLI shoreline maps. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Forest -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Forest">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>41</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Treed areas &gt;1 ha in size</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/ForestWetland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/ForestWetland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>42</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Wetland with forest cover</rdfs:comment>
     </owl:Class>
     
 
@@ -346,7 +519,78 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
     <!-- https://w3id.org/icity/LandUse/FunctionClassification -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/FunctionClassification">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/ActivityClassification"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/GrasslandManaged -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/GrasslandManaged">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>61</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Natural grass and shrubs used for cattle grazing</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/GrasslandUnmanaged -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/GrasslandUnmanaged">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>62</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Natural grass and shrubs with no apparent use (forest openings, alpine meadows, tundra, etc.)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Horticulture -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Horticulture">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>H</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>H - Horticulture</dc:description>
+        <rdfs:comment>&apos;H&apos; Horticulture, poultry and fur operations. Land used for intensive cultivation of vegetables and small fruits, includes market gardens, nurseries, flower and bulb farms and sod farms. Large scale commercial fur and poultry farms are also included because of their specialized agricultural nature. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/ImprovedPasture -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/ImprovedPasture">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>P</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>P - Improved pasture and forage crops </dc:description>
+        <rdfs:comment>&apos;P&apos; Improved pasture and forage crops.- Land used for improved pasture or for the production of hay and other cultivated fodder crops, including land being cleared for these purposes. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/LBCSClassification -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/LBCSClassification">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+        <rdfs:comment>The LBCS recognizes different dimensions of Land Use: Activity, Function, Structure, Site, and Ownership Classifications. Each dimension is further defined by a taxonomy of specialized classifications. For each dimension, we introduce an equivalent class name for disambiguation, e.g. to distinguish between the Activity dimension of land use (we refer to this as ActivityClassification) and the notion of an Activity in icity.</rdfs:comment>
     </owl:Class>
     
 
@@ -355,6 +599,7 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/LandUseClassification">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyThing"/>
+        <rdfs:comment>Land Use Classifications provide a means of describing the land cover/use in a standard way. Various classification systems are used to identify types of land use. Currently, we include LBCS, CLUMP, and AAFC.</rdfs:comment>
     </owl:Class>
     
 
@@ -367,10 +612,89 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
     
 
 
+    <!-- https://w3id.org/icity/LandUse/MinesQuarriesSandGravelPits -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/MinesQuarriesSandGravelPits">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>E</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>E - Mines, quarries, sand and gravel pits </dc:description>
+        <rdfs:comment>&apos;E&apos; Mines, quarries, sand and gravel pits, open excavations. Land used in the past or present for the extraction of earth materials. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/NonProductiveWoodland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/NonProductiveWoodland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>U</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>U - Non-productive woodland </dc:description>
+        <rdfs:comment>&apos;U&apos; Non-productive woodland. Land covered by scrub growth. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/OrchardsVineyards -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/OrchardsVineyards">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>G</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>G - Orchards and vineyards </dc:description>
+        <rdfs:comment>&apos;G&apos; Orchards and vineyards. Land used for the production of tree fruits, hops and grapes. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/OtherLand -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/OtherLand">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>91</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Rock, beaches, ice, barren land</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/OutdoorRecreation -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/OutdoorRecreation">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>O</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>O - Outdoor recreation </dc:description>
+        <rdfs:comment>&apos;O&apos; Outdoor recreation - Land used for private or public outdoor recreational purposes. Some examples are: golf courses, parks, beaches, summer cottage areas, game preserves and historic sites. </rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/OwnershipClassification -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/OwnershipClassification">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LBCSClassification"/>
     </owl:Class>
     
 
@@ -413,10 +737,56 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
     
 
 
+    <!-- https://w3id.org/icity/LandUse/ProductiveWoodland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/ProductiveWoodland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>T</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>T - Productive woodland </dc:description>
+        <rdfs:comment>&apos;T&apos; Productive woodland.Wooded land with trees having over 25% canopy cover and being over 20 feet in height approximately. Artificially restocked areas, or plantations are included regardless of age. Much cut-over and burned-over land is included. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Roads -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Roads">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>25</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Primary, secondary and tertiary</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Settlement -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Settlement">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>21</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Built-up and urban</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/SiteClassification -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/SiteClassification">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LBCSClassification"/>
     </owl:Class>
     
 
@@ -424,7 +794,192 @@ There may be other types (subclasses) of Parcel, defined in more precise or diff
     <!-- https://w3id.org/icity/LandUse/StructureClassification -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/StructureClassification">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseClassification"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LBCSClassification"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/SwampMarshBog -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/SwampMarshBog">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>M</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>M - Swamp, marsh or bog </dc:description>
+        <rdfs:comment>&apos;M&apos; Swamp, marsh, or bog. Open wetlands except those which frequently dry up or show evidence of grazing or hay cutting. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/TreedWetland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/TreedWetland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>46</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Wetland with tree cover</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Trees -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Trees">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>45</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Treed areas &lt;1 ha in size</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Unclassified -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Unclassified">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>11</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Areas not classified due to clouds.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/UnimprovedPasture -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/UnimprovedPasture">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>K</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>K - Unimproved pasture and range land </dc:description>
+        <rdfs:comment>&apos;K&apos; Rough grazing and range land. Areas of natural grasslands, sedges, herbaceous plants and abandoned farmland whether used for grazing or not. Bushes and trees may cover up to 25% of the area. Intermittently wet hay lands (sloughs or meadows) are included as long as the land is utilized. Within some grassy, open woodlands, bushes and trees may exceed 25% cover if the area is actively grazed and no other use dominates. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Unmapped -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Unmapped">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>8</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>8 - Unmapped areas </dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/UnproductiveRock -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/UnproductiveRock">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>L</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>L - Unproductive land - rock </dc:description>
+        <rdfs:comment>&apos;L&apos; Rock and other unvegetated surfaces - rock barrens, badlands, alkaline flats, gravel bars, eroded river banks, mine dumps. Unproductive land which does not support vegetation. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/UnproductiveSand -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/UnproductiveSand">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>S</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>S - Unproductive land - sand </dc:description>
+        <rdfs:comment>&apos;S&apos; Sand, sand bars, sand flats, dunes and beaches - Unproductive unconsolidated land which does not support vegetation. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/UrbanBuiltUp -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/UrbanBuiltUp">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasCLUMPCode"/>
+                <owl:hasValue>B</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
+        <dc:description>B - Urban built-up area </dc:description>
+        <rdfs:comment>&apos;B&apos; Built-up area. Land occupied by cities, towns, and villages, or by isolated units away from settlements such as manufacturing plants, rail yards, and military camps. Parks and other open spaces within built-up areas are also included. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/Wetland -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/Wetland">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>71</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Undifferentiated wetland</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/WetlandHerb -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/WetlandHerb">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>74</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Wetland with grass cover</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/WetlandShrub -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/WetlandShrub">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasAAFCCode"/>
+                <owl:hasValue>73</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
+        <rdfs:comment>Wetland with shrub cover</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
