@@ -19,6 +19,7 @@
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="https://w3id.org/icity/OM/1.0/"
      xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:OM="https://w3id.org/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -26,6 +27,7 @@
         <owl:versionIRI rdf:resource="https://w3id.org/icity/LandUse/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/LBCS/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <vann:preferredNamespacePrefix>icity-landuse</vann:preferredNamespacePrefix>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
@@ -213,6 +215,14 @@ Changes from prior version:
     
 
 
+    <!-- https://w3id.org/icity/LandUse/associatedArea -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/associatedArea">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/hasLandUse -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/hasLandUse">
@@ -249,7 +259,6 @@ Changes from prior version:
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/LandUse/hasAAFCCode">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyDataProperty"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/LandUse/AAFCClassification"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
     </owl:DatatypeProperty>
     
 
@@ -357,6 +366,12 @@ Changes from prior version:
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/associatedArea"/>
+                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasLandUse"/>
