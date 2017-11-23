@@ -25,6 +25,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/LandUse/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/LandUse/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl"/>
         <owl:imports rdf:resource="https://w3id.org/icity/LBCS/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
@@ -38,7 +39,8 @@
 
 Changes from prior version:
 - revised foundational ontologies
-- added CLUMP and AAFC land use classifications</dc:description>
+- added CLUMP and AAFC land use classifications
+- imported GCI-Foundation ontology to capture population information</dc:description>
         <owl:priorVersion>https://w3id.org/icity/LandUse/1.1/</owl:priorVersion>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:issued>November 7, 2017</dc:issued>
@@ -223,10 +225,39 @@ Changes from prior version:
     
 
 
+    <!-- https://w3id.org/icity/LandUse/hasEmployedPopulation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/hasEmployedPopulation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/hasResidentPopulation"/>
+        <rdfs:range rdf:resource="https://w3id.org/icity/LandUse/EmployedPopulation"/>
+        <rdfs:comment>A Parcel may have a number of employed residents that is subject to change over time.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/hasLandUse -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/hasLandUse">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/hasPopulation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/hasPopulation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyProperty"/>
+        <rdfs:comment>A Parcel may have some population that is subject to change over time.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/hasResidentPopulation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/LandUse/hasResidentPopulation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/LandUse/hasPopulation"/>
+        <rdfs:range rdf:resource="https://w3id.org/icity/LandUse/ResidentPopulation"/>
+        <rdfs:comment>A parcel may have some population of residents at a given point in time.</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -369,7 +400,13 @@ Changes from prior version:
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/associatedArea"/>
-                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/LandUse/hasPopulation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#Population"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -497,6 +534,15 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
         <dc:description>Z - Water areas </dc:description>
         <rdfs:comment>&apos;Z&apos; Additional code added during data integration for water areas based on the CLI shoreline maps. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/EmployedPopulation -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/EmployedPopulation">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/ResidentPopulation"/>
+        <rdfs:comment>The population of employed residents in a given area (Parcel)</rdfs:comment>
     </owl:Class>
     
 
@@ -768,6 +814,16 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/LandUse/ResidentPopulation -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/ResidentPopulation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#Population"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/LandUseOntologyThing"/>
+        <rdfs:comment>The population that resides within a given area (Parcel)</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/LandUse/Roads -->
 
     <owl:Class rdf:about="https://w3id.org/icity/LandUse/Roads">
@@ -826,6 +882,50 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/CLUMPClassification"/>
         <dc:description>M - Swamp, marsh or bog </dc:description>
         <rdfs:comment>&apos;M&apos; Swamp, marsh, or bog. Open wetlands except those which frequently dry up or show evidence of grazing or hay cutting. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/TrafficZone -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/TrafficZone">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/LandUse/TrafficZonePD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/LandUse/TrafficZonePD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LBCSv2/Parcel"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/LandUse/TrafficZonePD -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/LandUse/TrafficZonePD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/LandUse/TrafficZone"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/LandUse/TrafficZone"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/LandUse/ParcelPD"/>
     </owl:Class>
     
 
