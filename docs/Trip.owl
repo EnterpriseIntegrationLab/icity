@@ -27,16 +27,19 @@
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Trip/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Vehicle/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/TransportationSystem/1.2/"/>
+        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Trip ontology is designed to capture concepts related to trips.
+
+Changes from previous version:
+-updated foundational ontologies
+-added viaVehicle property to relate vehicles to trip segments
+
+Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <dc:description>Ontology to capture concepts related to trips that occur within the urban system.</dc:description>
         <vann:preferredNamespacePrefix>icity-trip</vann:preferredNamespacePrefix>
         <owl:priorVersion>https://w3id.org/icity/Trip/1.1/</owl:priorVersion>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:title>iCity Trip Ontology</dc:title>
-        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Trip ontology is designed to capture concepts related to trips.
-		Changes from previous version:
-		-updated foundational ontologies
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:issued>November 7, 2017</dc:issued>
         <adms:relatedDocumentation>Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
@@ -220,6 +223,14 @@
     
 
 
+    <!-- https://w3id.org/icity/Trip/viaVehicle -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Trip/viaVehicle">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Trip/TripOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -392,6 +403,12 @@ A Trip may incur some cost (monetary or otherwise).</dc:description>
 
     <owl:Class rdf:about="https://w3id.org/icity/Trip/TripSegment">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Trip/TripOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Trip/viaVehicle"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Trip/accessesArc"/>
