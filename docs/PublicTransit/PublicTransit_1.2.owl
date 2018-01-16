@@ -320,6 +320,14 @@ Changes from previous version:
     
 
 
+    <!-- https://w3id.org/icity/PublicTransit/hasTransitVehicleId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasTransitVehicleId">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -748,6 +756,13 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Trip/viaVehicle"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/PublicTransit/TransitVehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -757,6 +772,13 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
     <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/TransitVehicle">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/hasTransitVehicleId"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
 </rdf:RDF>
 
