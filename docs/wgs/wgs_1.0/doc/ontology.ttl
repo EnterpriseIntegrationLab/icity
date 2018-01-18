@@ -14,7 +14,7 @@
                                <http://purl.org/dc/elements/1.1/issued> "November 29, 2016"^^xsd:string ;
                                <http://purl.org/dc/elements/1.1/title> "iCity wgs Ontology"^^xsd:string ;
                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-wgs"^^xsd:string ;
-                               <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/icity/wgs/1.0/"^^xsd:string ;
+                               <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/icity/wgs/"^^xsd:string ;
                                rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-wgs ontology is designed to capture concepts related to the geo location.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group"""^^xsd:string ;
                                owl:versionInfo 1.0 ;
@@ -89,7 +89,7 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                               rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid)."""^^xsd:string ;
                                               rdfs:label "altitude"^^xsd:string ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/wgs/1.0/wgsOntologyAnnotationProperty> ;
+                                              rdfs:subPropertyOf :wgsOntologyAnnotationProperty ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
@@ -97,7 +97,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:AnnotationProperty ;
                                               rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)."^^xsd:string ;
                                               rdfs:label "latitude"^^xsd:string ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/wgs/1.0/wgsOntologyAnnotationProperty> ;
+                                              rdfs:subPropertyOf :wgsOntologyAnnotationProperty ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
@@ -110,7 +110,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:AnnotationProperty ;
                                                rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)."^^xsd:string ;
                                                rdfs:label "longitude"^^xsd:string ;
-                                               rdfs:subPropertyOf <https://w3id.org/icity/wgs/1.0/wgsOntologyAnnotationProperty> ;
+                                               rdfs:subPropertyOf :wgsOntologyAnnotationProperty ;
                                                rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
@@ -122,9 +122,9 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://xmlns.com/foaf/0.1/based_near> rdf:type owl:AnnotationProperty .
 
 
-###  https://w3id.org/icity/wgs/1.0/wgsOntologyAnnotationProperty
-<https://w3id.org/icity/wgs/1.0/wgsOntologyAnnotationProperty> rdf:type owl:AnnotationProperty ;
-                                                               <http://purl.org/dc/elements/1.1/description> "Annotation property added for organizational purposes, to identify annotation properties defined in the wgs Ontology."^^xsd:string .
+###  https://w3id.org/icity/wgs/wgsOntologyAnnotationProperty
+:wgsOntologyAnnotationProperty rdf:type owl:AnnotationProperty ;
+                               <http://purl.org/dc/elements/1.1/description> "Annotation property added for organizational purposes, to identify annotation properties defined in the wgs Ontology."^^xsd:string .
 
 
 #################################################################
@@ -134,13 +134,13 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty ;
                                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ,
-                                                                      <https://w3id.org/icity/wgs/1.0/wgsOntologyProperty> ;
+                                                                      :wgsOntologyProperty ;
                                                    rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
-###  https://w3id.org/icity/wgs/1.0/wgsOntologyProperty
-<https://w3id.org/icity/wgs/1.0/wgsOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                     <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the wgs Ontology."^^xsd:string .
+###  https://w3id.org/icity/wgs/wgsOntologyProperty
+:wgsOntologyProperty rdf:type owl:ObjectProperty ;
+                     <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the wgs Ontology."^^xsd:string .
 
 
 #################################################################
@@ -165,16 +165,16 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
 <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class ;
-                                                       rdfs:subClassOf <https://w3id.org/icity/wgs/1.0/wgsOntologyThing> ;
+                                                       rdfs:subClassOf :wgsOntologyThing ;
                                                        rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
  e.g. people, places, bowling balls, as well as abstract areas like cubes.
 """^^xsd:string ;
                                                        rdfs:label "SpatialThing"^^xsd:string .
 
 
-###  https://w3id.org/icity/wgs/1.0/wgsOntologyThing
-<https://w3id.org/icity/wgs/1.0/wgsOntologyThing> rdf:type owl:Class ;
-                                                  <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the wgs Ontology."^^xsd:string .
+###  https://w3id.org/icity/wgs/wgsOntologyThing
+:wgsOntologyThing rdf:type owl:Class ;
+                  <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the wgs Ontology."^^xsd:string .
 
 
 #################################################################
