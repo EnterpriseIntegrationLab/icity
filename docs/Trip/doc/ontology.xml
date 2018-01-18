@@ -29,9 +29,12 @@
         <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">iCity Trip Ontology</dc:title>
         <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">icity-trip</vann:preferredNamespacePrefix>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Trip ontology is designed to capture concepts related to trips.
-		Changes from previous version:
-		-updated foundational ontologies
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
+
+Changes from previous version:
+-updated foundational ontologies
+-added viaVehicle property to relate vehicles to trip segments
+
+Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/icity/Trip/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
@@ -299,6 +302,27 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Change/existsAt -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt"/>
+    
+
+
+    <!-- https://w3id.org/icity/Change/hasManifestation -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/hasManifestation"/>
+    
+
+
+    <!-- https://w3id.org/icity/Change/manifestationOf -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/manifestationOf"/>
+    
+
+
     <!-- https://w3id.org/icity/Change/1.1/existsAt -->
 
 
@@ -499,6 +523,15 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasInflow">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/TransportationSystem/hasLinkCapacity -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasLinkCapacity">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -718,6 +751,15 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Trip/viaMode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Trip/TripOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Trip/viaVehicle -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Trip/viaVehicle">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Trip/TripOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -992,11 +1034,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/ArcPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/ArcPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1032,12 +1074,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/1.1/Mode"/>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/Mode"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -1075,11 +1117,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Arc"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Arc"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1095,7 +1137,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -1230,11 +1272,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/LinkPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/LinkPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1259,12 +1301,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/1.1/Mode"/>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/Mode"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -1279,6 +1321,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasLinkCapacity"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
             </owl:Restriction>
@@ -1316,11 +1365,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Link"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Link"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1336,7 +1385,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -1377,11 +1426,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/NetworkPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/NetworkPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1404,7 +1453,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -1421,11 +1470,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Network"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Network"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1435,7 +1484,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -1474,11 +1523,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/NodePD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/NodePD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1521,7 +1570,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -1547,11 +1596,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Node"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Node"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1561,7 +1610,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -1622,11 +1671,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1646,11 +1695,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/SignalControlPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/SignalControlPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1666,7 +1715,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -1683,11 +1732,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/SignalControl"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/SignalControl"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1717,7 +1766,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -1749,11 +1798,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplexPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplexPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1779,11 +1828,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1947,6 +1996,12 @@ A Trip may incur some cost (monetary or otherwise).</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Trip/TripOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Trip/viaVehicle"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Trip/accessesArc"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="https://w3id.org/icity/TransportationSystem/Arc"/>
@@ -2017,6 +2072,7 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
 
 
     <owl:Class rdf:about="https://w3id.org/icity/Vehicle/Mode">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc).</dc:description>
     </owl:Class>
@@ -2223,15 +2279,6 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
     <owl:Class rdf:about="https://w3id.org/icity/Vehicle/VehicleType">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
-    </owl:Class>
-    
-
-
-    <!-- https://w3id.org/icity/Vehicle/1.1/Mode -->
-
-
-    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/1.1/Mode">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
     </owl:Class>
     
 

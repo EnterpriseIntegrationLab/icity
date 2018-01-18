@@ -131,6 +131,11 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                       rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
 
 
+###  https://w3id.org/icity/Trip/viaVehicle
+<https://w3id.org/icity/Trip/viaVehicle> rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
 ###  https://w3id.org/icity/TripCost/TripCostOntologyProperty
 :TripCostOntologyProperty rdf:type owl:ObjectProperty ;
                           <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Trip Cost ontology."^^xsd:string .
@@ -302,6 +307,10 @@ A Trip may incur some cost (monetary or otherwise)."""^^xsd:string .
 ###  https://w3id.org/icity/Trip/TripSegment
 <https://w3id.org/icity/Trip/TripSegment> rdf:type owl:Class ;
                                           rdfs:subClassOf <https://w3id.org/icity/Trip/TripOntologyThing> ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/viaVehicle> ;
+                                                            owl:allValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                                                          ] ,
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty <https://w3id.org/icity/Trip/accessesArc> ;
                                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;

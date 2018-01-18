@@ -8,9 +8,12 @@
 
 <https://w3id.org/icity/PublicTransit/> rdf:type owl:Ontology ;
                                          owl:versionIRI <https://w3id.org/icity/PublicTransit/1.2/> ;
-                                         owl:imports <https://w3id.org/icity/Change/1.1/> ,
+                                         owl:imports <https://w3id.org/icity/Activity/1.2/> ,
+                                                     <https://w3id.org/icity/Change/1.1/> ,
                                                      <https://w3id.org/icity/OM/1.1/> ,
-                                                     <https://w3id.org/icity/SpatialLoc/1.2/> ;
+                                                     <https://w3id.org/icity/SpatialLoc/1.2/> ,
+                                                     <https://w3id.org/icity/TransportationSystem/1.2/> ,
+                                                     <https://w3id.org/icity/Trip/1.2/> ;
                                          <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/"^^xsd:string ;
                                          <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi"^^xsd:string ;
                                          <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to public transit."^^xsd:string ;
@@ -22,7 +25,10 @@
                                                          """Copyright @ 2016 Megan Katsumi, iCity Research Group
 
 Changes from previous version:
-- updated foundational ontologies"""^^xsd:string ;
+- updated foundational ontologies
+- added to existing definitions
+- introduced the TransitIncident and the TransitTrip class
+- imported TransportationSystem, Activity, Trip ontologies"""^^xsd:string ;
                                          <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. See report on iCity Ontology v1."^^xsd:string .
 
 #################################################################
@@ -407,9 +413,41 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                       rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
+###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
+<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
+                                                    rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                    rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
+                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                    owl:propertyChainAxiom ( <https://w3id.org/icity/Activity/occursAt>
+                                                                             <http://www.w3.org/2006/time#hasBeginning>
+                                                                           ) .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
+<http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/achievedAt> ;
+                                                                  rdfs:domain <https://w3id.org/icity/Activity/ConjunctiveState> .
+
+
 ###  http://www.wurvoc.org/vocabularies/om-1.8/derived_unit
 <http://www.wurvoc.org/vocabularies/om-1.8/derived_unit> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt
+<http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/achievedAt> ;
+                                                                  rdfs:domain <https://w3id.org/icity/Activity/DisjunctiveState> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
+<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                  rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
+                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                  owl:propertyChainAxiom ( <https://w3id.org/icity/Activity/occursAt>
+                                                                           <http://www.w3.org/2006/time#hasEnd>
+                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
@@ -423,6 +461,13 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                    rdfs:comment "Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object."^^xsd:string .
 
 
+###  http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt
+<http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <https://w3id.org/icity/Activity/achievedAt> ,
+                                                                                  <https://w3id.org/icity/Change/existsAt> ;
+                                                               rdfs:domain <https://w3id.org/icity/Activity/TerminalState> .
+
+
 ###  http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale
 <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> rdf:type owl:ObjectProperty ;
                                                                                  rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
@@ -431,6 +476,124 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  http://www.wurvoc.org/vocabularies/om-1.8/value
 <http://www.wurvoc.org/vocabularies/om-1.8/value> rdf:type owl:ObjectProperty ;
                                                   rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  https://w3id.org/icity/Activity/ActivityOntologyProperty
+<https://w3id.org/icity/Activity/ActivityOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                           <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Activity ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/achievedAt
+<https://w3id.org/icity/Activity/achievedAt> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                             rdfs:domain <https://w3id.org/icity/Activity/State> ;
+                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
+                                             owl:propertyChainAxiom ( [ owl:inverseOf <https://w3id.org/icity/Activity/effectOf>
+                                                                      ]
+                                                                      <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                    ) ,
+                                                                    ( [ owl:inverseOf <https://w3id.org/icity/Activity/hasDecomp>
+                                                                      ]
+                                                                      <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt>
+                                                                      <http://www.w3.org/2006/time#intervalDuring>
+                                                                    ) ,
+                                                                    ( [ owl:inverseOf <https://w3id.org/icity/Activity/preconditionOf>
+                                                                      ]
+                                                                      <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                    ) .
+
+
+###  https://w3id.org/icity/Activity/causedBy
+<https://w3id.org/icity/Activity/causedBy> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                           owl:inverseOf <https://w3id.org/icity/Activity/causes> .
+
+
+###  https://w3id.org/icity/Activity/causes
+<https://w3id.org/icity/Activity/causes> rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
+                                                            <https://w3id.org/icity/Activity/effectOf> .
+
+
+###  https://w3id.org/icity/Activity/effectOf
+<https://w3id.org/icity/Activity/effectOf> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                           owl:inverseOf <https://w3id.org/icity/Activity/hasEffect> .
+
+
+###  https://w3id.org/icity/Activity/enabledBy
+<https://w3id.org/icity/Activity/enabledBy> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
+                                                               <https://w3id.org/icity/Activity/preconditionOf> ;
+                                            owl:inverseOf <https://w3id.org/icity/Activity/enables> .
+
+
+###  https://w3id.org/icity/Activity/enables
+<https://w3id.org/icity/Activity/enables> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
+
+
+###  https://w3id.org/icity/Activity/hasDecomp
+<https://w3id.org/icity/Activity/hasDecomp> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:domain <https://w3id.org/icity/Activity/State> ;
+                                            rdfs:range <https://w3id.org/icity/Activity/State> .
+
+
+###  https://w3id.org/icity/Activity/hasEffect
+<https://w3id.org/icity/Activity/hasEffect> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
+                                            rdfs:range <https://w3id.org/icity/Activity/State> .
+
+
+###  https://w3id.org/icity/Activity/hasParticipant
+<https://w3id.org/icity/Activity/hasParticipant> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                 owl:inverseOf <https://w3id.org/icity/Activity/participatesIn> ;
+                                                 rdfs:range <https://w3id.org/icity/Change/Manifestation> .
+
+
+###  https://w3id.org/icity/Activity/hasPrecondition
+<https://w3id.org/icity/Activity/hasPrecondition> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                  owl:inverseOf <https://w3id.org/icity/Activity/preconditionOf> ;
+                                                  rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
+                                                  rdfs:range <https://w3id.org/icity/Activity/State> .
+
+
+###  https://w3id.org/icity/Activity/hasSubactivity
+<https://w3id.org/icity/Activity/hasSubactivity> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
+
+
+###  https://w3id.org/icity/Activity/hasSubstate
+<https://w3id.org/icity/Activity/hasSubstate> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
+                                                                 <https://w3id.org/icity/Activity/hasDecomp> .
+
+
+###  https://w3id.org/icity/Activity/occursAt
+<https://w3id.org/icity/Activity/occursAt> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  https://w3id.org/icity/Activity/participatesIn
+<https://w3id.org/icity/Activity/participatesIn> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
+
+
+###  https://w3id.org/icity/Activity/preconditionOf
+<https://w3id.org/icity/Activity/preconditionOf> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
+
+
+###  https://w3id.org/icity/Activity/stateTypeOf
+<https://w3id.org/icity/Activity/stateTypeOf> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                              rdfs:domain <https://w3id.org/icity/Activity/TerminalState> ;
+                                              rdfs:range <https://w3id.org/icity/Change/Manifestation> .
 
 
 ###  https://w3id.org/icity/Change/ChangeOntologyProperty
@@ -470,8 +633,28 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <https://w3id.org/icity/Change/1.1/manifestationOf> rdf:type owl:ObjectProperty .
 
 
+###  https://w3id.org/icity/Mereology/1.0/componentOf
+<https://w3id.org/icity/Mereology/1.0/componentOf> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/icity/Mereology/1.0/hasComponent
+<https://w3id.org/icity/Mereology/1.0/hasComponent> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/icity/Mereology/1.0//1.0#componentOf
+<https://w3id.org/icity/Mereology/1.0//1.0#componentOf> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/icity/Mereology/1.0//1.0#containedIn
+<https://w3id.org/icity/Mereology/1.0//1.0#containedIn> rdf:type owl:ObjectProperty .
+
+
 ###  https://w3id.org/icity/Mereology/1.0//1.0#contains
 <https://w3id.org/icity/Mereology/1.0//1.0#contains> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/icity/Mereology/1.0//1.0#hasComponent
+<https://w3id.org/icity/Mereology/1.0//1.0#hasComponent> rdf:type owl:ObjectProperty .
 
 
 ###  https://w3id.org/icity/PublicTransit/TransitOntologyProperty
@@ -487,6 +670,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/PublicTransit/arrivalTime
 :arrivalTime rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :TransitOntologyProperty .
+
+
+###  https://w3id.org/icity/PublicTransit/associatedWithLoc
+:associatedWithLoc rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :TransitOntologyProperty .
 
 
 ###  https://w3id.org/icity/PublicTransit/beginsAtStop
@@ -548,6 +736,214 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/SpatialLoc/1.0/hasLocation
 <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty
+<https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                             <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Transportation System ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/accessesComplex
+<https://w3id.org/icity/TransportationSystem/accessesComplex> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/aggregationOf
+<https://w3id.org/icity/TransportationSystem/aggregationOf> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/applicableDuring
+<https://w3id.org/icity/TransportationSystem/applicableDuring> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/associatedLinkLength
+<https://w3id.org/icity/TransportationSystem/associatedLinkLength> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/associatedLocation
+<https://w3id.org/icity/TransportationSystem/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/connectedTo
+<https://w3id.org/icity/TransportationSystem/connectedTo> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/containedInLink
+<https://w3id.org/icity/TransportationSystem/containedInLink> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/containsArc
+<https://w3id.org/icity/TransportationSystem/containsArc> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/controlFor
+<https://w3id.org/icity/TransportationSystem/controlFor> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/controlsNetworks
+<https://w3id.org/icity/TransportationSystem/controlsNetworks> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/endNode
+<https://w3id.org/icity/TransportationSystem/endNode> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasControl
+<https://w3id.org/icity/TransportationSystem/hasControl> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed
+<https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasInflow
+<https://w3id.org/icity/TransportationSystem/hasInflow> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasLinkCapacity
+<https://w3id.org/icity/TransportationSystem/hasLinkCapacity> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasMaxSpeed
+<https://w3id.org/icity/TransportationSystem/hasMaxSpeed> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasMode
+<https://w3id.org/icity/TransportationSystem/hasMode> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasNodeId
+<https://w3id.org/icity/TransportationSystem/hasNodeId> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasOutflow
+<https://w3id.org/icity/TransportationSystem/hasOutflow> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasPhase
+<https://w3id.org/icity/TransportationSystem/hasPhase> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasPostedSpeed
+<https://w3id.org/icity/TransportationSystem/hasPostedSpeed> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasRoadId
+<https://w3id.org/icity/TransportationSystem/hasRoadId> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasRoadSegmentId
+<https://w3id.org/icity/TransportationSystem/hasRoadSegmentId> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasSpeedLimit
+<https://w3id.org/icity/TransportationSystem/hasSpeedLimit> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasToll
+<https://w3id.org/icity/TransportationSystem/hasToll> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasTravelCost
+<https://w3id.org/icity/TransportationSystem/hasTravelCost> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasVDF
+<https://w3id.org/icity/TransportationSystem/hasVDF> rdf:type owl:ObjectProperty ;
+                                                     rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> ;
+                                                     rdfs:comment "Volume delay functions (VDFs) are defined by a combination of link functional class and adjacent land uses (which can influence roadway performance). The vdf attribute, therefore does double-duty as both the VDF index for link travel time calculations and as an indicator of link functional class."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/inMunicipality
+<https://w3id.org/icity/TransportationSystem/inMunicipality> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> ;
+                                                             rdfs:comment "Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/inPlanningDistrict
+<https://w3id.org/icity/TransportationSystem/inPlanningDistrict> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> ;
+                                                                 rdfs:comment "Parts of the transportation network such as nodes and arcs, but also various physical entities, may be associated with (by location or ownership) a Planning District."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/signalLength
+<https://w3id.org/icity/TransportationSystem/signalLength> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/startNode
+<https://w3id.org/icity/TransportationSystem/startNode> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/TripOntologyProperty
+<https://w3id.org/icity/Trip/TripOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                   <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Trip ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Trip/accessesArc
+<https://w3id.org/icity/Trip/accessesArc> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/accessesNetwork
+<https://w3id.org/icity/Trip/accessesNetwork> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/during
+<https://w3id.org/icity/Trip/during> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/endLoc
+<https://w3id.org/icity/Trip/endLoc> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/occursOn
+<https://w3id.org/icity/Trip/occursOn> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/startLoc
+<https://w3id.org/icity/Trip/startLoc> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/viaMode
+<https://w3id.org/icity/Trip/viaMode> rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
+
+
+###  https://w3id.org/icity/Trip/viaVehicle
+<https://w3id.org/icity/Trip/viaVehicle> rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Trip/TripOntologyProperty> .
 
 
 #################################################################
@@ -665,9 +1061,39 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                             rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyDataProperty> .
 
 
+###  https://w3id.org/icity/PublicTransit/PublicTransitDataProperty
+:PublicTransitDataProperty rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/icity/PublicTransit/causedDelay
+:causedDelay rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :PublicTransitDataProperty ;
+             rdfs:range xsd:duration .
+
+
+###  https://w3id.org/icity/PublicTransit/hasIncidentCode
+:hasIncidentCode rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :PublicTransitDataProperty ;
+                 rdfs:range xsd:string .
+
+
+###  https://w3id.org/icity/PublicTransit/hasTransitVehicleId
+:hasTransitVehicleId rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :PublicTransitDataProperty .
+
+
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty
 <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                                    rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/TransportationDataProperty
+<https://w3id.org/icity/TransportationSystem/TransportationDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasNumLanes
+<https://w3id.org/icity/TransportationSystem/hasNumLanes> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationDataProperty> .
 
 
 #################################################################
@@ -676,6 +1102,22 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
 <http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/aggregationOf> ;
+                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/RoadSegment>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/hasRoadId> ;
+                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/RoadId>
+                                                              ] .
+
+
+###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> owl:equivalentClass <https://w3id.org/icity/TransportationSystem/RoadSegment> .
 
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
@@ -692,6 +1134,10 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
 <http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2006/time#Interval
+<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit
@@ -773,6 +1219,168 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
 ###  http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit
 <http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit> rdf:type owl:Class ;
                                                         rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+
+
+###  https://w3id.org/icity/Activity/Activity
+<https://w3id.org/icity/Activity/Activity> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/icity/Activity/ActivityOntologyThing> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
+                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
+                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/causes> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/enabledBy> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/hasEffect> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/hasParticipant> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Change/Manifestation>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/hasPrecondition> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/hasSubactivity> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/occursAt> ;
+                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
+                                                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                           ] ;
+                                           <http://purl.org/dc/elements/1.1/description> """An Activity describes something that occurs in the domain.
+An Activity may be further defined by (decomposed into) Subactivities.
+An Activity may have precondition and/or effect State.
+An Activity may be enabled by or cause some State. An enabling of causing state is a generalization of a precondition/effect; an Activity is enabled by or causes some State if it has a subactivity with a precondition or effect (respectively) of that State. 
+In other words, the state may not be required directly before, or cause directly after the activity, but by some more specialized sub-activity.
+An Activity occurs at some point in time and space.
+An Activity takes place during some interval, and so has some duration.
+An Activity may have some Manifestations that participate in it."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/ActivityOntologyThing
+<https://w3id.org/icity/Activity/ActivityOntologyThing> rdf:type owl:Class ;
+                                                        <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Activity ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/ConjunctiveState
+<https://w3id.org/icity/Activity/ConjunctiveState> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Activity/NonTerminalState> ;
+                                                   owl:disjointWith <https://w3id.org/icity/Activity/DisjunctiveState> ;
+                                                   <http://purl.org/dc/elements/1.1/description> "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/DisjunctiveState
+<https://w3id.org/icity/Activity/DisjunctiveState> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Activity/NonTerminalState> ;
+                                                   <http://purl.org/dc/elements/1.1/description> "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/NonTerminalState
+<https://w3id.org/icity/Activity/NonTerminalState> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Activity/State> ,
+                                                                   [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://w3id.org/icity/Activity/hasDecomp> ;
+                                                                                            owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                                                          ]
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://w3id.org/icity/Activity/hasDecomp> ;
+                                                                                            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://w3id.org/icity/Activity/State>
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/Activity/hasSubstate> ;
+                                                                     owl:allValuesFrom <https://w3id.org/icity/Activity/State>
+                                                                   ] ;
+                                                   owl:disjointWith <https://w3id.org/icity/Activity/TerminalState> ;
+                                                   <http://purl.org/dc/elements/1.1/description> """A non-terminal state type has substates. It may be conjunctive or disjunctive. 
+A state type cannot be both conjunctive and disjunctive.
+	ConjunctiveStateType disjointWith DisjunctiveStateType
+Conjunctive and disjunctive state types, which do have substates, are achieved at some time if their decomposition of state types is achieved.
+Note that in this representation, decomp_of is not a transitive relation, it only refers to the direct children of a non-terminal state type. A more general relation that is transitive is the substate relation.
+decomp_of(x,y) -> substate(x,y)"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/State
+<https://w3id.org/icity/Activity/State> rdf:type owl:Class ;
+                                        rdfs:subClassOf <https://w3id.org/icity/Activity/ActivityOntologyThing> ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://w3id.org/icity/Activity/achievedAt> ;
+                                                          owl:allValuesFrom <http://www.w3.org/2006/time#TemporalEntity>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://w3id.org/icity/Activity/causedBy> ;
+                                                          owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://w3id.org/icity/Activity/effectOf> ;
+                                                          owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://w3id.org/icity/Activity/enables> ;
+                                                          owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://w3id.org/icity/Activity/preconditionOf> ;
+                                                          owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                        ] ;
+                                        <http://purl.org/dc/elements/1.1/description> """A state refers to a class of manifestations. It may be a precondition or effect of some Activity, or more generally it may enabled or be caused by some Activity. If a state is complex, it may refer to some combination of classes of manifestations.
+A note on complex states:
+Say that a shopping activity, Activity-Shop, requires both the VehicleW30LGas state, but also some state wherein the mall is open, OpenMall. Each state would first be defined separately. Then, we can simply state:
+precondition(VehicleW30LGas,Activity-Shop) AND  precondition(OpenMall,Activity-Shop)
+were the preconditions required disjunctively, we could state:
+precondition(VehicleW30LGas,Activity-Shop) OR precondition(OpenMall,Activity-Shop)
+However, in large and complex domains, there will be cases in which the above approach is undesirable. In particular, due to the complexity of the description that results as the state being described becomes more detailed. In many cases it will be more natural and convenient to be able to refer to a single, aggregate state. We therefore extend the representation of States to capture aggregation, as approached in the concept of state trees introduced by TOVE as a construct for the activity cluster.
+
+A State may be either non-terminal or terminal. A terminal state has no child states, and therefore refers directly to a class of manifestations, whereas a non-terminal state has child states, which may define some classes of manifestations, or further define some other complex states.
+	NonTerminalState(x) v TerminalState(x) = State(x)
+A state  cannot be both non-terminal and terminal.
+	TerminalState disjointWith NonTerminalState"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Activity/TerminalState
+<https://w3id.org/icity/Activity/TerminalState> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://w3id.org/icity/Activity/State> ,
+                                                                [ owl:intersectionOf ( <https://w3id.org/icity/Change/Manifestation>
+                                                                                       [ rdf:type owl:Class ;
+                                                                                         owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Activity/effectOf> ;
+                                                                                                         owl:someValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Activity/preconditionOf> ;
+                                                                                                         owl:someValuesFrom <https://w3id.org/icity/Activity/Activity>
+                                                                                                       ]
+                                                                                                     )
+                                                                                       ]
+                                                                                     ) ;
+                                                                  rdf:type owl:Class
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://w3id.org/icity/Activity/hasDecomp> ;
+                                                                  owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass <https://w3id.org/icity/Activity/State>
+                                                                ] ;
+                                                <http://purl.org/dc/elements/1.1/description> "A terminal state type has no substates (cannot be decomposed). It corresponds to a particular class of manifestations. A terminal state is achieved at some time if and only if there exists a manifestation within its defined classification, that exists at that time."^^xsd:string .
 
 
 ###  https://w3id.org/icity/Change/ChangeOntologyThing
@@ -999,6 +1607,16 @@ A Route Link operates on an Arc."""^^xsd:string .
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#contains> ;
                                 owl:allValuesFrom :RouteLink
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :beginsAtStop ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :StopPoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :endsAtStop ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :StopPoint
                               ] ;
               <http://purl.org/dc/elements/1.1/description> "A Route Section is part of a Route and consists of Route Links."^^xsd:string .
 
@@ -1031,7 +1649,8 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
 
 ###  https://w3id.org/icity/PublicTransit/StopPoint
 :StopPoint rdf:type owl:Class ;
-           rdfs:subClassOf :TransitOntologyThing ,
+           rdfs:subClassOf <http://www.pms.ifi.uni-muenchen.de/OTN#Node> ,
+                           :TransitOntologyThing ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> ;
                              owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
@@ -1055,6 +1674,25 @@ A Person may enter or exit the transit vehicle at a Stop Point."""^^xsd:string .
                                  owl:onClass :StopPoint
                                ] ;
                <http://purl.org/dc/elements/1.1/description> "A StopTimetable has captures the expected arrival time (Time Instant) for some Stop Point."^^xsd:string .
+
+
+###  https://w3id.org/icity/PublicTransit/TransitIncident
+:TransitIncident rdf:type owl:Class ;
+                 rdfs:subClassOf <https://w3id.org/icity/Activity/Activity> ,
+                                 :TransitOntologyThing ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :associatedWithLoc ;
+                                   owl:allValuesFrom :StopPoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :causedDelay ;
+                                   owl:allValuesFrom xsd:duration
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasIncidentCode ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:string
+                                 ] .
 
 
 ###  https://w3id.org/icity/PublicTransit/TransitOntologyThing
@@ -1118,9 +1756,785 @@ A TransitSystem may be accessed by some Fare or Transit Pass."""^^xsd:string .
                  <http://purl.org/dc/elements/1.1/description> "Transit Systems change over time. TransitSystemPD captures the entire entity of a transit system, i.e. the transit system perdurant."^^xsd:string .
 
 
+###  https://w3id.org/icity/PublicTransit/TransitTrip
+:TransitTrip rdf:type owl:Class ;
+             rdfs:subClassOf :TransitOntologyThing ,
+                             <https://w3id.org/icity/Trip/Trip> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://w3id.org/icity/Trip/occursOn> ;
+                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :Route
+                                                                 :RouteLink
+                                                                 :RouteSection
+                                                               )
+                                                 ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://w3id.org/icity/Trip/viaVehicle> ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :TransitVehicle
+                             ] .
+
+
+###  https://w3id.org/icity/PublicTransit/TransitVehicle
+:TransitVehicle rdf:type owl:Class ;
+                rdfs:subClassOf :TransitOntologyThing ,
+                                <https://w3id.org/icity/Vehicle/Vehicle> ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasTransitVehicleId ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:string
+                                ] .
+
+
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing
 <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> rdf:type owl:Class ;
                                                             rdfs:comment "Created for organizational purposes, to identify the classes imported from geoSPARQL."^^xsd:string .
+
+
+###  https://w3id.org/icity/Time/CalendarPeriod
+<https://w3id.org/icity/Time/CalendarPeriod> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/Time/TimePeriod
+<https://w3id.org/icity/Time/TimePeriod> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/TransportationSystem/AccessRestriction
+<https://w3id.org/icity/TransportationSystem/AccessRestriction> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <https://w3id.org/icity/TransportationSystem/applicableDuring> ;
+                                                                                  owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                      owl:unionOf ( <https://w3id.org/icity/Time/CalendarPeriod>
+                                                                                                                    <https://w3id.org/icity/Time/TimePeriod>
+                                                                                                                  )
+                                                                                                    ]
+                                                                                ] ;
+                                                                rdfs:comment """Future extensions should capture this semantics in greater detail.
+AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), Vehicle properties (number of passengers), or attributes of the traveler themselves (e.g. no bicycles on transit between certain times)."""^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/Arc
+<https://w3id.org/icity/TransportationSystem/Arc> rdf:type owl:Class ;
+                                                  owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                               owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/ArcPD>
+                                                                                             ]
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                               owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/ArcPD>
+                                                                                             ]
+                                                                                           ) ;
+                                                                        rdf:type owl:Class
+                                                                      ] ;
+                                                  rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                  <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#componentOf> ;
+                                                                    owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Network>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/accessesComplex> ;
+                                                                    owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasControl> ;
+                                                                    owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/AccessRestriction>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasToll> ;
+                                                                    owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasMode> ;
+                                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <https://w3id.org/icity/Vehicle/Mode>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
+                                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
+                                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
+                                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                  ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/ArcPD
+<https://w3id.org/icity/TransportationSystem/ArcPD> rdf:type owl:Class ;
+                                                    owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                 owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                                               ]
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                 owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                                               ]
+                                                                                             ) ;
+                                                                          rdf:type owl:Class
+                                                                        ] ;
+                                                    rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                    <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/accessesComplex> ;
+                                                                      owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplexPD>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/containedInLink> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onClass <https://w3id.org/icity/TransportationSystem/LinkPD>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/endNode> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onClass <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/startNode> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onClass <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                    ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/FlowControl
+<https://w3id.org/icity/TransportationSystem/FlowControl> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <https://w3id.org/icity/TransportationSystem/controlFor> ;
+                                                                            owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Node>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <https://w3id.org/icity/TransportationSystem/hasInflow> ;
+                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <https://w3id.org/icity/TransportationSystem/hasOutflow> ;
+                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                          ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/Intersection
+<https://w3id.org/icity/TransportationSystem/Intersection> rdf:type owl:Class ;
+                                                           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                        owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/IntersectionPD>
+                                                                                                      ]
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                        owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/IntersectionPD>
+                                                                                                      ]
+                                                                                                    ) ;
+                                                                                 rdf:type owl:Class
+                                                                               ] ;
+                                                           rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                           <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty [ owl:inverseOf <https://w3id.org/icity/TransportationSystem/accessesComplex>
+                                                                                            ] ;
+                                                                             owl:allValuesFrom <http://www.pms.ifi.uni-muenchen.de/OTN#Node>
+                                                                           ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/IntersectionPD
+<https://w3id.org/icity/TransportationSystem/IntersectionPD> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                          owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/Intersection>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                          owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Intersection>
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ] ;
+                                                             rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                             <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty [ owl:inverseOf <https://w3id.org/icity/TransportationSystem/accessesComplex>
+                                                                                              ] ;
+                                                                               owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                             ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/Link
+<https://w3id.org/icity/TransportationSystem/Link> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/LinkPD>
+                                                                                              ]
+                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/LinkPD>
+                                                                                              ]
+                                                                                            ) ;
+                                                                         rdf:type owl:Class
+                                                                       ] ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                   <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasToll> ;
+                                                                     owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/containsArc> ;
+                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/ArcPD>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasMode> ;
+                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <https://w3id.org/icity/Vehicle/Mode>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/associatedLinkLength> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
+                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasLinkCapacity> ;
+                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
+                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
+                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasNumLanes> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:integer
+                                                                   ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/LinkPD
+<https://w3id.org/icity/TransportationSystem/LinkPD> rdf:type owl:Class ;
+                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/Link>
+                                                                                                ]
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Link>
+                                                                                                ]
+                                                                                              ) ;
+                                                                           rdf:type owl:Class
+                                                                         ] ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                     <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/TransportationSystem/accessesComplex> ;
+                                                                       owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplexPD>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/TransportationSystem/endNode> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/TransportationSystem/startNode> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                     ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/Municipality
+<https://w3id.org/icity/TransportationSystem/Municipality> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ;
+                                                           rdfs:comment "An urban administrative division with jurisdiction over some area. 	We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/Network
+<https://w3id.org/icity/TransportationSystem/Network> rdf:type owl:Class ;
+                                                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                   owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/NetworkPD>
+                                                                                                 ]
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                   owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/NetworkPD>
+                                                                                                 ]
+                                                                                               ) ;
+                                                                            rdf:type owl:Class
+                                                                          ] ;
+                                                      rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                      <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#hasComponent> ;
+                                                                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                            owl:unionOf ( <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                                                          <https://w3id.org/icity/TransportationSystem/Node>
+                                                                                                        )
+                                                                                          ]
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                      ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/NetworkPD
+<https://w3id.org/icity/TransportationSystem/NetworkPD> rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                     owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/Network>
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                     owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Network>
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                        <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                        ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/NetworkTransfer
+<https://w3id.org/icity/TransportationSystem/NetworkTransfer> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/controlFor> ;
+                                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Node>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/controlsNetworks> ;
+                                                                                owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <https://w3id.org/icity/TransportationSystem/Network>
+                                                                              ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/Node
+<https://w3id.org/icity/TransportationSystem/Node> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                                              ]
+                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/NodePD>
+                                                                                              ]
+                                                                                            ) ;
+                                                                         rdf:type owl:Class
+                                                                       ] ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                   <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#componentOf> ;
+                                                                     owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Network>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/associatedLocation> ;
+                                                                     owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasControl> ;
+                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                         owl:unionOf ( <https://w3id.org/icity/TransportationSystem/FlowControl>
+                                                                                                       <https://w3id.org/icity/TransportationSystem/NetworkTransfer>
+                                                                                                       <https://w3id.org/icity/TransportationSystem/SignalControl>
+                                                                                                     )
+                                                                                       ]
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/connectedTo> ;
+                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                   ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/NodeId
+<https://w3id.org/icity/TransportationSystem/NodeId> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  https://w3id.org/icity/TransportationSystem/NodePD
+<https://w3id.org/icity/TransportationSystem/NodePD> rdf:type owl:Class ;
+                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/Node>
+                                                                                                ]
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Node>
+                                                                                                ]
+                                                                                              ) ;
+                                                                           rdf:type owl:Class
+                                                                         ] ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                     <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/TransportationSystem/hasNodeId> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <https://w3id.org/icity/TransportationSystem/NodeId>
+                                                                     ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/PlanningDistrict
+<https://w3id.org/icity/TransportationSystem/PlanningDistrict> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ;
+                                                               rdfs:comment "We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear."^^xsd:string .
+
+
+###  https://w3id.org/icity/TransportationSystem/RoadId
+<https://w3id.org/icity/TransportationSystem/RoadId> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  https://w3id.org/icity/TransportationSystem/RoadSegment
+<https://w3id.org/icity/TransportationSystem/RoadSegment> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> .
+
+
+###  https://w3id.org/icity/TransportationSystem/RoadSegmentId
+<https://w3id.org/icity/TransportationSystem/RoadSegmentId> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  https://w3id.org/icity/TransportationSystem/RoadSegmentPD
+<https://w3id.org/icity/TransportationSystem/RoadSegmentPD> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                         owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/RoadSegment>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                         owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/RoadSegment>
+                                                                                                       ]
+                                                                                                     ) ;
+                                                                                  rdf:type owl:Class
+                                                                                ] ;
+                                                            rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                            <https://w3id.org/icity/TransportationSystem/TransportationComplexPD> .
+
+
+###  https://w3id.org/icity/TransportationSystem/SignalControl
+<https://w3id.org/icity/TransportationSystem/SignalControl> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                         owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/SignalControlPD>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                         owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/SignalControlPD>
+                                                                                                       ]
+                                                                                                     ) ;
+                                                                                  rdf:type owl:Class
+                                                                                ] ;
+                                                            rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                            <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPhase> ;
+                                                                              owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/SignalPhase>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                            ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/SignalControlPD
+<https://w3id.org/icity/TransportationSystem/SignalControlPD> rdf:type owl:Class ;
+                                                              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                           owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/SignalControl>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                           owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/SignalControl>
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                              rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                              <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/controlFor> ;
+                                                                                owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/Node>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/hasInflow> ;
+                                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/TransportationSystem/hasOutflow> ;
+                                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                              ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/SignalPhase
+<https://w3id.org/icity/TransportationSystem/SignalPhase> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <https://w3id.org/icity/TransportationSystem/signalLength> ;
+                                                                            owl:allValuesFrom <http://www.w3.org/2006/time#DurationDescription>
+                                                                          ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/TransportationComplex
+<https://w3id.org/icity/TransportationSystem/TransportationComplex> rdf:type owl:Class ;
+                                                                    owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                                 owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplexPD>
+                                                                                                               ]
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                                 owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplexPD>
+                                                                                                               ]
+                                                                                                             ) ;
+                                                                                          rdf:type owl:Class
+                                                                                        ] ;
+                                                                    rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                                    <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
+                                                                                      owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                    ] .
+
+
+###  https://w3id.org/icity/TransportationSystem/TransportationComplexPD
+<https://w3id.org/icity/TransportationSystem/TransportationComplexPD> rdf:type owl:Class ;
+                                                                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                   owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                                   owl:someValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                                                                                 ]
+                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                   owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                                   owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                                                                                 ]
+                                                                                                               ) ;
+                                                                                            rdf:type owl:Class
+                                                                                          ] ;
+                                                                      rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                                      <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  https://w3id.org/icity/TransportationSystem/TransportationOntologyThing
+<https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> rdf:type owl:Class ;
+                                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Transportation System ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Trip/Tour
+<https://w3id.org/icity/Trip/Tour> rdf:type owl:Class ;
+                                   rdfs:subClassOf <https://w3id.org/icity/Trip/TripOntologyThing> ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#contains> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/Trip/Trip>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/accessesArc> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/accessesNetwork> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/Network>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/occursOn> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/during> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/endLoc> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/startLoc> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                   ] ;
+                                   <http://purl.org/dc/elements/1.1/description> """A sequence of Trips made by one Person.
+A Tour starts and ends at the same Location."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Trip/Trip
+<https://w3id.org/icity/Trip/Trip> rdf:type owl:Class ;
+                                   rdfs:subClassOf <https://w3id.org/icity/Trip/TripOntologyThing> ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/accessesArc> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/accessesNetwork> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/Network>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/occursOn> ;
+                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#containedIn> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <https://w3id.org/icity/Trip/Tour>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/during> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/endLoc> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/icity/Trip/startLoc> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                   ] ;
+                                   <http://purl.org/dc/elements/1.1/description> """A Trip describes movement of a Persons from one location to another via some Mode(s).
+A Trip is made by a Person to facilitate participation in some Activity.
+A Trip starts at some Location and ends at some Location.
+A Trip occurs during some Interval.
+A Trip occurs in some Network(s).
+A Trip occurs via some Arc(s).
+A Trip occurs on some Transportation Complex. (e.g. a road or a rail)
+A Trip contains some Trip Segments.
+A Trip may incur some cost (monetary or otherwise)."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Trip/TripOntologyThing
+<https://w3id.org/icity/Trip/TripOntologyThing> rdf:type owl:Class ;
+                                                <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Trip ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Trip/TripSegment
+<https://w3id.org/icity/Trip/TripSegment> rdf:type owl:Class ;
+                                          rdfs:subClassOf <https://w3id.org/icity/Trip/TripOntologyThing> ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/viaVehicle> ;
+                                                            owl:allValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/accessesArc> ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <https://w3id.org/icity/TransportationSystem/Arc>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/accessesNetwork> ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <https://w3id.org/icity/TransportationSystem/Network>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/occursOn> ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <https://w3id.org/icity/TransportationSystem/TransportationComplex>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/viaMode> ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <https://w3id.org/icity/Vehicle/Mode>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#containedIn> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <https://w3id.org/icity/Trip/Trip>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/during> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/endLoc> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://w3id.org/icity/Trip/startLoc> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                          ] ;
+                                          <http://purl.org/dc/elements/1.1/description> """A Trip Segment describes part of a trip. It may be used, for example, to identify different parts of a the Trip by Mode.
+The restrictions on the Mode and possibly Vehicle used will become more complicated as we begin to incorporate restrictions based on a Persons access to a vehicle (age, household)
+A Trip Segment is part of some Trip.
+A Trip Segment occurs during some Interval.
+A Trip Segment occurs in some Network(s).
+A Trip Segment occurs via some Arc(s).
+A Trip occurs on some Transportation Complex.
+A Trip Segment may incur some cost (monetary or otherwise)."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/Mode
+<https://w3id.org/icity/Vehicle/Mode> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyThing> .
 
 
 #################################################################

@@ -458,6 +458,16 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#organizationProperty"/>
+        <rdfs:comment xml:lang="en">The legal status of an organization is specified by a particular application and country/state/city dependent.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#hasMember -->
 
 
@@ -1769,6 +1779,26 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty"/>
+        <rdfs:comment xml:lang="en">hasRawAddress is used to store a string version of the entire address.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty -->
 
 
@@ -1974,6 +2004,15 @@ forAction: defines the action on the Activity the agent is being empowered for</
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#CharitableOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#CharitableOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink -->
 
 
@@ -2136,7 +2175,9 @@ The Communication-with-Authority link, used when communication is intended to cr
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
-        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization"/>
+        <rdfs:label xml:lang="en">&quot;Enterprise&quot;</rdfs:label>
         <rdfs:label xml:lang="en">For Profit Organization</rdfs:label>
     </owl:Class>
     
@@ -2180,7 +2221,7 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
                 <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#government_owned"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization"/>
         <rdfs:label xml:lang="en">Government Organization</rdfs:label>
     </owl:Class>
     
@@ -2190,8 +2231,21 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization"/>
+        <rdfs:comment xml:lang="en">A non profit whose revenues are derived from donations and/or government grants.  It does not receive revenues for the products nor services it provides.</rdfs:comment>
         <rdfs:label xml:lang="en">Non Government Organization</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+        <rdfs:comment xml:lang="en">An organization that delivers goods and services and whose revenues, if any, are invested back in the organization.  No distribution to investors/shareholders, if any.</rdfs:comment>
+        <rdfs:label xml:lang="en">&quot;Non Profit Organization&quot;</rdfs:label>
+        <rdfs:label xml:lang="en">&quot;Social Sector Organization&quot;</rdfs:label>
     </owl:Class>
     
 
@@ -2235,6 +2289,18 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#Address"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#consistsOf"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Division"/>
             </owl:Restriction>
@@ -2243,6 +2309,12 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasGoal"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Goal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2272,9 +2344,22 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasLegalName"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organization: A company or other sort of group of individuals in the urban system with some goal(s).
@@ -2364,6 +2449,17 @@ The communication-link is a unidirectional link used to communicate information 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#PrivatelyHeldOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#PrivatelyHeldOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization"/>
+        <rdfs:comment xml:lang="en">A for profit organization whose shares are privately held and not available for sale to the public.</rdfs:comment>
+        <rdfs:label xml:lang="en">&quot;Privately Held Organization&quot;</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#Process -->
 
 
@@ -2380,6 +2476,17 @@ The communication-link is a unidirectional link used to communicate information 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#ProduceState">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#TerminalState"/>
         <rdfs:label xml:lang="en">Produce State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#PubliclyHeldOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/organization.owl#PubliclyHeldOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization"/>
+        <rdfs:comment xml:lang="en">A for profit organization that is publicly held, i.e., shares are registered and sold on the open market.</rdfs:comment>
+        <rdfs:label xml:lang="en">&quot;Publicly Held Organization&quot;</rdfs:label>
     </owl:Class>
     
 
@@ -3621,6 +3728,15 @@ A specific Resource may be used in or consumed in some activity occurrence.</dc:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#charitable_owned -->
 
 
@@ -3657,6 +3773,15 @@ A specific Resource may be used in or consumed in some activity occurrence.</dc:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#edmontonAbCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#edmontonAbCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#enable -->
 
 
@@ -3675,11 +3800,38 @@ A specific Resource may be used in or consumed in some activity occurrence.</dc:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#fredrictonNbCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#fredrictonNbCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#government_owned -->
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#government_owned">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Ownership"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#halifaxNsCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#halifaxNsCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#montrealQcCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#montrealQcCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
     </owl:NamedIndividual>
     
 
@@ -3711,11 +3863,56 @@ A specific Resource may be used in or consumed in some activity occurrence.</dc:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#saskatoonSkCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#saskatoonSkCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#suspend -->
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#suspend">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#torontoOnCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#torontoOnCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#vancouverBcCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#vancouverBcCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#victoriaBcCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#victoriaBcCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#winnipegMbCa -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/organization.owl#winnipegMbCa">
+        <rdf:type rdf:resource="http://schema.org/City"/>
     </owl:NamedIndividual>
     
 

@@ -272,6 +272,12 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/organization.owl#communicationLinkProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus
+<http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/organization.owl#organizationProperty> ;
+                                                                  rdfs:comment "The legal status of an organization is specified by a particular application and country/state/city dependent."@en .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#hasMember
 <http://ontology.eil.utoronto.ca/organization.owl#hasMember> rdf:type owl:ObjectProperty ;
                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/organization.owl#organizationAgentProperty> ;
@@ -1009,6 +1015,18 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                            rdfs:range xsd:string .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress
+<http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress> rdf:type owl:DatatypeProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty> ;
+                                                                 rdfs:comment "hasRawAddress is used to store a string version of the entire address."@en .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees
+<http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty> ;
+                                                                     rdfs:range xsd:nonNegativeInteger .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty
 <http://ontology.eil.utoronto.ca/organization.owl#organizationDataProperty> rdf:type owl:DatatypeProperty .
 
@@ -1121,6 +1139,11 @@ forAction: defines the action on the Activity the agent is being empowered for""
                                                              <http://purl.org/dc/terms/description> "Adequate authority is needed for the role to achieve its goals. Authorities include the right of using resource, the right to perform activities, and the right to execute status changing actions."@en .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#CharitableOrganization
+<http://ontology.eil.utoronto.ca/organization.owl#CharitableOrganization> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> ,
@@ -1227,8 +1250,10 @@ The Communication-with-Authority link, used when communication is intended to cr
 ###  http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization
 <http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization> rdf:type owl:Class ;
                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#Organization> ;
-                                                                         owl:disjointWith <http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization> ;
-                                                                         rdfs:label "For Profit Organization"@en .
+                                                                         owl:disjointWith <http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> ,
+                                                                                          <http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> ;
+                                                                         rdfs:label "\"Enterprise\""@en ,
+                                                                                    "For Profit Organization"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/organization.owl#Goal
@@ -1257,14 +1282,23 @@ Goals can be ordered directly via the dependsOn property."""@en .
                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> ;
                                                                                             owl:hasValue <http://ontology.eil.utoronto.ca/organization.owl#government_owned>
                                                                                           ] ;
-                                                                          owl:disjointWith <http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization> ;
+                                                                          owl:disjointWith <http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> ;
                                                                           rdfs:label "Government Organization"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization
 <http://ontology.eil.utoronto.ca/organization.owl#NonGovernmentOrganization> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#Organization> ;
+                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> ;
+                                                                             rdfs:comment "A non profit whose revenues are derived from donations and/or government grants.  It does not receive revenues for the products nor services it provides."@en ;
                                                                              rdfs:label "Non Government Organization"@en .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization
+<http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#Organization> ;
+                                                                         rdfs:comment "An organization that delivers goods and services and whose revenues, if any, are invested back in the organization.  No distribution to investors/shareholders, if any."@en ;
+                                                                         rdfs:label "\"Non Profit Organization\""@en ,
+                                                                                    "\"Social Sector Organization\""@en .
 
 
 ###  http://ontology.eil.utoronto.ca/organization.owl#OrState
@@ -1294,12 +1328,24 @@ Goals can be ordered directly via the dependsOn property."""@en .
                                                                                 <https://w3id.org/icity/Change/Manifestation> ,
                                                                                 :OrgOntologyThing ,
                                                                                 [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#Address>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#consistsOf> ;
                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Division>
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> ;
                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Goal>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus> ;
+                                                                                  owl:allValuesFrom owl:Thing
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> ;
@@ -1319,9 +1365,18 @@ Goals can be ordered directly via the dependsOn property."""@en .
                                                                                   owl:allValuesFrom xsd:string
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress> ;
+                                                                                  owl:allValuesFrom xsd:string
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasLegalName> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                   owl:onDataRange xsd:string
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees> ;
+                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onDataRange xsd:nonNegativeInteger
                                                                                 ] ;
                                                                 <http://purl.org/dc/elements/1.1/description> """Organization: A company or other sort of group of individuals in the urban system with some goal(s).
 An Organization may own Property, including different types of Buildings.
@@ -1382,6 +1437,13 @@ The communication-link is a unidirectional link used to communicate information 
                                                           <http://purl.org/dc/terms/description> "Constraints on the performance of the role’s processes. These constraints are unique to the organization role."@en .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#PrivatelyHeldOrganization
+<http://ontology.eil.utoronto.ca/organization.owl#PrivatelyHeldOrganization> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization> ;
+                                                                             rdfs:comment "A for profit organization whose shares are privately held and not available for sale to the public."@en ;
+                                                                             rdfs:label "\"Privately Held Organization\""@en .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#Process
 <http://ontology.eil.utoronto.ca/organization.owl#Process> rdf:type owl:Class ;
                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> ;
@@ -1392,6 +1454,13 @@ The communication-link is a unidirectional link used to communicate information 
 <http://ontology.eil.utoronto.ca/organization.owl#ProduceState> rdf:type owl:Class ;
                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#TerminalState> ;
                                                                 rdfs:label "Produce State"@en .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#PubliclyHeldOrganization
+<http://ontology.eil.utoronto.ca/organization.owl#PubliclyHeldOrganization> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#ForProfitOrganization> ;
+                                                                            rdfs:comment "A for profit organization that is publicly held, i.e., shares are registered and sold on the open market."@en ;
+                                                                            rdfs:label "\"Publicly Held Organization\""@en .
 
 
 ###  http://ontology.eil.utoronto.ca/organization.owl#ReleaseState
@@ -2217,6 +2286,11 @@ A specific Resource may be used in or consumed in some activity occurrence."""^^
 #    Individuals
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa
+<http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa> rdf:type owl:NamedIndividual ,
+                                                                        <http://schema.org/City> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#charitable_owned
 <http://ontology.eil.utoronto.ca/organization.owl#charitable_owned> rdf:type owl:NamedIndividual ,
                                                                              <http://ontology.eil.utoronto.ca/organization.owl#Ownership> .
@@ -2237,6 +2311,11 @@ A specific Resource may be used in or consumed in some activity occurrence."""^^
                                                                       <http://ontology.eil.utoronto.ca/organization.owl#Action> .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#edmontonAbCa
+<http://ontology.eil.utoronto.ca/organization.owl#edmontonAbCa> rdf:type owl:NamedIndividual ,
+                                                                         <http://schema.org/City> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#enable
 <http://ontology.eil.utoronto.ca/organization.owl#enable> rdf:type owl:NamedIndividual ,
                                                                    <http://ontology.eil.utoronto.ca/organization.owl#Action> .
@@ -2247,9 +2326,24 @@ A specific Resource may be used in or consumed in some activity occurrence."""^^
                                                                     <http://ontology.eil.utoronto.ca/organization.owl#Action> .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#fredrictonNbCa
+<http://ontology.eil.utoronto.ca/organization.owl#fredrictonNbCa> rdf:type owl:NamedIndividual ,
+                                                                           <http://schema.org/City> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#government_owned
 <http://ontology.eil.utoronto.ca/organization.owl#government_owned> rdf:type owl:NamedIndividual ,
                                                                              <http://ontology.eil.utoronto.ca/organization.owl#Ownership> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#halifaxNsCa
+<http://ontology.eil.utoronto.ca/organization.owl#halifaxNsCa> rdf:type owl:NamedIndividual ,
+                                                                        <http://schema.org/City> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#montrealQcCa
+<http://ontology.eil.utoronto.ca/organization.owl#montrealQcCa> rdf:type owl:NamedIndividual ,
+                                                                         <http://schema.org/City> .
 
 
 ###  http://ontology.eil.utoronto.ca/organization.owl#privately_owned
@@ -2267,9 +2361,34 @@ A specific Resource may be used in or consumed in some activity occurrence."""^^
                                                                      <http://ontology.eil.utoronto.ca/organization.owl#Action> .
 
 
+###  http://ontology.eil.utoronto.ca/organization.owl#saskatoonSkCa
+<http://ontology.eil.utoronto.ca/organization.owl#saskatoonSkCa> rdf:type owl:NamedIndividual ,
+                                                                          <http://schema.org/City> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#suspend
 <http://ontology.eil.utoronto.ca/organization.owl#suspend> rdf:type owl:NamedIndividual ,
                                                                     <http://ontology.eil.utoronto.ca/organization.owl#Action> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#torontoOnCa
+<http://ontology.eil.utoronto.ca/organization.owl#torontoOnCa> rdf:type owl:NamedIndividual ,
+                                                                        <http://schema.org/City> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#vancouverBcCa
+<http://ontology.eil.utoronto.ca/organization.owl#vancouverBcCa> rdf:type owl:NamedIndividual ,
+                                                                          <http://schema.org/City> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#victoriaBcCa
+<http://ontology.eil.utoronto.ca/organization.owl#victoriaBcCa> rdf:type owl:NamedIndividual ,
+                                                                         <http://schema.org/City> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#winnipegMbCa
+<http://ontology.eil.utoronto.ca/organization.owl#winnipegMbCa> rdf:type owl:NamedIndividual ,
+                                                                         <http://schema.org/City> .
 
 
 #################################################################
