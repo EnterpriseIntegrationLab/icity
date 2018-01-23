@@ -324,6 +324,14 @@ Changes from previous version:
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasTransitVehicleId">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/TransitVehicle"/>
+                    <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/TransitVehiclePD"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:DatatypeProperty>
     
 
@@ -779,6 +787,16 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>Regarding hasTransitVehicleId data property for TransitVehicle. The rationale for introducing a new property is that the ID assigned by the transit organization may differ from the manufacturer&apos;s ID which is a property we anticipate will apply to vehicles in general. In addition, we&apos;ve opted to define this as a data property, however should additional semantics be required we anticipate the creation of a general hasId property, and specialized ID classes, (e.g. in this case, TransitVehicle hasId only TransitVehicleId).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/PublicTransit/TransitVehiclePD -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/TransitVehiclePD">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehiclePD"/>
     </owl:Class>
 </rdf:RDF>
 
