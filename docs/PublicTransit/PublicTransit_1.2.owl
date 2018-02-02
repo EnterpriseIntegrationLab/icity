@@ -304,6 +304,14 @@ Changes from previous version:
     
 
 
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/name">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- https://w3id.org/icity/PublicTransit/PublicTransitDataProperty -->
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
@@ -328,6 +336,14 @@ Changes from previous version:
     
 
 
+    <!-- https://w3id.org/icity/PublicTransit/hasStopCode -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasStopCode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- https://w3id.org/icity/PublicTransit/hasTransitVehicleId -->
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasTransitVehicleId">
@@ -340,6 +356,41 @@ Changes from previous version:
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/PublicTransit/wheelchairBoarding -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/wheelchairBoarding">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:comment>The field can have the following values:
+* 0 (or empty) - indicates that there is no accessibility information for the stop
+* 1 - indicates that at least some vehicles at this stop can be boarded by a rider in a wheelchair
+* 2 - wheelchair boarding is not possible at this stop</rdfs:comment>
     </owl:DatatypeProperty>
     
 
@@ -399,6 +450,25 @@ Changes from previous version:
         <dc:description>An Access Method is the means of access to a Line
 An AccessMethod has a Monetary Value.
 An AccessMethod may be valid for a specific distance or time.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/PublicTransit/AccessibleStopPoint -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/AccessibleStopPoint">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/StopPoint"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/wheelchairBoarding"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/StopPoint"/>
     </owl:Class>
     
 
@@ -611,9 +681,55 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
                 <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/hasStopCode"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/wheelchairBoarding"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:onDataRange>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <dc:description>A Stop Point marks the start or end of a Route Link.
 A Stop Point has a Location.
-A Person may enter or exit the transit vehicle at a Stop Point.</dc:description>
+A Person may enter or exit the transit vehicle at a Stop Point.
+A Stop Point has a stop code: a short text or a number that uniquely identifies the stop for passengers.
+A Stop Point has a name that people will understand in the local and tourist vernacular.
+A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.</dc:description>
     </owl:Class>
     
 

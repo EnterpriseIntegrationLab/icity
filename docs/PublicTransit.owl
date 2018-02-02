@@ -151,27 +151,27 @@ Changes from previous version:
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/existsAt -->
+    <!-- https://w3id.org/icity/Change/existsAt -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/existsAt"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt"/>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/hasManifestation -->
+    <!-- https://w3id.org/icity/Change/hasManifestation -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/hasManifestation"/>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/manifestationOf -->
+    <!-- https://w3id.org/icity/Change/manifestationOf -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/manifestationOf"/>
     
 
 
-    <!-- https://w3id.org/icity/Mereology/1.0//1.0#contains -->
+    <!-- https://w3id.org/icity/Mereology/contains -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/contains"/>
     
 
 
@@ -255,6 +255,14 @@ Changes from previous version:
     
 
 
+    <!-- https://w3id.org/icity/PublicTransit/onRoute -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/PublicTransit/onRoute">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/PublicTransit/timetableFor -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/PublicTransit/timetableFor">
@@ -279,9 +287,9 @@ Changes from previous version:
     
 
 
-    <!-- https://w3id.org/icity/SpatialLoc/1.0/hasLocation -->
+    <!-- https://w3id.org/icity/SpatialLoc/hasLocation -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/hasLocation"/>
     
 
 
@@ -293,6 +301,14 @@ Changes from previous version:
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/name">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -320,6 +336,14 @@ Changes from previous version:
     
 
 
+    <!-- https://w3id.org/icity/PublicTransit/hasStopCode -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasStopCode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- https://w3id.org/icity/PublicTransit/hasTransitVehicleId -->
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/hasTransitVehicleId">
@@ -332,6 +356,41 @@ Changes from previous version:
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/PublicTransit/wheelchairBoarding -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/PublicTransit/wheelchairBoarding">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:comment>The field can have the following values:
+* 0 (or empty) - indicates that there is no accessibility information for the stop
+* 1 - indicates that at least some vehicles at this stop can be boarded by a rider in a wheelchair
+* 2 - wheelchair boarding is not possible at this stop</rdfs:comment>
     </owl:DatatypeProperty>
     
 
@@ -395,6 +454,25 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
     
 
 
+    <!-- https://w3id.org/icity/PublicTransit/AccessibleStopPoint -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/AccessibleStopPoint">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/StopPoint"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/wheelchairBoarding"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/StopPoint"/>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/PublicTransit/Fare -->
 
     <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/Fare">
@@ -418,11 +496,11 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/RoutePD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/RoutePD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -432,13 +510,13 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/contains"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/RouteLink"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -494,11 +572,11 @@ A Route Link operates on an Arc.</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/Route"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/Route"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -508,7 +586,7 @@ A Route Link operates on an Arc.</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -531,7 +609,7 @@ A Route Link operates on an Arc.</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/contains"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/RouteLink"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -599,13 +677,59 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
                 <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/hasStopCode"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/wheelchairBoarding"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:onDataRange>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Stop Point marks the start or end of a Route Link.
 A Stop Point has a Location.
-A Person may enter or exit the transit vehicle at a Stop Point.</dc:description>
+A Person may enter or exit the transit vehicle at a Stop Point.
+A Stop Point has a stop code: a short text or a number that uniquely identifies the stop for passengers.
+A Stop Point has a name that people will understand in the local and tourist vernacular.
+A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.</dc:description>
     </owl:Class>
     
 
@@ -676,11 +800,11 @@ A Person may enter or exit the transit vehicle at a Stop Point.</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/TransitSystemPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/TransitSystemPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -702,7 +826,7 @@ A Person may enter or exit the transit vehicle at a Stop Point.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -721,11 +845,11 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/TransitSystem"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/PublicTransit/TransitSystem"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -735,7 +859,7 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -780,6 +904,41 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
     <owl:Class rdf:about="https://w3id.org/icity/PublicTransit/TransitVehicle">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/onRoute"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/Route"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/RouteLink"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/PublicTransit/RouteSection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/onRoute"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/PublicTransit/Route"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/onRoute"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/PublicTransit/RouteLink"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/onRoute"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/PublicTransit/RouteSection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/PublicTransit/hasTransitVehicleId"/>
