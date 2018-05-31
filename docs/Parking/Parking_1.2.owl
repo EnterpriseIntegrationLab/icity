@@ -261,6 +261,14 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- https://w3id.org/icity/Parking/hoursOfOperation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hoursOfOperation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/Parking/maxAdmittableSize -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableSize">
@@ -525,6 +533,12 @@ An EV charger may be available or unavailable at a given time. This availability
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hoursOfOperation"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#GeneralDateTimeDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/occupiedBy"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
             </owl:Restriction>
@@ -622,14 +636,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/allowableDuring"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
-                            <rdf:Description rdf:about="https://w3id.org/icity/Time/TimePeriod"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#GeneralDateTimeDescription"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
