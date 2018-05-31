@@ -103,7 +103,9 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 <http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters
+above the local reference ellipsoid)."""^^xsd:string ,
+                                                           """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid)."""^^xsd:string ;
                                               rdfs:label "altitude"^^xsd:string ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
@@ -702,8 +704,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/causes
 <https://w3id.org/icity/Activity/causes> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                            <https://w3id.org/icity/Activity/effectOf> .
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
 
 
 ###  https://w3id.org/icity/Activity/effectOf
@@ -714,8 +715,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/enabledBy
 <https://w3id.org/icity/Activity/enabledBy> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                               <https://w3id.org/icity/Activity/preconditionOf> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
                                             owl:inverseOf <https://w3id.org/icity/Activity/enables> .
 
 
@@ -726,14 +726,14 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasDecomp
 <https://w3id.org/icity/Activity/hasDecomp> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/hasSubstate> ;
                                             rdfs:domain <https://w3id.org/icity/Activity/State> ;
                                             rdfs:range <https://w3id.org/icity/Activity/State> .
 
 
 ###  https://w3id.org/icity/Activity/hasEffect
 <https://w3id.org/icity/Activity/hasEffect> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/causedBy> ;
                                             rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
                                             rdfs:range <https://w3id.org/icity/Activity/State> .
 
@@ -747,7 +747,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasPrecondition
 <https://w3id.org/icity/Activity/hasPrecondition> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/enabledBy> ;
                                                   owl:inverseOf <https://w3id.org/icity/Activity/preconditionOf> ;
                                                   rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
                                                   rdfs:range <https://w3id.org/icity/Activity/State> .
@@ -760,8 +760,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasSubstate
 <https://w3id.org/icity/Activity/hasSubstate> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                                 <https://w3id.org/icity/Activity/hasDecomp> .
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                              rdf:type owl:TransitiveProperty .
 
 
 ###  https://w3id.org/icity/Activity/occursAt
@@ -810,18 +810,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <https://w3id.org/icity/Change/manifestationOf> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <https://w3id.org/icity/Change/ChangeOntologyProperty> ;
                                                 rdf:type owl:FunctionalProperty .
-
-
-###  https://w3id.org/icity/Change/1.1/existsAt
-<https://w3id.org/icity/Change/1.1/existsAt> rdf:type owl:ObjectProperty .
-
-
-###  https://w3id.org/icity/Change/1.1/hasManifestation
-<https://w3id.org/icity/Change/1.1/hasManifestation> rdf:type owl:ObjectProperty .
-
-
-###  https://w3id.org/icity/Change/1.1/manifestationOf
-<https://w3id.org/icity/Change/1.1/manifestationOf> rdf:type owl:ObjectProperty .
 
 
 ###  https://w3id.org/icity/Organization/OrgOntologyProperty
@@ -984,12 +972,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/SpatialLoc/hasLocation
 <https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
-                                                rdfs:domain <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
                                                 rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space."^^xsd:string .
-
-
-###  https://w3id.org/icity/SpatialLoc/1.0/hasLocation
-<https://w3id.org/icity/SpatialLoc/1.0/hasLocation> rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -1314,11 +1298,11 @@ Goals can be ordered directly via the dependsOn property."""@en .
 ###  http://ontology.eil.utoronto.ca/organization.owl#Organization
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> rdf:type owl:Class ;
                                                                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                             owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                                                             owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                                                              owl:someValuesFrom :OrganizationPD
                                                                                                            ]
                                                                                                            [ rdf:type owl:Restriction ;
-                                                                                                             owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                                                             owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                                                              owl:allValuesFrom :OrganizationPD
                                                                                                            ]
                                                                                                          ) ;
@@ -1356,7 +1340,7 @@ Goals can be ordered directly via the dependsOn property."""@en .
                                                                                   owl:allValuesFrom <http://schema.org/PostalAddress>
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
-                                                                                  owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                                                                  owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                   owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                                                                 ] ,
@@ -1621,11 +1605,15 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
                                            rdfs:subClassOf <https://w3id.org/icity/Activity/ActivityOntologyThing> ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/occursAt> ;
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Activity/causes> ;
@@ -1650,10 +1638,6 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Activity/hasSubactivity> ;
                                                              owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
-                                                           ] ,
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty <https://w3id.org/icity/Activity/occursAt> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
@@ -1857,11 +1841,11 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
 ###  https://w3id.org/icity/Organization/BusinessEstablishment
 :BusinessEstablishment rdf:type owl:Class ;
                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                     owl:someValuesFrom :BusinessEstablishmentPD
                                                                   ]
                                                                   [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                     owl:allValuesFrom :BusinessEstablishmentPD
                                                                   ]
                                                                 ) ;
@@ -1874,12 +1858,12 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                          owl:allValuesFrom <http://schema.org/PostalAddress>
                                        ] ,
                                        [ rdf:type owl:Restriction ;
-                                         owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                         owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                          owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                        ] ,
                                        [ rdf:type owl:Restriction ;
-                                         owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> ;
+                                         owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                          owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                                        ] ;
@@ -1890,11 +1874,11 @@ A Business Establishment has a Location and may have an address."""^^xsd:string 
 ###  https://w3id.org/icity/Organization/BusinessEstablishmentPD
 :BusinessEstablishmentPD rdf:type owl:Class ;
                          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                                       owl:someValuesFrom :BusinessEstablishment
                                                                     ]
                                                                     [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                                       owl:allValuesFrom :BusinessEstablishment
                                                                     ]
                                                                   ) ;
@@ -1907,7 +1891,7 @@ A Business Establishment has a Location and may have an address."""^^xsd:string 
                                            owl:allValuesFrom :BusinessId
                                          ] ,
                                          [ rdf:type owl:Restriction ;
-                                           owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                           owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                            owl:onClass <http://www.w3.org/2006/time#Interval>
                                          ] ;
@@ -1943,18 +1927,18 @@ A Business Establishment has a Location and may have an address."""^^xsd:string 
 An Employee is a type of Organization Agent.
 An Employee may be employed at a particular Business Establishment.
 An Employee may be responsible for one or more Roles within the Organization.
-An Employee is employed by some Organization, unless the Person is self-employed. 
+An Employee is employed by some Organization, unless the Person is self-employed.
 An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change)."""^^xsd:string .
 
 
 ###  https://w3id.org/icity/Organization/Firm
 :Firm rdf:type owl:Class ;
       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                   owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                    owl:someValuesFrom :FirmPD
                                                  ]
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                   owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                    owl:allValuesFrom :FirmPD
                                                  ]
                                                ) ;
@@ -1975,7 +1959,7 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
                         owl:allValuesFrom :IndustryType
                       ] ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                        owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                       ] ;
@@ -1992,11 +1976,11 @@ A Firm may have a Business Establishment(s)."""^^xsd:string .
 ###  https://w3id.org/icity/Organization/FirmPD
 :FirmPD rdf:type owl:Class ;
         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                     owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                     owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                      owl:someValuesFrom :Firm
                                                    ]
                                                    [ rdf:type owl:Restriction ;
-                                                     owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                     owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                      owl:allValuesFrom :Firm
                                                    ]
                                                  ) ;
@@ -2009,7 +1993,7 @@ A Firm may have a Business Establishment(s)."""^^xsd:string .
                           owl:allValuesFrom :FirmId
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                          owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass <http://www.w3.org/2006/time#Interval>
                         ] ;
@@ -2041,11 +2025,11 @@ An Occupation has a type (e.g. sales, skilled trades)"""^^xsd:string .
 ###  https://w3id.org/icity/Organization/OrganizationPD
 :OrganizationPD rdf:type owl:Class ;
                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                             owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                             owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                              owl:someValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Organization>
                                                            ]
                                                            [ rdf:type owl:Restriction ;
-                                                             owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                             owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                              owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Organization>
                                                            ]
                                                          ) ;
@@ -2054,7 +2038,7 @@ An Occupation has a type (e.g. sales, skilled trades)"""^^xsd:string .
                 rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
                                 :OrgOntologyThing ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                  owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onClass <http://www.w3.org/2006/time#Interval>
                                 ] ;
@@ -2088,11 +2072,11 @@ An Occupation has a type (e.g. sales, skilled trades)"""^^xsd:string .
 ###  https://w3id.org/icity/Person/Person
 <https://w3id.org/icity/Person/Person> rdf:type owl:Class ;
                                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                                     owl:someValuesFrom <https://w3id.org/icity/Person/PersonPD>
                                                                                   ]
                                                                                   [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                                                     owl:allValuesFrom <https://w3id.org/icity/Person/PersonPD>
                                                                                   ]
                                                                                 ) ;
@@ -2117,7 +2101,7 @@ An Occupation has a type (e.g. sales, skilled trades)"""^^xsd:string .
                                                          owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
                                                        ] ,
                                                        [ rdf:type owl:Restriction ;
-                                                         owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                                         owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                          owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                                        ] ,
@@ -2152,11 +2136,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
 ###  https://w3id.org/icity/Person/PersonPD
 <https://w3id.org/icity/Person/PersonPD> rdf:type owl:Class ;
                                          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                      owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                                                       owl:someValuesFrom <https://w3id.org/icity/Person/Person>
                                                                                     ]
                                                                                     [ rdf:type owl:Restriction ;
-                                                                                      owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                                                       owl:allValuesFrom <https://w3id.org/icity/Person/Person>
                                                                                     ]
                                                                                   ) ;
@@ -2165,7 +2149,7 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                          rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
                                                          <https://w3id.org/icity/Person/PersonOntologyThing> ,
                                                          [ rdf:type owl:Restriction ;
-                                                           owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                                           owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                                            owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                                          ] ,
                                                          [ rdf:type owl:Restriction ;
@@ -2491,7 +2475,15 @@ basic geo vocab
                                                    rdfs:label "lat/long"^^xsd:string .
 
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point,
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """^^xsd:string ,
+                                                                """The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.
  Or a relationship between a park and its outline as a closed arc of points, or a road and

@@ -173,6 +173,8 @@ Changes from previous version:
 
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#alt">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 altitude of a SpatialThing (decimal meters
+above the local reference ellipsoid).</rdfs:comment>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid).</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">altitude</rdfs:label>
@@ -1237,7 +1239,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/causes">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/effectOf"/>
     </owl:ObjectProperty>
     
 
@@ -1257,7 +1258,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/enabledBy">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/preconditionOf"/>
         <owl:inverseOf rdf:resource="https://w3id.org/icity/Activity/enables"/>
     </owl:ObjectProperty>
     
@@ -1276,7 +1276,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasDecomp">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/hasSubstate"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/State"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
     </owl:ObjectProperty>
@@ -1287,7 +1287,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasEffect">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/causedBy"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
     </owl:ObjectProperty>
@@ -1309,7 +1309,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasPrecondition">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/enabledBy"/>
         <owl:inverseOf rdf:resource="https://w3id.org/icity/Activity/preconditionOf"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
@@ -1331,7 +1331,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasSubstate">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/hasDecomp"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     </owl:ObjectProperty>
     
 
@@ -1413,27 +1413,6 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/Change/1.1/existsAt -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/existsAt"/>
-    
-
-
-    <!-- https://w3id.org/icity/Change/1.1/hasManifestation -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/hasManifestation"/>
-    
-
-
-    <!-- https://w3id.org/icity/Change/1.1/manifestationOf -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/manifestationOf"/>
     
 
 
@@ -1723,16 +1702,9 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/hasLocation">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space.</rdfs:comment>
     </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/SpatialLoc/1.0/hasLocation -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
     
 
 
@@ -2274,11 +2246,11 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/OrganizationPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/OrganizationPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -2331,7 +2303,7 @@ Goals can be ordered directly via the dependsOn property.</terms:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -2750,13 +2722,19 @@ forAction: defines the action on the state the agent is being empowered for</rdf
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/beginOf"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/endOf"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/occursAt"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2793,12 +2771,6 @@ forAction: defines the action on the state the agent is being empowered for</rdf
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/hasSubactivity"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Activity/Activity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/occursAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3092,11 +3064,11 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishmentPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishmentPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3112,14 +3084,14 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
@@ -3138,11 +3110,11 @@ A Business Establishment has a Location and may have an address.</dc:description
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishment"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishment"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3158,7 +3130,7 @@ A Business Establishment has a Location and may have an address.</dc:description
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -3212,7 +3184,7 @@ A Business Establishment has a Location and may have an address.</dc:description
 An Employee is a type of Organization Agent.
 An Employee may be employed at a particular Business Establishment.
 An Employee may be responsible for one or more Roles within the Organization.
-An Employee is employed by some Organization, unless the Person is self-employed. 
+An Employee is employed by some Organization, unless the Person is self-employed.
 An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).</dc:description>
     </owl:Class>
     
@@ -3226,11 +3198,11 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/FirmPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/FirmPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3258,7 +3230,7 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -3287,11 +3259,11 @@ A Firm may have a Business Establishment(s).</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/Firm"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/Firm"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3307,7 +3279,7 @@ A Firm may have a Business Establishment(s).</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -3363,11 +3335,11 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3377,7 +3349,7 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
@@ -3433,11 +3405,11 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/PersonPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/PersonPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3471,7 +3443,7 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -3524,11 +3496,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -3538,7 +3510,7 @@ Note that some properties are not defined in the Person ontology, but in an exte
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4023,6 +3995,14 @@ basic geo vocab
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lat/long</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between something and the point,
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ </rdfs:comment>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.

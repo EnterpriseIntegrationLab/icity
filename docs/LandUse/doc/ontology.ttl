@@ -370,6 +370,10 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                                           owl:inverseOf <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure> .
 
 
+###  http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of
+<http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> owl:inverseOf :hasCardinality .
+
+
 ###  http://ontology.eil.utoronto.ca/govstat.owl#for_data_prop
 <http://ontology.eil.utoronto.ca/govstat.owl#for_data_prop> rdf:type owl:ObjectProperty .
 
@@ -695,6 +699,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
                 rdfs:subPropertyOf :LandUseOntologyProperty .
 
 
+###  https://w3id.org/icity/LandUse/hasCardinality
+:hasCardinality rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :LandUseOntologyProperty .
+
+
 ###  https://w3id.org/icity/LandUse/hasEmployedPopulation
 :hasEmployedPopulation rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf :hasResidentPopulation ;
@@ -728,7 +737,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/SpatialLoc/hasLocation
 <https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
-                                                rdfs:domain <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
                                                 rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space."^^xsd:string .
 
 
@@ -1005,7 +1014,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#City
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#City> rdf:type owl:Class ;
-                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ,
+                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ,
                                                                                             <http://schema.org/City> ,
                                                                                             <http://www.geonames.org/ontology/ontology_v3.1.rdf#Feature> .
 
@@ -1084,6 +1093,27 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                                            <http://purl.org/dc/terms/description> "Difference_Quantity defines a Quantity that subtracts term_2 from term_1.  Both these terms are restricted to being Quantities, and unit_of_measure of the value of term_1 must be equal to the unit_of_measure of this Product_Quantity."@en .
 
 
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Division_Quantity
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Division_Quantity> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Quantity> ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/denominator> ;
+                                                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                           owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                                                         ] ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/numerator> ;
+                                                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                           owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                                                         ] ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure> ;
+                                                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                           owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Unit_division>
+                                                                                                         ] ;
+                                                                                         rdfs:comment "Division_Quantity is defined by dividing the numerator by the denominator, which are both Quantity"@en .
+
+
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Dollar
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Dollar> rdf:type owl:Class ;
                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Monetary_unit> .
@@ -1105,11 +1135,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                                               rdfs:label "Fixed Zero Cardinality"@en .
 
 
-###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing
-<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> rdf:type owl:Class ;
-                                                                                <http://purl.org/dc/terms/description> "Acts as class that groups all Global City Indicator Classes. Makes it easier to peruse in Protege."@en .
-
-
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measure
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measure> rdf:type owl:Class ;
                                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measurement> ,
@@ -1123,7 +1148,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measurement
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measurement> rdf:type owl:Class ;
-                                                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ;
+                                                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ;
                                                                                        owl:disjointWith <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_statistics> ,
                                                                                                         <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Service> .
 
@@ -1158,7 +1183,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_statistics
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_statistics> rdf:type owl:Class ;
-                                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ;
+                                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ;
                                                                                       owl:disjointWith <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Service> .
 
 
@@ -1166,6 +1191,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_unit_of_measure> rdf:type owl:Class ;
                                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCI_measurement> ,
                                                                                                            <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> rdf:type owl:Class ;
+                                                                                  <http://purl.org/dc/terms/description> "Acts as class that groups all Global City Indicator Classes. Makes it easier to peruse in Protege."@en .
 
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Monetary_ratio_unit
@@ -1219,7 +1249,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population> rdf:type owl:Class ;
-                                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ,
+                                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ,
                                                                                                   <http://ontology.eil.utoronto.ca/govstat.owl#Population> ,
                                                                                                   [ rdf:type owl:Restriction ;
                                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#located_in> ;
@@ -1297,14 +1327,14 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Resident
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Resident> rdf:type owl:Class ;
-                                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ,
+                                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ,
                                                                                                 <http://www.w3.org/ns/prov#Person> ;
                                                                                 rdfs:comment "A Resident is a prov:Person that resides in the city for which the indicator is begin measured. The city of the primary residence is constrained to be the city of the indicator, which cannot be specified in OWL."@en .
 
 
 ###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Service
 <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Service> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIThing> ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#GCIv2Thing> ;
                                                                                rdfs:label "Service"@en .
 
 

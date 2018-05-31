@@ -8,9 +8,13 @@
 
 <https://w3id.org/icity/Parking/> rdf:type owl:Ontology ;
                                    owl:versionIRI <https://w3id.org/icity/Parking/1.2/> ;
-                                   owl:imports <https://w3id.org/icity/Change/1.1/> ,
+                                   owl:imports <https://w3id.org/icity/Building/1.2/> ,
+                                               <https://w3id.org/icity/Change/1.1/> ,
                                                <https://w3id.org/icity/OM/1.1/> ,
-                                               <https://w3id.org/icity/SpatialLoc/1.2/> ;
+                                               <https://w3id.org/icity/Organization/1.2/> ,
+                                               <https://w3id.org/icity/Person/1.2/> ,
+                                               <https://w3id.org/icity/SpatialLoc/1.2/> ,
+                                               <https://w3id.org/icity/Vehicle/1.2/> ;
                                    <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/"^^xsd:string ;
                                    <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi"^^xsd:string ;
                                    <http://purl.org/dc/elements/1.1/description> """Parking, specifically parking areas refer to some area that enables parking of Vehicles.
@@ -24,7 +28,8 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                    <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-parking"^^xsd:string ;
                                    rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
 		To do: extend this to capture the activity of parking.
-Changes from previous version: updated foundational ontologies
+Changes from previous version: updated foundational ontologies;
+extended the classes and properties identified to capture greater detail
 		
 		Copyright @ 2016 Megan Katsumi, iCity Research Group"""^^xsd:string ;
                                    owl:priorVersion "https://w3id.org/icity/Parking/1.1/"^^xsd:string ;
@@ -164,7 +169,9 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 <http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters
+above the local reference ellipsoid)."""^^xsd:string ,
+                                                           """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid)."""^^xsd:string ;
                                               rdfs:label "altitude"^^xsd:string ;
                                               rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyAnnotationProperty> ;
@@ -181,15 +188,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
-                                                   rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ;
-                                                   rdfs:label "location"^^xsd:string ;
                                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
@@ -283,6 +281,95 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://schema.org/address
+<http://schema.org/address> rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf <https://w3id.org/icity/Building/SchemaOrgProperty> ,
+                                               <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                            <http://purl.org/dc/elements/1.1/description> "Physical address of the item."^^xsd:string .
+
+
+###  http://schema.org/birthDate
+<http://schema.org/birthDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of birth."^^xsd:string .
+
+
+###  http://schema.org/brand
+<http://schema.org/brand> rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/cargoVolume
+<http://schema.org/cargoVolume> rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/children
+<http://schema.org/children> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                             <http://purl.org/dc/elements/1.1/description> "A child of the person."^^xsd:string .
+
+
+###  http://schema.org/deathDate
+<http://schema.org/deathDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of death."^^xsd:string .
+
+
+###  http://schema.org/driveWheelConfiguration
+<http://schema.org/driveWheelConfiguration> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelConsumption
+<http://schema.org/fuelConsumption> rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelEfficiency
+<http://schema.org/fuelEfficiency> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelType
+<http://schema.org/fuelType> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/gender
+<http://schema.org/gender> rdf:type owl:ObjectProperty ;
+                           owl:equivalentProperty <https://w3id.org/icity/Person/hasSex> ;
+                           rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "Gender of the person."^^xsd:string .
+
+
+###  http://schema.org/mileageFromOdometer
+<http://schema.org/mileageFromOdometer> rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/parent
+<http://schema.org/parent> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "A parent of this person. Supersedes parents."^^xsd:string .
+
+
+###  http://schema.org/productionDate
+<http://schema.org/productionDate> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/purchaseDate
+<http://schema.org/purchaseDate> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/spouse
+<http://schema.org/spouse> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <https://w3id.org/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "The person's spouse."^^xsd:string .
+
 
 ###  http://www.opengis.net/ont/geosparql#ehContains
 <http://www.opengis.net/ont/geosparql#ehContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
@@ -384,6 +471,10 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.opengis.net/ont/geosparql#sfWithin> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty .
+
+
 ###  http://www.w3.org/2004/02/skos/core#hasTopConcept
 <http://www.w3.org/2004/02/skos/core#hasTopConcept> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
@@ -439,6 +530,37 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                   rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
+###  https://w3id.org/icity/Building/BuildingOntologyProperty
+<https://w3id.org/icity/Building/BuildingOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                           <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Building ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/SchemaOrgProperty
+<https://w3id.org/icity/Building/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                    <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/hasFacility
+<https://w3id.org/icity/Building/hasFacility> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Building/BuildingOntologyProperty> .
+
+
+###  https://w3id.org/icity/Building/hasRent
+<https://w3id.org/icity/Building/hasRent> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Building/BuildingOntologyProperty> .
+
+
+###  https://w3id.org/icity/Building/hasUnitSize
+<https://w3id.org/icity/Building/hasUnitSize> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Building/BuildingOntologyProperty> .
+
+
+###  https://w3id.org/icity/Building/locatedOn
+<https://w3id.org/icity/Building/locatedOn> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Building/BuildingOntologyProperty> ;
+                                            <http://purl.org/dc/elements/1.1/description> "A Building is located on some parcel of land."^^xsd:string .
+
+
 ###  https://w3id.org/icity/Change/ChangeOntologyProperty
 <https://w3id.org/icity/Change/ChangeOntologyProperty> rdf:type owl:ObjectProperty ;
                                                        rdfs:comment "Added for organizational purposes to group properties defined in the Change Ontology."^^xsd:string .
@@ -464,24 +586,100 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                 rdf:type owl:FunctionalProperty .
 
 
-###  https://w3id.org/icity/Change/1.1/existsAt
-<https://w3id.org/icity/Change/1.1/existsAt> rdf:type owl:ObjectProperty .
+###  https://w3id.org/icity/Mereology/hasProperPart
+<https://w3id.org/icity/Mereology/hasProperPart> rdf:type owl:ObjectProperty .
 
 
-###  https://w3id.org/icity/Change/1.1/hasManifestation
-<https://w3id.org/icity/Change/1.1/hasManifestation> rdf:type owl:ObjectProperty .
+###  https://w3id.org/icity/Mereology/1.0//1.0#containedIn
+<https://w3id.org/icity/Mereology/1.0//1.0#containedIn> rdf:type owl:ObjectProperty .
 
 
-###  https://w3id.org/icity/Change/1.1/manifestationOf
-<https://w3id.org/icity/Change/1.1/manifestationOf> rdf:type owl:ObjectProperty .
+###  https://w3id.org/icity/Mereology/1.0//1.0#contains
+<https://w3id.org/icity/Mereology/1.0//1.0#contains> rdf:type owl:ObjectProperty .
 
 
-###  https://w3id.org/icity/Mereology/1.0/hasProperPart
-<https://w3id.org/icity/Mereology/1.0/hasProperPart> rdf:type owl:ObjectProperty .
+###  https://w3id.org/icity/MonetaryValue/1.0/hasValue
+<https://w3id.org/icity/MonetaryValue/1.0/hasValue> rdf:type owl:ObjectProperty .
 
 
-###  https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart
-<https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart> rdf:type owl:ObjectProperty .
+###  https://w3id.org/icity/Organization/OrgOntologyProperty
+<https://w3id.org/icity/Organization/OrgOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the iCity-Organization ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/employedAs
+<https://w3id.org/icity/Organization/employedAs> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/employedBy
+<https://w3id.org/icity/Organization/employedBy> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasAnnualPay
+<https://w3id.org/icity/Organization/hasAnnualPay> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasBusinessId
+<https://w3id.org/icity/Organization/hasBusinessId> rdf:type owl:ObjectProperty ;
+                                                    rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasEmployee
+<https://w3id.org/icity/Organization/hasEmployee> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasEstablishment
+<https://w3id.org/icity/Organization/hasEstablishment> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasFirmId
+<https://w3id.org/icity/Organization/hasFirmId> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasIndustryType
+<https://w3id.org/icity/Organization/hasIndustryType> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasOccupationType
+<https://w3id.org/icity/Organization/hasOccupationType> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasOrgMember
+<https://w3id.org/icity/Organization/hasOrgMember> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hasPay
+<https://w3id.org/icity/Organization/hasPay> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/hourlyPay
+<https://w3id.org/icity/Organization/hourlyPay> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/overtimePay
+<https://w3id.org/icity/Organization/overtimePay> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/performedBy
+<https://w3id.org/icity/Organization/performedBy> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
+
+
+###  https://w3id.org/icity/Organization/worksAt
+<https://w3id.org/icity/Organization/worksAt> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Organization/OrgOntologyProperty> .
 
 
 ###  https://w3id.org/icity/Parking/ParkingOntologyProperty
@@ -494,9 +692,19 @@ above the local reference ellipsoid)."""^^xsd:string ;
                  rdfs:subPropertyOf :ParkingOntologyProperty .
 
 
+###  https://w3id.org/icity/Parking/associatedLocation
+:associatedLocation rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
 ###  https://w3id.org/icity/Parking/forDuration
 :forDuration rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Parking/hasEVCharger
+:hasEVCharger rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :ParkingOntologyProperty .
 
 
 ###  https://w3id.org/icity/Parking/hasMonetaryCost
@@ -519,6 +727,23 @@ above the local reference ellipsoid)."""^^xsd:string ;
             rdfs:subPropertyOf :ParkingOntologyProperty .
 
 
+###  https://w3id.org/icity/Parking/hasVehicleCapacity
+:hasVehicleCapacity rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :ParkingOntologyProperty ;
+                    rdfs:comment "A parking area has an associated vehicle capacity. The vehicle capacity may change over time as a result of reconfiguration of parking spaces within a parking area. The capacity may be used together with occupancy information to determine whether any vacancies exist."^^xsd:string .
+
+
+###  https://w3id.org/icity/Parking/hoursOfOperation
+:hoursOfOperation rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Parking/maxAdmittableSize
+:maxAdmittableSize rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :ParkingOntologyProperty ;
+                   rdfs:comment "A Parking Area has a maximum admittable vehicle size that is restricted based on its physical characteristics (e.g. height of a parking garage, width of a parking spot)."^^xsd:string .
+
+
 ###  https://w3id.org/icity/Parking/maxDuration
 :maxDuration rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :ParkingOntologyProperty .
@@ -529,6 +754,61 @@ above the local reference ellipsoid)."""^^xsd:string ;
             rdfs:subPropertyOf :ParkingOntologyProperty .
 
 
+###  https://w3id.org/icity/Parking/ownedBy
+:ownedBy rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Parking/parkingAllocatedTo
+:parkingAllocatedTo rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Parking/policyAppliesFor
+:policyAppliesFor rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Parking/policyAppliesTo
+:policyAppliesTo rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :ParkingOntologyProperty .
+
+
+###  https://w3id.org/icity/Person/PersonOntologyProperty
+<https://w3id.org/icity/Person/PersonOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                       <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/SchemaOrgProperty
+<https://w3id.org/icity/Person/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                  <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/hasIncome
+<https://w3id.org/icity/Person/hasIncome> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Person/PersonOntologyProperty> .
+
+
+###  https://w3id.org/icity/Person/hasPersonID
+<https://w3id.org/icity/Person/hasPersonID> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Person/PersonOntologyProperty> .
+
+
+###  https://w3id.org/icity/Person/hasQualification
+<https://w3id.org/icity/Person/hasQualification> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Person/PersonOntologyProperty> .
+
+
+###  https://w3id.org/icity/Person/hasSex
+<https://w3id.org/icity/Person/hasSex> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf <https://w3id.org/icity/Person/PersonOntologyProperty> .
+
+
+###  https://w3id.org/icity/Person/hasSkill
+<https://w3id.org/icity/Person/hasSkill> rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Person/PersonOntologyProperty> .
+
+
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty
 <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL."^^xsd:string .
@@ -537,7 +817,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/SpatialLoc/hasLocation
 <https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
-                                                rdfs:domain <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
                                                 rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space."^^xsd:string .
 
 
@@ -545,9 +825,54 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> rdf:type owl:ObjectProperty .
 
 
+###  https://w3id.org/icity/Vehicle/SchemaOrgProperty
+<https://w3id.org/icity/Vehicle/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                   <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/VehicleOntologyProperty
+<https://w3id.org/icity/Vehicle/VehicleOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                         <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Vehicle ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/hasCargoCapacityLoad
+<https://w3id.org/icity/Vehicle/hasCargoCapacityLoad> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  https://w3id.org/icity/Vehicle/hasMode
+<https://w3id.org/icity/Vehicle/hasMode> rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  https://w3id.org/icity/Vehicle/hasSpeed
+<https://w3id.org/icity/Vehicle/hasSpeed> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  https://w3id.org/icity/Vehicle/hasVehicleType
+<https://w3id.org/icity/Vehicle/hasVehicleType> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/VehicleOntologyProperty> .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://schema.org/numberOfAxels
+<http://schema.org/numberOfAxels> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgDataProperty> .
+
+
+###  http://schema.org/numberOfDoors
+<http://schema.org/numberOfDoors> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgDataProperty> .
+
+
+###  http://schema.org/vehicleSeatingCapacity
+<http://schema.org/vehicleSeatingCapacity> rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgDataProperty> .
+
 
 ###  http://www.opengis.net/ont/geosparql#asGML
 <http://www.opengis.net/ont/geosparql#asGML> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
@@ -650,6 +975,16 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                  rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyDataProperty> .
 
 
+###  https://w3id.org/icity/Building/BuildingOntologyDataProperty
+<https://w3id.org/icity/Building/BuildingOntologyDataProperty> rdf:type owl:DatatypeProperty ;
+                                                               <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify data properties defined in the Building ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/hasRooms
+<https://w3id.org/icity/Building/hasRooms> rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Building/BuildingOntologyDataProperty> .
+
+
 ###  https://w3id.org/icity/OM/OMOntologyDataProperty
 <https://w3id.org/icity/OM/OMOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                    <http://purl.org/dc/elements/1.1/description> "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology."^^xsd:string .
@@ -665,20 +1000,103 @@ above the local reference ellipsoid)."""^^xsd:string ;
                              <http://purl.org/dc/elements/1.1/description> "Data property added for organizational purposes, to group data properties defined in the Parking ontology."^^xsd:string .
 
 
-###  https://w3id.org/icity/Parking/hasChargingStations
-:hasChargingStations rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :ParkingOntologyDataProperty ;
-                     rdfs:range xsd:integer .
-
-
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty
 <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                                    rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL."^^xsd:string .
 
 
+###  https://w3id.org/icity/Vehicle/SchemaOrgDataProperty
+<https://w3id.org/icity/Vehicle/SchemaOrgDataProperty> rdf:type owl:DatatypeProperty ;
+                                                       rdfs:comment "Added for organizational purposes, to capture the data properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
 #################################################################
 #    Classes
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Activity
+<http://ontology.eil.utoronto.ca/organization.owl#Activity> owl:equivalentClass <https://w3id.org/icity/Activity/Activity> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Goal
+<http://ontology.eil.utoronto.ca/organization.owl#Goal> rdfs:subClassOf <https://w3id.org/icity/Activity/State> ,
+                                                                        <https://w3id.org/icity/Organization/OrgOntologyThing> ;
+                                                        <http://purl.org/dc/elements/1.1/description> "A goal represents some state or complex states, and allows for the representation of various groups' responsibilities."^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Organization
+<http://ontology.eil.utoronto.ca/organization.owl#Organization> owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                             owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                             owl:someValuesFrom <https://w3id.org/icity/Organization/OrganizationPD>
+                                                                                                           ]
+                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                             owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                             owl:allValuesFrom <https://w3id.org/icity/Organization/OrganizationPD>
+                                                                                                           ]
+                                                                                                         ) ;
+                                                                                      rdf:type owl:Class
+                                                                                    ] ;
+                                                                rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                                <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://schema.org/address> ;
+                                                                                  owl:allValuesFrom <http://schema.org/PostalAddress>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                ] ;
+                                                                <http://purl.org/dc/elements/1.1/description> """Organization: A company or other sort of group of individuals in the urban system with some goal(s).
+An Organization may own Property, including different types of Buildings.
+An Organization may have an address.
+An Organization has at least 2 members.
+An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups' responsibilities."""^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent
+<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                                                     <https://w3id.org/icity/Person/Person> ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> ;
+                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Authority>
+                                                                                     ] ;
+                                                                     <http://purl.org/dc/elements/1.1/description> """Organization Agent: Members of an organization.
+Organization Agents have goals, authority, and may be members of some team.
+An Organization Agent plays a Role within the Organization."""^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Resource
+<http://ontology.eil.utoronto.ca/organization.owl#Resource> owl:equivalentClass <https://w3id.org/icity/Resource/Resource> .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Role
+<http://ontology.eil.utoronto.ca/organization.owl#Role> rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> ;
+                                                        <http://purl.org/dc/elements/1.1/description> """Role: A Role has a single (possibly complex) Goal.
+A Role has some authority, requires some skill, and may also have some associated processes."""^^xsd:string .
+
+
+###  http://schema.org/Brand
+<http://schema.org/Brand> rdf:type owl:Class ;
+                          rdfs:subClassOf <https://w3id.org/icity/Vehicle/SchemaOrgThing> .
+
+
+###  http://schema.org/DriveWheelConfigurationValue
+<http://schema.org/DriveWheelConfigurationValue> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://w3id.org/icity/Vehicle/SchemaOrgThing> .
+
+
+###  http://schema.org/PostalAddress
+<http://schema.org/PostalAddress> rdf:type owl:Class ;
+                                  rdfs:subClassOf <https://w3id.org/icity/Building/SchemaOrgThing> ,
+                                                  <https://w3id.org/icity/Person/SchemaOrgThing> .
+
+
+###  http://schema.org/QuantitativeValue
+<http://schema.org/QuantitativeValue> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Quantity> ,
+                                                      <https://w3id.org/icity/Vehicle/SchemaOrgThing> .
+
 
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
 <http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
@@ -779,6 +1197,193 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
 ###  http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit
 <http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit> rdf:type owl:Class ;
                                                         rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
+
+
+###  https://w3id.org/icity/Activity/Activity
+<https://w3id.org/icity/Activity/Activity> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/Activity/State
+<https://w3id.org/icity/Activity/State> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/Building/ApartmentBuilding
+<https://w3id.org/icity/Building/ApartmentBuilding> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://w3id.org/icity/Building/Building> .
+
+
+###  https://w3id.org/icity/Building/Building
+<https://w3id.org/icity/Building/Building> rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                        owl:someValuesFrom <https://w3id.org/icity/Building/BuildingPD>
+                                                                                      ]
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                        owl:allValuesFrom <https://w3id.org/icity/Building/BuildingPD>
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf <https://w3id.org/icity/Building/BuildingOntologyThing> ,
+                                                           <https://w3id.org/icity/Change/Manifestation> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#contains> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Building/BuildingUnit>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/MonetaryValue/1.0/hasValue> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> ;
+                                                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                           ] ;
+                                           <http://purl.org/dc/elements/1.1/description> """Building: A Building is a structure with some location in the urban system. The location of the Building in space may change due to construction, but the Parcel/Lot of land it is located on cannot.
+There are different types (subclasses) of buildings; House, Apartment Building, Office Building...
+A Building has an owner, which may be a Persons or some Organization.
+A Building has occupants, which may or may not be the same Persons or Firm who own it.
+A Building has a market value.
+A Building may provide some Parking.
+A Building has some Location.
+A Building contains one or many units."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/BuildingOntologyThing
+<https://w3id.org/icity/Building/BuildingOntologyThing> rdf:type owl:Class ;
+                                                        <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Building ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/BuildingPD
+<https://w3id.org/icity/Building/BuildingPD> rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                          owl:someValuesFrom <https://w3id.org/icity/Building/Building>
+                                                                                        ]
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                          owl:allValuesFrom <https://w3id.org/icity/Building/Building>
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf <https://w3id.org/icity/Building/BuildingOntologyThing> ,
+                                                             <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                             ] ;
+                                             <http://purl.org/dc/elements/1.1/description> "A Building may change over time, BuildingPD represents the entire process of some building entity (i.e. the Building perdurant)."^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/BuildingUnit
+<https://w3id.org/icity/Building/BuildingUnit> rdf:type owl:Class ;
+                                               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                            owl:someValuesFrom <https://w3id.org/icity/Building/BuildingUnitPD>
+                                                                                          ]
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                            owl:allValuesFrom <https://w3id.org/icity/Building/BuildingUnitPD>
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ;
+                                               rdfs:subClassOf <https://w3id.org/icity/Building/BuildingOntologyThing> ,
+                                                               <https://w3id.org/icity/Change/Manifestation> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Building/hasRent> ;
+                                                                 owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Building/hasUnitSize> ;
+                                                                 owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/MonetaryValue/1.0/hasValue> ;
+                                                                 owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                               ] ;
+                                               <http://purl.org/dc/elements/1.1/description> """BuildingUnit: A part of a Building which may be occupied by some Persons or Organization.
+A BuildingUnit has a size (square footage, number of rooms)
+A BuildingUnit may contain some Facilities, e.g. kitchen, bath.(Note that contain is distinct from the notion of including amenities, which may be part of the Tenure)
+A BuildingUnit has an address"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/BuildingUnitPD
+<https://w3id.org/icity/Building/BuildingUnitPD> rdf:type owl:Class ;
+                                                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                              owl:someValuesFrom <https://w3id.org/icity/Building/BuildingUnit>
+                                                                                            ]
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                              owl:allValuesFrom <https://w3id.org/icity/Building/BuildingUnit>
+                                                                                            ]
+                                                                                          ) ;
+                                                                       rdf:type owl:Class
+                                                                     ] ;
+                                                 rdfs:subClassOf <https://w3id.org/icity/Building/BuildingOntologyThing> ,
+                                                                 <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://schema.org/address> ;
+                                                                   owl:allValuesFrom <http://schema.org/PostalAddress>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://w3id.org/icity/Building/hasFacility> ;
+                                                                   owl:allValuesFrom <https://w3id.org/icity/Building/Facility>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#containedIn> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <https://w3id.org/icity/Building/Building>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://w3id.org/icity/Building/hasRooms> ;
+                                                                   owl:allValuesFrom xsd:integer
+                                                                 ] ;
+                                                 <http://purl.org/dc/elements/1.1/description> "A Building Unit may change over time, BuildingUnitPD represents the entire process of some building unit entity (i.e. the Building unit perdurant)."^^xsd:string ,
+                                                                                               "hasManifestation some BuildingUnit and hasManifestation only BuildingUnit"^^xsd:string .
+
+
+###  https://w3id.org/icity/Building/Facility
+<https://w3id.org/icity/Building/Facility> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/icity/Building/BuildingOntologyThing> .
+
+
+###  https://w3id.org/icity/Building/House
+<https://w3id.org/icity/Building/House> rdf:type owl:Class ;
+                                        rdfs:subClassOf <https://w3id.org/icity/Building/Building> .
+
+
+###  https://w3id.org/icity/Building/IndustrialBuilding
+<https://w3id.org/icity/Building/IndustrialBuilding> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/Building/Building> .
+
+
+###  https://w3id.org/icity/Building/OfficeBuilding
+<https://w3id.org/icity/Building/OfficeBuilding> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://w3id.org/icity/Building/Building> .
+
+
+###  https://w3id.org/icity/Building/SchemaOrgThing
+<https://w3id.org/icity/Building/SchemaOrgThing> rdf:type owl:Class ;
+                                                 <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
 
 
 ###  https://w3id.org/icity/Change/ChangeOntologyThing
@@ -887,14 +1492,283 @@ A Monetary Value is measured with some currency."""^^xsd:string .
                                           rdfs:comment "Reference systems to indicate geographic position."^^xsd:string .
 
 
-###  https://w3id.org/icity/Parking/AccessibilityParkingArea
-:AccessibilityParkingArea rdf:type owl:Class ;
-                          rdfs:subClassOf :ParkingArea .
+###  https://w3id.org/icity/Organization/BusinessEstablishment
+<https://w3id.org/icity/Organization/BusinessEstablishment> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                         owl:someValuesFrom <https://w3id.org/icity/Organization/BusinessEstablishmentPD>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                                         owl:allValuesFrom <https://w3id.org/icity/Organization/BusinessEstablishmentPD>
+                                                                                                       ]
+                                                                                                     ) ;
+                                                                                  rdf:type owl:Class
+                                                                                ] ;
+                                                            rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                                            <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://schema.org/address> ;
+                                                                              owl:allValuesFrom <http://schema.org/PostalAddress>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                                            ] ;
+                                                            <http://purl.org/dc/elements/1.1/description> """Business Establishment: A Business establishment is a physical location where a Firm conducts business.
+A Business Establishment has a Location and may have an address."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/BusinessEstablishmentPD
+<https://w3id.org/icity/Organization/BusinessEstablishmentPD> rdf:type owl:Class ;
+                                                              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                           owl:someValuesFrom <https://w3id.org/icity/Organization/BusinessEstablishment>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                           owl:allValuesFrom <https://w3id.org/icity/Organization/BusinessEstablishment>
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                              rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                              <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/Organization/hasBusinessId> ;
+                                                                                owl:allValuesFrom <https://w3id.org/icity/Organization/BusinessId>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                              ] ;
+                                                              <http://purl.org/dc/elements/1.1/description> "Businesses change over time. BusinessEstablishmentPD captures the entire entity of a particular business establishment's \"process\"."^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/BusinessId
+<https://w3id.org/icity/Organization/BusinessId> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> .
+
+
+###  https://w3id.org/icity/Organization/Employee
+<https://w3id.org/icity/Organization/Employee> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> ,
+                                                               <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Organization/employedAs> ;
+                                                                 owl:someValuesFrom <https://w3id.org/icity/Organization/Occupation>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Organization/hasPay> ;
+                                                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                      owl:unionOf ( <https://w3id.org/icity/Organization/Salary>
+                                                                                                    <https://w3id.org/icity/Organization/Wage>
+                                                                                                  )
+                                                                                    ]
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/icity/Organization/worksAt> ;
+                                                                 owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                               ] ;
+                                               <http://purl.org/dc/elements/1.1/description> """Employee: An Firm has some Employees, whom it employs for some Occupation.
+An Employee is a type of Organization Agent.
+An Employee may be employed at a particular Business Establishment.
+An Employee may be responsible for one or more Roles within the Organization.
+An Employee is employed by some Organization, unless the Person is self-employed.
+An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change)."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/Firm
+<https://w3id.org/icity/Organization/Firm> rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                        owl:someValuesFrom <https://w3id.org/icity/Organization/FirmPD>
+                                                                                      ]
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                        owl:allValuesFrom <https://w3id.org/icity/Organization/FirmPD>
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#Organization> ,
+                                                           <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/address> ;
+                                                             owl:allValuesFrom <http://schema.org/PostalAddress>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Organization/hasEstablishment> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Organization/BusinessEstablishment>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Organization/hasIndustryType> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Organization/IndustryType>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                           ] ;
+                                           <http://purl.org/dc/elements/1.1/description> """Firm: A Firm is a type of organization.
+A Firm has an address and an industry type, and some Employees.
+A Firm may have a Business Establishment(s)."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/FirmId
+<https://w3id.org/icity/Organization/FirmId> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> .
+
+
+###  https://w3id.org/icity/Organization/FirmPD
+<https://w3id.org/icity/Organization/FirmPD> rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                          owl:someValuesFrom <https://w3id.org/icity/Organization/Firm>
+                                                                                        ]
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                          owl:allValuesFrom <https://w3id.org/icity/Organization/Firm>
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#Organization> ,
+                                                             <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/icity/Organization/hasFirmId> ;
+                                                               owl:allValuesFrom <https://w3id.org/icity/Organization/FirmId>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                             ] ;
+                                             <http://purl.org/dc/elements/1.1/description> "Firms change over time. FirmPD captures the entire entity of a particular firm's \"process\"."^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/IndustryType
+<https://w3id.org/icity/Organization/IndustryType> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> .
+
+
+###  https://w3id.org/icity/Organization/Occupation
+<https://w3id.org/icity/Organization/Occupation> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> ;
+                                                 <http://purl.org/dc/elements/1.1/description> """Occupation: An Occupation is performed by some Person.
+An Occupation has a type (e.g. sales, skilled trades)"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/OccupationType
+<https://w3id.org/icity/Organization/OccupationType> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> .
+
+
+###  https://w3id.org/icity/Organization/OrgOntologyThing
+<https://w3id.org/icity/Organization/OrgOntologyThing> rdf:type owl:Class ;
+                                                       <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the iCity-Organization ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/OrganizationPD
+<https://w3id.org/icity/Organization/OrganizationPD> rdf:type owl:Class ;
+                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:someValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Organization>
+                                                                                                ]
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Organization>
+                                                                                                ]
+                                                                                              ) ;
+                                                                           rdf:type owl:Class
+                                                                         ] ;
+                                                     rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                                     <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                     ] ;
+                                                     <http://purl.org/dc/elements/1.1/description> "Organizations change over time. OrganizationPD captures the entire entity of a particular organization's \"process\"."^^xsd:string .
+
+
+###  https://w3id.org/icity/Organization/Salary
+<https://w3id.org/icity/Organization/Salary> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/icity/Organization/hasAnnualPay> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <https://w3id.org/icity/OM/MonetaryValue>
+                                                             ] .
+
+
+###  https://w3id.org/icity/Organization/Wage
+<https://w3id.org/icity/Organization/Wage> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/icity/Organization/OrgOntologyThing> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Organization/overtimePay> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Organization/hourlyPay> ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass <https://w3id.org/icity/OM/MonetaryValue>
+                                                           ] .
+
+
+###  https://w3id.org/icity/Parking/AccessibilityParkingPolicy
+:AccessibilityParkingPolicy rdf:type owl:Class ;
+                            rdfs:subClassOf :ParkingPolicy .
+
+
+###  https://w3id.org/icity/Parking/AccessibilityParkingSpace
+:AccessibilityParkingSpace rdf:type owl:Class ;
+                           rdfs:subClassOf :ParkingSpace ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :hasParkingPolicy ;
+                                             owl:allValuesFrom :AccessibilityParkingPolicy
+                                           ] ;
+                           rdfs:comment "A Parking Space reserved for users with an an accessibility parking permit."^^xsd:string .
+
+
+###  https://w3id.org/icity/Parking/EVCharger
+:EVCharger rdf:type owl:Class ;
+           rdfs:subClassOf :ParkingOntologyThing ;
+           rdfs:comment """A charger for electric vehicles is an amenity which may be provided by some parking spaces. An EV charger has some model and is capable of charging certain classes of vehicles.
+An EV charger may be available or unavailable at a given time. This availability may be predetermined based on the scheduled duration of a vehicle’s occupancy, and the time left to charge the vehicle."""^^xsd:string .
+
+
+###  https://w3id.org/icity/Parking/EVParkingPolicy
+:EVParkingPolicy rdf:type owl:Class ;
+                 rdfs:subClassOf :ParkingPolicy .
+
+
+###  https://w3id.org/icity/Parking/EVParkingSpace
+:EVParkingSpace rdf:type owl:Class ;
+                rdfs:subClassOf :GreenVehicleParkingSpace ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasParkingPolicy ;
+                                  owl:allValuesFrom :EVParkingPolicy
+                                ] ;
+                rdfs:comment "A parking space reserved for Electric Vehicles (EVs) that equipped with a charger(s)."^^xsd:string .
 
 
 ###  https://w3id.org/icity/Parking/GarageParkingArea
 :GarageParkingArea rdf:type owl:Class ;
                    rdfs:subClassOf :ParkingArea .
+
+
+###  https://w3id.org/icity/Parking/GreenVehicleParkingSpace
+:GreenVehicleParkingSpace rdf:type owl:Class ;
+                          rdfs:subClassOf :ParkingSpace ;
+                          rdfs:comment "A Parking Space that is reserved for designated \"green\" vehicles."^^xsd:string .
 
 
 ###  https://w3id.org/icity/Parking/IllegalParkingArea
@@ -915,11 +1789,11 @@ A Monetary Value is measured with some currency."""^^xsd:string .
 ###  https://w3id.org/icity/Parking/ParkingArea
 :ParkingArea rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                          owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                          owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                           owl:someValuesFrom :ParkingAreaPD
                                                         ]
                                                         [ rdf:type owl:Restriction ;
-                                                          owl:onProperty <https://w3id.org/icity/Change/1.1/manifestationOf> ;
+                                                          owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
                                                           owl:allValuesFrom :ParkingAreaPD
                                                         ]
                                                       ) ;
@@ -927,23 +1801,50 @@ A Monetary Value is measured with some currency."""^^xsd:string .
                                  ] ;
              rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
                              :ParkingOntologyThing ,
+                             [ rdf:type owl:Class ;
+                               owl:unionOf ( <http://ontology.eil.utoronto.ca/organization.owl#Organization>
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :ownedBy ;
+                                               owl:someValuesFrom <https://w3id.org/icity/Person/Person>
+                                             ]
+                                           )
+                             ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty <https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart> ;
+                               owl:onProperty :associatedLocation ;
+                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasVehicleCapacity ;
+                               owl:someValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://w3id.org/icity/Mereology/hasProperPart> ;
                                owl:allValuesFrom :ParkingArea
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasEVCharger ;
+                               owl:allValuesFrom :EVCharger
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :hasParkingPolicy ;
                                owl:allValuesFrom :ParkingPolicy
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                               owl:onProperty :hoursOfOperation ;
+                               owl:allValuesFrom <http://www.w3.org/2006/time#GeneralDateTimeDescription>
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasChargingStations ;
+                               owl:onProperty :occupiedBy ;
+                               owl:allValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :parkingAllocatedTo ;
+                               owl:allValuesFrom <https://w3id.org/icity/Building/Building>
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onDataRange xsd:integer
+                               owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                              ] ;
              <http://purl.org/dc/elements/1.1/description> """Parking Area refers to some area that enables parking of Vehicles.
 A Parking Area may contain sub-Parking Areas, the area of which may change.
@@ -958,11 +1859,11 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
 ###  https://w3id.org/icity/Parking/ParkingAreaPD
 :ParkingAreaPD rdf:type owl:Class ;
                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                            owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                            owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                             owl:someValuesFrom :ParkingArea
                                                           ]
                                                           [ rdf:type owl:Restriction ;
-                                                            owl:onProperty <https://w3id.org/icity/Change/1.1/hasManifestation> ;
+                                                            owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
                                                             owl:allValuesFrom :ParkingArea
                                                           ]
                                                         ) ;
@@ -971,12 +1872,16 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
                                :ParkingOntologyThing ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <https://w3id.org/icity/Change/1.1/existsAt> ;
+                                 owl:onProperty :maxAdmittableSize ;
+                                 owl:someValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass <http://www.w3.org/2006/time#Interval>
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <https://w3id.org/icity/SpatialLoc/1.0/hasLocation> ;
+                                 owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                                ] ;
@@ -999,11 +1904,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                rdfs:subClassOf :ParkingOntologyThing ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :allowableDuring ;
-                                 owl:allValuesFrom [ rdf:type owl:Class ;
-                                                     owl:unionOf ( <https://w3id.org/icity/Time/CalendarPeriod>
-                                                                   <https://w3id.org/icity/Time/TimePeriod>
-                                                                 )
-                                                   ]
+                                 owl:allValuesFrom <http://www.w3.org/2006/time#GeneralDateTimeDescription>
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasParkingRate ;
@@ -1012,6 +1913,14 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :maxDuration ;
                                  owl:allValuesFrom <http://www.w3.org/2006/time#DurationDescription>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :policyAppliesFor ;
+                                 owl:allValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :policyAppliesTo ;
+                                 owl:allValuesFrom <https://w3id.org/icity/Person/Person>
                                ] .
 
 
@@ -1032,9 +1941,158 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                              ] .
 
 
+###  https://w3id.org/icity/Parking/ParkingSpace
+:ParkingSpace rdf:type owl:Class ;
+              rdfs:subClassOf :ParkingArea ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasVehicleCapacity ;
+                                owl:someValuesFrom [ owl:intersectionOf ( <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/numerical_value> ;
+                                                                            owl:hasValue 1
+                                                                          ]
+                                                                        ) ;
+                                                     rdf:type owl:Class
+                                                   ]
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :occupiedBy ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass <https://w3id.org/icity/Vehicle/Vehicle>
+                              ] .
+
+
 ###  https://w3id.org/icity/Parking/StreetParkingArea
 :StreetParkingArea rdf:type owl:Class ;
                    rdfs:subClassOf :ParkingArea .
+
+
+###  https://w3id.org/icity/Person/Person
+<https://w3id.org/icity/Person/Person> rdf:type owl:Class ;
+                                       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                    owl:someValuesFrom <https://w3id.org/icity/Person/PersonPD>
+                                                                                  ]
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                    owl:allValuesFrom <https://w3id.org/icity/Person/PersonPD>
+                                                                                  ]
+                                                                                ) ;
+                                                             rdf:type owl:Class
+                                                           ] ;
+                                       rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                       <https://w3id.org/icity/Person/PersonOntologyThing> ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://schema.org/children> ;
+                                                         owl:allValuesFrom <https://w3id.org/icity/Person/Person>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://schema.org/parent> ;
+                                                         owl:allValuesFrom <https://w3id.org/icity/Person/Person>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://schema.org/spouse> ;
+                                                         owl:allValuesFrom <https://w3id.org/icity/Person/Person>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <https://w3id.org/icity/Person/hasIncome> ;
+                                                         owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://schema.org/deathDate> ;
+                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                       ] ;
+                                       <http://purl.org/dc/elements/1.1/description> """A Person may have a unique identifier.
+A Person has a date of birth, and may have a date of death.
+A Person may be a member of a Family and/or a Household.
+A Person has a mother and father, and may have a spouse and/or child(ren). Note that we define the parent relation as the legal relation as opposed to biological. This property may be specialized and restricted, for example hasBiologicalMother: exactly 1 Person.
+A Person may have some Job and associated Income.
+A Person may have access to some Vehicle.
+A Person may have access to some Bicycle.
+A Person may have some TransitPass.
+A Person has an address of residence and may have other contact information such as E-mail, phone number, etcetera.
+A Person has a Schedule for a given point (period) in time.
+Note that some properties are not defined in the Person ontology, but in an extension of the Person ontology that captures the interaction between iCity domain ontologies (e.g. Persons and their Vehicles)"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/PersonId
+<https://w3id.org/icity/Person/PersonId> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/icity/Person/PersonOntologyThing> .
+
+
+###  https://w3id.org/icity/Person/PersonOntologyThing
+<https://w3id.org/icity/Person/PersonOntologyThing> rdf:type owl:Class ;
+                                                    <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Person ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/PersonPD
+<https://w3id.org/icity/Person/PersonPD> rdf:type owl:Class ;
+                                         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                      owl:someValuesFrom <https://w3id.org/icity/Person/Person>
+                                                                                    ]
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                      owl:allValuesFrom <https://w3id.org/icity/Person/Person>
+                                                                                    ]
+                                                                                  ) ;
+                                                               rdf:type owl:Class
+                                                             ] ;
+                                         rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                         <https://w3id.org/icity/Person/PersonOntologyThing> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                           owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/Person/hasPersonID> ;
+                                                           owl:allValuesFrom <https://w3id.org/icity/Person/PersonId>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://schema.org/birthDate> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/Person/hasSex> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <https://w3id.org/icity/Person/Sex>
+                                                         ] ;
+                                         <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/Qualification
+<https://w3id.org/icity/Person/Qualification> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/icity/Person/PersonOntologyThing> ;
+                                              <http://purl.org/dc/elements/1.1/description> "A Qualification captures some official degree of accomplishment. It may be required for something and/or possessed by some Person."^^xsd:string ;
+                                              rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/SchemaOrgThing
+<https://w3id.org/icity/Person/SchemaOrgThing> rdf:type owl:Class ;
+                                               <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
+###  https://w3id.org/icity/Person/Sex
+<https://w3id.org/icity/Person/Sex> rdf:type owl:Class ;
+                                    rdfs:subClassOf <https://w3id.org/icity/Person/PersonOntologyThing> .
+
+
+###  https://w3id.org/icity/Person/Skill
+<https://w3id.org/icity/Person/Skill> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://w3id.org/icity/Person/PersonOntologyThing> ;
+                                      <http://purl.org/dc/elements/1.1/description> "A Skill captures an ability to perfom some activity or set of activities."^^xsd:string ;
+                                      rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Resource/Resource
+<https://w3id.org/icity/Resource/Resource> rdf:type owl:Class .
 
 
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing
@@ -1048,6 +2106,152 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
 
 ###  https://w3id.org/icity/Time/TimePeriod
 <https://w3id.org/icity/Time/TimePeriod> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/Vehicle/Mode
+<https://w3id.org/icity/Vehicle/Mode> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://w3id.org/icity/Vehicle/VehicleOntologyThing> ;
+                                      <http://purl.org/dc/elements/1.1/description> "A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc)."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/SchemaOrgThing
+<https://w3id.org/icity/Vehicle/SchemaOrgThing> rdf:type owl:Class ;
+                                                <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/Vehicle
+<https://w3id.org/icity/Vehicle/Vehicle> rdf:type owl:Class ;
+                                         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                      owl:someValuesFrom <https://w3id.org/icity/Vehicle/VehiclePD>
+                                                                                    ]
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
+                                                                                      owl:allValuesFrom <https://w3id.org/icity/Vehicle/VehiclePD>
+                                                                                    ]
+                                                                                  ) ;
+                                                               rdf:type owl:Class
+                                                             ] ;
+                                         rdfs:subClassOf <https://w3id.org/icity/Change/Manifestation> ,
+                                                         <https://w3id.org/icity/Vehicle/VehicleOntologyThing> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://schema.org/purchaseDate> ;
+                                                           owl:allValuesFrom <http://www.w3.org/2006/time#DateTimeDescription>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
+                                                           owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/Vehicle/hasSpeed> ;
+                                                           owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                         ] ;
+                                         <http://purl.org/dc/elements/1.1/description> """A Vehicle provides a motorized means of transportation within the urban system.
+A Vehicle is associated with some Mode of transportation.
+A Vehicle has a Vintage.
+A Vehicle has a Manufacturer (make).
+There are different types (subclasses) of vehicles: Motorcycle, Sedan, Truck, Bus, Commercial Cargo Vehicle, Train,...
+A Vehicle has a capacity of passengers
+A Vehicle has a capacity of cargo
+A Vehicle may be occupied by at least one PersonAtT, and some cargo
+A Vehicle has a Speed at some point in time
+A Vehicle has a location at some point in time.
+A Vehicle is owned by some Person(s) or Firm"""^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/VehicleOntologyThing
+<https://w3id.org/icity/Vehicle/VehicleOntologyThing> rdf:type owl:Class ;
+                                                      <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Vehicle ontology."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/VehiclePD
+<https://w3id.org/icity/Vehicle/VehiclePD> rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                        owl:someValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                                                                                      ]
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
+                                                                                        owl:allValuesFrom <https://w3id.org/icity/Vehicle/Vehicle>
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf <https://w3id.org/icity/Change/TimeVaryingConcept> ,
+                                                           <https://w3id.org/icity/Vehicle/VehicleOntologyThing> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/brand> ;
+                                                             owl:allValuesFrom <http://schema.org/Brand>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/cargoVolume> ;
+                                                             owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/driveWheelConfiguration> ;
+                                                             owl:allValuesFrom <http://schema.org/DriveWheelConfigurationValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/fuelConsumption> ;
+                                                             owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/fuelEfficiency> ;
+                                                             owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/fuelType> ;
+                                                             owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/mileageFromOdometer> ;
+                                                             owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/productionDate> ;
+                                                             owl:allValuesFrom <http://www.w3.org/2006/time#DateTimeDescription>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Vehicle/hasCargoCapacityLoad> ;
+                                                             owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Vehicle/hasMode> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Vehicle/Mode>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Vehicle/hasVehicleType> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/Vehicle/VehicleType>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/numberOfAxels> ;
+                                                             owl:allValuesFrom xsd:integer
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/numberOfDoors> ;
+                                                             owl:allValuesFrom xsd:integer
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://schema.org/vehicleSeatingCapacity> ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onDataRange xsd:integer
+                                                           ] ;
+                                           <http://purl.org/dc/elements/1.1/description> "A Vehicle changes over time. VehiclePD captures the entire entity of a vehicle, i.e. the \"vehicle perdurant\"."^^xsd:string .
+
+
+###  https://w3id.org/icity/Vehicle/VehicleType
+<https://w3id.org/icity/Vehicle/VehicleType> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/icity/Vehicle/VehicleOntologyThing> .
 
 
 #################################################################
@@ -1174,6 +2378,25 @@ basic geo vocab
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate."^^xsd:string ;
                                                    rdfs:label "lat/long"^^xsd:string .
+
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point,
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """^^xsd:string ,
+                                                                """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """^^xsd:string ;
+                                                   rdfs:label "location"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/

@@ -20,9 +20,13 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/Parking/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Parking/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Building/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Organization/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Person/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Vehicle/1.2/"/>
         <ns:license rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Megan Katsumi</dc:creator>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parking, specifically parking areas refer to some area that enables parking of Vehicles.
@@ -36,7 +40,8 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">icity-parking</vann:preferredNamespacePrefix>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
 		To do: extend this to capture the activity of parking.
-Changes from previous version: updated foundational ontologies
+Changes from previous version: updated foundational ontologies;
+extended the classes and properties identified to capture greater detail
 		
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/icity/Parking/1.1/</owl:priorVersion>
@@ -288,6 +293,8 @@ Changes from previous version: updated foundational ontologies
 
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#alt">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 altitude of a SpatialThing (decimal meters
+above the local reference ellipsoid).</rdfs:comment>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid).</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">altitude</rdfs:label>
@@ -313,15 +320,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- </rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">location</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
     </owl:AnnotationProperty>
     
@@ -490,6 +488,159 @@ above the local reference ellipsoid).</rdfs:comment>
      -->
 
 
+    
+
+
+    <!-- http://schema.org/address -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/address">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physical address of the item.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/birthDate -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/birthDate">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Date of birth.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/brand -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/brand">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/cargoVolume -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/cargoVolume">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/children -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/children">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A child of the person.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/deathDate -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/deathDate">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Date of death.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/driveWheelConfiguration -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/driveWheelConfiguration">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/fuelConsumption -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/fuelConsumption">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/fuelEfficiency -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/fuelEfficiency">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/fuelType -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/fuelType">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/gender -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/gender">
+        <owl:equivalentProperty rdf:resource="https://w3id.org/icity/Person/hasSex"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender of the person.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/mileageFromOdometer -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/mileageFromOdometer">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/parent -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/parent">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A parent of this person. Supersedes parents.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/productionDate -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/productionDate">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/purchaseDate -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/purchaseDate">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/spouse -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/spouse">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The person&apos;s spouse.</dc:description>
+    </owl:ObjectProperty>
     
 
 
@@ -718,6 +869,13 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
+    
+
+
     <!-- http://www.w3.org/2004/02/skos/core#hasTopConcept -->
 
 
@@ -823,6 +981,61 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Building/BuildingOntologyProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/BuildingOntologyProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify properties defined in the Building ontology.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/SchemaOrgProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/SchemaOrgProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/hasFacility -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasFacility">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/hasRent -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasRent">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/hasUnitSize -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/hasUnitSize">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/locatedOn -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Building/locatedOn">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyProperty"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Building is located on some parcel of land.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/Change/ChangeOntologyProperty -->
 
 
@@ -864,38 +1077,175 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/existsAt -->
+    <!-- https://w3id.org/icity/Mereology/hasProperPart -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/existsAt"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/hasProperPart"/>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/hasManifestation -->
+    <!-- https://w3id.org/icity/Mereology/1.0//1.0#containedIn -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#containedIn"/>
     
 
 
-    <!-- https://w3id.org/icity/Change/1.1/manifestationOf -->
+    <!-- https://w3id.org/icity/Mereology/1.0//1.0#contains -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
     
 
 
-    <!-- https://w3id.org/icity/Mereology/1.0/hasProperPart -->
+    <!-- https://w3id.org/icity/MonetaryValue/1.0/hasValue -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0/hasProperPart"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/MonetaryValue/1.0/hasValue"/>
     
 
 
-    <!-- https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart -->
+    <!-- https://w3id.org/icity/Organization/OrgOntologyProperty -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/OrgOntologyProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify properties defined in the iCity-Organization ontology.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/employedAs -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/employedAs">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/employedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/employedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasAnnualPay -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasAnnualPay">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasBusinessId -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasBusinessId">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasEmployee -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasEmployee">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasEstablishment -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasEstablishment">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasFirmId -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasFirmId">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasIndustryType -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasIndustryType">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasOccupationType -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasOccupationType">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasOrgMember -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasOrgMember">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hasPay -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hasPay">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/hourlyPay -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/hourlyPay">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/overtimePay -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/overtimePay">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/performedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/performedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/worksAt -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Organization/worksAt">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
     
 
 
@@ -917,10 +1267,28 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Parking/associatedLocation -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/associatedLocation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/Parking/forDuration -->
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/forDuration">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/hasEVCharger -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasEVCharger">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -962,6 +1330,35 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Parking/hasVehicleCapacity -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasVehicleCapacity">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A parking area has an associated vehicle capacity. The vehicle capacity may change over time as a result of reconfiguration of parking spaces within a parking area. The capacity may be used together with occupancy information to determine whether any vacancies exist.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/hoursOfOperation -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hoursOfOperation">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/maxAdmittableSize -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableSize">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Parking Area has a maximum admittable vehicle size that is restricted based on its physical characteristics (e.g. height of a parking garage, width of a parking spot).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/Parking/maxDuration -->
 
 
@@ -980,6 +1377,105 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Parking/ownedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/ownedBy">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/parkingAllocatedTo -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/parkingAllocatedTo">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/policyAppliesFor -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/policyAppliesFor">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/policyAppliesTo -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/policyAppliesTo">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/PersonOntologyProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/PersonOntologyProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify properties defined in the Person ontology.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/SchemaOrgProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/SchemaOrgProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/hasIncome -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/hasIncome">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/hasPersonID -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/hasPersonID">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/hasQualification -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/hasQualification">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/hasSex -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/hasSex">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Person/hasSkill -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Person/hasSkill">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty -->
 
 
@@ -994,7 +1490,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/hasLocation">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -1007,6 +1503,60 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Vehicle/SchemaOrgProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/SchemaOrgProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/VehicleOntologyProperty -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/VehicleOntologyProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify all properties defined in the Vehicle ontology.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/hasCargoCapacityLoad -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/hasCargoCapacityLoad">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/hasMode -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/hasMode">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/hasSpeed -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/hasSpeed">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/hasVehicleType -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Vehicle/hasVehicleType">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1016,6 +1566,33 @@ above the local reference ellipsoid).</rdfs:comment>
      -->
 
 
+    
+
+
+    <!-- http://schema.org/numberOfAxels -->
+
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/numberOfAxels">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://schema.org/numberOfDoors -->
+
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/numberOfDoors">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://schema.org/vehicleSeatingCapacity -->
+
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/vehicleSeatingCapacity">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgDataProperty"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -1217,6 +1794,24 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Building/BuildingOntologyDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Building/BuildingOntologyDataProperty">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify data properties defined in the Building ontology.</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Building/hasRooms -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Building/hasRooms">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- https://w3id.org/icity/OM/OMOntologyDataProperty -->
 
 
@@ -1244,21 +1839,20 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/Parking/hasChargingStations -->
-
-
-    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Parking/hasChargingStations">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyDataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty -->
 
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty">
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Created for organizational purposes, to identify data properties imported from geoSPARQL.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/SchemaOrgDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Vehicle/SchemaOrgDataProperty">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the data properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</rdfs:comment>
     </owl:DatatypeProperty>
     
 
@@ -1272,6 +1866,145 @@ above the local reference ellipsoid).</rdfs:comment>
      -->
 
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Activity -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Activity">
+        <owl:equivalentClass rdf:resource="https://w3id.org/icity/Activity/Activity"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Goal -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Goal">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Activity/State"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A goal represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Organization -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/OrganizationPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/OrganizationPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organization: A company or other sort of group of individuals in the urban system with some goal(s).
+An Organization may own Property, including different types of Buildings.
+An Organization may have an address.
+An Organization has at least 2 members.
+An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasAuthority"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Authority"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organization Agent: Members of an organization.
+Organization Agents have goals, authority, and may be members of some team.
+An Organization Agent plays a Role within the Organization.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Resource -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Resource">
+        <owl:equivalentClass rdf:resource="https://w3id.org/icity/Resource/Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Role -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Role">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role: A Role has a single (possibly complex) Goal.
+A Role has some authority, requires some skill, and may also have some associated processes.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://schema.org/Brand -->
+
+
+    <owl:Class rdf:about="http://schema.org/Brand">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/DriveWheelConfigurationValue -->
+
+
+    <owl:Class rdf:about="http://schema.org/DriveWheelConfigurationValue">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/PostalAddress -->
+
+
+    <owl:Class rdf:about="http://schema.org/PostalAddress">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/SchemaOrgThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/QuantitativeValue -->
+
+
+    <owl:Class rdf:about="http://schema.org/QuantitativeValue">
+        <rdfs:subClassOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/SchemaOrgThing"/>
+    </owl:Class>
     
 
 
@@ -1462,6 +2195,283 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- https://w3id.org/icity/Activity/Activity -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Activity/Activity"/>
+    
+
+
+    <!-- https://w3id.org/icity/Activity/State -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Activity/State"/>
+    
+
+
+    <!-- https://w3id.org/icity/Building/ApartmentBuilding -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/ApartmentBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/Building -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/Building">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#contains"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/hasValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building: A Building is a structure with some location in the urban system. The location of the Building in space may change due to construction, but the Parcel/Lot of land it is located on cannot.
+There are different types (subclasses) of buildings; House, Apartment Building, Office Building...
+A Building has an owner, which may be a Persons or some Organization.
+A Building has occupants, which may or may not be the same Persons or Firm who own it.
+A Building has a market value.
+A Building may provide some Parking.
+A Building has some Location.
+A Building contains one or many units.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/BuildingOntologyThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingOntologyThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify classes defined in the Building ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/BuildingPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/Building"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Building"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Building may change over time, BuildingPD represents the entire process of some building entity (i.e. the Building perdurant).</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/BuildingUnit -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnitPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnitPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasRent"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasUnitSize"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/MonetaryValue/1.0/hasValue"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BuildingUnit: A part of a Building which may be occupied by some Persons or Organization.
+A BuildingUnit has a size (square footage, number of rooms)
+A BuildingUnit may contain some Facilities, e.g. kitchen, bath.(Note that contain is distinct from the notion of including amenities, which may be part of the Tenure)
+A BuildingUnit has an address</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/BuildingUnitPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/BuildingUnitPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/BuildingUnit"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasFacility"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Facility"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#containedIn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Building/Building"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasRooms"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Building Unit may change over time, BuildingUnitPD represents the entire process of some building unit entity (i.e. the Building unit perdurant).</dc:description>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hasManifestation some BuildingUnit and hasManifestation only BuildingUnit</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/Facility -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/Facility">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/BuildingOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/House -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/House">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/IndustrialBuilding -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/IndustrialBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/OfficeBuilding -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/OfficeBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/Building"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Building/SchemaOrgThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Building/SchemaOrgThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/Change/ChangeOntologyThing -->
 
 
@@ -1620,11 +2630,404 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/Parking/AccessibilityParkingArea -->
+    <!-- https://w3id.org/icity/Organization/BusinessEstablishment -->
 
 
-    <owl:Class rdf:about="https://w3id.org/icity/Parking/AccessibilityParkingArea">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/BusinessEstablishment">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishmentPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishmentPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Business Establishment: A Business establishment is a physical location where a Firm conducts business.
+A Business Establishment has a Location and may have an address.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/BusinessEstablishmentPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/BusinessEstablishmentPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishment"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishment"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasBusinessId"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Businesses change over time. BusinessEstablishmentPD captures the entire entity of a particular business establishment&apos;s &quot;process&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/BusinessId -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/BusinessId">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/Employee -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/Employee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/employedAs"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/Occupation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasPay"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://w3id.org/icity/Organization/Salary"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/Organization/Wage"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/worksAt"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employee: An Firm has some Employees, whom it employs for some Occupation.
+An Employee is a type of Organization Agent.
+An Employee may be employed at a particular Business Establishment.
+An Employee may be responsible for one or more Roles within the Organization.
+An Employee is employed by some Organization, unless the Person is self-employed.
+An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/Firm -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/Firm">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/FirmPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/FirmPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasEstablishment"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/BusinessEstablishment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasIndustryType"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/IndustryType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Firm: A Firm is a type of organization.
+A Firm has an address and an industry type, and some Employees.
+A Firm may have a Business Establishment(s).</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/FirmId -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/FirmId">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/FirmPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/FirmPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Organization/Firm"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/Firm"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasFirmId"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Organization/FirmId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Firms change over time. FirmPD captures the entire entity of a particular firm&apos;s &quot;process&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/IndustryType -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/IndustryType">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/Occupation -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/Occupation">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Occupation: An Occupation is performed by some Person.
+An Occupation has a type (e.g. sales, skilled trades)</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/OccupationType -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/OccupationType">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/OrgOntologyThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/OrgOntologyThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify classes defined in the iCity-Organization ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/OrganizationPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/OrganizationPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organizations change over time. OrganizationPD captures the entire entity of a particular organization&apos;s &quot;process&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/Salary -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/Salary">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hasAnnualPay"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Organization/Wage -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Organization/Wage">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/overtimePay"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Organization/hourlyPay"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/AccessibilityParkingPolicy -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/AccessibilityParkingPolicy">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingPolicy"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/AccessibilityParkingSpace -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/AccessibilityParkingSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingSpace"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasParkingPolicy"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/AccessibilityParkingPolicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Parking Space reserved for users with an an accessibility parking permit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/EVCharger -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/EVCharger">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A charger for electric vehicles is an amenity which may be provided by some parking spaces. An EV charger has some model and is capable of charging certain classes of vehicles.
+An EV charger may be available or unavailable at a given time. This availability may be predetermined based on the scheduled duration of a vehicle’s occupancy, and the time left to charge the vehicle.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/EVParkingPolicy -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/EVParkingPolicy">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingPolicy"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/EVParkingSpace -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/EVParkingSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/GreenVehicleParkingSpace"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasParkingPolicy"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/EVParkingPolicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A parking space reserved for Electric Vehicles (EVs) that equipped with a charger(s).</rdfs:comment>
     </owl:Class>
     
 
@@ -1634,6 +3037,16 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
     <owl:Class rdf:about="https://w3id.org/icity/Parking/GarageParkingArea">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/GreenVehicleParkingSpace -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/GreenVehicleParkingSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingSpace"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Parking Space that is reserved for designated &quot;green&quot; vehicles.</rdfs:comment>
     </owl:Class>
     
 
@@ -1673,11 +3086,11 @@ A Monetary Value is measured with some currency.</rdfs:comment>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingAreaPD"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/manifestationOf"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingAreaPD"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1686,9 +3099,38 @@ A Monetary Value is measured with some currency.</rdfs:comment>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/ownedBy"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#hasProperPart"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/associatedLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasVehicleCapacity"/>
+                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/hasProperPart"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasEVCharger"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/EVCharger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1699,16 +3141,27 @@ A Monetary Value is measured with some currency.</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hoursOfOperation"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#GeneralDateTimeDescription"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasChargingStations"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/occupiedBy"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/parkingAllocatedTo"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Building"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parking Area refers to some area that enables parking of Vehicles.
@@ -1731,11 +3184,11 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/hasManifestation"/>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
                         <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1745,14 +3198,20 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/1.1/existsAt"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableSize"/>
+                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/1.0/hasLocation"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
@@ -1789,14 +3248,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/allowableDuring"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
-                            <rdf:Description rdf:about="https://w3id.org/icity/Time/TimePeriod"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#GeneralDateTimeDescription"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1809,6 +3261,18 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxDuration"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DurationDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/policyAppliesFor"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/policyAppliesTo"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1842,12 +3306,233 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- https://w3id.org/icity/Parking/ParkingSpace -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/ParkingSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasVehicleCapacity"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/numerical_value"/>
+                                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/occupiedBy"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/Parking/StreetParkingArea -->
 
 
     <owl:Class rdf:about="https://w3id.org/icity/Parking/StreetParkingArea">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
     </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/Person -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/Person">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/PersonPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/PersonPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/children"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/parent"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/spouse"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Person/hasIncome"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/deathDate"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Person may have a unique identifier.
+A Person has a date of birth, and may have a date of death.
+A Person may be a member of a Family and/or a Household.
+A Person has a mother and father, and may have a spouse and/or child(ren). Note that we define the parent relation as the legal relation as opposed to biological. This property may be specialized and restricted, for example hasBiologicalMother: exactly 1 Person.
+A Person may have some Job and associated Income.
+A Person may have access to some Vehicle.
+A Person may have access to some Bicycle.
+A Person may have some TransitPass.
+A Person has an address of residence and may have other contact information such as E-mail, phone number, etcetera.
+A Person has a Schedule for a given point (period) in time.
+Note that some properties are not defined in the Person ontology, but in an extension of the Person ontology that captures the interaction between iCity domain ontologies (e.g. Persons and their Vehicles)</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/PersonId -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/PersonId">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/PersonOntologyThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/PersonOntologyThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify classes defined in the Person ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/PersonPD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/PersonPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Person/hasPersonID"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/PersonId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/birthDate"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Person/hasSex"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Person/Sex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Person changes over time, the entire entity of a Person is captured by the PersonPD (&quot;person perdurant&quot;) class.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/Qualification -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/Qualification">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Qualification captures some official degree of accomplishment. It may be required for something and/or possessed by some Person.</dc:description>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To be defined in greater detail in future versions. Likely to be defined in a separate ontology.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/SchemaOrgThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/SchemaOrgThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/Sex -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/Sex">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Person/Skill -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Person/Skill">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Person/PersonOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Skill captures an ability to perfom some activity or set of activities.</dc:description>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To be defined in greater detail in future versions. Likely to be defined in a separate ontology.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Resource/Resource -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Resource/Resource"/>
     
 
 
@@ -1871,6 +3556,220 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
 
 
     <owl:Class rdf:about="https://w3id.org/icity/Time/TimePeriod"/>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/Mode -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/Mode">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc).</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/SchemaOrgThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/SchemaOrgThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/Vehicle -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/Vehicle">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/VehiclePD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/VehiclePD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/purchaseDate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Vehicle/hasSpeed"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Vehicle provides a motorized means of transportation within the urban system.
+A Vehicle is associated with some Mode of transportation.
+A Vehicle has a Vintage.
+A Vehicle has a Manufacturer (make).
+There are different types (subclasses) of vehicles: Motorcycle, Sedan, Truck, Bus, Commercial Cargo Vehicle, Train,...
+A Vehicle has a capacity of passengers
+A Vehicle has a capacity of cargo
+A Vehicle may be occupied by at least one PersonAtT, and some cargo
+A Vehicle has a Speed at some point in time
+A Vehicle has a location at some point in time.
+A Vehicle is owned by some Person(s) or Firm</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/VehicleOntologyThing -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/VehicleOntologyThing">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Added for organizational purposes, to identify all classes defined in the Vehicle ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/VehiclePD -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/VehiclePD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/brand"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/Brand"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/cargoVolume"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/driveWheelConfiguration"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/DriveWheelConfigurationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/fuelConsumption"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/QuantitativeValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/fuelEfficiency"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/QuantitativeValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/fuelType"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/QuantitativeValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/mileageFromOdometer"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/QuantitativeValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/productionDate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Vehicle/hasCargoCapacityLoad"/>
+                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Vehicle/hasMode"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Mode"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Vehicle/hasVehicleType"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/VehicleType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/numberOfAxels"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/numberOfDoors"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/vehicleSeatingCapacity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Vehicle changes over time. VehiclePD captures the entire entity of a vehicle, i.e. the &quot;vehicle perdurant&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Vehicle/VehicleType -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/Vehicle/VehicleType">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Vehicle/VehicleOntologyThing"/>
+    </owl:Class>
     
 
 
@@ -2028,6 +3927,25 @@ basic geo vocab
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lat/long</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between something and the point,
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ </rdfs:comment>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ </rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">location</rdfs:label>
     </rdf:Description>
 </rdf:RDF>
 

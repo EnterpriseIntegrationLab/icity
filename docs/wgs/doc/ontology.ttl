@@ -8,6 +8,7 @@
 
 <https://w3id.org/icity/wgs/> rdf:type owl:Ontology ;
                                owl:versionIRI <https://w3id.org/icity/wgs/1.0/> ;
+                               owl:imports <https://www.w3.org/2003/01/geo/wgs84_pos> ;
                                <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/"^^xsd:string ;
                                <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi"^^xsd:string ;
                                <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to location. Reuses the wgs ontology."^^xsd:string ;
@@ -133,9 +134,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ,
-                                                                      :wgsOntologyProperty ;
-                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+                                                   rdfs:subPropertyOf :wgsOntologyProperty .
 
 
 ###  https://w3id.org/icity/wgs/wgsOntologyProperty
@@ -147,29 +146,9 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #    Classes
 #################################################################
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
-<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-                                                rdfs:comment """ 
-Uniquely identified by lat/long/alt. i.e.
-
-spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
-  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
-
-sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
-  """^^xsd:string ,
-                                                             """A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  """^^xsd:string ;
-                                                rdfs:label "point"^^xsd:string .
-
-
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
 <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class ;
-                                                       rdfs:subClassOf :wgsOntologyThing ;
-                                                       rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
- e.g. people, places, bowling balls, as well as abstract areas like cubes.
-"""^^xsd:string ;
-                                                       rdfs:label "SpatialThing"^^xsd:string .
+                                                       rdfs:subClassOf :wgsOntologyThing .
 
 
 ###  https://w3id.org/icity/wgs/wgsOntologyThing

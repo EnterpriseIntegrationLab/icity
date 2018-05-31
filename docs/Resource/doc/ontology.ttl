@@ -191,8 +191,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/causes
 <https://w3id.org/icity/Activity/causes> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                            <https://w3id.org/icity/Activity/effectOf> .
+                                         rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> .
 
 
 ###  https://w3id.org/icity/Activity/effectOf
@@ -203,8 +202,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/enabledBy
 <https://w3id.org/icity/Activity/enabledBy> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                               <https://w3id.org/icity/Activity/preconditionOf> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
                                             owl:inverseOf <https://w3id.org/icity/Activity/enables> .
 
 
@@ -215,14 +213,14 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasDecomp
 <https://w3id.org/icity/Activity/hasDecomp> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/hasSubstate> ;
                                             rdfs:domain <https://w3id.org/icity/Activity/State> ;
                                             rdfs:range <https://w3id.org/icity/Activity/State> .
 
 
 ###  https://w3id.org/icity/Activity/hasEffect
 <https://w3id.org/icity/Activity/hasEffect> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Activity/causedBy> ;
                                             rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
                                             rdfs:range <https://w3id.org/icity/Activity/State> .
 
@@ -236,7 +234,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasPrecondition
 <https://w3id.org/icity/Activity/hasPrecondition> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                                  rdfs:subPropertyOf <https://w3id.org/icity/Activity/enabledBy> ;
                                                   owl:inverseOf <https://w3id.org/icity/Activity/preconditionOf> ;
                                                   rdfs:domain <https://w3id.org/icity/Activity/Activity> ;
                                                   rdfs:range <https://w3id.org/icity/Activity/State> .
@@ -249,8 +247,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasSubstate
 <https://w3id.org/icity/Activity/hasSubstate> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ,
-                                                                 <https://w3id.org/icity/Activity/hasDecomp> .
+                                              rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
+                                              rdf:type owl:TransitiveProperty .
 
 
 ###  https://w3id.org/icity/Activity/occursAt
@@ -338,11 +336,15 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                            rdfs:subClassOf <https://w3id.org/icity/Activity/ActivityOntologyThing> ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Activity/occursAt> ;
+                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Activity/causes> ;
@@ -367,10 +369,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Activity/hasSubactivity> ;
                                                              owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
-                                                           ] ,
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty <https://w3id.org/icity/Activity/occursAt> ;
-                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;

@@ -16,6 +16,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/wgs/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/wgs/1.0/"/>
+        <owl:imports rdf:resource="https://www.w3.org/2003/01/geo/wgs84_pos"/>
         <ns:license rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Megan Katsumi</dc:creator>
         <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ontology to capture concepts related to location. Reuses the wgs ontology.</dc:description>
@@ -233,9 +234,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/wgs/wgsOntologyProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     </owl:ObjectProperty>
     
 
@@ -261,35 +260,11 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Point -->
-
-
-    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> 
-Uniquely identified by lat/long/alt. i.e.
-
-spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
-  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
-
-sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
-  </rdfs:comment>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  </rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">point</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
 
 
     <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/wgs/wgsOntologyThing"/>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anything with spatial extent, i.e. size, shape, or position.
- e.g. people, places, bowling balls, as well as abstract areas like cubes.
-</rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SpatialThing</rdfs:label>
     </owl:Class>
     
 
