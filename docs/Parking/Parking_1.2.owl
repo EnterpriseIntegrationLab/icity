@@ -28,6 +28,12 @@
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
+		To do: extend this to capture the activity of parking.
+Changes from previous version: updated foundational ontologies;
+extended the classes and properties identified to capture greater detail
+		
+		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <vann:preferredNamespacePrefix>icity-parking</vann:preferredNamespacePrefix>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://w3id.org/icity/Parking/1.1/</owl:priorVersion>
@@ -37,11 +43,6 @@ A Parking Area has some Parking Policy
 A Parking Area may provide car changing stations.
 A Parking Area has some Location.
 There are different types (subclasses) of Parking Area, such as Street Parking Area, Lot Parking Area, Garage Parking Area, Illegal Parking Area, Loading/Unloading Zone Parking Area, Accessibility Parking Area</dc:description>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
-		To do: extend this to capture the activity of parking.
-Changes from previous version: updated foundational ontologies
-		
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <dc:creator>Megan Katsumi</dc:creator>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:issued>November 7, 2017</dc:issued>
@@ -175,12 +176,6 @@ Changes from previous version: updated foundational ontologies
     
 
 
-    <!-- https://w3id.org/icity/Mereology/hasProperPart -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/hasProperPart"/>
-    
-
-
     <!-- https://w3id.org/icity/Parking/ParkingOntologyProperty -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/ParkingOntologyProperty">
@@ -298,6 +293,31 @@ Changes from previous version: updated foundational ontologies
     
 
 
+    <!-- http://purl.org/vocab/vann/EVCharger -->
+
+    <owl:Class rdf:about="http://purl.org/vocab/vann/EVCharger">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/vocab/vann/EVParkingSpace -->
+
+    <owl:Class rdf:about="http://purl.org/vocab/vann/EVParkingSpace">
+        <rdfs:subClassOf rdf:resource="http://purl.org/vocab/vann/ParkingSpace"/>
+        <rdfs:comment>A parking space reserved for Electric Vehicles (EVs).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/vocab/vann/ParkingSpace -->
+
+    <owl:Class rdf:about="http://purl.org/vocab/vann/ParkingSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/Change/Manifestation -->
 
     <owl:Class rdf:about="https://w3id.org/icity/Change/Manifestation"/>
@@ -310,10 +330,11 @@ Changes from previous version: updated foundational ontologies
     
 
 
-    <!-- https://w3id.org/icity/Parking/AccessibilityParkingArea -->
+    <!-- https://w3id.org/icity/Parking/AccessibileParkingSpace -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Parking/AccessibilityParkingArea">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/AccessibileParkingSpace">
+        <rdfs:subClassOf rdf:resource="http://purl.org/vocab/vann/ParkingSpace"/>
+        <rdfs:comment>A Parking Space reserved for users with an an accessibility parking permit.</rdfs:comment>
     </owl:Class>
     
 
