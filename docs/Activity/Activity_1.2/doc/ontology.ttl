@@ -344,8 +344,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/causes
 :causes rdf:type owl:ObjectProperty ;
-        rdfs:subPropertyOf :ActivityOntologyProperty ,
-                           :effectOf .
+        rdfs:subPropertyOf :ActivityOntologyProperty .
 
 
 ###  https://w3id.org/icity/Activity/effectOf
@@ -356,8 +355,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/enabledBy
 :enabledBy rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :ActivityOntologyProperty ,
-                              :preconditionOf ;
+           rdfs:subPropertyOf :ActivityOntologyProperty ;
            owl:inverseOf :enables .
 
 
@@ -368,14 +366,14 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasDecomp
 :hasDecomp rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :ActivityOntologyProperty ;
+           rdfs:subPropertyOf :hasSubstate ;
            rdfs:domain :State ;
            rdfs:range :State .
 
 
 ###  https://w3id.org/icity/Activity/hasEffect
 :hasEffect rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :ActivityOntologyProperty ;
+           rdfs:subPropertyOf :causedBy ;
            rdfs:domain :Activity ;
            rdfs:range :State .
 
@@ -389,7 +387,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasPrecondition
 :hasPrecondition rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf :ActivityOntologyProperty ;
+                 rdfs:subPropertyOf :enabledBy ;
                  owl:inverseOf :preconditionOf ;
                  rdfs:domain :Activity ;
                  rdfs:range :State .
@@ -402,8 +400,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  https://w3id.org/icity/Activity/hasSubstate
 :hasSubstate rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :ActivityOntologyProperty ,
-                                :hasDecomp .
+             rdfs:subPropertyOf :ActivityOntologyProperty ;
+             rdf:type owl:TransitiveProperty .
 
 
 ###  https://w3id.org/icity/Activity/occursAt
@@ -462,7 +460,7 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/SpatialLoc/hasLocation
 <https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
-                                                rdfs:domain <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
                                                 rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space."^^xsd:string .
 
 
@@ -540,11 +538,15 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
           rdfs:subClassOf :ActivityOntologyThing ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                            owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                            owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :occursAt ;
+                            owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :causes ;
@@ -569,10 +571,6 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasSubactivity ;
                             owl:allValuesFrom :Activity
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :occursAt ;
-                            owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;

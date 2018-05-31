@@ -322,7 +322,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/causes">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/effectOf"/>
     </owl:ObjectProperty>
     
 
@@ -342,7 +341,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/enabledBy">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/preconditionOf"/>
         <owl:inverseOf rdf:resource="https://w3id.org/icity/Activity/enables"/>
     </owl:ObjectProperty>
     
@@ -361,7 +359,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasDecomp">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/hasSubstate"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/State"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
     </owl:ObjectProperty>
@@ -372,7 +370,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasEffect">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/causedBy"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
     </owl:ObjectProperty>
@@ -394,7 +392,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasPrecondition">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/enabledBy"/>
         <owl:inverseOf rdf:resource="https://w3id.org/icity/Activity/preconditionOf"/>
         <rdfs:domain rdf:resource="https://w3id.org/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="https://w3id.org/icity/Activity/State"/>
@@ -416,7 +414,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Activity/hasSubstate">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/ActivityOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Activity/hasDecomp"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     </owl:ObjectProperty>
     
 
@@ -573,13 +571,19 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/beginOf"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/endOf"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/occursAt"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -616,12 +620,6 @@ above the local reference ellipsoid).</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/hasSubactivity"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Activity/Activity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Activity/occursAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

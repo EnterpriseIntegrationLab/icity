@@ -21,6 +21,7 @@
     <owl:Ontology rdf:about="https://w3id.org/icity/TransportationSystem/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/TransportationSystem/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Mereology/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OTN/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
@@ -1191,31 +1192,17 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/Mereology/1.0/componentOf -->
+    <!-- https://w3id.org/icity/Mereology/componentOf -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0/componentOf"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/componentOf"/>
     
 
 
-    <!-- https://w3id.org/icity/Mereology/1.0/hasComponent -->
+    <!-- https://w3id.org/icity/Mereology/hasComponent -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0/hasComponent"/>
-    
-
-
-    <!-- https://w3id.org/icity/Mereology/1.0//1.0#componentOf -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#componentOf"/>
-    
-
-
-    <!-- https://w3id.org/icity/Mereology/1.0//1.0#hasComponent -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/1.0//1.0#hasComponent"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/hasComponent"/>
     
 
 
@@ -1242,7 +1229,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/hasLocation">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -1392,15 +1379,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/TransportationSystem/hasMaxSpeed -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasMaxSpeed">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- https://w3id.org/icity/TransportationSystem/hasMode -->
 
 
@@ -1459,15 +1437,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasRoadSegmentId">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/TransportationSystem/hasSpeedLimit -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasSpeedLimit">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -2524,6 +2493,13 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
+
+
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
+    
+
+
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Relationship -->
 
 
@@ -2536,7 +2512,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road -->
 
 
-    <rdf:Description rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2550,16 +2526,16 @@ above the local reference ellipsoid).</rdfs:comment>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </rdf:Description>
+    </owl:Class>
     
 
 
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
 
 
-    <rdf:Description rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
         <owl:equivalentClass rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-    </rdf:Description>
+    </owl:Class>
     
 
 
@@ -2986,7 +2962,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#componentOf"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/componentOf"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Network"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3378,7 +3354,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#hasComponent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/hasComponent"/>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -3475,7 +3451,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/1.0//1.0#componentOf"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/componentOf"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Network"/>
             </owl:Restriction>
         </rdfs:subClassOf>
