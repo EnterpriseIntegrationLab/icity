@@ -26,6 +26,7 @@
     <owl:Ontology rdf:about="https://w3id.org/icity/Parking/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Parking/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Vehicle/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Mereology/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.1/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Organization/1.2/"/>
@@ -269,11 +270,27 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
-    <!-- https://w3id.org/icity/Parking/maxAdmittableSize -->
+    <!-- https://w3id.org/icity/Parking/maxAdmittableHeight -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableSize">
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableHeight">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
         <rdfs:comment>A Parking Area has a maximum admittable vehicle size that is restricted based on its physical characteristics (e.g. height of a parking garage, width of a parking spot).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/maxAdmittableLength -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableLength">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/maxAdmittableWidth -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/maxAdmittableWidth">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -401,8 +418,9 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
 
     <owl:Class rdf:about="https://w3id.org/icity/Parking/EVCharger">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
-        <rdfs:comment>A charger for electric vehicles is an amenity which may be provided by some parking spaces. An EV charger has some model and is capable of charging certain classes of vehicles.
-An EV charger may be available or unavailable at a given time. This availability may be predetermined based on the scheduled duration of a vehicle’s occupancy, and the time left to charge the vehicle.</rdfs:comment>
+        <rdfs:comment>A charger for electric vehicles is an amenity which may be provided by some parking spaces.
+An EV charger has some model and is capable of charging certain classes of vehicles. There are different classes of EV chargers (standard, medium, or quick), defined based on specified attributes according to the EPD (Environmental Protection Department).
+An EV charger may be available or in use by some vehicle at a given time. Future availability of an EV charger may be estimated based on the scheduled duration of a vehicle’s occupancy, and the time left to charge the vehicle.</rdfs:comment>
     </owl:Class>
     
 
@@ -467,6 +485,14 @@ An EV charger may be available or unavailable at a given time. This availability
 
     <owl:Class rdf:about="https://w3id.org/icity/Parking/LotParkingArea">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/MediumEVCharger -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/MediumEVCharger">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/EVCharger"/>
     </owl:Class>
     
 
@@ -589,7 +615,19 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableSize"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableHeight"/>
+                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableLength"/>
+                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableWidth"/>
                 <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -605,6 +643,13 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                 <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/properPartOf"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/Building/Building"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Parking areas may change over time. ParkingAreaPD captures the entire entity of a parking area, i.e. the parking area perdurant.</rdfs:comment>
@@ -720,6 +765,22 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                 <owl:onClass rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/QuickEVCharger -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/QuickEVCharger">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/EVCharger"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/StandardEVCharger -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/StandardEVCharger">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/EVCharger"/>
     </owl:Class>
     
 
