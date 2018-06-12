@@ -1,45 +1,53 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://w3id.org/icity/Building/"
      xml:base="https://w3id.org/icity/Building/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl4="https://w3id.org/icity/Geom/1.0/"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:ns5="http://www.w3.org/2003/06/sw-vocab-status/ns#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="https://w3id.org/icity/Spatial/1.0/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:owl2="https://w3id.org/icity/wgs/1.0/"
-     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="https://w3id.org/icity/OM/1.0/"
      xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:OM="https://w3id.org/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
+     xmlns:wgs="https://w3id.org/icity/wgs/"
+     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:Spatial="https://w3id.org/icity/Spatial/"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:Geom="https://w3id.org/icity/Geom/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="https://w3id.org/icity/Building/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Building/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Mereology/1.0/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/OM/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Foundation/1.1/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
         <dc:title>iCity Building Ontology</dc:title>
-        <vann:preferredNamespaceUri>https://w3id.org/icity/Building/</vann:preferredNamespaceUri>
-		<rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Building ontology is designed to capture concepts related to buildings.
+        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Building ontology is designed to capture concepts related to buildings.
 		Changes from previous version:
 		-imported revised ontologies of activity (iCity-Activity) and change (iCity-Change).
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <dc:creator>Megan Katsumi</dc:creator>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-        <dc:issued>November 29, 2016</dc:issued>
-        <vann:preferredNamespacePrefix>icity-building</vann:preferredNamespacePrefix>
         <dc:description>A Building is a structure with some location in the urban system. The location of the Building in space may change due to construction, but the Parcel/Lot of land it is located on cannot.
 There may be many different types (subclasses) of buildings, such as House, Apartment Building, Office Building, and so on.
 </dc:description>
+        <vann:preferredNamespaceUri>https://w3id.org/icity/Building/</vann:preferredNamespaceUri>
+        <dc:issued>November 29, 2016</dc:issued>
+        <vann:preferredNamespacePrefix>icity-building</vann:preferredNamespacePrefix>
     </owl:Ontology>
     
 
@@ -156,18 +164,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
-        <rdfs:comment>The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- </rdfs:comment>
-        <rdfs:label>location</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
-    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
     
 
 
@@ -201,6 +198,22 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://schema.org/address -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/address">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
+    </rdf:Description>
     
 
 
@@ -283,14 +296,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://schema.org/address -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/address">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -326,6 +331,14 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://schema.org/PostalAddress -->
+
+    <owl:Class rdf:about="http://schema.org/PostalAddress">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgThing"/>
+    </owl:Class>
     
 
 
@@ -505,14 +518,14 @@ A BuildingUnit has an address</dc:description>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/1.1/TimeVaryingConcept"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasFacility"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Facility"/>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Building/hasFacility"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Building/Facility"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -590,14 +603,6 @@ A BuildingUnit has an address</dc:description>
     <!-- https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue -->
 
     <owl:Class rdf:about="https://w3id.org/icity/MonetaryValue/1.0/MonetaryValue"/>
-    
-
-
-    <!-- http://schema.org/PostalAddress -->
-
-    <owl:Class rdf:about="http://schema.org/PostalAddress">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Building/SchemaOrgThing"/>
-    </owl:Class>
     
 
 
@@ -705,9 +710,20 @@ basic geo vocab
         <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
         <rdfs:label>lat/long</rdfs:label>
     </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+        <rdfs:label>location</rdfs:label>
+        <rdfs:comment>The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ </rdfs:comment>
+    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 
