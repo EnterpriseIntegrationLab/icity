@@ -26,8 +26,8 @@
     <owl:Ontology rdf:about="https://w3id.org/icity/TransportationSystem/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/TransportationSystem/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Mereology/1.0/"/>
-        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.2/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OTN/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
@@ -305,6 +305,14 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/hasLaneCapacity -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasLaneCapacity">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/hasLinkCapacity -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/TransportationSystem/hasLinkCapacity">
@@ -464,9 +472,15 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
+
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
+    
+
+
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road -->
 
-    <rdf:Description rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -480,15 +494,15 @@ Associated location coordinates with the Node class.
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </rdf:Description>
+    </owl:Class>
     
 
 
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
 
-    <rdf:Description rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
         <owl:equivalentClass rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-    </rdf:Description>
+    </owl:Class>
     
 
 
@@ -610,23 +624,30 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasLaneCapacity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://w3id.org/icity/OM/CapacityRate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasPostedSpeed"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasVDF"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -834,14 +855,14 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/associatedLinkLength"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -853,9 +874,77 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasLinkCapacity"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue"/>
+                                <owl:allValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator"/>
+                                                <owl:allValuesFrom>
+                                                    <owl:Class>
+                                                        <owl:intersectionOf rdf:parseType="Collection">
+                                                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit"/>
+                                                            <owl:Restriction>
+                                                                <owl:onProperty>
+                                                                    <rdf:Description>
+                                                                        <owl:inverseOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit"/>
+                                                                    </rdf:Description>
+                                                                </owl:onProperty>
+                                                                <owl:allValuesFrom>
+                                                                    <owl:Restriction>
+                                                                        <owl:onProperty>
+                                                                            <rdf:Description>
+                                                                                <owl:inverseOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue"/>
+                                                                            </rdf:Description>
+                                                                        </owl:onProperty>
+                                                                        <owl:allValuesFrom>
+                                                                            <owl:Restriction>
+                                                                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of"/>
+                                                                                <owl:allValuesFrom>
+                                                                                    <owl:Restriction>
+                                                                                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by"/>
+                                                                                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Arc"/>
+                                                                                    </owl:Restriction>
+                                                                                </owl:allValuesFrom>
+                                                                            </owl:Restriction>
+                                                                        </owl:allValuesFrom>
+                                                                    </owl:Restriction>
+                                                                </owl:allValuesFrom>
+                                                            </owl:Restriction>
+                                                        </owl:intersectionOf>
+                                                    </owl:Class>
+                                                </owl:allValuesFrom>
+                                            </owl:Restriction>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit"/>
+                                                <owl:allValuesFrom>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator"/>
+                                                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/OM/CardinalityUnitPerTime"/>
+                                                    </owl:Restriction>
+                                                </owl:allValuesFrom>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:allValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:onClass>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasPostedSpeed"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
