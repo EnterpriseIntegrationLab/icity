@@ -535,12 +535,6 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasVehicleCapacity"/>
-                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Mereology/hasProperPart"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingArea"/>
             </owl:Restriction>
@@ -555,6 +549,27 @@ An EV charger may be available or in use by some vehicle at a given time. Future
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasParkingPolicy"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingPolicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasVehicleCapacity"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://w3id.org/icity/OM/CapacitySize"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of"/>
+                                <owl:allValuesFrom>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by"/>
+                                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+                                    </owl:Restriction>
+                                </owl:allValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -615,27 +630,30 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableHeight"/>
-                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableLength"/>
-                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/maxAdmittableWidth"/>
-                <owl:someValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -746,15 +764,15 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasVehicleCapacity"/>
                 <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue"/>
+                        <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/numerical_value"/>
                                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
                             </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
