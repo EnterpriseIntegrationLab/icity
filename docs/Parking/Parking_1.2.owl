@@ -221,6 +221,14 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- https://w3id.org/icity/Parking/hasGracePeriod -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasGracePeriod">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/icity/Parking/hasMonetaryCost -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasMonetaryCost">
@@ -245,9 +253,17 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
-    <!-- https://w3id.org/icity/Parking/hasPayment -->
+    <!-- https://w3id.org/icity/Parking/hasParkingService -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasPayment">
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasParkingService">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/hasPaymentMethod -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Parking/hasPaymentMethod">
         <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -368,6 +384,25 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- https://w3id.org/icity/Parking/excludesPublicHoliday -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Parking/excludesPublicHoliday">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyDataProperty"/>
+        <rdfs:comment>Indicates whether a parking policy applies (false) or not (true) on public holidays.
+Note: additional rules may be possible here to identify dependencies with PH weekdays value:
+A parking policy may or may not apply during public holidays. If it does not apply during public holidays, then there must exist an alternate policy that applies during public holidays.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/isOpen -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/icity/Parking/isOpen">
+        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -410,6 +445,14 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>A Parking Space reserved for users with an an accessibility parking permit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/CarWash -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/CarWash">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingService"/>
     </owl:Class>
     
 
@@ -517,20 +560,22 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/ownedBy"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
-                    </owl:Restriction>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/associatedLocation"/>
                 <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/ownedBy"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/Person/Person"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -549,6 +594,12 @@ An EV charger may be available or in use by some vehicle at a given time. Future
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasParkingPolicy"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingPolicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasParkingService"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingService"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -595,6 +646,13 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/isOpen"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Parking Area refers to some area that enables parking of Vehicles.
@@ -688,6 +746,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     <owl:Class rdf:about="https://w3id.org/icity/Parking/ParkingPaymentMethod">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
         <rdfs:comment>Future versions to possibly define this in greater detail, and look at payment methods in general.</rdfs:comment>
+        <rdfs:comment>Note that while classes of these payment cards may be defined in a representation of users, parking activities and transactions, the acceptable payment methods for some parking policy should be represented as individuals.</rdfs:comment>
     </owl:Class>
     
 
@@ -717,13 +776,27 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/policyAppliesFor"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/Vehicle"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Vehicle/VehicleType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/policyAppliesTo"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasGracePeriod"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#DurationDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/excludesPublicHoliday"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -748,10 +821,20 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasPayment"/>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/Parking/hasPaymentMethod"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Parking/ParkingPaymentMethod"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/icity/Parking/ParkingService -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/ParkingService">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingOntologyThing"/>
+        <rdfs:comment>Some parking areas may offer services, such as valet parking or car wash.
+In the future, this representation may be extended as required to include additional details such as the cost of the services, owner (if different than parking area owner), hours of operation, and so on.</rdfs:comment>
     </owl:Class>
     
 
@@ -811,15 +894,17 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
-    <!-- https://w3id.org/icity/Time/CalendarPeriod -->
+    <!-- https://w3id.org/icity/Parking/Valet -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Parking/Valet">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Parking/ParkingService"/>
+    </owl:Class>
     
 
 
-    <!-- https://w3id.org/icity/Time/TimePeriod -->
+    <!-- https://w3id.org/icity/Time/CalendarPeriod -->
 
-    <owl:Class rdf:about="https://w3id.org/icity/Time/TimePeriod"/>
+    <owl:Class rdf:about="https://w3id.org/icity/Time/CalendarPeriod"/>
 </rdf:RDF>
 
 
