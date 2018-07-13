@@ -12,17 +12,39 @@
                                 <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/"^^xsd:string ;
                                 <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi"^^xsd:string ;
                                 <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to time. Reuses the owl-time ontology."^^xsd:string ;
-                                <http://purl.org/dc/elements/1.1/issued> "January 16, 2018"^^xsd:string ;
+                                <http://purl.org/dc/elements/1.1/issued> "November 29, 2016"^^xsd:string ;
                                 <http://purl.org/dc/elements/1.1/title> "iCity Time Ontology"^^xsd:string ;
-                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "time"^^xsd:string ;
+                                <http://purl.org/dc/terms/contributor> <mailto:chris.little@metoffice.gov.uk> ;
+                                <http://purl.org/dc/terms/created> "2006-09-27"^^xsd:date ;
+                                <http://purl.org/dc/terms/creator> <http://orcid.org/0000-0002-3884-3420> ,
+                                                                   <https://en.wikipedia.org/wiki/Jerry_Hobbs> ,
+                                                                   <mailto:panfeng66@gmail.com> ;
+                                <http://purl.org/dc/terms/isVersionOf> <http://www.w3.org/TR/owl-time> ;
+                                <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                <http://purl.org/dc/terms/modified> "2017-04-06"^^xsd:date ;
+                                <http://purl.org/dc/terms/rights> "Copyright © 2006-2017 W3C, OGC. W3C and OGC liability, trademark and document use rules apply."@en ;
+                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-Time"^^xsd:string ;
                                 <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/icity/Time/"^^xsd:string ;
                                 rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Time ontology is designed to capture concepts related to time.
 		Reuses the owl-time ontology.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
-Version 1.1 changes from Version 1.0:
--updated imports to reflect new release of Owl-Time"""^^xsd:string ;
+Changes from previous version:
+-update to owl-time ontology per W3C revision in 2017"""^^xsd:string ;
+                                rdfs:label "OWL-Time"@en ;
+                                rdfs:seeAlso <http://dx.doi.org/10.3233/SW-150187> ,
+                                             <http://www.semantic-web-journal.net/content/time-ontology-extended-non-gregorian-calendar-applications> ,
+                                             <http://www.w3.org/TR/owl-time> ;
+                                owl:priorVersion <http://www.w3.org/2006/time#2006> ;
                                 owl:versionInfo 1.1 ;
+                                <http://www.w3.org/2004/02/skos/core#changeNote> "2016-06-15 - initial update of OWL-Time - modified to support arbitrary temporal reference systems. "^^xsd:string ,
+                                                                                 "2016-12-20 - adjust range of time:timeZone to time:TimeZone, moved up from the tzont ontology.  "^^xsd:string ,
+                                                                                 "2016-12-20 - restore time:Year and time:January which were present in the 2006 version of the ontology, but now marked \"deprecated\". "^^xsd:string ,
+                                                                                 "2017-02 - intervalIn, intervalDisjoint, monthOfYear added; TemporalUnit subclass of TemporalDuration"^^xsd:string ,
+                                                                                 "2017-04-06 - hasTime, hasXSDDuration added; Number removed; all duration elements changed to xsd:decimal"^^xsd:string ;
+                                <http://www.w3.org/2004/02/skos/core#historyNote> """Update of OWL-Time ontology, extended to support general temporal reference systems. 
+
+Ontology engineering by Simon J D Cox"""@en ;
                                 <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1."^^xsd:string .
 
 #################################################################
@@ -137,13 +159,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #    Datatypes
 #################################################################
 
-###  http://www.w3.org/2001/XMLSchema#dateTimeStamp
-xsd:dateTimeStamp rdf:type rdfs:Datatype .
-
-
 ###  http://www.w3.org/2006/time#generalDay
 <http://www.w3.org/2006/time#generalDay> rdf:type rdfs:Datatype ;
                                          rdfs:comment """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
+                                                      """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
                                          rdfs:label "Generalized day"@en ;
                                          <http://www.w3.org/2004/02/skos/core#definition> "Day of month - generalization of xsd:gDay, formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type. "@en .
@@ -152,6 +172,8 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 ###  http://www.w3.org/2006/time#generalMonth
 <http://www.w3.org/2006/time#generalMonth> rdf:type rdfs:Datatype ;
                                            rdfs:comment """Month of year - formulated as a text string with a pattern constraint to reproduce the same lexical form as gMonth, except that values up to 20 are permitted, in order to support calendars with more than 12 months in the year. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
+                                                        """Month of year - formulated as a text string with a pattern constraint to reproduce the same lexical form as gMonth, except that values up to 20 are permitted, in order to support calendars with more than 12 months in the year. 
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
                                            rdfs:label "Generalized month"@en ;
                                            <http://www.w3.org/2004/02/skos/core#definition> "Month of year - generalization of xsd:gMonth, formulated as a text string with a pattern constraint to reproduce the same lexical form as gMonth, except that values up to 20 are permitted, in order to support calendars with more than 12 months in the year. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."@en .
@@ -167,6 +189,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#after
 <http://www.w3.org/2006/time#after> rdf:type owl:ObjectProperty ;
+                                    owl:inverseOf <http://www.w3.org/2006/time#before> ;
                                     rdfs:domain <http://www.w3.org/2006/time#TemporalEntity> ;
                                     rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                     rdfs:comment "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2."@en ;
@@ -175,9 +198,8 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
 ###  http://www.w3.org/2006/time#before
-<http://www.w3.org/2006/time#before> rdf:type owl:ObjectProperty ;
-                                     owl:inverseOf <http://www.w3.org/2006/time#after> ;
-                                     rdf:type owl:TransitiveProperty ;
+<http://www.w3.org/2006/time#before> rdf:type owl:ObjectProperty ,
+                                              owl:TransitiveProperty ;
                                      rdfs:domain <http://www.w3.org/2006/time#TemporalEntity> ;
                                      rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                      rdfs:comment "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2. Thus, \"before\" can be considered to be basic to instants and derived for intervals."@en ;
@@ -340,6 +362,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalContains
 <http://www.w3.org/2006/time#intervalContains> rdf:type owl:ObjectProperty ;
+                                               owl:inverseOf <http://www.w3.org/2006/time#intervalDuring> ;
                                                rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                                rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                                rdfs:comment "If a proper interval T1 is intervalContains another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is after the end of T2."@en ;
@@ -361,7 +384,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 ###  http://www.w3.org/2006/time#intervalDuring
 <http://www.w3.org/2006/time#intervalDuring> rdf:type owl:ObjectProperty ;
                                              rdfs:subPropertyOf <http://www.w3.org/2006/time#intervalIn> ;
-                                             owl:inverseOf <http://www.w3.org/2006/time#intervalContains> ;
                                              rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                              rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                              rdfs:comment "If a proper interval T1 is intervalDuring another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ;
@@ -412,6 +434,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalMeets
 <http://www.w3.org/2006/time#intervalMeets> rdf:type owl:ObjectProperty ;
+                                            owl:inverseOf <http://www.w3.org/2006/time#intervalMetBy> ;
                                             rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                             rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                             rdfs:comment "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2."@en ;
@@ -421,7 +444,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalMetBy
 <http://www.w3.org/2006/time#intervalMetBy> rdf:type owl:ObjectProperty ;
-                                            owl:inverseOf <http://www.w3.org/2006/time#intervalMeets> ;
                                             rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                             rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                             rdfs:comment "If a proper interval T1 is intervalMetBy another proper interval T2, then the beginning of T1 is coincident with the end of T2."@en ;
@@ -431,6 +453,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalOverlappedBy
 <http://www.w3.org/2006/time#intervalOverlappedBy> rdf:type owl:ObjectProperty ;
+                                                   owl:inverseOf <http://www.w3.org/2006/time#intervalOverlaps> ;
                                                    rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                                    rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                                    rdfs:comment "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2."@en ;
@@ -440,7 +463,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalOverlaps
 <http://www.w3.org/2006/time#intervalOverlaps> rdf:type owl:ObjectProperty ;
-                                               owl:inverseOf <http://www.w3.org/2006/time#intervalOverlappedBy> ;
                                                rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                                rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                                rdfs:comment "If a proper interval T1 is intervalOverlaps another proper interval T2, then the beginning of T1 is before the beginning of T2, the end of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ;
@@ -450,6 +472,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 ###  http://www.w3.org/2006/time#intervalStartedBy
 <http://www.w3.org/2006/time#intervalStartedBy> rdf:type owl:ObjectProperty ;
+                                                owl:inverseOf <http://www.w3.org/2006/time#intervalStarts> ;
                                                 rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                                 rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                                 rdfs:comment "If a proper interval T1 is intervalStarted another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is after the end of T2."@en ;
@@ -460,7 +483,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 ###  http://www.w3.org/2006/time#intervalStarts
 <http://www.w3.org/2006/time#intervalStarts> rdf:type owl:ObjectProperty ;
                                              rdfs:subPropertyOf <http://www.w3.org/2006/time#intervalIn> ;
-                                             owl:inverseOf <http://www.w3.org/2006/time#intervalStartedBy> ;
                                              rdfs:domain <http://www.w3.org/2006/time#ProperInterval> ;
                                              rdfs:range <http://www.w3.org/2006/time#ProperInterval> ;
                                              rdfs:comment "If a proper interval T1 is intervalStarts another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is before the end of T2."@en ;
@@ -488,8 +510,15 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                        <http://www.w3.org/2004/02/skos/core#historyNote> """In the original 2006 version of OWL-Time, the range of time:timeZone was a TimeZone class in a separate namespace \"http://www.w3.org/2006/timezone#\". 
 An alignment axiom 
 	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
+allows data encoded according to the previous version to be consistent with the updated ontology. """^^xsd:string ,
+                                                                                         """In the original 2006 version of OWL-Time, the range of time:timeZone was a TimeZone class in a separate namespace \"http://www.w3.org/2006/timezone#\". 
+An alignment axiom 
+	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
 allows data encoded according to the previous version to be consistent with the updated ontology. """^^xsd:string ;
                                        <http://www.w3.org/2004/02/skos/core#note> """IANA maintains a database of timezones. These are well maintained and generally considered authoritative, but individual items are not available at individual URIs, so cannot be used directly in data expressed using OWL-Time.
+
+DBPedia provides a set of resources corresponding to the IANA timezones, with a URI for each (e.g. http://dbpedia.org/resource/Australia/Eucla). The World Clock service also provides a list of time zones with the description of each available as an individual webpage with a convenient individual URI (e.g. https://www.timeanddate.com/time/zones/acwst). These or other, similar, resources might be used as a value of the time:timeZone property."""^^xsd:string ,
+                                                                                  """IANA maintains a database of timezones. These are well maintained and generally considered authoritative, but individual items are not available at individual URIs, so cannot be used directly in data expressed using OWL-Time.
 
 DBPedia provides a set of resources corresponding to the IANA timezones, with a URI for each (e.g. http://dbpedia.org/resource/Australia/Eucla). The World Clock service also provides a list of time zones with the description of each available as an individual webpage with a convenient individual URI (e.g. https://www.timeanddate.com/time/zones/acwst). These or other, similar, resources might be used as a value of the time:timeZone property."""^^xsd:string .
 
@@ -520,9 +549,15 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
                                   rdfs:domain <http://www.w3.org/2006/time#GeneralDateTimeDescription> ;
                                   rdfs:comment """Day position in a calendar-clock system.
 
+The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en ,
+                                               """Day position in a calendar-clock system.
+
 The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en ;
                                   rdfs:label "day"@en ;
                                   <http://www.w3.org/2004/02/skos/core#definition> """Day position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en ,
+                                                                                   """Day position in a calendar-clock system.
 
 The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en .
 
@@ -648,9 +683,15 @@ The range of this property is not specified, so can be replaced by any specific 
                                     rdfs:domain <http://www.w3.org/2006/time#GeneralDateTimeDescription> ;
                                     rdfs:comment """Month position in a calendar-clock system.
 
+The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en ,
+                                                 """Month position in a calendar-clock system.
+
 The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en ;
                                     rdfs:label "month"@en ;
                                     <http://www.w3.org/2004/02/skos/core#definition> """Month position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en ,
+                                                                                     """Month position in a calendar-clock system.
 
 The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en .
 
@@ -743,6 +784,9 @@ The range of this property is not specified, so can be replaced by any specific 
                                    rdfs:domain <http://www.w3.org/2006/time#GeneralDateTimeDescription> ;
                                    rdfs:comment """Year position in a calendar-clock system.
 
+The range of this property is not specified, so can be replaced by any specific representation of a calendar year from any calendar. """@en ,
+                                                """Year position in a calendar-clock system.
+
 The range of this property is not specified, so can be replaced by any specific representation of a calendar year from any calendar. """@en ;
                                    rdfs:label "year"@en .
 
@@ -763,18 +807,6 @@ The range of this property is not specified, so can be replaced by any specific 
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.w3.org/2000/01/rdf-schema#Literal
-rdfs:Literal rdfs:subClassOf :TimeOntologyThing .
-
-
-###  http://www.w3.org/2000/01/rdf-schema#Resource
-rdfs:Resource rdfs:subClassOf :TimeOntologyThing .
-
-
-###  http://www.w3.org/2001/XMLSchema#dateTimeStamp
-xsd:dateTimeStamp rdfs:subClassOf rdfs:Literal .
-
 
 ###  http://www.w3.org/2006/time#DateTimeDescription
 <http://www.w3.org/2006/time#DateTimeDescription> rdf:type owl:Class ;
@@ -811,10 +843,24 @@ xsd:dateTimeStamp rdfs:subClassOf rdfs:Literal .
 
 ###  http://www.w3.org/2006/time#DayOfWeek
 <http://www.w3.org/2006/time#DayOfWeek> rdf:type owl:Class ;
-                                        rdfs:subClassOf owl:Thing ;
+                                        rdfs:subClassOf owl:Thing ,
+                                                        :TimeOntologyThing ;
                                         rdfs:comment "The day of week"@en ;
                                         rdfs:label "Day of week"@en ;
                                         <http://www.w3.org/2004/02/skos/core#changeNote> """Remove enumeration from definition, in order to allow other days to be used when required in other calendars. 
+NOTE: existing days are still present as members of the class, but the class membership is now open. 
+
+In the original OWL-Time the following constraint appeared: 
+  owl:oneOf (
+      time:Monday
+      time:Tuesday
+      time:Wednesday
+      time:Thursday
+      time:Friday
+      time:Saturday
+      time:Sunday
+    ) ;"""@en ,
+                                                                                         """Remove enumeration from definition, in order to allow other days to be used when required in other calendars. 
 NOTE: existing days are still present as members of the class, but the class membership is now open. 
 
 In the original OWL-Time the following constraint appeared: 
@@ -989,8 +1035,7 @@ In the original OWL-Time the following constraint appeared:
 
 ###  http://www.w3.org/2006/time#Instant
 <http://www.w3.org/2006/time#Instant> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ,
-                                                      :TimeOntologyThing ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ;
                                       owl:disjointWith <http://www.w3.org/2006/time#ProperInterval> ;
                                       rdfs:comment "A temporal entity with zero extent or duration"@en ;
                                       rdfs:label "Time instant"@en ;
@@ -999,8 +1044,7 @@ In the original OWL-Time the following constraint appeared:
 
 ###  http://www.w3.org/2006/time#Interval
 <http://www.w3.org/2006/time#Interval> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ,
-                                                       :TimeOntologyThing ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ;
                                        rdfs:comment "A temporal entity with an extent or duration"@en ;
                                        rdfs:label "Time interval"@en ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "A temporal entity with an extent or duration"@en .
@@ -1009,7 +1053,6 @@ In the original OWL-Time the following constraint appeared:
 ###  http://www.w3.org/2006/time#January
 <http://www.w3.org/2006/time#January> rdf:type owl:Class ;
                                       rdfs:subClassOf <http://www.w3.org/2006/time#DateTimeDescription> ,
-                                                      :TimeOntologyThing ,
                                                       [ rdf:type owl:Restriction ;
                                                         owl:onProperty <http://www.w3.org/2006/time#unitType> ;
                                                         owl:hasValue <http://www.w3.org/2006/time#unitMonth>
@@ -1026,7 +1069,6 @@ In the original OWL-Time the following constraint appeared:
 ###  http://www.w3.org/2006/time#MonthOfYear
 <http://www.w3.org/2006/time#MonthOfYear> rdf:type owl:Class ;
                                           rdfs:subClassOf <http://www.w3.org/2006/time#DateTimeDescription> ,
-                                                          :TimeOntologyThing ,
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty <http://www.w3.org/2006/time#unitType> ;
                                                             owl:hasValue <http://www.w3.org/2006/time#unitMonth>
@@ -1079,9 +1121,15 @@ In the original OWL-Time the following constraint appeared:
                                   rdfs:subClassOf :TimeOntologyThing ;
                                   rdfs:comment """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
 
+This is a stub class, representing the set of all temporal reference systems."""@en ,
+                                               """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
+
 This is a stub class, representing the set of all temporal reference systems."""@en ;
                                   rdfs:label "Temporal Reference System"@en ;
                                   <http://www.w3.org/2004/02/skos/core#definition> """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
+
+This is a stub class, representing the set of all temporal reference systems."""@en ,
+                                                                                   """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
 
 This is a stub class, representing the set of all temporal reference systems."""@en ;
                                   <http://www.w3.org/2004/02/skos/core#note> "A taxonomy of temporal reference systems is provided in ISO 19108:2002 [ISO19108], including (a) calendar + clock systems; (b) temporal coordinate systems (i.e. numeric offset from an epoch); (c) temporal ordinal reference systems (i.e. ordered sequence of named intervals, not necessarily of equal duration)."@en .
@@ -1102,7 +1150,8 @@ This is a stub class, representing the set of all temporal reference systems."""
                                                                                  <http://www.w3.org/2006/time#Interval>
                                                                                )
                                                                  ] ;
-                                             rdfs:subClassOf owl:Thing ;
+                                             rdfs:subClassOf owl:Thing ,
+                                                             :TimeOntologyThing ;
                                              rdfs:comment "A temporal interval or instant."@en ;
                                              rdfs:label "Temporal entity"@en ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "A temporal interval or instant."@en .
@@ -1126,6 +1175,19 @@ This is a stub class, representing the set of all temporal reference systems."""
                                            rdfs:comment "A standard duration, which provides a scale factor for a time extent, or the granularity or precision for a time position."@en ;
                                            rdfs:label "Temporal unit"@en ;
                                            <http://www.w3.org/2004/02/skos/core#changeNote> """Remove enumeration from definition, in order to allow other units to be used when required in other coordinate systems. 
+NOTE: existing units are still present as members of the class, but the class membership is now open. 
+
+In the original OWL-Time the following constraint appeared: 
+  owl:oneOf (
+      time:unitSecond
+      time:unitMinute
+      time:unitHour
+      time:unitDay
+      time:unitWeek
+      time:unitMonth
+      time:unitYear
+    ) ;"""@en ,
+                                                                                            """Remove enumeration from definition, in order to allow other units to be used when required in other coordinate systems. 
 NOTE: existing units are still present as members of the class, but the class membership is now open. 
 
 In the original OWL-Time the following constraint appeared: 
@@ -1166,12 +1228,25 @@ In the original OWL-Time the following constraint appeared:
                                        rdfs:subClassOf :TimeOntologyThing ;
                                        rdfs:comment """A Time Zone specifies the amount by which the local time is offset from UTC. 
 	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
+                                                    """A Time Zone specifies the amount by which the local time is offset from UTC. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
 The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ;
                                        rdfs:label "Time Zone"@en ;
                                        <http://www.w3.org/2004/02/skos/core#definition> """A Time Zone specifies the amount by which the local time is offset from UTC. 
 	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
+                                                                                        """A Time Zone specifies the amount by which the local time is offset from UTC. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
 The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ;
                                        <http://www.w3.org/2004/02/skos/core#historyNote> """In the original 2006 version of OWL-Time, the TimeZone class, with several properties corresponding to a specific model of time-zones, was defined in a separate namespace \"http://www.w3.org/2006/timezone#\". 
+
+In the current version a class with same local name is put into the main OWL-Time namespace, removing the dependency on the external namespace. 
+
+An alignment axiom 
+	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
+allows data encoded according to the previous version to be consistent with the updated ontology. """^^xsd:string ,
+                                                                                         """In the original 2006 version of OWL-Time, the TimeZone class, with several properties corresponding to a specific model of time-zones, was defined in a separate namespace \"http://www.w3.org/2006/timezone#\". 
 
 In the current version a class with same local name is put into the main OWL-Time namespace, removing the dependency on the external namespace. 
 
@@ -1181,6 +1256,9 @@ allows data encoded according to the previous version to be consistent with the 
                                        <http://www.w3.org/2004/02/skos/core#note> """A designated timezone is associated with a geographic region. However, for a particular region the offset from UTC often varies seasonally, and the dates of the changes may vary from year to year. The timezone designation usually changes for the different seasons (e.g. Australian Eastern Standard Time vs. Australian Eastern Daylight Time). Furthermore, the offset for a timezone may change over longer timescales, though its designation might not.  
 
 Detailed guidance about working with time zones is given in http://www.w3.org/TR/timezone/ ."""@en ,
+                                                                                  """A designated timezone is associated with a geographic region. However, for a particular region the offset from UTC often varies seasonally, and the dates of the changes may vary from year to year. The timezone designation usually changes for the different seasons (e.g. Australian Eastern Standard Time vs. Australian Eastern Daylight Time). Furthermore, the offset for a timezone may change over longer timescales, though its designation might not.  
+
+Detailed guidance about working with time zones is given in http://www.w3.org/TR/timezone/ ."""@en ,
                                                                                   "An ontology for time zone descriptions was described in [owl-time-20060927] and provided as RDF in a separate namespace tzont:. However, that ontology was incomplete in scope, and the example datasets were selective. Furthermore, since the use of a class from an external ontology as the range of an ObjectProperty in OWL-Time creates a dependency, reference to the time zone class has been replaced with the 'stub' class in the normative part of this version of OWL-Time."@en ;
                                        <http://www.w3.org/2004/02/skos/core#scopeNote> "In this implementation TimeZone has no properties defined. It should be thought of as an 'abstract' superclass of all specific timezone implementations."^^xsd:string .
 
@@ -1188,7 +1266,6 @@ Detailed guidance about working with time zones is given in http://www.w3.org/TR
 ###  http://www.w3.org/2006/time#Year
 <http://www.w3.org/2006/time#Year> rdf:type owl:Class ;
                                    rdfs:subClassOf <http://www.w3.org/2006/time#DurationDescription> ,
-                                                   :TimeOntologyThing ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://www.w3.org/2006/time#days> ;
                                                      owl:cardinality "0"^^xsd:nonNegativeInteger
@@ -1223,6 +1300,9 @@ Detailed guidance about working with time zones is given in http://www.w3.org/TR
                                    <http://www.w3.org/2004/02/skos/core#definition> "Year duration"^^xsd:string ;
                                    <http://www.w3.org/2004/02/skos/core#historyNote> """Year was proposed in the 2006 version of OWL-Time as an example of how DurationDescription could be specialized to allow for a duration to be restricted to a number of years. 
 
+It is deprecated in this edition of OWL-Time. """^^xsd:string ,
+                                                                                     """Year was proposed in the 2006 version of OWL-Time as an example of how DurationDescription could be specialized to allow for a duration to be restricted to a number of years. 
+
 It is deprecated in this edition of OWL-Time. """^^xsd:string ;
                                    <http://www.w3.org/2004/02/skos/core#prefLabel> "Anno"@it ,
                                                                                    "Année (calendrier)"@fr ,
@@ -1239,7 +1319,8 @@ It is deprecated in this edition of OWL-Time. """^^xsd:string ;
 
 
 ###  http://www.w3.org/2006/time#generalYear
-<http://www.w3.org/2006/time#generalYear> rdfs:subClassOf rdfs:Resource .
+<http://www.w3.org/2006/time#generalYear> rdfs:subClassOf rdfs:Resource ,
+                                                          :TimeOntologyThing .
 
 
 ###  https://w3id.org/icity/Time/TimeOntologyThing
@@ -1542,8 +1623,17 @@ It is deprecated in this edition of OWL-Time. """^^xsd:string ;
                                                                                        "一年"@zh .
 
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
 ] .
+
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
+ ] .
+
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
+ ] .
+
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
+ ] .
 
 [ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"^^xsd:string
  ] .
@@ -1555,109 +1645,12 @@ It is deprecated in this edition of OWL-Time. """^^xsd:string ;
 #    Annotations
 #################################################################
 
-xsd:dateTimeStamp rdfs:label "dateTimeStamp"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $"^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
- Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details."""^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary"^^xsd:string ;
-                                           rdfs:comment """
-Recent changes to this namespace:
-$Log: wgs84_pos.rdf,v $
-Revision 1.22  2009/04/20 15:00:30  timbl
-Remove the time bits which have been deal with elsewhere eg in iCal.
-
-Revision 1.21  2009/04/20 12:52:47  timbl
-try again
-
-Revision 1.20  2009/04/20 12:42:11  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.19  2009/04/20 12:36:31  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.18  2006/02/01 22:01:04  danbri
-Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
-
-Revision 1.17  2004/02/06 17:38:12  danbri
-Fixed a bad commit screwup
-
-Revision 1.15  2003/04/19 11:24:08  danbri
-Fixed the typo even more.
-
-Revision 1.14  2003/04/19 11:16:56  danbri
-fixed a typo
-
-Revision 1.13  2003/02/19 22:27:27  connolly
-relaxed domain constraints on lat/long/alt from Point to SpatialThing
-
-Revision 1.12  2003/01/12 01:41:41  danbri
-Trying local copy of XSLT doc.
-
-Revision 1.11  2003/01/12 01:20:18  danbri
-added a link to morten's xslt rdfs viewer.
-
-Revision 1.10  2003/01/11 18:56:49  danbri
-Removed datatype range from lat and long properties, since they would
-have required each occurance of the property to mention the datatype.
-
-Revision 1.9  2003/01/11 11:41:31  danbri
-Another typo; repaired rdfs:Property to rdf:Property x4
-
-Revision 1.8  2003/01/11 11:05:02  danbri
-Added an rdfs:range for each lat/long/alt property,
-http://www.w3.org/2001/XMLSchema#float
-
-Revision 1.7  2003/01/10 20:25:16  danbri
-Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
-coordinate system(s) at the same time. Feedback welcomed.
-
-Revision 1.6  2003/01/10 20:18:30  danbri
-Added CVS log comments into the RDF/XML as an rdfs:comment property of the
-vocabulary. Note that this is not common practice (but seems both harmless
-and potentially useful).
-
-
-revision 1.5
-date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
-Updated schema:
-Added a dc:date, added url for more info. Changed the rdfs:label of the
-namespace from gp to geo. Added a class Point, set as the rdfs:domain of
-each property. Added XML comment on the lat_long property suggesting that
-we might not need it (based on #rdfig commentary from implementors).
-
-revision 1.4
-date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
-Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
-#rdfig for catching this error.
-
-revision 1.3
-date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
-fixed buglet in vocab, added more wgs links
-
-revision 1.2
-date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
-Removed alt from the as-a-flat-string property, and switched from
-space separated to comma separated.
-
-revision 1.1
-date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
-basic geo vocab
-
-"""^^xsd:string ;
-                                           rdfs:label "geo"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate."^^xsd:string ;
-                                                   rdfs:label "lat/long"^^xsd:string .
-
-
 <http://www.w3.org/2006/time#generalYear> rdfs:comment """Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
+                                                        """Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
-                                          rdfs:label "Generalized year"@en ;
-                                          <http://www.w3.org/2004/02/skos/core#definition> "Year number - generalization of xsd:gYear, formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."@en .
+                                           rdfs:label "Generalized year"@en ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Year number - generalization of xsd:gYear, formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."@en .
 
 
 ###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/

@@ -1,6 +1,5 @@
 <https://w3id.org/icity/wgs/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <https://w3id.org/icity/wgs/> <http://www.w3.org/2002/07/owl#versionIRI> <https://w3id.org/icity/wgs/1.0/> .
-<https://w3id.org/icity/wgs/> <http://www.w3.org/2002/07/owl#imports> <https://www.w3.org/2003/01/geo/wgs84_pos> .
 <https://w3id.org/icity/wgs/> <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" .
 <https://w3id.org/icity/wgs/> <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" .
 <https://w3id.org/icity/wgs/> <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to location. Reuses the wgs ontology." .
@@ -112,6 +111,7 @@
 # http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/icity/wgs/wgsOntologyProperty> .
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 # 
 # https://w3id.org/icity/wgs/wgsOntologyProperty
 <https://w3id.org/icity/wgs/wgsOntologyProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
@@ -126,9 +126,18 @@
 # #################################################################
 # 
 # 
+# http://www.w3.org/2003/01/geo/wgs84_pos#Point
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/2000/01/rdf-schema#comment> " \nUniquely identified by lat/long/alt. i.e.\n\nspaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),\n  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).\n\nsameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).\n  " .
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/2000/01/rdf-schema#comment> "A point, typically described using a coordinate system relative to Earth, such as WGS84.\n  " .
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/2000/01/rdf-schema#label> "point" .
+# 
 # http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
 <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/icity/wgs/wgsOntologyThing> .
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> <http://www.w3.org/2000/01/rdf-schema#comment> "Anything with spatial extent, i.e. size, shape, or position.\n e.g. people, places, bowling balls, as well as abstract areas like cubes.\n" .
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> <http://www.w3.org/2000/01/rdf-schema#label> "SpatialThing" .
 # 
 # https://w3id.org/icity/wgs/wgsOntologyThing
 <https://w3id.org/icity/wgs/wgsOntologyThing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .

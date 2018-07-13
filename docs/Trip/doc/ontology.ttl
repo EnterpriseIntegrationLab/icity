@@ -36,12 +36,20 @@ Copyright @ 2016 Megan Katsumi, iCity Research Group"""^^xsd:string ;
 <http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/date
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/description
 <http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/issued
+<http://purl.org/dc/elements/1.1/issued> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/title
@@ -82,33 +90,6 @@ Copyright @ 2016 Megan Katsumi, iCity Research Group"""^^xsd:string ;
 
 ###  http://www.w3.org/2002/07/owl#versionInfo
 owl:versionInfo rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
-<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
-above the local reference ellipsoid)."""^^xsd:string ;
-                                              rdfs:label "altitude"^^xsd:string ;
-                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
-<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)."^^xsd:string ;
-                                              rdfs:label "latitude"^^xsd:string ;
-                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
-                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#long
-<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:AnnotationProperty ;
-                                               rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)."^^xsd:string ;
-                                               rdfs:label "longitude"^^xsd:string ;
-                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
 ###  http://www.w3.org/ns/adms#relatedDocumentation
@@ -168,10 +149,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                  rdfs:subPropertyOf <https://w3id.org/icity/Vehicle/SchemaOrgProperty> .
 
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty .
-
-
 ###  https://w3id.org/icity/Change/existsAt
 <https://w3id.org/icity/Change/existsAt> rdf:type owl:ObjectProperty .
 
@@ -184,20 +161,74 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <https://w3id.org/icity/Change/manifestationOf> rdf:type owl:ObjectProperty .
 
 
+###  https://w3id.org/icity/Mereology/MereologyOntologyProperty
+<https://w3id.org/icity/Mereology/MereologyOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                             <http://purl.org/dc/elements/1.1/description> "Created for organizational purposes, to identify properties defined in the Mereology ontology."^^xsd:string .
+
+
 ###  https://w3id.org/icity/Mereology/componentOf
-<https://w3id.org/icity/Mereology/componentOf> rdf:type owl:ObjectProperty .
+<https://w3id.org/icity/Mereology/componentOf> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <https://w3id.org/icity/Mereology/partOf> ;
+                                               owl:inverseOf <https://w3id.org/icity/Mereology/hasComponent> ;
+                                               <http://purl.org/dc/elements/1.1/description> """Something may be a Component of some other thing
+More specifically, something may be a immediate component of something; in other words, if x is an immediate component of y, then there does not exist any other object that is a component of y and has x as a component.
+Component-of is transitive. Immediate component-of is not transitive.
+Immediate component-of is a subproperty of component-of."""^^xsd:string .
 
 
 ###  https://w3id.org/icity/Mereology/containedIn
-<https://w3id.org/icity/Mereology/containedIn> rdf:type owl:ObjectProperty .
+<https://w3id.org/icity/Mereology/containedIn> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <https://w3id.org/icity/Mereology/partOf> ;
+                                               owl:inverseOf <https://w3id.org/icity/Mereology/contains> ;
+                                               <http://purl.org/dc/elements/1.1/description> """Something may be contained-in some other thing; more specifically it may be immediately contained in something.
+Containment is transitive. Immediate containment is not transitive.
+Immediate containment is a subproperty of containment."""^^xsd:string .
 
 
 ###  https://w3id.org/icity/Mereology/contains
-<https://w3id.org/icity/Mereology/contains> rdf:type owl:ObjectProperty .
+<https://w3id.org/icity/Mereology/contains> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <https://w3id.org/icity/Mereology/hasPart> .
 
 
 ###  https://w3id.org/icity/Mereology/hasComponent
-<https://w3id.org/icity/Mereology/hasComponent> rdf:type owl:ObjectProperty .
+<https://w3id.org/icity/Mereology/hasComponent> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/Mereology/hasPart> .
+
+
+###  https://w3id.org/icity/Mereology/hasPart
+<https://w3id.org/icity/Mereology/hasPart> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf <https://w3id.org/icity/Mereology/MereologyOntologyProperty> ;
+                                           owl:inverseOf <https://w3id.org/icity/Mereology/partOf> .
+
+
+###  https://w3id.org/icity/Mereology/hasProperPart
+<https://w3id.org/icity/Mereology/hasProperPart> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <https://w3id.org/icity/Mereology/hasPart> ;
+                                                 owl:inverseOf <https://w3id.org/icity/Mereology/properPartOf> .
+
+
+###  https://w3id.org/icity/Mereology/immediateComponentOf
+<https://w3id.org/icity/Mereology/immediateComponentOf> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <https://w3id.org/icity/Mereology/componentOf> .
+
+
+###  https://w3id.org/icity/Mereology/immediatelyContainedIn
+<https://w3id.org/icity/Mereology/immediatelyContainedIn> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <https://w3id.org/icity/Mereology/containedIn> .
+
+
+###  https://w3id.org/icity/Mereology/partOf
+<https://w3id.org/icity/Mereology/partOf> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <https://w3id.org/icity/Mereology/MereologyOntologyProperty> .
+
+
+###  https://w3id.org/icity/Mereology/properPartOf
+<https://w3id.org/icity/Mereology/properPartOf> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/icity/Mereology/partOf> ;
+                                                <http://purl.org/dc/elements/1.1/description> """Something may be a Proper Part of some other thing.
+An object cannot be a proper part of itself. Thus, any object must have more than one proper part.
+Proper Parthood is transitive.
+Proper parthood is dense and so there exist no immediate proper parts; in other words, given some object, whatever proper part, x, we choose, there exists some slightly larger proper part of the object that also has x as a proper part."""^^xsd:string .
 
 
 ###  https://w3id.org/icity/SpatialLoc/hasLocation
@@ -277,6 +308,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
 ###  https://w3id.org/icity/TransportationSystem/hasInflow
 <https://w3id.org/icity/TransportationSystem/hasInflow> rdf:type owl:ObjectProperty ;
                                                         rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  https://w3id.org/icity/TransportationSystem/hasLaneCapacity
+<https://w3id.org/icity/TransportationSystem/hasLaneCapacity> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
 ###  https://w3id.org/icity/TransportationSystem/hasLinkCapacity
@@ -481,12 +517,17 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://schema.org/QuantitativeValue
 <http://schema.org/QuantitativeValue> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Quantity> ,
+                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
                                                       <https://w3id.org/icity/Vehicle/SchemaOrgThing> .
 
 
+###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
+<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class .
+
+
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <https://w3id.org/icity/TransportationSystem/aggregationOf> ;
                                                                 owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/RoadSegment>
@@ -498,15 +539,28 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> owl:equivalentClass <https://w3id.org/icity/TransportationSystem/RoadSegment> .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class ;
+                                                      owl:equivalentClass <https://w3id.org/icity/TransportationSystem/RoadSegment> .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Class ;
+                            owl:unionOf ( [ rdf:type owl:Restriction ;
+                                            owl:onProperty <https://w3id.org/icity/Mereology/hasProperPart> ;
+                                            owl:minCardinality "2"^^xsd:nonNegativeInteger
+                                          ]
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <https://w3id.org/icity/Mereology/hasProperPart> ;
+                                            owl:cardinality "0"^^xsd:nonNegativeInteger
+                                          ]
+                                        )
+                          ] ;
+          rdfs:comment """An object cannot be a proper part of itself. Thus, any object must have more than one proper part.
+Proper Parthood is transitive."""^^xsd:string .
 
 
 ###  http://www.w3.org/2006/time#Interval
 <http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Quantity
-<http://www.wurvoc.org/vocabularies/om-1.8/Quantity> rdf:type owl:Class .
 
 
 ###  https://w3id.org/icity/Change/Manifestation
@@ -586,19 +640,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                     owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasLaneCapacity> ;
+                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <https://w3id.org/icity/OM/CapacityRate>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
                                                                   ] .
 
 
@@ -743,27 +802,65 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/associatedLinkLength> ;
                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Length>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasLinkCapacity> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass [ owl:intersectionOf ( <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                                          owl:allValuesFrom [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                                                                                                                                     owl:allValuesFrom [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit>
+                                                                                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                owl:onProperty [ owl:inverseOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit>
+                                                                                                                                                                                                               ] ;
+                                                                                                                                                                                                owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                    owl:onProperty [ owl:inverseOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue>
+                                                                                                                                                                                                                                   ] ;
+                                                                                                                                                                                                                    owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                                                                                                                                                                                                        owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                                                                                                                                                                                                                            owl:allValuesFrom <http://www.opengis.net/ont/gml#Arc>
+                                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                                      ]
+                                                                                                                                                                                                                  ]
+                                                                                                                                                                                              ]
+                                                                                                                                                                                            ) ;
+                                                                                                                                                                         rdf:type owl:Class
+                                                                                                                                                                       ]
+                                                                                                                                                   ]
+                                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                                                     owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                         owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                                                                                                                                                         owl:allValuesFrom <https://w3id.org/icity/OM/CardinalityUnitPerTime>
+                                                                                                                                                                       ]
+                                                                                                                                                   ]
+                                                                                                                                                 ) ;
+                                                                                                                              rdf:type owl:Class
+                                                                                                                            ]
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ]
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasNumLanes> ;
@@ -1298,7 +1395,7 @@ A Trip Segment may incur some cost (monetary or otherwise)."""^^xsd:string .
                                                          ] ,
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty <https://w3id.org/icity/Vehicle/hasSpeed> ;
-                                                           owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                           owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                          ] ,
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
@@ -1344,7 +1441,7 @@ A Vehicle is owned by some Person(s) or Firm"""^^xsd:string .
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://schema.org/cargoVolume> ;
-                                                             owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                             owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://schema.org/driveWheelConfiguration> ;
@@ -1372,7 +1469,7 @@ A Vehicle is owned by some Person(s) or Firm"""^^xsd:string .
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Vehicle/hasCargoCapacityLoad> ;
-                                                             owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                             owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Vehicle/hasMode> ;
@@ -1406,117 +1503,6 @@ A Vehicle is owned by some Person(s) or Firm"""^^xsd:string .
 ###  https://w3id.org/icity/Vehicle/VehicleType
 <https://w3id.org/icity/Vehicle/VehicleType> rdf:type owl:Class ;
                                              rdfs:subClassOf <https://w3id.org/icity/Vehicle/VehicleOntologyThing> .
-
-
-#################################################################
-#    Annotations
-#################################################################
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $"^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
- Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details."""^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary"^^xsd:string ;
-                                           rdfs:comment """
-Recent changes to this namespace:
-$Log: wgs84_pos.rdf,v $
-Revision 1.22  2009/04/20 15:00:30  timbl
-Remove the time bits which have been deal with elsewhere eg in iCal.
-
-Revision 1.21  2009/04/20 12:52:47  timbl
-try again
-
-Revision 1.20  2009/04/20 12:42:11  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.19  2009/04/20 12:36:31  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.18  2006/02/01 22:01:04  danbri
-Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
-
-Revision 1.17  2004/02/06 17:38:12  danbri
-Fixed a bad commit screwup
-
-Revision 1.15  2003/04/19 11:24:08  danbri
-Fixed the typo even more.
-
-Revision 1.14  2003/04/19 11:16:56  danbri
-fixed a typo
-
-Revision 1.13  2003/02/19 22:27:27  connolly
-relaxed domain constraints on lat/long/alt from Point to SpatialThing
-
-Revision 1.12  2003/01/12 01:41:41  danbri
-Trying local copy of XSLT doc.
-
-Revision 1.11  2003/01/12 01:20:18  danbri
-added a link to morten's xslt rdfs viewer.
-
-Revision 1.10  2003/01/11 18:56:49  danbri
-Removed datatype range from lat and long properties, since they would
-have required each occurance of the property to mention the datatype.
-
-Revision 1.9  2003/01/11 11:41:31  danbri
-Another typo; repaired rdfs:Property to rdf:Property x4
-
-Revision 1.8  2003/01/11 11:05:02  danbri
-Added an rdfs:range for each lat/long/alt property,
-http://www.w3.org/2001/XMLSchema#float
-
-Revision 1.7  2003/01/10 20:25:16  danbri
-Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
-coordinate system(s) at the same time. Feedback welcomed.
-
-Revision 1.6  2003/01/10 20:18:30  danbri
-Added CVS log comments into the RDF/XML as an rdfs:comment property of the
-vocabulary. Note that this is not common practice (but seems both harmless
-and potentially useful).
-
-
-revision 1.5
-date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
-Updated schema:
-Added a dc:date, added url for more info. Changed the rdfs:label of the
-namespace from gp to geo. Added a class Point, set as the rdfs:domain of
-each property. Added XML comment on the lat_long property suggesting that
-we might not need it (based on #rdfig commentary from implementors).
-
-revision 1.4
-date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
-Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
-#rdfig for catching this error.
-
-revision 1.3
-date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
-fixed buglet in vocab, added more wgs links
-
-revision 1.2
-date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
-Removed alt from the as-a-flat-string property, and switched from
-space separated to comma separated.
-
-revision 1.1
-date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
-basic geo vocab
-
-"""^^xsd:string ;
-                                           rdfs:label "geo"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate."^^xsd:string ;
-                                                   rdfs:label "lat/long"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ;
-                                                   rdfs:label "location"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://w3id.org/icity/TripCost/"
      xml:base="https://w3id.org/icity/TripCost/"
+     xmlns:schema="http://schema.org/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
@@ -614,7 +615,14 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/icity/TripCost/hasDistanceCost"/>
-                <owl:allValuesFrom rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/Quantity"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
+                            <rdf:Description rdf:about="https://w3id.org/icity/OM/MonetaryValue"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>

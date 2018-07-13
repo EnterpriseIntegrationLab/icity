@@ -103,9 +103,7 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 <http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters
-above the local reference ellipsoid)."""^^xsd:string ,
-                                                           """The WGS84 altitude of a SpatialThing (decimal meters 
+                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid)."""^^xsd:string ;
                                               rdfs:label "altitude"^^xsd:string ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
@@ -595,10 +593,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.opengis.net/ont/geosparql#sfWithin
 <http://www.opengis.net/ont/geosparql#sfWithin> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#hasTopConcept
@@ -1596,10 +1590,6 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
 <http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/Quantity
-<http://www.wurvoc.org/vocabularies/om-1.8/Quantity> rdf:type owl:Class .
-
-
 ###  https://w3id.org/icity/Activity/Activity
 <https://w3id.org/icity/Activity/Activity> rdf:type owl:Class ;
                                            rdfs:subClassOf <https://w3id.org/icity/Activity/ActivityOntologyThing> ,
@@ -2198,7 +2188,7 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                     rdfs:subClassOf <https://w3id.org/icity/Resource/Resource> ,
                                                                     [ rdf:type owl:Restriction ;
                                                                       owl:onProperty <https://w3id.org/icity/Resource/hasAvailableCapacity> ;
-                                                                      owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                      owl:allValuesFrom <https://w3id.org/icity/OM/CapacitySize>
                                                                     ] ;
                                                     owl:disjointWith <https://w3id.org/icity/Resource/NonDivisibleResource> .
 
@@ -2227,6 +2217,14 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                                              owl:allValuesFrom <https://w3id.org/icity/Activity/Activity>
                                                                            ]
                                                                          )
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Resource/capacityInUse> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/OM/CapacitySize>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://w3id.org/icity/Resource/hasCapacity> ;
+                                                             owl:allValuesFrom <https://w3id.org/icity/OM/CapacitySize>
                                                            ] ,
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/icity/Resource/usedBy> ;
@@ -2473,25 +2471,6 @@ basic geo vocab
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate."^^xsd:string ;
                                                    rdfs:label "lat/long"^^xsd:string .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point,
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ,
-                                                                """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ;
-                                                   rdfs:label "location"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/

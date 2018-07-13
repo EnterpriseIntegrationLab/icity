@@ -10,7 +10,7 @@
                                          owl:versionIRI <https://w3id.org/icity/PublicTransit/1.2/> ;
                                          owl:imports <https://w3id.org/icity/Activity/1.2/> ,
                                                      <https://w3id.org/icity/Change/1.1/> ,
-                                                     <https://w3id.org/icity/OM/1.1/> ,
+                                                     <https://w3id.org/icity/OM/1.2/> ,
                                                      <https://w3id.org/icity/SpatialLoc/1.2/> ,
                                                      <https://w3id.org/icity/TransportationSystem/1.2/> ,
                                                      <https://w3id.org/icity/Trip/1.2/> ;
@@ -167,7 +167,6 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                               rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid)."""^^xsd:string ;
                                               rdfs:label "altitude"^^xsd:string ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyAnnotationProperty> ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
@@ -175,21 +174,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:AnnotationProperty ;
                                               rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)."^^xsd:string ;
                                               rdfs:label "latitude"^^xsd:string ;
-                                              rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyAnnotationProperty> ;
                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
-                                                   rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """^^xsd:string ;
-                                                   rdfs:label "location"^^xsd:string ;
                                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
@@ -197,7 +186,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:AnnotationProperty ;
                                                rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)."^^xsd:string ;
                                                rdfs:label "longitude"^^xsd:string ;
-                                               rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyAnnotationProperty> ;
                                                rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 
 
@@ -283,6 +271,63 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#for_time_interval
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#for_time_interval> rdf:type owl:ObjectProperty ;
+                                                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of
+<http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit> rdf:type owl:ObjectProperty ;
+                                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit> rdf:type owl:ObjectProperty ;
+                                                                        rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                        rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/System_of_units> ;
+                                                                        rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> rdf:type owl:ObjectProperty ;
+                                                                           rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                           rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ;
+                                                                           rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                           rdfs:label "has denominator"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> rdf:type owl:ObjectProperty ;
+                                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                         rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ;
+                                                                         rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                         rdfs:label "has numerator"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                    rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                                                    rdfs:label "has unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                     rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                     rdfs:label "has value"^^xsd:string .
+
 
 ###  http://www.opengis.net/ont/geosparql#ehContains
 <http://www.opengis.net/ont/geosparql#ehContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
@@ -408,11 +453,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> rdf:type owl:ObjectProperty .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/base_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/base_unit> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
 <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
                                                     rdfs:subPropertyOf <https://w3id.org/icity/Activity/ActivityOntologyProperty> ;
@@ -427,11 +467,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <https://w3id.org/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <https://w3id.org/icity/Activity/ConjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/derived_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/derived_unit> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt
@@ -466,16 +501,6 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                                rdfs:subPropertyOf <https://w3id.org/icity/Activity/achievedAt> ,
                                                                                   <https://w3id.org/icity/Change/existsAt> ;
                                                                rdfs:domain <https://w3id.org/icity/Activity/TerminalState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale
-<http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> rdf:type owl:ObjectProperty ;
-                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/value
-<http://www.wurvoc.org/vocabularies/om-1.8/value> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
 ###  https://w3id.org/icity/Activity/ActivityOntologyProperty
@@ -792,6 +817,11 @@ above the local reference ellipsoid)."""^^xsd:string ;
                                                         rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
+###  https://w3id.org/icity/TransportationSystem/hasLaneCapacity
+<https://w3id.org/icity/TransportationSystem/hasLaneCapacity> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
 ###  https://w3id.org/icity/TransportationSystem/hasLinkCapacity
 <https://w3id.org/icity/TransportationSystem/hasLinkCapacity> rdf:type owl:ObjectProperty ;
                                                               rdfs:subPropertyOf <https://w3id.org/icity/TransportationSystem/TransportationOntologyProperty> .
@@ -1012,7 +1042,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/numerical_value
 <http://www.wurvoc.org/vocabularies/om-1.8/numerical_value> rdf:type owl:DatatypeProperty ;
-                                                            rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyDataProperty> .
+                                                            rdfs:subPropertyOf <https://w3id.org/icity/OM/OMOntologyDataProperty> ;
+                                                            rdfs:label "has numerical value"^^xsd:string .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/rank
@@ -1105,12 +1136,262 @@ above the local reference ellipsoid)."""^^xsd:string ;
 #    Classes
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                                        rdfs:comment "Just as the meter is the unit of measure for length, a gci:Cardinality_unit is the unit of measure for the size of a set. The gci:Cardinality_unit is a ratio scale: gci:Cardinality_scale, which is a subclass of om:Ratio_scale and is has a zero element (namely zero)."^^xsd:string ,
+                                                                                                     "Reused from GCI Foundation Ontology"^^xsd:string ;
+                                                                                        rdfs:label "Cardinality Unit"^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                                                                    owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                  ] ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#for_time_interval> ;
+                                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                    owl:onClass <http://www.w3.org/2006/time#DateTimeDescription>
+                                                                                                  ] ;
+                                                                                  rdfs:comment "The govstat Population is specialized for indicator use to include what defines a member of the population, the location of the population, and the time the population was measured."^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_measure
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_measure> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <https://w3id.org/icity/OM/CardinalityMeasure> ,
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit>
+                                                                                                          ] ;
+                                                                                          rdfs:comment "Reused from GCI Foundation ontology"^^xsd:string ;
+                                                                                          rdfs:label "Population Measure"^^xsd:string ,
+                                                                                                     "gci:Cardinality_unit is the unit of measure for the size of a set. The gci:Cardinality_unit is a ratio scale: gci:Cardinality_scale, which is a subclass of om:Ratio_scale and is has a zero element (namely zero)."^^xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_size
+<http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_size> rdf:type owl:Class ;
+                                                                                       rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_measure>
+                                                                                                       ] ,
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                         owl:onClass <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population>
+                                                                                                       ] ;
+                                                                                       rdfs:comment "Reused from GCI Foundation ontology: http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl"^^xsd:string ,
+                                                                                                    "gci:Population_size is a subclass of om:Quantity.  Its om:unit_of_measure is the gci:population_cardinality_unit. It is also a subclass of gs:Cardinality which provides the cardinality_of property that links to a gs:Population."^^xsd:string ;
+                                                                                       rdfs:label "Population Size"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                           owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                               owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit>
+                                                                                                             ]
+                                                                                         ] ;
+                                                                         rdfs:label "acceleration"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                             rdfs:label "acceleration unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney
+<http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                            owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit>
+                                                                                                              ]
+                                                                                          ] ;
+                                                                          rdfs:label "amount of money"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                              rdfs:label "amount of money unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Area
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Area> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:comment "Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared."^^xsd:string ;
+                                                                 rdfs:label "area"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                     rdfs:label "area unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Length> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                     owl:allValuesFrom [ owl:intersectionOf ( <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure>
+                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                                owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/LengthUnit>
+                                                                                                                              ]
+                                                                                                                            ) ;
+                                                                                                         rdf:type owl:Class
+                                                                                                       ]
+                                                                                   ] ;
+                                                                   rdfs:comment "Length is the amount of space between two geographical points along a curve. It is a base quantity in the International System of Units and other systems of units. Length is speed times time. The metre, a base unit of length in the International System of Units, is defined in terms of speed of light during a certain time interval."^^xsd:string ;
+                                                                   rdfs:label "length"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/LengthUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/LengthUnit> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                       rdfs:label "length unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Mass
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/MassUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:comment "Mass is the amount of matter of a phenomenon. It is a base quantity in the International System of Units. Mass is force divided by acceleration."^^xsd:string ;
+                                                                 rdfs:label "mass"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/MassUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/MassUnit> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                     rdfs:label "mass unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ,
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                      owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit>
+                                                                                    ] ;
+                                                                    rdfs:label "measure"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure>
+                                                                                     ] ;
+                                                                     rdfs:label "quantity"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Scale
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Scale> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ;
+                                                                  rdfs:label "scale"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Speed
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                    owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                        owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/SpeedUnit>
+                                                                                                      ]
+                                                                                  ] ;
+                                                                  rdfs:comment "Speed is the time rate of motion measured by the distance moved over in unit time."^^xsd:string ;
+                                                                  rdfs:label "speed"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/SpeedUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/SpeedUnit> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                      rdfs:label "speed unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/System_of_units
+<http://www.ontology-of-units-of-measure.org/resource/om-2/System_of_units> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ;
+                                                                            rdfs:comment "In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other)."^^xsd:string ;
+                                                                            rdfs:label "system of units"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                     rdfs:label "time unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Unit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ;
+                                                                 rdfs:label "unit"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision
+<http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                         rdfs:label "unit division"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Volume
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                     owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                         owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/VolumeUnit>
+                                                                                                       ]
+                                                                                   ] ;
+                                                                   rdfs:comment "Volume is a measure of how much three-dimensional space any phenomenon occupies. It is a derived quantity in the International System of Units. Volume is length to the power 3."^^xsd:string ;
+                                                                   rdfs:label "volume"^^xsd:string .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/VolumeUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/VolumeUnit> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                       rdfs:label "volume unit"^^xsd:string .
+
+
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
 <http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
+###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
+<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class .
+
+
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/icity/TransportationSystem/TransportationComplex> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <https://w3id.org/icity/TransportationSystem/aggregationOf> ;
                                                                 owl:allValuesFrom <https://w3id.org/icity/TransportationSystem/RoadSegment>
@@ -1122,7 +1403,8 @@ above the local reference ellipsoid)."""^^xsd:string ;
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> owl:equivalentClass <https://w3id.org/icity/TransportationSystem/RoadSegment> .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class ;
+                                                      owl:equivalentClass <https://w3id.org/icity/TransportationSystem/RoadSegment> .
 
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
@@ -1143,87 +1425,6 @@ rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyTh
 
 ###  http://www.w3.org/2006/time#Interval
 <http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Acceleration_unit> rdf:type owl:Class ;
-                                                              rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Amount_of_substance_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Amount_of_substance_unit> rdf:type owl:Class ;
-                                                                     rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Area_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Area_unit> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Currency
-<http://www.wurvoc.org/vocabularies/om-1.8/Currency> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Length_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Length_unit> rdf:type owl:Class ;
-                                                        rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Mass_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Mass_unit> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Measure
-<http://www.wurvoc.org/vocabularies/om-1.8/Measure> rdf:type owl:Class ;
-                                                    rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> ,
-                                                                    [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> ;
-                                                                      owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure>
-                                                                    ] .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Measurement_scale
-<http://www.wurvoc.org/vocabularies/om-1.8/Measurement_scale> rdf:type owl:Class ;
-                                                              rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/OMThing
-<http://www.wurvoc.org/vocabularies/om-1.8/OMThing> rdf:type owl:Class .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Quantity
-<http://www.wurvoc.org/vocabularies/om-1.8/Quantity> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> ,
-                                                                     [ rdf:type owl:Restriction ;
-                                                                       owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> ;
-                                                                       owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure>
-                                                                     ] ,
-                                                                     [ rdf:type owl:Restriction ;
-                                                                       owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/value> ;
-                                                                       owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Measure>
-                                                                     ] .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Speed_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Speed_unit> rdf:type owl:Class ;
-                                                       rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/System_of_units
-<http://www.wurvoc.org/vocabularies/om-1.8/System_of_units> rdf:type owl:Class ;
-                                                            rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure
-<http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> rdf:type owl:Class ;
-                                                            rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit
-<http://www.wurvoc.org/vocabularies/om-1.8/Volume_unit> rdf:type owl:Class ;
-                                                        rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> .
 
 
 ###  https://w3id.org/icity/Activity/Activity
@@ -1460,24 +1661,92 @@ A TimeVaryingConcept exists at some Interval.
 The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation."""^^xsd:string .
 
 
+###  https://w3id.org/icity/OM/Capacity
+<https://w3id.org/icity/OM/Capacity> rdf:type owl:Class ;
+                                     rdfs:subClassOf <https://w3id.org/icity/OM/OMThing> ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                     ] .
+
+
+###  https://w3id.org/icity/OM/CapacityRate
+<https://w3id.org/icity/OM/CapacityRate> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                           owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                               owl:allValuesFrom <https://w3id.org/icity/OM/CardinalityUnitPerTime>
+                                                                             ]
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <https://w3id.org/icity/OM/Capacity>
+                                                         ] .
+
+
+###  https://w3id.org/icity/OM/CapacitySize
+<https://w3id.org/icity/OM/CapacitySize> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                           owl:allValuesFrom <https://w3id.org/icity/OM/CardinalityMeasure>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <https://w3id.org/icity/OM/Capacity>
+                                                         ] .
+
+
+###  https://w3id.org/icity/OM/CardinalityMeasure
+<https://w3id.org/icity/OM/CardinalityMeasure> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                 owl:allValuesFrom <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit>
+                                                               ] .
+
+
+###  https://w3id.org/icity/OM/CardinalityUnitPerTime
+<https://w3id.org/icity/OM/CardinalityUnitPerTime> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                                                     owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit>
+                                                                   ] .
+
+
+###  https://w3id.org/icity/OM/Geo_Position_unit
+<https://w3id.org/icity/OM/Geo_Position_unit> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                              rdfs:comment "Reference systems to indicate geographic position."^^xsd:string .
+
+
 ###  https://w3id.org/icity/OM/LaneCapacity_unit
 <https://w3id.org/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+                                              rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                               rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)"^^xsd:string .
 
 
 ###  https://w3id.org/icity/OM/LinkCapacity_unit
 <https://w3id.org/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
+                                              rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                               rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput."^^xsd:string .
 
 
 ###  https://w3id.org/icity/OM/MonetaryValue
 <https://w3id.org/icity/OM/MonetaryValue> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Measure> ,
+                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
                                                           [ rdf:type owl:Restriction ;
-                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> ;
-                                                            owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Currency>
+                                                            owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                            owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit>
                                                           ] ,
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty <https://w3id.org/icity/OM/hasRelativeYear> ;
@@ -1488,10 +1757,18 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
 A Monetary Value is measured with some currency."""^^xsd:string .
 
 
-###  https://w3id.org/icity/OM/Position_unit
-<https://w3id.org/icity/OM/Position_unit> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
-                                          rdfs:comment "Reference systems to indicate geographic position."^^xsd:string .
+###  https://w3id.org/icity/OM/OMThing
+<https://w3id.org/icity/OM/OMThing> rdf:type owl:Class .
+
+
+###  https://w3id.org/icity/OM/ValueOfMoney
+<https://w3id.org/icity/OM/ValueOfMoney> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                           owl:allValuesFrom <https://w3id.org/icity/OM/MonetaryValue>
+                                                         ] ;
+                                         rdfs:comment "An amount of money that is defined relative to a particular year."^^xsd:string .
 
 
 ###  https://w3id.org/icity/PublicTransit/AccessMethod
@@ -1504,8 +1781,8 @@ A Monetary Value is measured with some currency."""^^xsd:string .
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :validFor ;
                                 owl:allValuesFrom [ rdf:type owl:Class ;
-                                                    owl:unionOf ( <http://www.w3.org/2006/time#DurationDescription>
-                                                                  <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                    owl:unionOf ( <http://www.ontology-of-units-of-measure.org/resource/om-2/Length>
+                                                                  <http://www.w3.org/2006/time#DurationDescription>
                                                                 )
                                                   ]
                               ] ;
@@ -1935,19 +2212,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                     owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/icity/TransportationSystem/hasLaneCapacity> ;
+                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <https://w3id.org/icity/OM/CapacityRate>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
                                                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
                                                                   ] .
 
 
@@ -2092,27 +2374,65 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/associatedLinkLength> ;
                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Length>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasFreeFlowSpeed> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasLinkCapacity> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass [ owl:intersectionOf ( <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                                          owl:allValuesFrom [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                                                                                                                                     owl:allValuesFrom [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit>
+                                                                                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                owl:onProperty [ owl:inverseOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit>
+                                                                                                                                                                                                               ] ;
+                                                                                                                                                                                                owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                    owl:onProperty [ owl:inverseOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue>
+                                                                                                                                                                                                                                   ] ;
+                                                                                                                                                                                                                    owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                                                                                                                                                                                                        owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                                                                                                                                                                                                                            owl:allValuesFrom <http://www.opengis.net/ont/gml#Arc>
+                                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                                      ]
+                                                                                                                                                                                                                  ]
+                                                                                                                                                                                              ]
+                                                                                                                                                                                            ) ;
+                                                                                                                                                                         rdf:type owl:Class
+                                                                                                                                                                       ]
+                                                                                                                                                   ]
+                                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                                                     owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                                                         owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                                                                                                                                                         owl:allValuesFrom <https://w3id.org/icity/OM/CardinalityUnitPerTime>
+                                                                                                                                                                       ]
+                                                                                                                                                   ]
+                                                                                                                                                 ) ;
+                                                                                                                              rdf:type owl:Class
+                                                                                                                            ]
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ]
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasPostedSpeed> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasVDF> ;
                                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                     owl:onClass <http://www.wurvoc.org/vocabularies/om-1.8/Quantity>
+                                                                     owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
                                                                    ] ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/icity/TransportationSystem/hasNumLanes> ;
@@ -2621,13 +2941,13 @@ A Trip Segment may incur some cost (monetary or otherwise)."""^^xsd:string .
 
 ###  https://w3id.org/icity/OM/NAD83
 <https://w3id.org/icity/OM/NAD83> rdf:type owl:NamedIndividual ,
-                                           <https://w3id.org/icity/OM/Position_unit> ;
+                                           <https://w3id.org/icity/OM/Geo_Position_unit> ;
                                   rdfs:comment "North American Datum of 1983. A geodetic reference system."^^xsd:string .
 
 
 ###  https://w3id.org/icity/OM/WGS84
 <https://w3id.org/icity/OM/WGS84> rdf:type owl:NamedIndividual ,
-                                           <https://w3id.org/icity/OM/Position_unit> ;
+                                           <https://w3id.org/icity/OM/Geo_Position_unit> ;
                                   rdfs:comment "World Geodetic System of 1984. The reference system used by GPS."^^xsd:string .
 
 
