@@ -352,6 +352,7 @@ Here, we define calendar concepts specific to the Gregorian calendar. If require
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Calendar/CalendarThing"/>
+        <rdfs:comment>A day of the week is a member of an enumerated class, covering the days of the week in the Gregorian calendar. Schema:DayOfWeek also includes a PublicHoliday individual that may be used to capture the distinction between a typical day of the week and a public holiday (e.g. where businesses may be closed or parking policies may vary).</rdfs:comment>
     </owl:Class>
     
 
@@ -386,6 +387,7 @@ Here, we define calendar concepts specific to the Gregorian calendar. If require
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>A calendar specification refers to a date(s), which may be specified at varying levels of granularity. It is important to recognize that a date represents some recurring points/intervals in time and therefore a CalendarSpecification is distinct from a DateTimeDescription (in the OWL time ontology), which describes a specific point in time. For more on the distinction between dates and timepoints, we refer the interested reader to (Grüninger, Michael. &quot;Ontologies for Dates and Duration.&quot; KR. 2010).</rdfs:comment>
     </owl:Class>
     
 
@@ -393,6 +395,27 @@ Here, we define calendar concepts specific to the Gregorian calendar. If require
     <!-- https://w3id.org/icity/Calendar/CalendarThing -->
 
     <owl:Class rdf:about="https://w3id.org/icity/Calendar/CalendarThing"/>
+    
+
+
+    <!-- https://w3id.org/icity/Calendar/DayOfWeek -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/Calendar/DayOfWeek">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://schema.org/Friday"/>
+                    <rdf:Description rdf:about="http://schema.org/Monday"/>
+                    <rdf:Description rdf:about="http://schema.org/Saturday"/>
+                    <rdf:Description rdf:about="http://schema.org/Sunday"/>
+                    <rdf:Description rdf:about="http://schema.org/Thursday"/>
+                    <rdf:Description rdf:about="http://schema.org/Tuesday"/>
+                    <rdf:Description rdf:about="http://schema.org/Wednesday"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://schema.org/DayOfWeek"/>
+    </owl:Class>
     
 
 
@@ -417,6 +440,7 @@ Here, we define calendar concepts specific to the Gregorian calendar. If require
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Calendar/CalendarThing"/>
+        <rdfs:comment>A month is defined by enumeration of all of the months in the Gregorian calendar.</rdfs:comment>
     </owl:Class>
     
 
@@ -447,6 +471,7 @@ Here, we define calendar concepts specific to the Gregorian calendar. If require
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>Opening hours specification is a specialization of a calendar specification that includes a representation of opening and closing times. It is useful in specifying the hours of operation such as for businesses, services, or the hours of effect for parking policies.</rdfs:comment>
     </owl:Class>
     
 
