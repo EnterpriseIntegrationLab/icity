@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://w3id.org/icity/TransportationSystem/"
      xml:base="https://w3id.org/icity/TransportationSystem/"
+     xmlns:schema="http://schema.org/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl4="https://w3id.org/icity/Geom/1.0/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -29,6 +30,7 @@
         <owl:imports rdf:resource="https://w3id.org/icity/OM/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/OTN/1.0/"/>
+        <owl:imports rdf:resource="https://w3id.org/icity/SSN/1.0/"/>
         <owl:imports rdf:resource="https://w3id.org/icity/Change/1.1/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <vann:preferredNamespacePrefix>icity-transportation</vann:preferredNamespacePrefix>
@@ -42,13 +44,14 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">October 2017</dc:issued>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">Under development. Please see report on iCity Ontology v1.2</adms:relatedDocumentation>
         <dc:creator>Megan Katsumi</dc:creator>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <owl:priorVersion>https://w3id.org/icity/TransportationSystem/1.1/</owl:priorVersion>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:title>iCity Transportation System Ontology</dc:title>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-TransportationSystem ontology is designed to capture concepts related to the transportation system.
 		Changes from previous version:
-		added Link and LinkPD classes to serve as “containers” for multiple arcs (e.g. vehicle lanes, bicycle lanes, walkways); introduced some additional properties and changed the mode of an Arc from an invariant to variant property.
-Associated location coordinates with the Node class.
+-Added Link and LinkPD classes to serve as “containers” for multiple arcs (e.g. vehicle lanes, bicycle lanes, walkways); introduced some additional properties and changed the mode of an Arc from an invariant to variant property.
+-Associated location coordinates with the Node class.
+-Extended to capture sensors such as loop detectors via SSN ontology
 
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
     </owl:Ontology>
@@ -155,6 +158,42 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue"/>
+    
+
+
     <!-- https://w3id.org/icity/Change/existsAt -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt"/>
@@ -182,6 +221,12 @@ Associated location coordinates with the Node class.
     <!-- https://w3id.org/icity/Mereology/hasComponent -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/icity/Mereology/hasComponent"/>
+    
+
+
+    <!-- https://w3id.org/icity/SpatialLoc/hasLocation -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/SpatialLoc/hasLocation"/>
     
 
 
@@ -472,6 +517,42 @@ Associated location coordinates with the Node class.
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Cardinality_unit"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Length -->
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Length"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity -->
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Speed -->
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"/>
+    
+
+
+    <!-- http://www.opengis.net/ont/geosparql#Feature -->
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
+    
+
+
+    <!-- http://www.opengis.net/ont/gml#Arc -->
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/gml#Arc"/>
+    
+
+
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
 
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
@@ -482,27 +563,31 @@ Associated location coordinates with the Node class.
 
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/aggregationOf"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasRoadId"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
 
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
 
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
-        <owl:equivalentClass rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DurationDescription -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DurationDescription"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Interval -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#TemporalEntity -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
     
 
 
@@ -515,6 +600,18 @@ Associated location coordinates with the Node class.
     <!-- https://w3id.org/icity/Change/TimeVaryingConcept -->
 
     <owl:Class rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept"/>
+    
+
+
+    <!-- https://w3id.org/icity/OM/CapacityRate -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/CapacityRate"/>
+    
+
+
+    <!-- https://w3id.org/icity/OM/CardinalityUnitPerTime -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/OM/CardinalityUnitPerTime"/>
     
 
 
@@ -759,7 +856,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                         <owl:inverseOf rdf:resource="https://w3id.org/icity/TransportationSystem/accessesComplex"/>
                     </rdf:Description>
                 </owl:onProperty>
-                <owl:allValuesFrom rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Node"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1222,6 +1319,26 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/Road -->
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Road">
+        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/aggregationOf"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasRoadId"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/RoadId -->
 
     <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/RoadId">
@@ -1233,6 +1350,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     <!-- https://w3id.org/icity/TransportationSystem/RoadSegment -->
 
     <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/RoadSegment">
+        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
     </owl:Class>
     
