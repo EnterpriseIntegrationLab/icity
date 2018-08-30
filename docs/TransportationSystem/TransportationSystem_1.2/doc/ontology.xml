@@ -3741,12 +3741,26 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
+    <!-- http://www.opengis.net/ont/geosparql#Feature -->
+
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
+    
+
+
     <!-- http://www.opengis.net/ont/geosparql#SpatialObject -->
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#SpatialObject">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing"/>
     </rdf:Description>
+    
+
+
+    <!-- http://www.opengis.net/ont/gml#Arc -->
+
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/gml#Arc"/>
     
 
 
@@ -3798,18 +3812,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/aggregationOf"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasRoadId"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3817,9 +3819,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
 
 
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element">
-        <owl:equivalentClass rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     
 
 
@@ -3889,6 +3889,20 @@ Proper Parthood is transitive.</rdfs:comment>
     <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing"/>
     </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DurationDescription -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DurationDescription"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Interval -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
     
 
 
@@ -5212,7 +5226,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                         <owl:inverseOf rdf:resource="https://w3id.org/icity/TransportationSystem/accessesComplex"/>
                     </rdf:Description>
                 </owl:onProperty>
-                <owl:allValuesFrom rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/Node"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5686,6 +5700,27 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- https://w3id.org/icity/TransportationSystem/Road -->
+
+
+    <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/Road">
+        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/aggregationOf"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/icity/TransportationSystem/hasRoadId"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/TransportationSystem/RoadId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/icity/TransportationSystem/RoadId -->
 
 
@@ -5699,6 +5734,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="https://w3id.org/icity/TransportationSystem/RoadSegment">
+        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/icity/TransportationSystem/TransportationComplex"/>
     </owl:Class>
     

@@ -2088,8 +2088,16 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                        rdfs:label "volume unit"^^xsd:string .
 
 
+###  http://www.opengis.net/ont/geosparql#Feature
+<http://www.opengis.net/ont/geosparql#Feature> rdf:type owl:Class .
+
+
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
 <http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.opengis.net/ont/gml#Arc
+<http://www.opengis.net/ont/gml#Arc> rdf:type owl:Class .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Composite_Attributes
@@ -2116,20 +2124,11 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
 <http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
-                                              rdfs:subClassOf :TransportationComplex ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty :aggregationOf ;
-                                                                owl:allValuesFrom :RoadSegment
-                                                              ] ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty :hasRoadId ;
-                                                                owl:allValuesFrom :RoadId
-                                                              ] .
+                                              rdfs:subClassOf :TransportationComplex .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class ;
-                                                      owl:equivalentClass :RoadSegment .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Transfer_Point
@@ -2167,6 +2166,14 @@ Proper Parthood is transitive."""^^xsd:string .
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
 <http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2006/time#DurationDescription
+<http://www.w3.org/2006/time#DurationDescription> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Interval
+<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#TemporalEntity
@@ -3044,7 +3051,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty [ owl:inverseOf :accessesComplex
                                                ] ;
-                                owl:allValuesFrom <http://www.pms.ifi.uni-muenchen.de/OTN#Node>
+                                owl:allValuesFrom :Node
                               ] .
 
 
@@ -3364,6 +3371,19 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                   rdfs:comment "We observe that the properties inMunicipality and inPlanningDistrict will likely apply to other areas of the domain (e.g. land use, building ontologies). It is likely that they will be better defined at a lower (more foundational) level within the ontology, however it is currently not clear where and how this should be done. For now, we define these properties within the Transportation Network System ontology and leave the final organization for a future iteration when the use and related concepts is more clear."^^xsd:string .
 
 
+###  https://w3id.org/icity/TransportationSystem/Road
+:Road rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.pms.ifi.uni-muenchen.de/OTN#Road> ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :aggregationOf ;
+                        owl:allValuesFrom :RoadSegment
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasRoadId ;
+                        owl:allValuesFrom :RoadId
+                      ] .
+
+
 ###  https://w3id.org/icity/TransportationSystem/RoadId
 :RoadId rdf:type owl:Class ;
         rdfs:subClassOf :TransportationOntologyThing .
@@ -3371,7 +3391,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 ###  https://w3id.org/icity/TransportationSystem/RoadSegment
 :RoadSegment rdf:type owl:Class ;
-             rdfs:subClassOf :TransportationComplex .
+             rdfs:subClassOf <http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> ,
+                             :TransportationComplex .
 
 
 ###  https://w3id.org/icity/TransportationSystem/RoadSegmentId
