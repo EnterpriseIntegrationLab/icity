@@ -11,7 +11,7 @@
      xmlns:wgs="https://w3id.org/icity/wgs/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:Geom="https://w3id.org/icity/Geom/"
+     xmlns:Geom="http://ontology.eil.utoronto.ca/icity/Geom/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -20,7 +20,7 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:Spatial="https://w3id.org/icity/Spatial/"
+     xmlns:Spatial="http://ontology.eil.utoronto.ca/icity/Spatial/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="https://w3id.org/icity/Activity/">
         <owl:versionIRI rdf:resource="https://w3id.org/icity/Activity/1.1/"/>
@@ -231,6 +231,47 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty">
+        <rdfs:comment>Added for organizational purposes to group properties defined in the Change Ontology.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/existsAt -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Change/existsAt">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+        <dc:description>Objects (e.g. perdurants and their manifestations) exist at some time interval or time point.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/hasManifestation -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/manifestationOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
 
@@ -294,12 +335,12 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://w3id.org/icity/Change/manifestationOf"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
             <rdf:Description>
-                <owl:inverseOf rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
+                <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
             </rdf:Description>
         </owl:propertyChainAxiom>
         <rdfs:comment>Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object.</rdfs:comment>
@@ -510,44 +551,10 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/icity/Change/ChangeOntologyProperty -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/ChangeOntologyProperty">
-        <rdfs:comment>Added for organizational purposes to group properties defined in the Change Ontology.</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
     <!-- https://w3id.org/icity/Change/existsAt -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-        <dc:description>Objects (e.g. perdurants and their manifestations) exist at some time interval or time point.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/Change/hasManifestation -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/hasManifestation">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyProperty"/>
-        <owl:inverseOf rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/icity/Change/manifestationOf -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/manifestationOf">
-        <rdfs:subPropertyOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="https://w3id.org/icity/Change/existsAt"/>
     
 
 
@@ -623,6 +630,110 @@ above the local reference ellipsoid).</rdfs:comment>
     <rdf:Description rdf:about="http://geovocab.org/spatial#Feature">
         <owl:equivalentClass rdf:resource="https://w3id.org/icity/SpatialLoc/SpatialFeature"/>
     </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing">
+        <rdfs:comment>Added for organizational purposes to group the classes defined in the Change Ontology.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/Manifestation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Change/Manifestation">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:disjointWith>
+        <terms:description>A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
+A Manifestation exists at some Instant.
+The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.</terms:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:disjointWith>
+        <terms:description>A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
+A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
+Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
+A TimeVaryingConcept exists at some Interval.
+The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.</terms:description>
+    </owl:Class>
     
 
 
@@ -886,107 +997,10 @@ A state  cannot be both non-terminal and terminal.
     
 
 
-    <!-- https://w3id.org/icity/Change/ChangeOntologyThing -->
-
-
-    <owl:Class rdf:about="https://w3id.org/icity/Change/ChangeOntologyThing">
-        <rdfs:comment>Added for organizational purposes to group the classes defined in the Change Ontology.</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- https://w3id.org/icity/Change/Manifestation -->
 
 
-    <owl:Class rdf:about="https://w3id.org/icity/Change/Manifestation">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/manifestationOf"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Change/TimeVaryingConcept"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
-                    <rdf:Description rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:disjointWith>
-        <terms:description>A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
-A Manifestation exists at some Instant.
-The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.</terms:description>
-    </owl:Class>
-    
-
-
-    <!-- https://w3id.org/icity/Change/TimeVaryingConcept -->
-
-
-    <owl:Class rdf:about="https://w3id.org/icity/Change/TimeVaryingConcept">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="https://w3id.org/icity/Change/ChangeOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/existsAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/Change/hasManifestation"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/icity/Change/Manifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
-                    <rdf:Description rdf:about="https://w3id.org/icity/Change/Manifestation"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:disjointWith>
-        <terms:description>A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
-A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
-Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
-A TimeVaryingConcept exists at some Interval.
-The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.</terms:description>
-    </owl:Class>
+    <owl:Class rdf:about="https://w3id.org/icity/Change/Manifestation"/>
     
 
 

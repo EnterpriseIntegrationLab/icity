@@ -1,29 +1,26 @@
-@prefix : <https://w3id.org/icity/iContact/> .
+@prefix : <http://ontology.eil.utoronto.ca/icity/Contact/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://w3id.org/icity/iContact/> .
+@base <http://ontology.eil.utoronto.ca/icity/Contact/> .
 
-<https://w3id.org/icity/iContact/> rdf:type owl:Ontology ;
-                                    owl:versionIRI <https://w3id.org/icity/iContact/1.0/> ;
-                                    owl:imports <http://ontology.eil.utoronto.ca/icontact.owl> ,
-                                                <https://w3id.org/icity/SpatialLoc/1.2/> ;
-                                    <http://purl.org/dc/elements/1.1/creator> "Mark Fox" ,
-                                                                              "Megan Katsumi" ;
-                                    <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to contact information (addresses, phone numbers). Reuses the iContact Ontology." ;
-                                    <http://purl.org/dc/terms/created> "2018-07-06"^^xsd:date ;
-                                    <http://purl.org/dc/terms/title> "iContact Ontology"@en ;
-                                    <http://purl.org/vocab/vann/preferredNamespacePrefix> "icontact" ;
-                                    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/icity/iContact/" ;
-                                    rdfs:comment """Developed as part of the overall iCity ontology effort.
-		Reuses the iContact ontology.
+<http://ontology.eil.utoronto.ca/icity/Contact/> rdf:type owl:Ontology ;
+                                                  owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Contact/1.0/> ;
+                                                  owl:imports <http://ontology.eil.utoronto.ca/icontact.owl> ,
+                                                              <http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.1/> ,
+                                                              <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ;
+                                                  <http://purl.org/dc/elements/1.1/creator> "Mark Fox" ,
+                                                                                            "Megan Katsumi" ;
+                                                  <http://purl.org/dc/elements/1.1/description> """Ontology to capture concepts related to contact information (addresses, phone numbers). Reuses the iContact Ontology developed by the Enterprise Integration Lab in Toronto. The iContact ontology is extended to introduce a specialized definition of Hours of Operation, defined as a subclass of both the iContact definition of hours of operation, and a subclass of the Recurring Event class defined in the iCity Recurring Event ontology.
+The Contact ontology also extends the definition of address to include an associated location.""" ;
+                                                  <http://purl.org/dc/terms/created> "2018-07-06"^^xsd:date ;
+                                                  <http://purl.org/dc/terms/title> "Contact Ontology"@en ;
+                                                  rdfs:comment """Developed as part of the overall iCity ontology effort, the Contact ontology is designed to capture concepts related to the contact information for individuals, organizations, and services. Reuses the iContact ontology.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
-Changes from previous version:
-""" ;
-                                    owl:versionInfo " Updated version of the iContact ontology, extended to include spatial feature. "@en .
+Changes from previous version:"""@en .
 
 #################################################################
 #    Annotation properties
@@ -181,6 +178,18 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                               rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                               rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space." .
+
+
 ###  http://ontology.eil.utoronto.ca/icontact.owl#OperatingProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#OperatingProperty> rdf:type owl:ObjectProperty ;
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
@@ -285,140 +294,133 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehContains
-<http://www.opengis.net/ont/geosparql#ehContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehContains> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehCoveredBy
-<http://www.opengis.net/ont/geosparql#ehCoveredBy> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehCoveredBy> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehCovers
-<http://www.opengis.net/ont/geosparql#ehCovers> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehCovers> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehDisjoint
-<http://www.opengis.net/ont/geosparql#ehDisjoint> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehDisjoint> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehEquals
-<http://www.opengis.net/ont/geosparql#ehEquals> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehEquals> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehInside
-<http://www.opengis.net/ont/geosparql#ehInside> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehInside> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehMeet
-<http://www.opengis.net/ont/geosparql#ehMeet> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehMeet> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehOverlap
-<http://www.opengis.net/ont/geosparql#ehOverlap> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#ehOverlap> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasGeometry
-<http://www.opengis.net/ont/geosparql#hasGeometry> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#hasGeometry> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8dc
-<http://www.opengis.net/ont/geosparql#rcc8dc> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8dc> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8ec
-<http://www.opengis.net/ont/geosparql#rcc8ec> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8ec> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8eq
-<http://www.opengis.net/ont/geosparql#rcc8eq> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8eq> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8ntpp
-<http://www.opengis.net/ont/geosparql#rcc8ntpp> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8ntpp> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8ntppi
-<http://www.opengis.net/ont/geosparql#rcc8ntppi> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8ntppi> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8po
-<http://www.opengis.net/ont/geosparql#rcc8po> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8po> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8tpp
-<http://www.opengis.net/ont/geosparql#rcc8tpp> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8tpp> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8tppi
-<http://www.opengis.net/ont/geosparql#rcc8tppi> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#rcc8tppi> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfContains
-<http://www.opengis.net/ont/geosparql#sfContains> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfContains> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfCrosses
-<http://www.opengis.net/ont/geosparql#sfCrosses> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfCrosses> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfDisjoint
-<http://www.opengis.net/ont/geosparql#sfDisjoint> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfDisjoint> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfEquals
-<http://www.opengis.net/ont/geosparql#sfEquals> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfEquals> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfIntersects
-<http://www.opengis.net/ont/geosparql#sfIntersects> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfIntersects> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfOverlaps
-<http://www.opengis.net/ont/geosparql#sfOverlaps> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfOverlaps> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfTouches
-<http://www.opengis.net/ont/geosparql#sfTouches> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfTouches> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#sfWithin
-<http://www.opengis.net/ont/geosparql#sfWithin> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.opengis.net/ont/geosparql#sfWithin> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#hasTopConcept
-<http://www.w3.org/2004/02/skos/core#hasTopConcept> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.w3.org/2004/02/skos/core#hasTopConcept> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#inScheme
-<http://www.w3.org/2004/02/skos/core#inScheme> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.w3.org/2004/02/skos/core#inScheme> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#member
-<http://www.w3.org/2004/02/skos/core#member> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.w3.org/2004/02/skos/core#member> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#memberList
-<http://www.w3.org/2004/02/skos/core#memberList> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://www.w3.org/2004/02/skos/core#memberList> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#semanticRelation
-<http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> .
-
-
-###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty
-<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
-
-
-###  https://w3id.org/icity/SpatialLoc/hasLocation
-<https://w3id.org/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty> ;
-                                                rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
-                                                rdfs:comment "A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space." .
+<http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                                  rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL." .
+
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty> rdf:type owl:DatatypeProperty ;
@@ -550,35 +552,35 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGML
-<http://www.opengis.net/ont/geosparql#asGML> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#asGML> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#asWKT
-<http://www.opengis.net/ont/geosparql#asWKT> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#asWKT> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#coordinateDimension
-<http://www.opengis.net/ont/geosparql#coordinateDimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#coordinateDimension> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#dimension
-<http://www.opengis.net/ont/geosparql#dimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#dimension> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasSerialization
-<http://www.opengis.net/ont/geosparql#hasSerialization> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#hasSerialization> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#isEmpty
-<http://www.opengis.net/ont/geosparql#isEmpty> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#isEmpty> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#isSimple
-<http://www.opengis.net/ont/geosparql#isSimple> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#isSimple> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.opengis.net/ont/geosparql#spatialDimension
-<http://www.opengis.net/ont/geosparql#spatialDimension> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#spatialDimension> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
@@ -596,17 +598,43 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 
 ###  http://www.w3.org/2004/02/skos/core#notation
-<http://www.w3.org/2004/02/skos/core#notation> rdfs:subPropertyOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
-
-
-###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty
-<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
-                                                                   rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL." .
+<http://www.w3.org/2004/02/skos/core#notation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
 
 #################################################################
 #    Classes
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/Contact/Address
+:Address rdf:type owl:Class ;
+         rdfs:subClassOf :ContactOntologyThing ,
+                         <http://ontology.eil.utoronto.ca/icontact.owl#Address> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Contact/ContactOntologyThing
+:ContactOntologyThing rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation
+:HoursOfOperation rdf:type owl:Class ;
+                  rdfs:subClassOf :ContactOntologyThing ,
+                                  <http://ontology.eil.utoronto.ca/icity/RecurringEvent//RecurringEvent> ,
+                                  <http://ontology.eil.utoronto.ca/icontact.owl#HoursOfOperation> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent//RecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent//RecurringEvent> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> rdf:type owl:Class ;
+                                                                           rdfs:comment "Created for organizational purposes, to identify the classes imported from geoSPARQL." .
+
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Address
 <http://ontology.eil.utoronto.ca/icontact.owl#Address> rdf:type owl:Class ;
@@ -633,11 +661,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasState> ;
                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onClass <http://schema.org/State>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <https://w3id.org/icity/SpatialLoc/hasLocation> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                         owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasBuilding> ;
@@ -899,28 +922,23 @@ Street information is divided into separate properties to fully indentify direct
 
 
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
-<http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+<http://www.opengis.net/ont/geosparql#SpatialObject> rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
-rdf:List rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Collection
-<http://www.w3.org/2004/02/skos/core#Collection> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+<http://www.w3.org/2004/02/skos/core#Collection> rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
-<http://www.w3.org/2004/02/skos/core#Concept> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
+<http://www.w3.org/2004/02/skos/core#Concept> rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
-<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> .
-
-
-###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing
-<https://w3id.org/icity/SpatialLoc/SpatialLocOntologyThing> rdf:type owl:Class ;
-                                                            rdfs:comment "Created for organizational purposes, to identify the classes imported from geoSPARQL." .
+<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 
 
 #################################################################

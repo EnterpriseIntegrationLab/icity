@@ -2,11 +2,11 @@
   "_comment" : "Created with OWL2VOWL (version 0.3.4), http://vowl.visualdataweb.org",
   "header" : {
     "languages" : [ "undefined" ],
-    "baseIris" : [ "https://w3id.org/icity/ActivitySpecification", "https://w3id.org/icity/iCity-SpatialLoc", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://www.w3.org/2001/XMLSchema", "https://w3id.org/icity/iCity-Change", "http://www.wurvoc.org/vocabularies/om-1.8", "http://www.w3.org/2006/time" ],
+    "baseIris" : [ "http://ontology.eil.utoronto.ca/icity/iCity-Change", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://ontology.eil.utoronto.ca/icity/ActivitySpecification", "http://www.w3.org/2001/XMLSchema", "http://ontology.eil.utoronto.ca/icity/iCity-SpatialLoc", "http://www.wurvoc.org/vocabularies/om-1.8", "http://www.w3.org/2006/time" ],
     "title" : {
       "undefined" : "Activity specification: a content ontology design pattern."
     },
-    "iri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "version" : "1.1",
     "author" : [ "Megan Katsumi" ],
     "description" : {
@@ -31,7 +31,7 @@
       "hasComponent" : [ {
         "identifier" : "hasComponent",
         "language" : "undefined",
-        "value" : "https://w3id.org/icity/iCity-Change/",
+        "value" : "http://ontology.eil.utoronto.ca/icity/iCity-Change/",
         "type" : "label"
       } ],
       "creator" : [ {
@@ -61,7 +61,7 @@
       "extractedFrom" : [ {
         "identifier" : "extractedFrom",
         "language" : "undefined",
-        "value" : "https://w3id.org/icity/iCity-Activity/",
+        "value" : "http://ontology.eil.utoronto.ca/icity/iCity-Activity/",
         "type" : "label"
       } ],
       "scenarios" : [ {
@@ -101,52 +101,52 @@
     "id" : "0",
     "type" : "owl:Class"
   }, {
-    "id" : "12",
+    "id" : "4",
     "type" : "owl:Class"
   }, {
-    "id" : "26",
+    "id" : "22",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "23",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "25",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "15",
     "type" : "owl:Class"
   }, {
-    "id" : "27",
-    "type" : "owl:Thing"
-  }, {
-    "id" : "28",
-    "type" : "owl:Thing"
-  }, {
-    "id" : "16",
-    "type" : "owl:Class"
-  }, {
-    "id" : "30",
-    "type" : "owl:Thing"
-  }, {
-    "id" : "13",
+    "id" : "6",
     "type" : "owl:Class"
   }, {
     "id" : "2",
     "type" : "owl:Thing"
   }, {
-    "id" : "33",
+    "id" : "48",
     "type" : "owl:Thing"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "7",
+    "type" : "owl:intersectionOf"
   }, {
     "id" : "9",
     "type" : "owl:Class"
   }, {
-    "id" : "48",
+    "id" : "21",
     "type" : "owl:Class"
   }, {
-    "id" : "15",
+    "id" : "12",
     "type" : "owl:Class"
   }, {
-    "id" : "24",
-    "type" : "owl:intersectionOf"
-  }, {
-    "id" : "10",
+    "id" : "17",
     "type" : "owl:Class"
   }, {
-    "id" : "19",
+    "id" : "42",
     "type" : "owl:Class"
   }, {
-    "id" : "5",
+    "id" : "67",
     "type" : "owl:Class"
   } ],
   "classAttribute" : [ {
@@ -159,8 +159,8 @@
     "attributes" : [ "external" ],
     "id" : "0"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/State",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/State",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "instances" : 0,
     "description" : {
       "undefined" : "A state refers to a class of manifestations. It may be a precondition or effect of some Activity, or more generally it may enabled or be caused by some Activity. If a state is complex, it may refer to some combination of classes of manifestations.\nA note on complex states:\nSay that a shopping activity, Activity-Shop, requires both the VehicleW30LGas state, but also some state wherein the mall is open, OpenMall. Each state would first be defined separately. Then, we can simply state:\nprecondition(VehicleW30LGas,Activity-Shop) AND  precondition(OpenMall,Activity-Shop)\nwere the preconditions required disjunctively, we could state:\nprecondition(VehicleW30LGas,Activity-Shop) OR precondition(OpenMall,Activity-Shop)\nHowever, in large and complex domains, there will be cases in which the above approach is undesirable. In particular, due to the complexity of the description that results as the state being described becomes more detailed. In many cases it will be more natural and convenient to be able to refer to a single, aggregate state. We therefore extend the representation of States to capture aggregation, as approached in the concept of state trees introduced by TOVE as a construct for the activity cluster.\n\nA State may be either non-terminal or terminal. A terminal state has no child states, and therefore refers directly to a class of manifestations, whereas a non-terminal state has child states, which may define some classes of manifestations, or further define some other complex states.\n\tNonTerminalState(x) v TerminalState(x) = State(x)\nA state  cannot be both non-terminal and terminal.\n\tTerminalState disjointWith NonTerminalState"
@@ -168,40 +168,47 @@
     "label" : {
       "IRI-based" : "State"
     },
-    "subClasses" : [ "24", "16" ],
+    "subClasses" : [ "6", "7" ],
     "attributes" : [ "external" ],
-    "id" : "12",
-    "superClasses" : [ "13" ]
+    "id" : "4",
+    "superClasses" : [ "5" ]
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/DisjunctiveState",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "22",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "23",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "25",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/ConjunctiveState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "instances" : 0,
     "description" : {
       "undefined" : "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."
     },
     "label" : {
-      "IRI-based" : "DisjunctiveState"
+      "IRI-based" : "ConjunctiveState"
     },
     "attributes" : [ "external" ],
-    "id" : "26",
-    "superClasses" : [ "16" ]
+    "id" : "15",
+    "superClasses" : [ "6" ]
   }, {
-    "iri" : "http://www.w3.org/2002/07/owl#Thing",
-    "baseIri" : "http://owl2vowl.de",
-    "id" : "27",
-    "label" : {
-      "undefined" : "Thing"
-    }
-  }, {
-    "iri" : "http://www.w3.org/2002/07/owl#Thing",
-    "baseIri" : "http://owl2vowl.de",
-    "id" : "28",
-    "label" : {
-      "undefined" : "Thing"
-    }
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/NonTerminalState",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/NonTerminalState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "instances" : 0,
     "description" : {
       "undefined" : "A non-terminal state type has substates. It may be conjunctive or disjunctive. \nA state type cannot be both conjunctive and disjunctive.\n\tConjunctiveStateType disjointWith DisjunctiveStateType\nConjunctive and disjunctive state types, which do have substates, are achieved at some time if their decomposition of state types is achieved.\nNote that in this representation, decomp_of is not a transitive relation, it only refers to the direct children of a non-terminal state type. A more general relation that is transitive is the substate relation.\ndecomp_of(x,y) -> substate(x,y)"
@@ -209,30 +216,10 @@
     "label" : {
       "IRI-based" : "NonTerminalState"
     },
-    "subClasses" : [ "15", "26" ],
+    "subClasses" : [ "15", "21" ],
     "attributes" : [ "external" ],
-    "id" : "16",
-    "superClasses" : [ "12" ]
-  }, {
-    "iri" : "http://www.w3.org/2002/07/owl#Thing",
-    "baseIri" : "http://owl2vowl.de",
-    "id" : "30",
-    "label" : {
-      "undefined" : "Thing"
-    }
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/ActivityOntologyThing",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "instances" : 0,
-    "description" : {
-      "undefined" : "Added for organizational purposes, to identify all classes defined in the Activity ontology."
-    },
-    "label" : {
-      "IRI-based" : "ActivityOntologyThing"
-    },
-    "subClasses" : [ "9", "12" ],
-    "attributes" : [ "external" ],
-    "id" : "13"
+    "id" : "6",
+    "superClasses" : [ "4" ]
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
@@ -243,13 +230,40 @@
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
-    "id" : "33",
+    "id" : "48",
     "label" : {
       "undefined" : "Thing"
     }
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/Activity",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/ActivityOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "instances" : 0,
+    "description" : {
+      "undefined" : "Added for organizational purposes, to identify all classes defined in the Activity ontology."
+    },
+    "label" : {
+      "IRI-based" : "ActivityOntologyThing"
+    },
+    "subClasses" : [ "9", "4" ],
+    "attributes" : [ "external" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/TerminalState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "instances" : 0,
+    "description" : {
+      "undefined" : "A terminal state type has no substates (cannot be decomposed). It corresponds to a particular class of manifestations. A terminal state is achieved at some time if and only if there exists a manifestation within its defined classification, that exists at that time."
+    },
+    "label" : {
+      "IRI-based" : "TerminalState"
+    },
+    "intersection" : [ "17" ],
+    "attributes" : [ "intersection", "external" ],
+    "id" : "7",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "instances" : 0,
     "description" : {
       "undefined" : "An Activity describes something that occurs in the domain.\nAn Activity may be further defined by (decomposed into) Subactivities.\nAn Activity may have precondition and/or effect State.\nAn Activity may be enabled by or cause some State. An enabling of causing state is a generalization of a precondition/effect; an Activity is enabled by or causes some State if it has a subactivity with a precondition or effect (respectively) of that State. \nIn other words, the state may not be required directly before, or cause directly after the activity, but by some more specialized sub-activity.\nAn Activity occurs at some point in time and space.\nAn Activity takes place during some interval, and so has some duration.\nAn Activity may have some Manifestations that participate in it."
@@ -259,43 +273,20 @@
     },
     "attributes" : [ "external" ],
     "id" : "9",
-    "superClasses" : [ "13" ]
+    "superClasses" : [ "5" ]
   }, {
-    "iri" : "https://w3id.org/icity/iCity-SpatialLoc/SpatialFeature",
-    "baseIri" : "https://w3id.org/icity/iCity-SpatialLoc",
-    "instances" : 0,
-    "label" : {
-      "IRI-based" : "SpatialFeature"
-    },
-    "attributes" : [ "external" ],
-    "id" : "48"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/ConjunctiveState",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/DisjunctiveState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "instances" : 0,
     "description" : {
       "undefined" : "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."
     },
     "label" : {
-      "IRI-based" : "ConjunctiveState"
+      "IRI-based" : "DisjunctiveState"
     },
     "attributes" : [ "external" ],
-    "id" : "15",
-    "superClasses" : [ "16" ]
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/TerminalState",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "instances" : 0,
-    "description" : {
-      "undefined" : "A terminal state type has no substates (cannot be decomposed). It corresponds to a particular class of manifestations. A terminal state is achieved at some time if and only if there exists a manifestation within its defined classification, that exists at that time."
-    },
-    "label" : {
-      "IRI-based" : "TerminalState"
-    },
-    "intersection" : [ "5" ],
-    "attributes" : [ "intersection", "external" ],
-    "id" : "24",
-    "superClasses" : [ "12" ]
+    "id" : "21",
+    "superClasses" : [ "6" ]
   }, {
     "iri" : "http://www.w3.org/2006/time#Instant",
     "baseIri" : "http://www.w3.org/2006/time",
@@ -304,7 +295,16 @@
       "IRI-based" : "Instant"
     },
     "attributes" : [ "external" ],
-    "id" : "10"
+    "id" : "12"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/iCity-Change/Manifestation",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/iCity-Change",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Manifestation"
+    },
+    "attributes" : [ "external" ],
+    "id" : "17"
   }, {
     "iri" : "http://www.w3.org/2006/time#TemporalEntity",
     "baseIri" : "http://www.w3.org/2006/time",
@@ -313,16 +313,16 @@
       "IRI-based" : "TemporalEntity"
     },
     "attributes" : [ "external" ],
-    "id" : "19"
+    "id" : "42"
   }, {
-    "iri" : "https://w3id.org/icity/iCity-Change/Manifestation",
-    "baseIri" : "https://w3id.org/icity/iCity-Change",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/iCity-SpatialLoc/SpatialFeature",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/iCity-SpatialLoc",
     "instances" : 0,
     "label" : {
-      "IRI-based" : "Manifestation"
+      "IRI-based" : "SpatialFeature"
     },
     "attributes" : [ "external" ],
-    "id" : "5"
+    "id" : "67"
   } ],
   "property" : [ {
     "id" : "1",
@@ -331,73 +331,55 @@
     "id" : "3",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "4",
-    "type" : "owl:objectProperty"
-  }, {
     "id" : "8",
     "type" : "owl:objectProperty"
   }, {
     "id" : "11",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "13",
     "type" : "rdfs:SubClassOf"
   }, {
     "id" : "14",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "17",
-    "type" : "rdfs:SubClassOf"
+    "id" : "16",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "18",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "23",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "25",
+    "id" : "19",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "29",
+    "id" : "20",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "31",
+    "id" : "24",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "10",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "32",
+    "id" : "26",
     "type" : "owl:objectProperty"
-  }, {
-    "id" : "21",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "34",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "35",
-    "type" : "owl:allValuesFrom"
-  }, {
-    "id" : "37",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "38",
-    "type" : "owl:allValuesFrom"
-  }, {
-    "id" : "40",
-    "type" : "owl:allValuesFrom"
   }, {
     "id" : "41",
-    "type" : "owl:allValuesFrom"
+    "type" : "owl:objectProperty"
   }, {
-    "id" : "42",
-    "type" : "owl:allValuesFrom"
+    "id" : "27",
+    "type" : "owl:objectProperty"
   }, {
-    "id" : "43",
-    "type" : "owl:disjointWith"
+    "id" : "30",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "44",
-    "type" : "owl:disjointWith"
-  }, {
-    "id" : "22",
     "type" : "owl:objectProperty"
   }, {
     "id" : "46",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "47",
     "type" : "owl:allValuesFrom"
   }, {
     "id" : "49",
@@ -412,11 +394,26 @@
     "id" : "52",
     "type" : "owl:allValuesFrom"
   }, {
-    "id" : "55",
+    "id" : "53",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "54",
     "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "40",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "45",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "56",
+    "type" : "owl:disjointWith"
   }, {
     "id" : "57",
     "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "55",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "58",
     "type" : "owl:allValuesFrom"
@@ -430,31 +427,34 @@
     "id" : "61",
     "type" : "owl:allValuesFrom"
   }, {
-    "id" : "56",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "6",
-    "type" : "owl:objectProperty"
-  }, {
     "id" : "62",
-    "type" : "owl:objectProperty"
+    "type" : "owl:allValuesFrom"
   }, {
     "id" : "63",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "64",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "32",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "7",
+    "id" : "34",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "67",
+    "id" : "65",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "66",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "37",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "20",
+    "id" : "35",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "47",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "45",
+    "id" : "43",
     "type" : "owl:objectProperty"
   } ],
   "propertyAttribute" : [ {
@@ -478,70 +478,94 @@
     "attributes" : [ "external", "object" ],
     "id" : "3"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasParticipant",
-    "inverse" : "6",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "5",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasEffect",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
     "label" : {
-      "IRI-based" : "hasParticipant"
+      "IRI-based" : "hasEffect"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "2",
-    "attributes" : [ "external", "object" ],
-    "id" : "4"
-  }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/endOf",
-    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "10",
-    "label" : {
-      "IRI-based" : "endOf"
-    },
-    "superproperty" : [ "7" ],
+    "superproperty" : [ "10" ],
     "domain" : "9",
     "attributes" : [ "external", "object" ],
     "id" : "8"
   }, {
-    "range" : "13",
-    "domain" : "12",
-    "attributes" : [ "anonymous", "object" ],
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/endOf",
+    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
+    "range" : "12",
+    "label" : {
+      "IRI-based" : "endOf"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object" ],
     "id" : "11"
   }, {
-    "range" : "16",
+    "range" : "5",
+    "domain" : "4",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "13"
+  }, {
+    "range" : "6",
     "domain" : "15",
-    "attributes" : [ "anonymous", "object" ],
+    "attributes" : [ "object", "anonymous" ],
     "id" : "14"
   }, {
-    "range" : "12",
-    "domain" : "16",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "17"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/achievedAt",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "19",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/stateTypeOf",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "17",
     "label" : {
-      "IRI-based" : "achievedAt"
+      "IRI-based" : "stateTypeOf"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "20", "21", "22" ],
+    "superproperty" : [ "10" ],
+    "domain" : "7",
     "attributes" : [ "external", "object" ],
+    "id" : "16"
+  }, {
+    "range" : "4",
+    "domain" : "7",
+    "attributes" : [ "object", "anonymous" ],
     "id" : "18"
   }, {
-    "range" : "13",
+    "range" : "5",
     "domain" : "9",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "23"
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "19"
   }, {
-    "range" : "16",
-    "domain" : "26",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "25"
+    "range" : "6",
+    "domain" : "21",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "20"
   }, {
-    "range" : "12",
-    "domain" : "24",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "29"
+    "range" : "4",
+    "domain" : "6",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "24"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/ActivityOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "2",
+    "description" : {
+      "undefined" : "Added for organizational purposes, to identify all properties defined in the Activity ontology."
+    },
+    "label" : {
+      "IRI-based" : "ActivityOntologyProperty"
+    },
+    "domain" : "2",
+    "subproperty" : [ "26", "27", "28", "29", "30", "31", "32", "33", "34", "8", "35", "11", "36", "16", "37", "38", "39", "40" ],
+    "attributes" : [ "external", "object" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasParticipant",
+    "inverse" : "40",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "17",
+    "label" : {
+      "IRI-based" : "hasParticipant"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "2",
+    "attributes" : [ "external", "object" ],
+    "id" : "26"
   }, {
     "iri" : "http://www.w3.org/2003/01/geo/wgs84_pos#location",
     "baseIri" : "http://www.w3.org/2003/01/geo/wgs84_pos",
@@ -555,29 +579,42 @@
       "undefined" : "The relation between something and the point, \n or other geometrical thing in space, where it is.  For example, the realtionship between\n a radio tower and a Point with a given lat and long.\n Or a relationship between a park and its outline as a closed arc of points, or a road and\n its location as a arc (a sequence of points).\n Clearly in practice there will be limit to the accuracy of any such statement, but one would expect\n an accuracy appropriate for the size of the object and uses such as mapping .\n "
     },
     "attributes" : [ "external", "object" ],
-    "id" : "31"
+    "id" : "41"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasEffect",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/achievedAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "42",
     "label" : {
-      "IRI-based" : "hasEffect"
+      "IRI-based" : "achievedAt"
     },
-    "superproperty" : [ "7" ],
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "43", "44", "45" ],
+    "attributes" : [ "external", "object" ],
+    "id" : "27"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasPrecondition",
+    "inverse" : "38",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "hasPrecondition"
+    },
+    "superproperty" : [ "10" ],
     "domain" : "9",
     "attributes" : [ "external", "object" ],
-    "id" : "32"
+    "id" : "30"
   }, {
     "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt",
     "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "33",
+    "range" : "23",
     "label" : {
       "IRI-based" : "conjunctiveAchievedAt"
     },
-    "superproperty" : [ "18" ],
+    "superproperty" : [ "27" ],
     "domain" : "15",
     "attributes" : [ "external", "object" ],
-    "id" : "21"
+    "id" : "44"
   }, {
     "iri" : "http://www.w3.org/2006/time#hasEnd",
     "baseIri" : "http://www.w3.org/2006/time",
@@ -587,327 +624,290 @@
     },
     "domain" : "2",
     "attributes" : [ "external", "object" ],
-    "id" : "34"
+    "id" : "46"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/effectOf",
-    "inverse" : "32",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "9",
-    "label" : {
-      "IRI-based" : "effectOf"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "36" ],
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "35"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/occursAt",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "19",
-    "label" : {
-      "IRI-based" : "occursAt"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "28",
-    "attributes" : [ "external", "object" ],
-    "id" : "37"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/preconditionOf",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/preconditionOf",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "range" : "9",
     "label" : {
       "IRI-based" : "preconditionOf"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "39" ],
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "38"
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "29" ],
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "47"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/causedBy",
-    "inverse" : "36",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/achievedAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "42",
+    "label" : {
+      "IRI-based" : "achievedAt"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "43", "44", "45" ],
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "49"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/causedBy",
+    "inverse" : "39",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "range" : "9",
     "label" : {
       "IRI-based" : "causedBy"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "40"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/achievedAt",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "19",
-    "label" : {
-      "IRI-based" : "achievedAt"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "20", "21", "22" ],
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "41"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/enables",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "9",
-    "label" : {
-      "IRI-based" : "enables"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "42"
-  }, {
-    "range" : "26",
-    "domain" : "15",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "43"
-  }, {
-    "range" : "24",
-    "domain" : "16",
-    "attributes" : [ "anonymous", "object" ],
-    "id" : "44"
-  }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt",
-    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "30",
-    "label" : {
-      "IRI-based" : "terminalAchievedAt"
-    },
-    "superproperty" : [ "18", "45" ],
-    "domain" : "24",
-    "attributes" : [ "external", "object" ],
-    "id" : "22"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasSubstate",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "hasSubstate"
-    },
-    "superproperty" : [ "7", "47" ],
-    "domain" : "16",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "46"
-  }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/endOf",
-    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "10",
-    "label" : {
-      "IRI-based" : "endOf"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "49"
-  }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/beginOf",
-    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "10",
-    "label" : {
-      "IRI-based" : "beginOf"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "attributes" : [ "external", "object", "allValues" ],
     "id" : "50"
   }, {
-    "iri" : "https://w3id.org/icity/iCity-SpatialLoc/hasLocation",
-    "baseIri" : "https://w3id.org/icity/iCity-SpatialLoc",
-    "range" : "48",
-    "label" : {
-      "IRI-based" : "hasLocation"
-    },
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "51"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/enabledBy",
-    "inverse" : "53",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "enabledBy"
-    },
-    "superproperty" : [ "7", "54" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "52"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/causes",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "causes"
-    },
-    "superproperty" : [ "7", "56" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "55"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasSubactivity",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "9",
-    "label" : {
-      "IRI-based" : "hasSubactivity"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "57"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/occursAt",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "0",
-    "label" : {
-      "IRI-based" : "occursAt"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "58"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasEffect",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "hasEffect"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "59"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasParticipant",
-    "inverse" : "6",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "5",
-    "label" : {
-      "IRI-based" : "hasParticipant"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "60"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasPrecondition",
-    "inverse" : "54",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "hasPrecondition"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
-    "attributes" : [ "allValues", "external", "object" ],
-    "id" : "61"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/effectOf",
-    "inverse" : "32",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/effectOf",
+    "inverse" : "8",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "range" : "9",
     "label" : {
       "IRI-based" : "effectOf"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "36" ],
-    "attributes" : [ "external", "object" ],
-    "id" : "56"
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "39" ],
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "51"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/participatesIn",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/enables",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "enables"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "52"
+  }, {
+    "range" : "21",
+    "domain" : "15",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "53"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasSubstate",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "hasSubstate"
+    },
+    "superproperty" : [ "32", "10" ],
+    "domain" : "6",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "54"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/participatesIn",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
     "range" : "2",
     "label" : {
       "IRI-based" : "participatesIn"
     },
-    "superproperty" : [ "7" ],
+    "superproperty" : [ "10" ],
     "domain" : "2",
     "attributes" : [ "external", "object" ],
-    "id" : "6"
+    "id" : "40"
   }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/beginOf",
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt",
     "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "10",
+    "range" : "25",
     "label" : {
-      "IRI-based" : "beginOf"
+      "IRI-based" : "terminalAchievedAt"
     },
-    "superproperty" : [ "7" ],
-    "domain" : "9",
+    "superproperty" : [ "27", "55" ],
+    "domain" : "7",
     "attributes" : [ "external", "object" ],
-    "id" : "62"
+    "id" : "45"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/stateTypeOf",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "5",
-    "label" : {
-      "IRI-based" : "stateTypeOf"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "24",
-    "attributes" : [ "external", "object" ],
-    "id" : "63"
+    "range" : "7",
+    "domain" : "6",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "56"
   }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/ActivityOntologyProperty",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "2",
-    "description" : {
-      "undefined" : "Added for organizational purposes, to identify all properties defined in the Activity ontology."
-    },
-    "label" : {
-      "IRI-based" : "ActivityOntologyProperty"
-    },
-    "domain" : "2",
-    "subproperty" : [ "64", "36", "32", "65", "56", "6", "4", "54", "66", "53", "39", "62", "8", "63", "37", "18", "67", "47" ],
-    "attributes" : [ "external", "object" ],
-    "id" : "7"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasPrecondition",
-    "inverse" : "54",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/endOf",
+    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
     "range" : "12",
     "label" : {
-      "IRI-based" : "hasPrecondition"
+      "IRI-based" : "endOf"
     },
-    "superproperty" : [ "7" ],
+    "superproperty" : [ "10" ],
     "domain" : "9",
-    "attributes" : [ "external", "object" ],
-    "id" : "67"
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "57"
   }, {
-    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt",
-    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
-    "range" : "27",
-    "label" : {
-      "IRI-based" : "disjunctiveAchievedAt"
-    },
-    "superproperty" : [ "18" ],
-    "domain" : "26",
-    "attributes" : [ "external", "object" ],
-    "id" : "20"
-  }, {
-    "iri" : "https://w3id.org/icity/ActivitySpecification/hasDecomp",
-    "baseIri" : "https://w3id.org/icity/ActivitySpecification",
-    "range" : "12",
-    "label" : {
-      "IRI-based" : "hasDecomp"
-    },
-    "superproperty" : [ "7" ],
-    "domain" : "12",
-    "subproperty" : [ "64" ],
-    "attributes" : [ "external", "object" ],
-    "id" : "47"
-  }, {
-    "iri" : "https://w3id.org/icity/iCity-Change/existsAt",
-    "baseIri" : "https://w3id.org/icity/iCity-Change",
+    "iri" : "http://ontology.eil.utoronto.ca/icity/iCity-Change/existsAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/iCity-Change",
     "range" : "2",
     "label" : {
       "IRI-based" : "existsAt"
     },
     "domain" : "2",
-    "subproperty" : [ "22" ],
+    "subproperty" : [ "45" ],
     "attributes" : [ "external", "object" ],
-    "id" : "45"
+    "id" : "55"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasEffect",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "hasEffect"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "58"
+  }, {
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/beginOf",
+    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
+    "range" : "12",
+    "label" : {
+      "IRI-based" : "beginOf"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "59"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasPrecondition",
+    "inverse" : "38",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "hasPrecondition"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "60"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasParticipant",
+    "inverse" : "40",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "17",
+    "label" : {
+      "IRI-based" : "hasParticipant"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "61"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/causes",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "causes"
+    },
+    "superproperty" : [ "10", "37" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "62"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/occursAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "0",
+    "label" : {
+      "IRI-based" : "occursAt"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "63"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/enabledBy",
+    "inverse" : "28",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "enabledBy"
+    },
+    "superproperty" : [ "10", "38" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "64"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasDecomp",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "hasDecomp"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "36" ],
+    "attributes" : [ "external", "object" ],
+    "id" : "32"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/occursAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "42",
+    "label" : {
+      "IRI-based" : "occursAt"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "48",
+    "attributes" : [ "external", "object" ],
+    "id" : "34"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/hasSubactivity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "hasSubactivity"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "65"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/iCity-SpatialLoc/hasLocation",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/iCity-SpatialLoc",
+    "range" : "67",
+    "label" : {
+      "IRI-based" : "hasLocation"
+    },
+    "domain" : "9",
+    "attributes" : [ "external", "object", "allValues" ],
+    "id" : "66"
+  }, {
+    "iri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification/effectOf",
+    "inverse" : "8",
+    "baseIri" : "http://ontology.eil.utoronto.ca/icity/ActivitySpecification",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "effectOf"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "4",
+    "subproperty" : [ "39" ],
+    "attributes" : [ "external", "object" ],
+    "id" : "37"
+  }, {
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/beginOf",
+    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
+    "range" : "12",
+    "label" : {
+      "IRI-based" : "beginOf"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "9",
+    "attributes" : [ "external", "object" ],
+    "id" : "35"
+  }, {
+    "iri" : "http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt",
+    "baseIri" : "http://www.wurvoc.org/vocabularies/om-1.8",
+    "range" : "22",
+    "label" : {
+      "IRI-based" : "disjunctiveAchievedAt"
+    },
+    "superproperty" : [ "27" ],
+    "domain" : "21",
+    "attributes" : [ "external", "object" ],
+    "id" : "43"
   } ]
 }

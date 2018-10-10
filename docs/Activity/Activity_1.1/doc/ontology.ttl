@@ -130,6 +130,31 @@ above the local reference ellipsoid).""" ;
 #    Object Properties
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:comment "Added for organizational purposes to group properties defined in the Change Ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/existsAt
+<http://ontology.eil.utoronto.ca/icity/Change/existsAt> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> ;
+                                                        rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
+                                                        <http://purl.org/dc/elements/1.1/description> "Objects (e.g. perdurants and their manifestations) exist at some time interval or time point." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/hasManifestation
+<http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> ;
+                                                                owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                rdf:type owl:InverseFunctionalProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/manifestationOf
+<http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> ;
+                                                               rdf:type owl:FunctionalProperty .
+
+
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
@@ -168,10 +193,10 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
 <http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept> rdf:type owl:ObjectProperty ;
-                                                                   rdfs:subPropertyOf <https://w3id.org/icity/Change/ChangeOntologyProperty> ;
+                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> ;
                                                                    rdf:type owl:ReflexiveProperty ;
-                                                                   owl:propertyChainAxiom ( <https://w3id.org/icity/Change/manifestationOf>
-                                                                                            [ owl:inverseOf <https://w3id.org/icity/Change/manifestationOf>
+                                                                   owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf>
+                                                                                            [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf>
                                                                                             ]
                                                                                           ) ;
                                                                    rdfs:comment "Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object." .
@@ -302,29 +327,8 @@ above the local reference ellipsoid).""" ;
              rdfs:range <https://w3id.org/icity/Change/Manifestation> .
 
 
-###  https://w3id.org/icity/Change/ChangeOntologyProperty
-<https://w3id.org/icity/Change/ChangeOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                       rdfs:comment "Added for organizational purposes to group properties defined in the Change Ontology." .
-
-
 ###  https://w3id.org/icity/Change/existsAt
-<https://w3id.org/icity/Change/existsAt> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <https://w3id.org/icity/Change/ChangeOntologyProperty> ;
-                                         rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
-                                         <http://purl.org/dc/elements/1.1/description> "Objects (e.g. perdurants and their manifestations) exist at some time interval or time point." .
-
-
-###  https://w3id.org/icity/Change/hasManifestation
-<https://w3id.org/icity/Change/hasManifestation> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <https://w3id.org/icity/Change/ChangeOntologyProperty> ;
-                                                 owl:inverseOf <https://w3id.org/icity/Change/manifestationOf> ;
-                                                 rdf:type owl:InverseFunctionalProperty .
-
-
-###  https://w3id.org/icity/Change/manifestationOf
-<https://w3id.org/icity/Change/manifestationOf> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <https://w3id.org/icity/Change/ChangeOntologyProperty> ;
-                                                rdf:type owl:FunctionalProperty .
+<https://w3id.org/icity/Change/existsAt> rdf:type owl:ObjectProperty .
 
 
 ###  https://w3id.org/icity/SpatialLoc/SpatialLocOntologyProperty
@@ -364,6 +368,78 @@ above the local reference ellipsoid).""" ;
 
 ###  http://geovocab.org/spatial#Feature
 <http://geovocab.org/spatial#Feature> owl:equivalentClass <https://w3id.org/icity/SpatialLoc/SpatialFeature> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing
+<http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing> rdf:type owl:Class ;
+                                                                   rdfs:comment "Added for organizational purposes to group the classes defined in the Change Ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/Manifestation
+<http://ontology.eil.utoronto.ca/icity/Change/Manifestation> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                          owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept>
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ] ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                               owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                             ] ;
+                                                             owl:disjointWith [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept>
+                                                                                                     <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ] ;
+                                                             <http://purl.org/dc/terms/description> """A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
+A Manifestation exists at some Instant.
+The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept
+<http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                               owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/Manifestation>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/Manifestation>
+                                                                                                             ]
+                                                                                                           ) ;
+                                                                                        rdf:type owl:Class
+                                                                                      ] ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                                    owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Change/Manifestation>
+                                                                                  ] ;
+                                                                  owl:disjointWith [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/Change/Manifestation>
+                                                                                                          <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                                        ) ;
+                                                                                     rdf:type owl:Class
+                                                                                   ] ;
+                                                                  <http://purl.org/dc/terms/description> """A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
+A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
+Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
+A TimeVaryingConcept exists at some Interval.
+The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.""" .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
@@ -546,76 +622,8 @@ A state  cannot be both non-terminal and terminal.
                <http://purl.org/dc/elements/1.1/description> "A terminal state type has no substates (cannot be decomposed). It corresponds to a particular class of manifestations. A terminal state is achieved at some time if and only if there exists a manifestation within its defined classification, that exists at that time." .
 
 
-###  https://w3id.org/icity/Change/ChangeOntologyThing
-<https://w3id.org/icity/Change/ChangeOntologyThing> rdf:type owl:Class ;
-                                                    rdfs:comment "Added for organizational purposes to group the classes defined in the Change Ontology." .
-
-
 ###  https://w3id.org/icity/Change/Manifestation
-<https://w3id.org/icity/Change/Manifestation> rdf:type owl:Class ;
-                                              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                           owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
-                                                                                           owl:someValuesFrom <https://w3id.org/icity/Change/TimeVaryingConcept>
-                                                                                         ]
-                                                                                         [ rdf:type owl:Restriction ;
-                                                                                           owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
-                                                                                           owl:allValuesFrom <https://w3id.org/icity/Change/TimeVaryingConcept>
-                                                                                         ]
-                                                                                       ) ;
-                                                                    rdf:type owl:Class
-                                                                  ] ;
-                                              rdfs:subClassOf <https://w3id.org/icity/Change/ChangeOntologyThing> ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <https://w3id.org/icity/Change/manifestationOf> ;
-                                                                owl:allValuesFrom <https://w3id.org/icity/Change/TimeVaryingConcept>
-                                                              ] ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
-                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
-                                                              ] ;
-                                              owl:disjointWith [ owl:intersectionOf ( <http://www.w3.org/2006/time#TemporalEntity>
-                                                                                      <https://w3id.org/icity/Change/TimeVaryingConcept>
-                                                                                    ) ;
-                                                                 rdf:type owl:Class
-                                                               ] ;
-                                              <http://purl.org/dc/terms/description> """A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
-A Manifestation exists at some Instant.
-The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.""" .
-
-
-###  https://w3id.org/icity/Change/TimeVaryingConcept
-<https://w3id.org/icity/Change/TimeVaryingConcept> rdf:type owl:Class ;
-                                                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
-                                                                                                owl:someValuesFrom <https://w3id.org/icity/Change/Manifestation>
-                                                                                              ]
-                                                                                              [ rdf:type owl:Restriction ;
-                                                                                                owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
-                                                                                                owl:allValuesFrom <https://w3id.org/icity/Change/Manifestation>
-                                                                                              ]
-                                                                                            ) ;
-                                                                         rdf:type owl:Class
-                                                                       ] ;
-                                                   rdfs:subClassOf <https://w3id.org/icity/Change/ChangeOntologyThing> ,
-                                                                   [ rdf:type owl:Restriction ;
-                                                                     owl:onProperty <https://w3id.org/icity/Change/existsAt> ;
-                                                                     owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                   ] ,
-                                                                   [ rdf:type owl:Restriction ;
-                                                                     owl:onProperty <https://w3id.org/icity/Change/hasManifestation> ;
-                                                                     owl:allValuesFrom <https://w3id.org/icity/Change/Manifestation>
-                                                                   ] ;
-                                                   owl:disjointWith [ owl:intersectionOf ( <http://www.w3.org/2006/time#TemporalEntity>
-                                                                                           <https://w3id.org/icity/Change/Manifestation>
-                                                                                         ) ;
-                                                                      rdf:type owl:Class
-                                                                    ] ;
-                                                   <http://purl.org/dc/terms/description> """A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
-A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
-Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
-A TimeVaryingConcept exists at some Interval.
-The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.""" .
+<https://w3id.org/icity/Change/Manifestation> rdf:type owl:Class .
 
 
 ###  https://w3id.org/icity/SpatialLoc/SpatialFeature
