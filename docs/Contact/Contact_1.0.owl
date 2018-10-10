@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/icity/iContact/"
-     xml:base="https://w3id.org/icity/iContact/"
+<rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/Contact/"
+     xml:base="http://ontology.eil.utoronto.ca/icity/Contact/"
      xmlns:schema="http://schema.org/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -8,6 +8,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -16,24 +17,21 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="https://w3id.org/icity/iContact/">
-        <owl:versionIRI rdf:resource="https://w3id.org/icity/iContact/1.0/"/>
-        <owl:imports rdf:resource="https://w3id.org/icity/SpatialLoc/1.2/"/>
+    <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Contact/">
+        <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl"/>
-        <owl:versionInfo xml:lang="en"> Updated version of the iContact ontology, extended to include spatial feature. </owl:versionInfo>
+        <terms:title xml:lang="en">Contact Ontology</terms:title>
         <dc:creator>Megan Katsumi</dc:creator>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-07-06</terms:created>
-        <vann:preferredNamespacePrefix>icontact</vann:preferredNamespacePrefix>
-        <vann:preferredNamespaceUri>https://w3id.org/icity/iContact/</vann:preferredNamespaceUri>
-        <dc:description>Ontology to capture concepts related to contact information (addresses, phone numbers). Reuses the iContact Ontology.</dc:description>
-        <dc:creator>Mark Fox</dc:creator>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Time ontology is designed to capture concepts related to time.
-		Reuses the iContact ontology.
+        <rdfs:comment xml:lang="en">Developed as part of the overall iCity ontology effort, the Contact ontology is designed to capture concepts related to the contact information for individuals, organizations, and services. Reuses the iContact ontology.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
-Changes from previous version:
-</rdfs:comment>
-        <terms:title xml:lang="en">iContact Ontology</terms:title>
+Changes from previous version:</rdfs:comment>
+        <dc:description>Ontology to capture concepts related to contact information (addresses, phone numbers). Reuses the iContact Ontology developed by the Enterprise Integration Lab in Toronto. The iContact ontology is extended to introduce a specialized definition of Hours of Operation, defined as a subclass of both the iContact definition of hours of operation, and a subclass of the Recurring Event class defined in the iCity Recurring Event ontology.
+The Contact ontology also extends the definition of address to include an associated location.</dc:description>
+        <dc:creator>Mark Fox</dc:creator>
     </owl:Ontology>
     
 
@@ -287,17 +285,35 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icontact.owl#Address -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Contact/Address -->
 
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icontact.owl#Address">
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Contact/Address">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#Address"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/ContactOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/icity/SpatialLoc/hasLocation"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </rdf:Description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Contact/ContactOntologyThing -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Contact/ContactOntologyThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#HoursOfOperation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/ContactOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent//RecurringEvent"/>
+    </owl:Class>
 </rdf:RDF>
 
 
