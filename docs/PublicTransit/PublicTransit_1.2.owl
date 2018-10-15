@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/PublicTransit/"
      xml:base="http://ontology.eil.utoronto.ca/icity/PublicTransit/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:schema="http://schema.org/"
      xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
+     xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -25,12 +26,13 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/icity/PublicTransit/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <dc:description>Ontology to capture concepts related to public transit.</dc:description>
@@ -243,6 +245,9 @@ Changes from previous version:
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRoutes">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitSystem"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/RoutePD"/>
     </owl:ObjectProperty>
     
 
@@ -255,9 +260,25 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/onRoute -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/onRoute">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -301,14 +322,6 @@ Changes from previous version:
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://xmlns.com/foaf/0.1/name -->
-
-    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/name">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
-    </owl:DatatypeProperty>
     
 
 
@@ -391,6 +404,14 @@ Changes from previous version:
 * 0 (or empty) - indicates that there is no accessibility information for the stop
 * 1 - indicates that at least some vehicles at this stop can be boarded by a rider in a wheelchair
 * 2 - wheelchair boarding is not possible at this stop</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/name">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -667,8 +688,8 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint">
-        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"/>
@@ -851,6 +872,12 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
