@@ -407,6 +407,14 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName -->
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName">
@@ -565,6 +573,12 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
@@ -1034,6 +1048,12 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
