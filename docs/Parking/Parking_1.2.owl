@@ -20,6 +20,7 @@
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
      xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
@@ -27,16 +28,16 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/1.0/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.0/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.0/"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
 		To do: extend this to capture the activity of parking.
 Changes from previous version: updated foundational ontologies;
@@ -45,7 +46,6 @@ extended the classes and properties identified to capture greater detail
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <vann:preferredNamespacePrefix>icity-parking</vann:preferredNamespacePrefix>
-        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ontology.eil.utoronto.ca/icity/Parking/1.1/</owl:priorVersion>
         <dc:description>Parking, specifically parking areas refer to some area that enables parking of Vehicles.
 A Parking Area may contain sub-Parking Areas, the area of which may change.
 A Parking Area has some Parking Policy
@@ -57,6 +57,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <dc:issued>November 7, 2017</dc:issued>
         <adms:relatedDocumentation>Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
         <dc:title>iCity Parking Ontology</dc:title>
+        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ontology.eil.utoronto.ca/icity/Parking/1.1/</owl:priorVersion>
     </owl:Ontology>
     
 
@@ -850,17 +851,11 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1014,6 +1009,71 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Parking areas may change over time. ParkingAreaPD captures the entire entity of a parking area, i.e. the parking area perdurant.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/Address"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasWebSite"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingAreaPD"/>
     </owl:Class>
     
 

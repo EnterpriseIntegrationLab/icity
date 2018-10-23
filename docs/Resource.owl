@@ -28,6 +28,7 @@
         <dc:title>iCity Resource Ontology</dc:title>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.2</owl:versionInfo>
         <dc:creator>Megan Katsumi</dc:creator>
+        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ontology.eil.utoronto.ca/icity/Resource/1.2/</owl:priorVersion>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 6, 2017</dc:issued>
         <dc:description>This ontology provides a generic representation of resources that contain core properties generic across all transportation uses. We take the view presented in the TOVE model (Fadel, Fox, and Gruninger, 1994) that &quot;...being a resource is not an innate property of an object but a property that is derived from the role the object plays with respect to an activity&quot;. The definition of  a resource is dependent on its participation in an activity occurrence, so the Resource ontology is in fact an extension of the Activity ontology. In this sense, Resources are a class of manifestations, so that rather than have a specialized Resource-perdurant (PD) class, a Resource is a manifestation of some other perdurant class in the ontology. For example, an instance of a Vehicle that is a manifestation of some VehiclePD may also be an instance of a resource, whereas some other instance of a Vehicle that is some later manifestation of the same VehiclePD may not be a Resource, or it may be a different Resource. 
@@ -36,7 +37,6 @@
 		Changes from previous version: 
 		-Updated Activity ontology (via updates to SpatialLoc)
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
-        <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://ontology.eil.utoronto.ca/icity/Resource/1.2/</owl:priorVersion>
     </owl:Ontology>
     
 
@@ -265,6 +265,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/hasOwner">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ownedBy"/>
         <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/Resource"/>
         <rdfs:comment>A Resource may have some owner. The owner of a resource is subject to change over time.</rdfs:comment>
     </owl:ObjectProperty>
@@ -274,6 +275,14 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/icity/Resource/hasResourceType -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/hasResourceType">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Resource/ownedBy -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/ownedBy">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -302,18 +311,6 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.opengis.net/ont/geosparql#Feature -->
-
-    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
-    
-
-
-    <!-- http://www.w3.org/2006/time#TemporalEntity -->
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
     
 
 
@@ -440,6 +437,18 @@ A specific Resource may be used in or consumed in some activity occurrence.</dc:
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing">
         <dc:description>Added for organizational purposes, to identify all classes defined in the Resource ontology.</dc:description>
     </owl:Class>
+    
+
+
+    <!-- http://www.opengis.net/ont/geosparql#Feature -->
+
+    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#TemporalEntity -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
     
 
 
