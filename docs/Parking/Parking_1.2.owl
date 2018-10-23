@@ -194,9 +194,9 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -327,14 +327,6 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/occupiedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/occupiedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ownedBy -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ownedBy">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -840,22 +832,20 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation"/>
-                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ownedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ownedBy"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1102,8 +1092,8 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
