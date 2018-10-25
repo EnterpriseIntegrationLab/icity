@@ -18,7 +18,8 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/1.2/"/>
@@ -705,10 +706,10 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -860,15 +861,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ownedBy -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ownedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/parkingAllocatedTo -->
 
 
@@ -987,6 +979,26 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithLoc -->
 
 
@@ -1023,20 +1035,14 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteId -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteId">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRoutes -->
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRoutes">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitSystem"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/RoutePD"/>
     </owl:ObjectProperty>
     
 
@@ -1050,10 +1056,28 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/onRoute -->
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/onRoute">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -2460,12 +2484,39 @@ A parking policy may or may not apply during public holidays. If it does not app
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasGTFSRouteType -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasGTFSRouteType">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode -->
 
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteTextColor -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteTextColor">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -2492,6 +2543,24 @@ A parking policy may or may not apply during public holidays. If it does not app
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -2553,6 +2622,31 @@ A parking policy may or may not apply during public holidays. If it does not app
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty">
         <rdfs:comment>Added for organizational purposes, to capture the data properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -4648,22 +4742,20 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation"/>
-                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ownedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ownedBy"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4740,12 +4832,6 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4848,6 +4934,73 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/Address"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasWebSite"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingAreaPD"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing -->
 
 
@@ -4886,8 +5039,8 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/allowableDuring"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent//RecurringEvent"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/appliesDuring"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5369,6 +5522,12 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
@@ -5391,18 +5550,37 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteTextColor"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <dc:description>A Route consists of a series of Route Sections.
 A Route has some directionality.
 A Route is executed by various Vehicles at different points in time.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteId -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteId">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
     </owl:Class>
     
 
@@ -5454,6 +5632,12 @@ A Route Link operates on an Arc.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/inTransitSystem"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitSystemPD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
@@ -5461,9 +5645,61 @@ A Route Link operates on an Arc.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRouteId"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasGTFSRouteType"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteId"/>
+                <owl:onDataRange>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</rdf:first>
+                                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:onDataRange>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Routes change over time. RoutePD captures the entire entity of a route, i.e. the route perdurant.</dc:description>
@@ -5741,6 +5977,12 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
@@ -5776,6 +6018,12 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5841,6 +6089,30 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehiclePD">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/VehicleBlock -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/VehicleBlock">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Vehicle Block represents an allocation of transit trips to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block is allocated to a single vehicle, therefore the allocatedTo property which relates vehicle blocks to vehicles is functional.</rdfs:comment>
     </owl:Class>
     
 
@@ -7384,37 +7656,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/VehicleBlock -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/VehicleBlock">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/assignedFor"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/assignedTo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasSchedule"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/Schedule"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Vehicle Block is a schedule assigned to some Vehicle for a given time period.</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/Mode -->
 
 
@@ -7504,6 +7745,20 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Vehicle provides a motorized means of transportation within the urban system.
