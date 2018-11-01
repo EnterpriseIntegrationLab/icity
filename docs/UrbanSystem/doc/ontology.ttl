@@ -413,11 +413,6 @@ above the local reference ellipsoid).""" ;
                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation
-<http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation> rdf:type owl:ObjectProperty ;
-                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Parking/forDuration
 <http://ontology.eil.utoronto.ca/icity/Parking/forDuration> rdf:type owl:ObjectProperty ;
                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
@@ -464,11 +459,6 @@ above the local reference ellipsoid).""" ;
                                                                    rdfs:comment "A parking area has an associated vehicle capacity. The vehicle capacity may change over time as a result of reconfiguration of parking spaces within a parking area. The capacity may be used together with occupancy information to determine whether any vacancies exist." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Parking/hoursOfOperation
-<http://ontology.eil.utoronto.ca/icity/Parking/hoursOfOperation> rdf:type owl:ObjectProperty ;
-                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Parking/maxAdmittableHeight
 <http://ontology.eil.utoronto.ca/icity/Parking/maxAdmittableHeight> rdf:type owl:ObjectProperty ;
                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> ;
@@ -488,6 +478,16 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/Parking/maxDuration
 <http://ontology.eil.utoronto.ca/icity/Parking/maxDuration> rdf:type owl:ObjectProperty ;
                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Parking/maxParkingCost
+<http://ontology.eil.utoronto.ca/icity/Parking/maxParkingCost> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Parking/minParkingCharge
+<http://ontology.eil.utoronto.ca/icity/Parking/minParkingCharge> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Parking/occupiedBy
@@ -932,16 +932,6 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/appliesTo
 :appliesTo rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :UrbanSystemOntologyProperty .
-
-
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/assignedFor
-:assignedFor rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :UrbanSystemOntologyProperty .
-
-
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/assignedTo
-:assignedTo rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :UrbanSystemOntologyProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/associatedWith
@@ -2915,7 +2905,7 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                                                                                           )
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/associatedLocation> ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation> ;
                                                                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
@@ -2947,10 +2937,6 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                                                                                                                      ) ;
                                                                                                   rdf:type owl:Class
                                                                                                 ]
-                                                                            ] ,
-                                                                            [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/hoursOfOperation> ;
-                                                                              owl:allValuesFrom <http://www.w3.org/2006/time#GeneralDateTimeDescription>
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/occupiedBy> ;
@@ -3041,47 +3027,47 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                                               rdfs:comment "Parking areas may change over time. ParkingAreaPD captures the entire entity of a parking area, i.e. the parking area perdurant." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot
-<http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot> rdf:type owl:Class ;
-                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea> ,
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
-                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/Address>
-                                                                           ] ,
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours> ;
-                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation>
-                                                                           ] ,
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> ;
-                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber>
-                                                                           ] ,
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart>
-                                                                                            ] ;
-                                                                             owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                                                             owl:onClass <http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea>
-                                                                           ] ,
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasWebSite> ;
-                                                                             owl:allValuesFrom xsd:string
-                                                                           ] .
+###  http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacility
+<http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacility> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/Address>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasOperatingHours> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/HoursOfOperation>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart>
+                                                                                                 ] ;
+                                                                                  owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasWebSite> ;
+                                                                                  owl:allValuesFrom xsd:string
+                                                                                ] .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD
-<http://ontology.eil.utoronto.ca/icity/Parking/ParkingLotPD> rdf:type owl:Class ;
-                                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
-                                                                                                          owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot>
-                                                                                                        ]
-                                                                                                        [ rdf:type owl:Restriction ;
-                                                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
-                                                                                                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Parking/ParkingLot>
-                                                                                                        ]
-                                                                                                      ) ;
-                                                                                   rdf:type owl:Class
-                                                                                 ] ;
-                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingAreaPD> .
+###  http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacilityPD
+<http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacilityPD> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                               owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacility>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Parking/ParkingFacility>
+                                                                                                             ]
+                                                                                                           ) ;
+                                                                                        rdf:type owl:Class
+                                                                                      ] ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingAreaPD> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing
@@ -3157,6 +3143,18 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                                                             [ rdf:type owl:Restriction ;
                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/hasPaymentMethod> ;
                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Parking/ParkingPaymentMethod>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/maxParkingCost> ;
+                                                                              owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/minParkingCharge> ;
+                                                                              owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                  owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                                                                <http://www.w3.org/2006/time#DurationDescription>
+                                                                                                              )
+                                                                                                ]
                                                                             ] .
 
 
@@ -5101,6 +5099,10 @@ A Role has some authority, requires some skill, and may also have some associate
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> rdf:type owl:Class .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Volume
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> rdf:type owl:Class .
+
+
 ###  http://www.opengis.net/ont/geosparql#Feature
 <http://www.opengis.net/ont/geosparql#Feature> rdf:type owl:Class .
 
@@ -5124,6 +5126,10 @@ A Role has some authority, requires some skill, and may also have some associate
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
 <http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#DateTimeDescription
+<http://www.w3.org/2006/time#DateTimeDescription> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#DurationDescription
@@ -5159,6 +5165,38 @@ A Role has some authority, requires some skill, and may also have some associate
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/water
 :water rdf:type owl:NamedIndividual ,
                 <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/CV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/CV> rdf:type owl:NamedIndividual ,
+                                                            <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/HGV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/HGV> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
+                                                    rdfs:comment "Heavy goods vehicle" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/LGV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/LGV> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
+                                                    rdfs:comment "Light goods vehicle" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/coach
+<http://ontology.eil.utoronto.ca/icity/Vehicle/coach> rdf:type owl:NamedIndividual ,
+                                                               <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle
+<http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle> rdf:type owl:NamedIndividual ,
+                                                                    <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/private_car
+<http://ontology.eil.utoronto.ca/icity/Vehicle/private_car> rdf:type owl:NamedIndividual ,
+                                                                     <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
 
 
 #################################################################

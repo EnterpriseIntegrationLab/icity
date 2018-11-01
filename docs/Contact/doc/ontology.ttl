@@ -174,6 +174,10 @@ xsd:gYear rdf:type rdfs:Datatype .
 xsd:gYearMonth rdf:type rdfs:Datatype .
 
 
+###  http://www.w3.org/2001/XMLSchema#time
+xsd:time rdf:type rdfs:Datatype .
+
+
 #################################################################
 #    Object Properties
 #################################################################
@@ -192,18 +196,14 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#OperatingProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#OperatingProperty> rdf:type owl:ObjectProperty ;
-                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                                  <http://purl.org/dc/terms/description> "Properties that define the hours of operation of the contact."@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#addressProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#addressProperty> rdf:type owl:ObjectProperty ;
-                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                                rdfs:domain <http://ontology.eil.utoronto.ca/icontact.owl#Address> .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#contactProperty
-<http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> rdf:type owl:ObjectProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#dayofWeek
@@ -215,7 +215,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasAddress
 <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                           rdfs:range <http://ontology.eil.utoronto.ca/icontact.owl#Address> ;
                                                           rdfs:comment "hasAddress links any class to the Address class."@en .
 
@@ -241,7 +241,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasEmail
 <http://ontology.eil.utoronto.ca/icontact.owl#hasEmail> rdf:type owl:ObjectProperty ;
-                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                         rdfs:label "has Email"@en .
 
 
@@ -260,7 +260,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasPhoneType
 <http://ontology.eil.utoronto.ca/icontact.owl#hasPhoneType> rdf:type owl:ObjectProperty ;
-                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                             rdfs:range <http://ontology.eil.utoronto.ca/icontact.owl#PhoneType> ;
                                                             rdfs:label "has Phone Type"@en .
 
@@ -289,8 +289,12 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone
 <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> rdf:type owl:ObjectProperty ;
-                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#contactProperty> ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
                                                             rdfs:label "has Telephone"@en .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty
+<http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehContains
@@ -640,61 +644,72 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://ontology.eil.utoronto.ca/icontact.owl#Address> rdf:type owl:Class ;
                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icontact.owl#iContactThing> ,
                                                                        [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetDirection> ;
-                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#StreetDirection>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetType> ;
-                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#StreetType>
+                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddressType> ;
+                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#AddressType>
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasCity> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onClass <http://schema.org/City>
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasCountry> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onClass <http://schema.org/Country>
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasState> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onClass <http://schema.org/State>
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetDirection> ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onClass <http://ontology.eil.utoronto.ca/icontact.owl#StreetDirection>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetType> ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onClass <http://ontology.eil.utoronto.ca/icontact.owl#StreetType>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasBuilding> ;
-                                                                         owl:allValuesFrom xsd:string
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasCitySection> ;
-                                                                         owl:allValuesFrom xsd:string
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasPostalCode> ;
-                                                                         owl:allValuesFrom xsd:string
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreet> ;
-                                                                         owl:allValuesFrom xsd:string
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasUnitNumber> ;
-                                                                         owl:allValuesFrom xsd:nonNegativeInteger
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetNumber> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasUnitNumber> ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onDataRange xsd:nonNegativeInteger
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                          owl:onDataRange xsd:string
                                                                        ] ;
                                                        <http://purl.org/dc/terms/description> """Address is the main concept for a contact.  It has been designed to represent any type of address in the world, including India and the UK.  For example, the property hasBuilding is important in many UK and Indian addresses to further identify the person or business location.
@@ -738,6 +753,16 @@ Street information is divided into separate properties to fully indentify direct
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek
 <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                owl:oneOf ( <http://ontology.eil.utoronto.ca/icontact.owl#friday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#monday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#saturday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#sunday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#thursday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#tuesday>
+                                                                                            <http://ontology.eil.utoronto.ca/icontact.owl#wednesday>
+                                                                                          )
+                                                                              ] ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icontact.owl#iContactThing> ;
                                                           rdfs:label "Days of the Week"@en .
 
@@ -777,17 +802,17 @@ Street information is divided into separate properties to fully indentify direct
                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icontact.owl#iContactThing> ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#dayofWeek> ;
-                                                                                  owl:someValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek>
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek>
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasClosingTime> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onDataRange xsd:dateTime
+                                                                                  owl:onDataRange xsd:time
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasOpeningTime> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onDataRange xsd:dateTime
+                                                                                  owl:onDataRange xsd:time
                                                                                 ] ;
                                                                 <http://purl.org/dc/terms/description> "HoursOfOperation class provides the ability to define when the contact \"opens\" and \"closes\". Used for businesses."@en .
 
@@ -841,10 +866,10 @@ Street information is divided into separate properties to fully indentify direct
 ###  http://ontology.eil.utoronto.ca/icontact.owl#StreetDirection
 <http://ontology.eil.utoronto.ca/icontact.owl#StreetDirection> rdf:type owl:Class ;
                                                                owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                     owl:oneOf ( <http://ontology.eil.utoronto.ca/icontact.owl#East>
-                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#North>
-                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#South>
-                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#West>
+                                                                                     owl:oneOf ( <http://ontology.eil.utoronto.ca/icontact.owl#east>
+                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#north>
+                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#south>
+                                                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#west>
                                                                                                )
                                                                                    ] ;
                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icontact.owl#iContactThing> ;
@@ -980,19 +1005,13 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
                                                      rdfs:label "Drive"@en .
 
 
-###  http://ontology.eil.utoronto.ca/icontact.owl#East
-<http://ontology.eil.utoronto.ca/icontact.owl#East> rdf:type owl:NamedIndividual ;
-                                                    rdfs:label "East"@en .
-
-
 ###  http://ontology.eil.utoronto.ca/icontact.owl#FaxPhone
 <http://ontology.eil.utoronto.ca/icontact.owl#FaxPhone> rdf:type owl:NamedIndividual ;
                                                         rdfs:label "Fax Line"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Friday
-<http://ontology.eil.utoronto.ca/icontact.owl#Friday> rdf:type owl:NamedIndividual ,
-                                                               <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Friday> rdf:type owl:NamedIndividual ;
                                                       rdfs:label "Friday"@en .
 
 
@@ -1007,14 +1026,8 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Monday
-<http://ontology.eil.utoronto.ca/icontact.owl#Monday> rdf:type owl:NamedIndividual ,
-                                                               <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Monday> rdf:type owl:NamedIndividual ;
                                                       rdfs:label "Monday"@en .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#North
-<http://ontology.eil.utoronto.ca/icontact.owl#North> rdf:type owl:NamedIndividual ;
-                                                     rdfs:label "North"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Road
@@ -1023,14 +1036,8 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Saturday
-<http://ontology.eil.utoronto.ca/icontact.owl#Saturday> rdf:type owl:NamedIndividual ,
-                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Saturday> rdf:type owl:NamedIndividual ;
                                                         rdfs:label "Saturday"@en .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#South
-<http://ontology.eil.utoronto.ca/icontact.owl#South> rdf:type owl:NamedIndividual ;
-                                                     rdfs:label "South"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Street
@@ -1039,14 +1046,12 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Sunday
-<http://ontology.eil.utoronto.ca/icontact.owl#Sunday> rdf:type owl:NamedIndividual ,
-                                                               <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Sunday> rdf:type owl:NamedIndividual ;
                                                       rdfs:label "Sunday"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Thursday
-<http://ontology.eil.utoronto.ca/icontact.owl#Thursday> rdf:type owl:NamedIndividual ,
-                                                                 <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Thursday> rdf:type owl:NamedIndividual ;
                                                         rdfs:label "Thursday"@en .
 
 
@@ -1056,20 +1061,13 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Tuesday
-<http://ontology.eil.utoronto.ca/icontact.owl#Tuesday> rdf:type owl:NamedIndividual ,
-                                                                <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Tuesday> rdf:type owl:NamedIndividual ;
                                                        rdfs:label "Tuesday"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Wednesday
-<http://ontology.eil.utoronto.ca/icontact.owl#Wednesday> rdf:type owl:NamedIndividual ,
-                                                                  <http://ontology.eil.utoronto.ca/icontact.owl#DaysOfWeek> ;
+<http://ontology.eil.utoronto.ca/icontact.owl#Wednesday> rdf:type owl:NamedIndividual ;
                                                          rdfs:label "Wednesday"@en .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#West
-<http://ontology.eil.utoronto.ca/icontact.owl#West> rdf:type owl:NamedIndividual ;
-                                                    rdfs:label "West"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#Work
@@ -1080,6 +1078,54 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 ###  http://ontology.eil.utoronto.ca/icontact.owl#WorkPhone
 <http://ontology.eil.utoronto.ca/icontact.owl#WorkPhone> rdf:type owl:NamedIndividual ;
                                                          rdfs:label "Work Phone"@en .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#east
+<http://ontology.eil.utoronto.ca/icontact.owl#east> rdf:type owl:NamedIndividual ;
+                                                    rdfs:label "East"@en .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#friday
+<http://ontology.eil.utoronto.ca/icontact.owl#friday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#monday
+<http://ontology.eil.utoronto.ca/icontact.owl#monday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#north
+<http://ontology.eil.utoronto.ca/icontact.owl#north> rdf:type owl:NamedIndividual ;
+                                                     rdfs:label "North"@en .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#saturday
+<http://ontology.eil.utoronto.ca/icontact.owl#saturday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#south
+<http://ontology.eil.utoronto.ca/icontact.owl#south> rdf:type owl:NamedIndividual ;
+                                                     rdfs:label "South"@en .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#sunday
+<http://ontology.eil.utoronto.ca/icontact.owl#sunday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#thursday
+<http://ontology.eil.utoronto.ca/icontact.owl#thursday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#tuesday
+<http://ontology.eil.utoronto.ca/icontact.owl#tuesday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#wednesday
+<http://ontology.eil.utoronto.ca/icontact.owl#wednesday> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icontact.owl#west
+<http://ontology.eil.utoronto.ca/icontact.owl#west> rdf:type owl:NamedIndividual ;
+                                                    rdfs:label "West"@en .
 
 
 #################################################################
