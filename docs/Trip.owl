@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/Trip/"
      xml:base="http://ontology.eil.utoronto.ca/icity/Trip/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:schema="http://schema.org/"
      xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
+     xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -25,8 +26,9 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Trip ontology is designed to capture concepts related to trips.
 
@@ -243,12 +245,6 @@ Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
     
 
 
-    <!-- http://www.w3.org/2006/time#Interval -->
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
@@ -329,6 +325,7 @@ A Tour starts and ends at the same Location.</dc:description>
     <!-- http://ontology.eil.utoronto.ca/icity/Trip/Trip -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/Trip">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -349,6 +346,17 @@ A Tour starts and ends at the same Location.</dc:description>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/occursOn"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -403,7 +411,7 @@ A Trip may incur some cost (monetary or otherwise).</dc:description>
     <!-- http://ontology.eil.utoronto.ca/icity/Trip/TripSegment -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/TripSegment">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"/>
@@ -481,6 +489,12 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/Mode -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Interval -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
 </rdf:RDF>
 
 
