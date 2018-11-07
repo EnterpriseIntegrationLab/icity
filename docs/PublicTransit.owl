@@ -294,6 +294,14 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor">
@@ -315,6 +323,12 @@ Changes from previous version:
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/validFor">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence"/>
     
 
 
@@ -819,6 +833,37 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/Route"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>ScheduledTransitTrip is a type of RecurringEvent that only has TransitTrips as occurrences. A ScheduledTransitTrip is scheduled on some Route, RouteLink, or RouteSection. 
+ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint">
@@ -1038,6 +1083,7 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/Route"/>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink"/>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
