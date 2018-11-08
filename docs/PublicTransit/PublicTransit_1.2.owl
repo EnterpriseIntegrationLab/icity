@@ -3,26 +3,27 @@
      xml:base="http://ontology.eil.utoronto.ca/icity/PublicTransit/"
      xmlns:schema="http://schema.org/"
      xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:ns5="http://www.w3.org/2003/06/sw-vocab-status/ns#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="http://ontology.eil.utoronto.ca/icity/Spatial/1.0/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:owl2="http://ontology.eil.utoronto.ca/icity/wgs/1.0/"
-     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="http://ontology.eil.utoronto.ca/icity/OM/1.0/"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:OM="http://ontology.eil.utoronto.ca/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
+     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/1.2/"/>
@@ -31,6 +32,7 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/icity/PublicTransit/1.1/</owl:priorVersion>
@@ -326,12 +328,6 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"/>
@@ -424,6 +420,14 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound -->
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
     </owl:DatatypeProperty>
     
@@ -858,6 +862,18 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment>ScheduledTransitTrip is a type of RecurringEvent that only has TransitTrips as occurrences. A ScheduledTransitTrip is scheduled on some Route, RouteLink, or RouteSection. 
 ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:comment>
     </owl:Class>
@@ -1173,19 +1189,18 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment>A Vehicle Block represents an allocation of transit trips to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block is allocated to a single vehicle, therefore the allocatedTo property which relates vehicle blocks to vehicles is functional.</rdfs:comment>
+        <rdfs:comment>A Vehicle Block represents a grouping of transit trips to be allocated to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block may be allocated multiple vehicles, but only one vehicle at a given point in time therefore the allocatedTo property which relates vehicle blocks to vehicles is functional.</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
