@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/SSN/"
-     xml:base="http://ontology.eil.utoronto.ca/icity/SSN/"
+<rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/SSN_Transport/"
+     xml:base="http://ontology.eil.utoronto.ca/icity/SSN_Transport/"
      xmlns:schema="http://schema.org/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -11,21 +11,26 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:time="http://www.w3.org/2006/time#"
      xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:OM="http://ontology.eil.utoronto.ca/icity/OM/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/">
-        <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/1.0/"/>
+    <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/">
+        <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:imports rdf:resource="http://www.w3.org/ns/sosa/"/>
         <owl:imports rdf:resource="http://www.w3.org/ns/ssn/"/>
-        <vann:preferredNamespaceUri>http://www.w3.org/ns/ssn/</vann:preferredNamespaceUri>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
         <rdfs:seeAlso rdf:resource="https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology"/>
         <terms:title xml:lang="en">Sensor, Observation, Sample, and Actuator (SOSA) Ontology</terms:title>
         <terms:license rdf:resource="http://www.opengeospatial.org/ogc/Software"/>
+        <dc:description>Ontology to capture concepts related to sensors and their observations for the transportation domain. Reuses the SSN Ontology.</dc:description>
         <terms:license rdf:resource="http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document"/>
-        <dc:title>iCity SSN Ontology</dc:title>
         <terms:creator>
             <rdf:Description>
                 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
@@ -40,12 +45,9 @@
         </terms:creator>
         <dc:creator>Megan Katsumi</dc:creator>
         <terms:title xml:lang="en">Semantic Sensor Network Ontology</terms:title>
-        <vann:preferredNamespaceUri>http://www.w3.org/ns/sosa/</vann:preferredNamespaceUri>
+        <dc:title>iCity SSN Transport Ontology</dc:title>
+        <vann:preferredNamespacePrefix>ssn_transport</vann:preferredNamespacePrefix>
         <terms:rights>Copyright 2017 W3C/OGC.</terms:rights>
-        <vann:preferredNamespacePrefix>sosa</vann:preferredNamespacePrefix>
-        <dc:description>Ontology to capture concepts related to sensors and their observations. Reuses the SSN Ontology.</dc:description>
-        <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ssn</vann:preferredNamespacePrefix>
-        <vann:preferredNamespacePrefix>ssn</vann:preferredNamespacePrefix>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-17</terms:created>
         <rdfs:comment xml:lang="en">Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org</rdfs:comment>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the SSN ontology is designed to capture concepts related to sensors and their observations. It reuses the SSN ontology.
@@ -303,16 +305,16 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
     
 
 
     <!-- http://www.w3.org/ns/sosa/actsOnProperty -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/actsOnProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isActedOnBy"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
@@ -328,7 +330,7 @@
     <!-- http://www.w3.org/ns/sosa/hasFeatureOfInterest -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasFeatureOfInterest">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isFeatureOfInterestOf"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -347,7 +349,7 @@
     <!-- http://www.w3.org/ns/sosa/hasResult -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasResult">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isResultOf"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -365,7 +367,7 @@
     <!-- http://www.w3.org/ns/sosa/hasSample -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasSample">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isSampleOf"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
@@ -381,7 +383,7 @@
     <!-- http://www.w3.org/ns/sosa/hosts -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hosts">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isHostedBy"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.w3.org/ns/ssn/inDeployment"/>
@@ -403,7 +405,7 @@
     <!-- http://www.w3.org/ns/sosa/isActedOnBy -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isActedOnBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <rdfs:comment xml:lang="en">Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.</rdfs:comment>
@@ -418,7 +420,7 @@
     <!-- http://www.w3.org/ns/sosa/isFeatureOfInterestOf -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isFeatureOfInterestOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -435,7 +437,7 @@
     <!-- http://www.w3.org/ns/sosa/isHostedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isHostedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
@@ -452,7 +454,7 @@
     <!-- http://www.w3.org/ns/sosa/isObservedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isObservedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/observes"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
@@ -467,7 +469,7 @@
     <!-- http://www.w3.org/ns/sosa/isResultOf -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isResultOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Result"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -484,7 +486,7 @@
     <!-- http://www.w3.org/ns/sosa/isSampleOf -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isSampleOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
@@ -499,7 +501,7 @@
     <!-- http://www.w3.org/ns/sosa/madeActuation -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeActuation">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeByActuator"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -514,7 +516,7 @@
     <!-- http://www.w3.org/ns/sosa/madeByActuator -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeByActuator">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <rdfs:comment xml:lang="en">Relation linking an Actuation to the Actuator that made that Actuation.</rdfs:comment>
@@ -528,7 +530,7 @@
     <!-- http://www.w3.org/ns/sosa/madeBySampler -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeBySampler">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeSampling"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
@@ -543,7 +545,7 @@
     <!-- http://www.w3.org/ns/sosa/madeBySensor -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeBySensor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
@@ -558,7 +560,7 @@
     <!-- http://www.w3.org/ns/sosa/madeObservation -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeObservation">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <rdfs:comment xml:lang="en">Relation between a Sensor and an Observation made by the Sensor.</rdfs:comment>
@@ -572,7 +574,7 @@
     <!-- http://www.w3.org/ns/sosa/madeSampling -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeSampling">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
         <rdfs:comment xml:lang="en">Relation between a Sampler (sampling device or entity) and the Sampling act it performed.</rdfs:comment>
@@ -586,7 +588,7 @@
     <!-- http://www.w3.org/ns/sosa/observedProperty -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/observedProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
         <rdfs:comment xml:lang="en">Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.</rdfs:comment>
@@ -614,7 +616,7 @@
     <!-- http://www.w3.org/ns/sosa/phenomenonTime -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/phenomenonTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
@@ -630,7 +632,7 @@
     <!-- http://www.w3.org/ns/sosa/usedProcedure -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/usedProcedure">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.w3.org/ns/sosa/madeByActuator"/>
             <rdf:Description rdf:about="http://www.w3.org/ns/ssn/implements"/>
@@ -658,7 +660,7 @@
     <!-- http://www.w3.org/ns/ssn/deployedOnPlatform -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/deployedOnPlatform">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/inDeployment"/>
         <rdfs:comment xml:lang="en">Relation between a Deployment and the Platform on which the Systems are deployed.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -671,7 +673,7 @@
     <!-- http://www.w3.org/ns/ssn/deployedSystem -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/deployedSystem">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/hasDeployment"/>
         <rdfs:comment xml:lang="en">Relation between a Deployment and a deployed System.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -684,7 +686,7 @@
     <!-- http://www.w3.org/ns/ssn/detects -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/detects">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some ObservableProperty.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">detects</rdfs:label>
@@ -696,7 +698,7 @@
     <!-- http://www.w3.org/ns/ssn/forProperty -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/forProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation between some aspect of an entity and a Property.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">for property</rdfs:label>
@@ -709,7 +711,7 @@
     <!-- http://www.w3.org/ns/ssn/hasDeployment -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasDeployment">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a System and a Deployment, recording that the System is deployed in that Deployment.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has deployment</rdfs:label>
@@ -721,7 +723,7 @@
     <!-- http://www.w3.org/ns/ssn/hasInput -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasInput">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure and an Input to it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has input</rdfs:label>
@@ -733,7 +735,7 @@
     <!-- http://www.w3.org/ns/ssn/hasOutput -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasOutput">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure and an Output of it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has output</rdfs:label>
@@ -745,7 +747,7 @@
     <!-- http://www.w3.org/ns/ssn/hasProperty -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/isPropertyOf"/>
         <rdfs:comment xml:lang="en">Relation between an entity and a Property of that entity.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -758,7 +760,7 @@
     <!-- http://www.w3.org/ns/ssn/hasSubSystem -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasSubSystem">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a System and its component parts.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has subsystem</rdfs:label>
@@ -770,7 +772,7 @@
     <!-- http://www.w3.org/ns/ssn/implementedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/implementedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/implements"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -784,7 +786,7 @@
     <!-- http://www.w3.org/ns/ssn/implements -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/implements">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">implements</rdfs:label>
@@ -797,7 +799,7 @@
     <!-- http://www.w3.org/ns/ssn/inDeployment -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/inDeployment">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">in deployment</rdfs:label>
@@ -810,7 +812,7 @@
     <!-- http://www.w3.org/ns/ssn/isPropertyOf -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/isPropertyOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Property and the entity it belongs to.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">is property of</rdfs:label>
@@ -822,7 +824,7 @@
     <!-- http://www.w3.org/ns/ssn/isProxyFor -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/isProxyFor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">is proxy for</rdfs:label>
@@ -835,7 +837,7 @@
     <!-- http://www.w3.org/ns/ssn/wasOriginatedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/wasOriginatedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:comment xml:lang="en">Relation between an Observation and the Stimulus that originated it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -856,16 +858,16 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnDataProperty -->
 
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnDataProperty"/>
     
 
 
     <!-- http://www.w3.org/ns/sosa/hasSimpleResult -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/sosa/hasSimpleResult">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnDataProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
@@ -881,7 +883,7 @@
     <!-- http://www.w3.org/ns/sosa/resultTime -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/sosa/resultTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/ssnDataProperty"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -905,16 +907,75 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/SSN/SSNThing -->
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/LoopDetector -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/LoopDetector">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNTransportThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Observation"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
+                                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/wasOriginatedBy"/>
+                                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_presence"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/observes"/>
+                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/mean_travel_speed"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/observes"/>
+                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/road_occupancy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/observes"/>
+                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_volume"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/detects"/>
+                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_presence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNTransportThing -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNTransportThing"/>
     
 
 
     <!-- http://purl.org/vocommons/voaf#Vocabulary -->
 
     <owl:Class rdf:about="http://purl.org/vocommons/voaf#Vocabulary">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
     </owl:Class>
     
 
@@ -922,7 +983,7 @@
     <!-- http://www.w3.org/2006/time#TemporalEntity -->
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
     </owl:Class>
     
 
@@ -949,7 +1010,7 @@
     <!-- http://www.w3.org/ns/sosa/Actuation -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Actuation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/actsOnProperty"/>
@@ -1053,7 +1114,7 @@
     <!-- http://www.w3.org/ns/sosa/FeatureOfInterest -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/FeatureOfInterest">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasSample"/>
@@ -1123,7 +1184,7 @@
     <!-- http://www.w3.org/ns/sosa/Observation -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
@@ -1214,7 +1275,7 @@
     <!-- http://www.w3.org/ns/sosa/Platform -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Platform">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hosts"/>
@@ -1239,7 +1300,7 @@
     <!-- http://www.w3.org/ns/sosa/Procedure -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Procedure">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/hasInput"/>
@@ -1271,7 +1332,7 @@
     <!-- http://www.w3.org/ns/sosa/Result -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Result">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isResultOf"/>
@@ -1360,7 +1421,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/sosa/Sampling -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sampling">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
@@ -1468,7 +1529,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/Deployment -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Deployment">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/deployedOnPlatform"/>
@@ -1499,7 +1560,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/Input -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Input">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -1531,7 +1592,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/Output -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Output">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -1563,7 +1624,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/Property -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Property">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/isPropertyOf"/>
@@ -1581,7 +1642,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/Stimulus -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Stimulus">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/isProxyFor"/>
@@ -1619,7 +1680,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/ssn/System -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/System">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isHostedBy"/>
@@ -1665,7 +1726,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://xmlns.com/foaf/0.1/Agent -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN_Transport/SSNThing"/>
     </owl:Class>
     
 
@@ -1678,6 +1739,38 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/mean_travel_speed -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/mean_travel_speed">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/road_occupancy -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/road_occupancy">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_presence -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_presence">
+        <rdf:type rdf:resource="http://www.w3.org/ns/ssn/Stimulus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_volume -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/SSN_Transport/vehicle_volume">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
     
 
 
@@ -1735,6 +1828,11 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
@@ -1747,13 +1845,16 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+        <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
+    </rdf:Description>
+    <rdf:Description>
+        <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
 </rdf:RDF>
 
