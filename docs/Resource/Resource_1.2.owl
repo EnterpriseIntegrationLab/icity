@@ -235,16 +235,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/Resource"/>
-        <rdfs:comment>A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location.</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity">
@@ -401,6 +391,12 @@ above the local reference ellipsoid).</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"/>
                 <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
@@ -427,7 +423,9 @@ above the local reference ellipsoid).</rdfs:comment>
 A Resource may have some Location, amount or availability, according to the definition of the Manifestation or TimeVaryingEntity.
 A Resource must be classified as some Resource Type.
 A Resource may participate in some Activity Occurrence.
-A specific Resource may be used in or consumed in some activity occurrence.</dc:description>
+A specific Resource may be used in or consumed in some activity occurrence.
+
+A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location.</dc:description>
     </owl:Class>
     
 
