@@ -314,6 +314,24 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/Route"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn">
@@ -635,6 +653,12 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -674,20 +698,13 @@ A Route is executed by various Vehicles at different points in time.</dc:descrip
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/endsAtStop"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Route Link begins and ends at a Stop Point.
-A Route Link operates on an Arc.</dc:description>
+        <dc:description>A Route Section is part of some Route and consists of Route Links.
+A Route Section begins and ends at a Stop Point.</dc:description>
     </owl:Class>
     
 
@@ -796,6 +813,12 @@ A Route Link operates on an Arc.</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
