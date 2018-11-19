@@ -820,6 +820,16 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"/>
+        <rdfs:comment>Capacity of traffic throughput for a lane (e.g. vehicles per time unit)</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link">
@@ -973,6 +983,16 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"/>
+        <rdfs:comment>Nominal link capacity (per arc or lane) of traffic throughput.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD">
@@ -1060,6 +1080,16 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Observation"/>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed"/>
+                                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasResult"/>
+                                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy"/>
+                                    </owl:Restriction>
+                                </owl:unionOf>
+                            </owl:Class>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
                                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
@@ -1742,6 +1772,22 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
