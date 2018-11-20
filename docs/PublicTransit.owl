@@ -418,6 +418,7 @@ Changes from previous version:
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -877,6 +878,29 @@ A Route Section begins and ends at a Stop Point.</dc:description>
         <rdfs:comment>ScheduledTransitTrip is a type of RecurringEvent that only has TransitTrips as occurrences. A ScheduledTransitTrip is scheduled on some Route, RouteLink, or RouteSection, however it is not necessarily the case that the trip is accessible to travelers at the beginning stop point. It is possible that the scheduled trip will not pick up any passengers, or that passengers must pre-arrange in order to be picked up by the scheduled trip. A Scheduled Transit Trip may have a pick-up type and/or drop-off type as defined by some Trip Access Arrangement Type: as scheduled, not available, arranged with agency, or arranged with driver.
 ScheduledTransitTrips may be used to specify route and stop timetables. Like a TransitTrip, a ScheduledTransitTrip may be described as inbound or outbound with the isOutbound data property. Scheduled trips may be defined to require only the assignment of vehicles that accommodate a wheelchair rider(s); this property may be captured with the isWheelchairAccessible data property.
 ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/Station -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/Station">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Station is a specialized type of Stop Point that contains multiple Stop Points. 
+A Station may have an actual and associated location; it may provide various amenities (e.g. businesses or restrooms)</rdfs:comment>
     </owl:Class>
     
 
