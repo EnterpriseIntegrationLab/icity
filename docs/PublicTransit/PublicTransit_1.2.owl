@@ -231,10 +231,30 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2006/time#Interval"/>
     </owl:ObjectProperty>
     
 
@@ -389,15 +409,6 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay -->
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#duration"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor -->
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor">
@@ -444,6 +455,7 @@ Changes from previous version:
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitVehicleId">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -960,8 +972,14 @@ A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible d
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#duration"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -971,6 +989,12 @@ A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible d
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>Transit Incidents are events of interest that occur on a particular transit trip. Typically, they are problematic, unplanned issues resulting in some delay.
+
+A TransitIncident is a subclass of Activity.
+It is associated with some station or stop point.
+An incident may be described (and so classified) by a predefined code: hasCode only xsd:String.
+An incident will have some resulting caused gap (i.e. the time from the incident until the next train arrives at the station).</rdfs:comment>
     </owl:Class>
     
 
