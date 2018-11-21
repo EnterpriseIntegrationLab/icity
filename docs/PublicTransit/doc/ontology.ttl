@@ -12,6 +12,7 @@
                                                                     <http://ontology.eil.utoronto.ca/icity/Change/1.1/> ,
                                                                     <http://ontology.eil.utoronto.ca/icity/OM/1.2/> ,
                                                                     <http://ontology.eil.utoronto.ca/icity/Organization/1.2/> ,
+                                                                    <http://ontology.eil.utoronto.ca/icity/RecurringEvent/1.0/> ,
                                                                     <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ,
                                                                     <http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/> ,
                                                                     <http://ontology.eil.utoronto.ca/icity/Trip/1.2/> ;
@@ -43,6 +44,14 @@ Changes from previous version:
 ###  http://ontology.eil.utoronto.ca/icity/OM/OMOntologyAnnotationProperty
 <http://ontology.eil.utoronto.ca/icity/OM/OMOntologyAnnotationProperty> rdf:type owl:AnnotationProperty ;
                                                                         <http://purl.org/dc/elements/1.1/description> "Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/creator
@@ -270,6 +279,14 @@ above the local reference ellipsoid).""" ;
 
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#time
+xsd:time rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -300,7 +317,7 @@ above the local reference ellipsoid).""" ;
                                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                                             owl:propertyChainAxiom ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/effectOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/endOf>
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp>
                                                                                      ]
@@ -309,8 +326,18 @@ above the local reference ellipsoid).""" ;
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/beginOf>
                                                                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+<http://ontology.eil.utoronto.ca/icity/Activity/beginOf> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                         owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                  <http://www.w3.org/2006/time#hasBeginning>
+                                                                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -339,6 +366,16 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 <http://ontology.eil.utoronto.ca/icity/Activity/enables> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+<http://ontology.eil.utoronto.ca/icity/Activity/endOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                       owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                <http://www.w3.org/2006/time#hasEnd>
+                                                                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -552,9 +589,18 @@ above the local reference ellipsoid).""" ;
             rdf:type owl:FunctionalProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithLoc
-:associatedWithLoc rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :TransitOntologyProperty .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithStop
+:associatedWithStop rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :TransitOntologyProperty ;
+                    rdfs:domain :TransitIncident ;
+                    rdfs:range :StopPoint .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip
+:associatedWithTrip rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :TransitOntologyProperty ;
+                    rdfs:domain :TransitIncident ;
+                    rdfs:range :TransitTrip .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop
@@ -562,14 +608,33 @@ above the local reference ellipsoid).""" ;
               rdfs:subPropertyOf :TransitOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap
+:causedGap rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :TransitOntologyProperty ;
+           rdfs:domain :TransitIncident ;
+           rdfs:range <http://www.w3.org/2006/time#Interval> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/endsAtStop
 :endsAtStop rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :TransitOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDropoffType
+:hasDropoffType rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :TransitOntologyProperty ;
+                rdfs:range :TripAccessArrangement .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasMonetaryCost
 :hasMonetaryCost rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :TransitOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasPickupType
+:hasPickupType rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :TransitOntologyProperty ;
+               rdfs:range :TripAccessArrangement .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRoutes
@@ -600,6 +665,23 @@ above the local reference ellipsoid).""" ;
             rdfs:subPropertyOf :TransitOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn
+:operatesOn rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :TransitOntologyProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Route
+                                        :RouteLink
+                                        :RouteSection
+                                      )
+                        ] ;
+            rdfs:range <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn
+:scheduledOn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :TransitOntologyProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor
 :timetableFor rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :TransitOntologyProperty .
@@ -615,9 +697,70 @@ above the local reference ellipsoid).""" ;
           rdfs:subPropertyOf :TransitOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/beginsRecurring
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/beginsRecurring> rdf:type owl:ObjectProperty ;
+                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfWeek
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfWeek> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/endMonth
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/endMonth> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/endsRecurring
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/endsRecurring> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasMonth
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasMonth> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:comment "Property added for organizational purposes only; to group all object properties defined in the recurring event ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursAddition
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursAddition> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursExcept
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursExcept> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:comment "Property added for organizational purposes only; to group all object properties defined in the time ontology." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
@@ -650,11 +793,6 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLinkLength
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLinkLength> rdf:type owl:ObjectProperty ;
                                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation
-<http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation> rdf:type owl:ObjectProperty ;
-                                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/connectedTo
@@ -834,9 +972,21 @@ above the local reference ellipsoid).""" ;
 <http://schema.org/address> rdf:type owl:ObjectProperty .
 
 
+###  http://schema.org/dayOfWeek
+<http://schema.org/dayOfWeek> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty> .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit> rdf:type owl:ObjectProperty ;
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
@@ -996,18 +1146,96 @@ above the local reference ellipsoid).""" ;
 <http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
+###  http://www.w3.org/2006/time#after
+<http://www.w3.org/2006/time#after> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#before
+<http://www.w3.org/2006/time#before> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#dayOfWeek
+<http://www.w3.org/2006/time#dayOfWeek> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#hasDateTimeDescription
+<http://www.w3.org/2006/time#hasDateTimeDescription> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#hasTRS
+<http://www.w3.org/2006/time#hasTRS> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#hasTemporalDuration
+<http://www.w3.org/2006/time#hasTemporalDuration> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#hasTime
+<http://www.w3.org/2006/time#hasTime> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#inTemporalPosition
+<http://www.w3.org/2006/time#inTemporalPosition> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#inside
+<http://www.w3.org/2006/time#inside> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalContains
+<http://www.w3.org/2006/time#intervalContains> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalDisjoint
+<http://www.w3.org/2006/time#intervalDisjoint> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalEquals
+<http://www.w3.org/2006/time#intervalEquals> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalFinishedBy
+<http://www.w3.org/2006/time#intervalFinishedBy> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalIn
+<http://www.w3.org/2006/time#intervalIn> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalMeets
+<http://www.w3.org/2006/time#intervalMeets> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalMetBy
+<http://www.w3.org/2006/time#intervalMetBy> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalOverlappedBy
+<http://www.w3.org/2006/time#intervalOverlappedBy> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalOverlaps
+<http://www.w3.org/2006/time#intervalOverlaps> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#intervalStartedBy
+<http://www.w3.org/2006/time#intervalStartedBy> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#monthOfYear
+<http://www.w3.org/2006/time#monthOfYear> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#timeZone
+<http://www.w3.org/2006/time#timeZone> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
+###  http://www.w3.org/2006/time#unitType
+<http://www.w3.org/2006/time#unitType> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyProperty> .
+
+
 ###  http://www.wurvoc.org/vocabularies/om-1.8/OMProperty
 <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> rdf:type owl:ObjectProperty .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                    rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
@@ -1020,16 +1248,6 @@ above the local reference ellipsoid).""" ;
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/DisjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                  rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
@@ -1068,12 +1286,6 @@ above the local reference ellipsoid).""" ;
 :PublicTransitDataProperty rdf:type owl:DatatypeProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay
-:causedDelay rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :PublicTransitDataProperty ;
-             rdfs:range xsd:duration .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor
 :hasDisplayColor rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :PublicTransitDataProperty .
@@ -1087,6 +1299,7 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode
 :hasIncidentCode rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :PublicTransitDataProperty ;
+                 rdfs:domain :TransitIncident ;
                  rdfs:range xsd:string .
 
 
@@ -1103,6 +1316,7 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitVehicleId
 :hasTransitVehicleId rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf :PublicTransitDataProperty ;
+                     rdf:type owl:FunctionalProperty ;
                      rdfs:domain [ rdf:type owl:Class ;
                                    owl:unionOf ( :TransitVehicle
                                                  :TransitVehiclePD
@@ -1115,6 +1329,14 @@ above the local reference ellipsoid).""" ;
             rdfs:subPropertyOf :PublicTransitDataProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible
+:isWheelchairAccessible rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :PublicTransitDataProperty ;
+                        rdfs:domain :ScheduledTransitTrip ;
+                        rdfs:range xsd:boolean ;
+                        rdfs:comment "Indicates whether the vehicle assigned to the trip will be able to accomodate a wheelchair(s)." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName
 :routeShortName rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf :PublicTransitDataProperty .
@@ -1123,22 +1345,42 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/wheelchairBoarding
 :wheelchairBoarding rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf :PublicTransitDataProperty ;
-                    rdfs:range [ rdf:type rdfs:Datatype ;
-                                 owl:oneOf [ rdf:type rdf:List ;
-                                             rdf:first 0 ;
-                                             rdf:rest [ rdf:type rdf:List ;
-                                                        rdf:first 1 ;
-                                                        rdf:rest [ rdf:type rdf:List ;
-                                                                   rdf:first 2 ;
-                                                                   rdf:rest rdf:nil
-                                                                 ]
-                                                      ]
-                                           ]
-                               ] ;
-                    rdfs:comment """The field can have the following values:
-* 0 (or empty) - indicates that there is no accessibility information for the stop
-* 1 - indicates that at least some vehicles at this stop can be boarded by a rider in a wheelchair
-* 2 - wheelchair boarding is not possible at this stop""" .
+                    rdfs:domain :StopPoint ;
+                    rdfs:range xsd:boolean ;
+                    rdfs:comment """Indicates whether wheelchair boarding is possible at a particular stop point. True if at least some vehicles at the stop can be boarded by a rider in a wheelchair.
+False if wheelchair boarding is not possible at the stop.
+Undefined otherwise.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/dayOfMonth
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/dayOfMonth> rdf:type owl:DatatypeProperty ;
+                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty> ;
+                                                                  rdfs:comment "Similar to the 'day' data property in owl-time, however the domain of 'day' is restricted to Generalized Date-Time Descriptions and so cannot be applied for recurring events ." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfMonth
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfMonth> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/endTime
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/endTime> rdf:type owl:DatatypeProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/startTime
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/startTime> rdf:type owl:DatatypeProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventDataProperty> ;
+                                                                 rdfs:range xsd:time .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:comment "Data property added for organizational purposes only; to group all data properties defined in the time ontology." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty
@@ -1189,6 +1431,106 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.w3.org/2004/02/skos/core#notation
 <http://www.w3.org/2004/02/skos/core#notation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#day
+<http://www.w3.org/2006/time#day> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#dayOfYear
+<http://www.w3.org/2006/time#dayOfYear> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#days
+<http://www.w3.org/2006/time#days> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#hasXSDDuration
+<http://www.w3.org/2006/time#hasXSDDuration> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#hour
+<http://www.w3.org/2006/time#hour> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#hours
+<http://www.w3.org/2006/time#hours> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#inXSDDate
+<http://www.w3.org/2006/time#inXSDDate> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+<http://www.w3.org/2006/time#inXSDDateTime> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#inXSDgYear
+<http://www.w3.org/2006/time#inXSDgYear> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#inXSDgYearMonth
+<http://www.w3.org/2006/time#inXSDgYearMonth> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#minute
+<http://www.w3.org/2006/time#minute> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#minutes
+<http://www.w3.org/2006/time#minutes> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#month
+<http://www.w3.org/2006/time#month> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#months
+<http://www.w3.org/2006/time#months> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#nominalPosition
+<http://www.w3.org/2006/time#nominalPosition> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#numericDuration
+<http://www.w3.org/2006/time#numericDuration> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#numericPosition
+<http://www.w3.org/2006/time#numericPosition> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#second
+<http://www.w3.org/2006/time#second> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#seconds
+<http://www.w3.org/2006/time#seconds> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#week
+<http://www.w3.org/2006/time#week> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#weeks
+<http://www.w3.org/2006/time#weeks> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#xsdDateTime
+<http://www.w3.org/2006/time#xsdDateTime> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#year
+<http://www.w3.org/2006/time#year> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
+
+
+###  http://www.w3.org/2006/time#years
+<http://www.w3.org/2006/time#years> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/timeOntologyDataProperty> .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent
@@ -1323,16 +1665,16 @@ above the local reference ellipsoid).""" ;
                                                           owl:equivalentClass <http://ontology.eil.utoronto.ca/organization.owl#Activity> ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyThing> ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/beginOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/endOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> ;
                                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/causes> ;
@@ -1619,18 +1961,6 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
 <http://ontology.eil.utoronto.ca/icity/OM/Geo_Position_unit> rdf:type owl:Class ;
                                                              rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                              rdfs:comment "Reference systems to indicate geographic position." .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
@@ -1953,7 +2283,7 @@ An AccessMethod may be valid for a specific distance or time.""" .
                      owl:equivalentClass [ owl:intersectionOf ( :StopPoint
                                                                 [ rdf:type owl:Restriction ;
                                                                   owl:onProperty :wheelchairBoarding ;
-                                                                  owl:hasValue 1
+                                                                  owl:hasValue "true"^^xsd:boolean
                                                                 ]
                                                               ) ;
                                            rdf:type owl:Class
@@ -2003,6 +2333,10 @@ An AccessMethod may be valid for a specific distance or time.""" .
                          owl:allValuesFrom :RouteSection
                        ] ,
                        [ rdf:type owl:Restriction ;
+                         owl:onProperty :operatesOn ;
+                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
                          owl:onProperty :hasDisplayColor ;
                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                          owl:onDataRange xsd:string
@@ -2031,17 +2365,12 @@ A Route is executed by various Vehicles at different points in time.""" .
 :RouteLink rdf:type owl:Class ;
            rdfs:subClassOf :TransitOntologyThing ,
                            [ rdf:type owl:Restriction ;
-                             owl:onProperty :beginsAtStop ;
+                             owl:onProperty :operatesOn ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :StopPoint
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :endsAtStop ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :StopPoint
+                             owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
                            ] ;
-           <http://purl.org/dc/elements/1.1/description> """A Route Link begins and ends at a Stop Point.
-A Route Link operates on an Arc.""" .
+           <http://purl.org/dc/elements/1.1/description> """A Route Section is part of some Route and consists of Route Links.
+A Route Section begins and ends at a Stop Point.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/RoutePD
@@ -2110,6 +2439,10 @@ A Route Link operates on an Arc.""" .
                                 owl:allValuesFrom :RouteLink
                               ] ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty :operatesOn ;
+                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty :beginsAtStop ;
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass :StopPoint
@@ -2122,30 +2455,60 @@ A Route Link operates on an Arc.""" .
               <http://purl.org/dc/elements/1.1/description> "A Route Section is part of a Route and consists of Route Links." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteTimetable
-:RouteTimetable rdf:type owl:Class ;
-                rdfs:subClassOf :TransitOntologyThing ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :arrivalTime ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass <http://www.w3.org/2006/time#DateTimeDescription>
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :timetableFor ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass [ rdf:type owl:Class ;
-                                                owl:unionOf ( :Route
-                                                              :RouteLink
-                                                            )
-                                              ]
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :travelTime ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass <http://www.w3.org/2006/time#DurationDescription>
-                                ] ;
-                <http://purl.org/dc/elements/1.1/description> """A Route Timetable represents schedule information for a particular Route, or Route Link.
-A RouteTimetable has an expected travel time (Duration) for the Route, or Route Link.""" .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip
+:ScheduledTransitTrip rdf:type owl:Class ;
+                      rdfs:subClassOf :TransitOntologyThing ,
+                                      <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :scheduledOn ;
+                                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                                            owl:unionOf ( :Route
+                                                                          :RouteLink
+                                                                          :RouteSection
+                                                                        )
+                                                          ]
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence> ;
+                                        owl:allValuesFrom :TransitTrip
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasDropoffType ;
+                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :TripAccessArrangement
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasPickupType ;
+                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :TripAccessArrangement
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :isOutbound ;
+                                        owl:allValuesFrom xsd:boolean
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :isWheelchairAccessible ;
+                                        owl:allValuesFrom xsd:boolean
+                                      ] ;
+                      rdfs:comment """ScheduledTransitTrip is a type of RecurringEvent that only has TransitTrips as occurrences. A ScheduledTransitTrip is scheduled on some Route, RouteLink, or RouteSection, however it is not necessarily the case that the trip is accessible to travelers at the beginning stop point. It is possible that the scheduled trip will not pick up any passengers, or that passengers must pre-arrange in order to be picked up by the scheduled trip. A Scheduled Transit Trip may have a pick-up type and/or drop-off type as defined by some Trip Access Arrangement Type: as scheduled, not available, arranged with agency, or arranged with driver.
+ScheduledTransitTrips may be used to specify route and stop timetables. Like a TransitTrip, a ScheduledTransitTrip may be described as inbound or outbound with the isOutbound data property. Scheduled trips may be defined to require only the assignment of vehicles that accommodate a wheelchair rider(s); this property may be captured with the isWheelchairAccessible data property.
+ScheduledTransitTrips may be used to specify route and stop timetables.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/Station
+:Station rdf:type owl:Class ;
+         rdfs:subClassOf :StopPoint ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                           owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ;
+                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :StopPoint
+                         ] ;
+         rdfs:comment """A Station is a specialized type of Stop Point that contains multiple Stop Points. 
+A Station may have an actual and associated location; it may provide various amenities (e.g. businesses or restrooms)""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint
@@ -2169,18 +2532,7 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :wheelchairBoarding ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                               owl:oneOf [ rdf:type rdf:List ;
-                                                           rdf:first 0 ;
-                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                      rdf:first 1 ;
-                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                 rdf:first 2 ;
-                                                                                 rdf:rest rdf:nil
-                                                                               ]
-                                                                    ]
-                                                         ]
-                                             ]
+                             owl:onDataRange xsd:boolean
                            ] ;
            <http://purl.org/dc/elements/1.1/description> """A Stop Point marks the start or end of a Route Link.
 A Stop Point has a Location.
@@ -2190,39 +2542,33 @@ A Stop Point has a name that people will understand in the local and tourist ver
 A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.""" .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/StopTimetable
-:StopTimetable rdf:type owl:Class ;
-               rdfs:subClassOf :TransitOntologyThing ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :arrivalTime ;
-                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass <http://www.w3.org/2006/time#DateTimeDescription>
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :timetableFor ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :StopPoint
-                               ] ;
-               <http://purl.org/dc/elements/1.1/description> "A StopTimetable has captures the expected arrival time (Time Instant) for some Stop Point." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident
 :TransitIncident rdf:type owl:Class ;
                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ,
                                  :TransitOntologyThing ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :associatedWithLoc ;
+                                   owl:onProperty :associatedWithStop ;
                                    owl:allValuesFrom :StopPoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :causedDelay ;
-                                   owl:allValuesFrom xsd:duration
+                                   owl:onProperty :associatedWithTrip ;
+                                   owl:allValuesFrom :TransitTrip
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :causedGap ;
+                                   owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasIncidentCode ;
                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onDataRange xsd:string
-                                 ] .
+                                 ] ;
+                 rdfs:comment """Transit Incidents are events of interest that occur on a particular transit trip. Typically, they are problematic, unplanned issues resulting in some delay.
+
+A TransitIncident is a subclass of Activity.
+It is associated with some station or stop point.
+An incident may be described (and so classified) by a predefined code: hasCode only xsd:String.
+An incident will have some resulting caused gap (i.e. the time from the incident until the next train arrives at the station).""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing
@@ -2300,6 +2646,7 @@ A TransitSystem may be accessed by some Fare or Transit Pass.""" .
                                                    owl:unionOf ( :Route
                                                                  :RouteLink
                                                                  :RouteSection
+                                                                 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
                                                                )
                                                  ]
                              ] ,
@@ -2356,20 +2703,183 @@ A TransitSystem may be accessed by some Fare or Transit Pass.""" .
                                   <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement
+:TripAccessArrangement rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :AccessArrangedViaAgency
+                                                         :AccessArrangedViaDriver
+                                                         :AccessAsScheduled
+                                                         :AccessNotAvailable
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :TransitOntologyThing .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/VehicleBlock
 :VehicleBlock rdf:type owl:Class ;
               rdfs:subClassOf :TransitOntologyThing ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :assignedFor ;
-                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :TransitTrip
+                                owl:onProperty :assignedTo ;
+                                owl:allValuesFrom :TransitVehicle
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :assignedTo ;
-                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :TransitVehicle
+                                owl:onProperty :assignedFor ;
+                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :ScheduledTransitTrip
                               ] ;
-              rdfs:comment "A Vehicle Block represents an allocation of transit trips to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block is allocated to a single vehicle, therefore the allocatedTo property which relates vehicle blocks to vehicles is functional." .
+              rdfs:comment "A Vehicle Block represents a grouping of transit trips to be allocated to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block may be allocated multiple vehicles, but only one vehicle at a given point in time therefore the allocatedTo property which relates vehicle blocks to vehicles is functional." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/DailyRecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/DailyRecurringEvent> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/startTime> ;
+                                                                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                             owl:onDataRange xsd:time
+                                                                                           ] ;
+                                                                           rdfs:comment "A DailyRecurringEvent may occur at the same time, or different times every day. Therefore, it has at most one associated time – the start time. No associated time indicates that there is no commitment to a recurring start time for the event. A DailyEvent does not necessarily have the same endtime or duration, therefore these are not specified." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://schema.org/DayOfWeek> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/Month
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/Month> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                   owl:oneOf ( <http://ontology.eil.utoronto.ca/icity/RecurringEvent/April>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/August>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/December>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/February>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/January>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/July>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/June>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/March>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/May>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/November>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/October>
+                                                                                               <http://ontology.eil.utoronto.ca/icity/RecurringEvent/September>
+                                                                                             )
+                                                                                 ] ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/MonthlyRecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/MonthlyRecurringEvent> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/dayOfMonth> ;
+                                                                                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                             ] ;
+                                                                             rdfs:comment "A MonthlyRecurringEvent recurs regularly on the same day of each month, as specified by the dayOfMonth data property. Note that there is often ambiguity regarding the semantics of a monthly recurring event: in this formalization, a MonthlyRecurringEvent is any event that recurs regularly on the same day of each month; other interpretations sometimes consider events that recur on the same day of week, or first or last day, in which case the day of month will vary." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/beginsRecurring> ;
+                                                                                        owl:allValuesFrom <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfWeek> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/endMonth> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/RecurringEvent/Month>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/endsRecurring> ;
+                                                                                        owl:allValuesFrom <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasMonth> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/RecurringEvent/Month>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursAddition> ;
+                                                                                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                            owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek>
+                                                                                                                          <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                                                        )
+                                                                                                          ]
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/recursExcept> ;
+                                                                                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                            owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek>
+                                                                                                                          <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                                                        )
+                                                                                                          ]
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                        owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://schema.org/dayOfWeek> ;
+                                                                                        owl:allValuesFrom <http://schema.org/DayOfWeek>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/dayOfMonth> ;
+                                                                                        owl:allValuesFrom rdfs:Literal
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/endDayOfMonth> ;
+                                                                                        owl:allValuesFrom rdfs:Literal
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/endTime> ;
+                                                                                        owl:allValuesFrom xsd:time
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/startTime> ;
+                                                                                        owl:allValuesFrom xsd:time
+                                                                                      ] ;
+                                                                      rdfs:comment "Based on the data model defined in: http://www.vertabelo.com/blog/technical-articles/again-and-again-managing-recurring-events-in-a-data-model but is integrated into the general city ontology." ,
+                                                                                   "Recurring events are defined based on the regular interval at which they occur; this is captures using some combination of the hasTime, dayOfWeek, hasMonth, and dayOfMonth properties.  Using these properties, ontology defines the following specizliations of the RecurringEvent class. Other subclasses may be defined similarly, as required." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing> rdf:type owl:Class ;
+                                                                           rdfs:comment "Class added for organizational purposes only; to group all classes defined in the recurring-event ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/WeeklyRecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/WeeklyRecurringEvent> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <http://schema.org/dayOfWeek> ;
+                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                              owl:onClass <http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek>
+                                                                                            ] ;
+                                                                            rdfs:comment "A WeeklyRecurringEvent recurs on the regularly on the same day of the week, as specified by the schema:dayOfWeek property." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/YearlyRecurringEvent
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/YearlyRecurringEvent> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasMonth> ;
+                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                              owl:onClass <http://ontology.eil.utoronto.ca/icity/RecurringEvent/Month>
+                                                                                            ] ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/dayOfMonth> ;
+                                                                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ;
+                                                                            rdfs:comment "A YearlyRecurringEvent recurs regularly on the same day of the same month, as specified by the hasMonth and dayOfMonth properties. As with MonthlyRecurringEvent, there may be ambiguity regarding the semantics of a yearly recurring event, however this formalization captures only the notion of an event that recurs on the same day of the same month (e.g. a birthday)." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/Resource
@@ -2572,6 +3082,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                             ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                               rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link> rdf:type owl:Class ;
                                                                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -2676,6 +3193,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                   ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                               rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD> rdf:type owl:Class ;
                                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -2710,6 +3234,79 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                       owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/NodePD>
                                                                                     ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population> ,
+                                                                                                  <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                                                                    owl:allValuesFrom [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
+                                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                                                                                                                                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                                                                             ]
+                                                                                                                                           ) ;
+                                                                                                                        rdf:type owl:Class
+                                                                                                                      ]
+                                                                                                  ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LoopDetector
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LoopDetector> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                          <http://www.w3.org/ns/sosa/Sensor> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
+                                                                                            owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
+                                                                                                                                     [ rdf:type owl:Class ;
+                                                                                                                                       owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed>
+                                                                                                                                                     <http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume>
+                                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                                       owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                                                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy>
+                                                                                                                                                     ]
+                                                                                                                                                   )
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc>
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                                                                                                                       owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
+                                                                                                                                     ]
+                                                                                                                                   ) ;
+                                                                                                                rdf:type owl:Class
+                                                                                                              ]
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
+                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                               owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                             ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Municipality
@@ -2804,10 +3401,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation> ;
-                                                                                    owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                                                                                  ] ,
-                                                                                  [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl> ;
                                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
                                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/FlowControl>
@@ -2882,6 +3475,33 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadId
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadId> rdf:type owl:Class ;
                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                             owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                 owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit>
+                                                                                                               ]
+                                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                                                                                 owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                               ] ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                                                                                 owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                               ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
@@ -3026,6 +3646,20 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Transportation System ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/CardinalityUnitPerTime>
+                                                                                           ] .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Trip/Tour
 <http://ontology.eil.utoronto.ca/icity/Trip/Tour> rdf:type owl:Class ;
                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
@@ -3070,7 +3704,8 @@ A Tour starts and ends at the same Location.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/Trip
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
+                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ,
+                                                                  <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> ;
                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -3085,6 +3720,12 @@ A Tour starts and ends at the same Location.""" .
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> ;
                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity>
+                                                                                   ] ;
+                                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://ontology.eil.utoronto.ca/icity/Trip/Trip>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> ;
@@ -3124,7 +3765,7 @@ A Trip may incur some cost (monetary or otherwise).""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/TripSegment
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/Trip> ,
                                                                          [ rdf:type owl:Restriction ;
                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle> ;
                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
@@ -3220,6 +3861,22 @@ An Organization Agent plays a Role within the Organization.""" .
 A Role has some authority, requires some skill, and may also have some associated processes.""" .
 
 
+###  http://schema.org/DayOfWeek
+<http://schema.org/DayOfWeek> rdf:type owl:Class ;
+                              owl:equivalentClass [ rdf:type owl:Class ;
+                                                    owl:oneOf ( <http://schema.org/Friday>
+                                                                <http://schema.org/Monday>
+                                                                <http://schema.org/PublicHoliday>
+                                                                <http://schema.org/Saturday>
+                                                                <http://schema.org/Sunday>
+                                                                <http://schema.org/Thursday>
+                                                                <http://schema.org/Tuesday>
+                                                                <http://schema.org/Wednesday>
+                                                              )
+                                                  ] ;
+                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing> .
+
+
 ###  http://schema.org/PostalAddress
 <http://schema.org/PostalAddress> rdf:type owl:Class .
 
@@ -3280,6 +3937,12 @@ A Role has some authority, requires some skill, and may also have some associate
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -3430,7 +4093,11 @@ A Role has some authority, requires some skill, and may also have some associate
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
+                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                              ] .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
@@ -3486,26 +4153,159 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour> rdf:type owl:NamedIndividual ,
-                                                                      <http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaAgency
+:AccessArrangedViaAgency rdf:type owl:NamedIndividual ,
+                                  :TripAccessArrangement .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
-                                                                               <http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaDriver
+:AccessArrangedViaDriver rdf:type owl:NamedIndividual ,
+                                  :TripAccessArrangement .
 
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessAsScheduled
+:AccessAsScheduled rdf:type owl:NamedIndividual ,
+                            :TripAccessArrangement .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessNotAvailable
+:AccessNotAvailable rdf:type owl:NamedIndividual ,
+                             :TripAccessArrangement .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/April
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/April> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/August
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/August> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/December
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/December> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/February
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/February> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/January
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/January> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/July
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/July> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/June
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/June> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/March
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/March> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/May
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/May> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/November
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/November> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/October
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/October> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/September
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/September> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed> rdf:type owl:NamedIndividual ,
+                                                                                        <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy> rdf:type owl:NamedIndividual ,
+                                                                                     <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence> rdf:type owl:NamedIndividual ,
+                                                                                       <http://www.w3.org/ns/ssn/Stimulus> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume> rdf:type owl:NamedIndividual ,
+                                                                                     <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour> rdf:type owl:NamedIndividual ,
+                                                                                        <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
+                                                                                                 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit> .
+
+
+###  http://schema.org/Friday
+<http://schema.org/Friday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Monday
+<http://schema.org/Monday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/PublicHoliday
+<http://schema.org/PublicHoliday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Saturday
+<http://schema.org/Saturday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Sunday
+<http://schema.org/Sunday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Thursday
+<http://schema.org/Thursday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Tuesday
+<http://schema.org/Tuesday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Wednesday
+<http://schema.org/Wednesday> rdf:type owl:NamedIndividual ,
+                                       <http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
+
+
+_:genid535 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
+           <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> """Mark S. Fox
+http://eil.utoronto.ca""" .
+
+_:genid536 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
+            <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
 
 #################################################################
 #    Annotations
 #################################################################
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
-                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+                                            <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
  altitude information in the WGS84 geodetic reference datum. 
  Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
-                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
-                                           rdfs:comment """
+                                            <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
+                                            rdfs:comment """
 Recent changes to this namespace:
 $Log: wgs84_pos.rdf,v $
 Revision 1.22  2009/04/20 15:00:30  timbl
@@ -3589,7 +4389,7 @@ date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
 basic geo vocab
 
 """ ;
-                                           rdfs:label "geo" .
+                                            rdfs:label "geo" .
 
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;

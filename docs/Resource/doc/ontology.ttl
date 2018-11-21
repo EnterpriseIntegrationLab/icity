@@ -293,7 +293,7 @@ above the local reference ellipsoid).""" ;
                                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                                             owl:propertyChainAxiom ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/effectOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/endOf>
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp>
                                                                                      ]
@@ -302,8 +302,18 @@ above the local reference ellipsoid).""" ;
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/beginOf>
                                                                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+<http://ontology.eil.utoronto.ca/icity/Activity/beginOf> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                         owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                  <http://www.w3.org/2006/time#hasBeginning>
+                                                                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -332,6 +342,16 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 <http://ontology.eil.utoronto.ca/icity/Activity/enables> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+<http://ontology.eil.utoronto.ca/icity/Activity/endOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                       owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                <http://www.w3.org/2006/time#hasEnd>
+                                                                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -417,13 +437,6 @@ above the local reference ellipsoid).""" ;
                                :ResourceOntologyProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation
-:hasAssociatedLocation rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf :ResourceOntologyProperty ;
-                       rdfs:domain :Resource ;
-                       rdfs:comment "A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity
 :hasAvailableCapacity rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf :ResourceOntologyProperty .
@@ -467,6 +480,13 @@ above the local reference ellipsoid).""" ;
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit> rdf:type owl:ObjectProperty ;
                                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
@@ -508,16 +528,6 @@ above the local reference ellipsoid).""" ;
 <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> rdf:type owl:ObjectProperty .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                    rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
@@ -528,16 +538,6 @@ above the local reference ellipsoid).""" ;
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/DisjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                  rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt
@@ -687,16 +687,16 @@ above the local reference ellipsoid).""" ;
 <http://ontology.eil.utoronto.ca/icity/Activity/Activity> rdf:type owl:Class ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyThing> ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/beginOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/endOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> ;
                                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/causes> ;
@@ -917,18 +917,6 @@ A state  cannot be both non-terminal and terminal.
                                                              rdfs:comment "Reference systems to indicate geographic position." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
 <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> rdf:type owl:Class ;
                                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
@@ -1007,6 +995,10 @@ A Monetary Value is measured with some currency.""" .
                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                           ] ,
                           [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                           ] ,
@@ -1027,7 +1019,9 @@ A Monetary Value is measured with some currency.""" .
 A Resource may have some Location, amount or availability, according to the definition of the Manifestation or TimeVaryingEntity.
 A Resource must be classified as some Resource Type.
 A Resource may participate in some Activity Occurrence.
-A specific Resource may be used in or consumed in some activity occurrence.""" .
+A specific Resource may be used in or consumed in some activity occurrence.
+
+A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing
@@ -1091,6 +1085,12 @@ A specific Resource may be used in or consumed in some activity occurrence.""" .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -1252,14 +1252,9 @@ A specific Resource may be used in or consumed in some activity occurrence.""" .
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour> rdf:type owl:NamedIndividual ,
-                                                                      <http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
-                                                                               <http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 #################################################################

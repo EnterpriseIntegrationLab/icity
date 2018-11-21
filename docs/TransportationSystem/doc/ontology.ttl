@@ -12,7 +12,8 @@
                                                                            <http://ontology.eil.utoronto.ca/icity/Mereology/1.0/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/OM/1.2/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/SSN/1.0/> ,
-                                                                           <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ;
+                                                                           <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ,
+                                                                           <http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/> ;
                                                                <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
                                                                <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                                <http://purl.org/dc/elements/1.1/description> """While most existing work attempts to describe the network based on its physical constructs, we model the network flow and the physical infrastructure separately. The motivation for this is that the constraints on transportation flow are something that is applied to the physical infrastructure. These constraints are distinct from the physical characteristics  and so should be defined separately. Although some constraints may be related, such as flow constraints imposed by the size of the lane that an arc accesses, this is a specific relationship that should be captured rather than conflating the concepts. For example, there is nothing to stop a vehicle from going the wrong way on a road, except for the flow of traffic that is imposed on the system (and these constraints may change with time). This results in the identification of two key concepts: the Transportation Network (a directed graph), and the Transportation Infrastructure (a physical feature where transportation occurs).
@@ -453,6 +454,13 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
@@ -483,11 +491,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLinkLength
 :associatedLinkLength rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf :TransportationOntologyProperty .
-
-
-###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation
-:associatedLocation rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/connectedTo
@@ -618,9 +621,91 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
            rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty
+<http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                                  <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                        <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Vehicle ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad
+<http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode
+<http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/hasSpeed
+<http://ontology.eil.utoronto.ca/icity/Vehicle/hasSpeed> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType
+<http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
+
+
+###  http://schema.org/brand
+<http://schema.org/brand> rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/cargoVolume
+<http://schema.org/cargoVolume> rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/driveWheelConfiguration
+<http://schema.org/driveWheelConfiguration> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelConsumption
+<http://schema.org/fuelConsumption> rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelEfficiency
+<http://schema.org/fuelEfficiency> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/fuelType
+<http://schema.org/fuelType> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/mileageFromOdometer
+<http://schema.org/mileageFromOdometer> rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/productionDate
+<http://schema.org/productionDate> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
+###  http://schema.org/purchaseDate
+<http://schema.org/purchaseDate> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty> .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit> rdf:type owl:ObjectProperty ;
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
@@ -1251,6 +1336,40 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
              rdfs:subPropertyOf :TransportationDataProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty
+<http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:comment "Added for organizational purposes, to capture the data properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle
+<http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle> rdf:type owl:DatatypeProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair
+<http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair> rdf:type owl:DatatypeProperty ;
+                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyDataProperty> .
+
+
+###  http://schema.org/numberOfAxels
+<http://schema.org/numberOfAxels> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty> .
+
+
+###  http://schema.org/numberOfDoors
+<http://schema.org/numberOfDoors> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty> .
+
+
+###  http://schema.org/vehicleSeatingCapacity
+<http://schema.org/vehicleSeatingCapacity> rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgDataProperty> .
+
+
 ###  http://www.opengis.net/ont/geosparql#asGML
 <http://www.opengis.net/ont/geosparql#asGML> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
 
@@ -1575,18 +1694,6 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                              rdfs:comment "Reference systems to indicate geographic position." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
 <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> rdf:type owl:Class ;
                                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
@@ -1816,6 +1923,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                 ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit
+:LaneCapacity_unit rdf:type owl:Class ;
+                   rdfs:subClassOf :TransportationOntologyThing ,
+                                   <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                   rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link
 :Link rdf:type owl:Class ;
       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -1920,6 +2034,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                       ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit
+:LinkCapacity_unit rdf:type owl:Class ;
+                   rdfs:subClassOf :TransportationOntologyThing ,
+                                   <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                   rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD
 :LinkPD rdf:type owl:Class ;
         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -1954,6 +2075,79 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :NodePD
                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation
+:LocVehiclePopulation rdf:type owl:Class ;
+                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population> ,
+                                      :TransportationOntologyThing ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                        owl:allValuesFrom [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                                                                                   owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                 ]
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ]
+                                      ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LoopDetector
+:LoopDetector rdf:type owl:Class ;
+              rdfs:subClassOf :TransportationOntologyThing ,
+                              <http://www.w3.org/ns/sosa/Sensor> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
+                                owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
+                                                                         [ rdf:type owl:Class ;
+                                                                           owl:unionOf ( :MeanTravelSpeed
+                                                                                         :VehicleVolume
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                                                                           owl:allValuesFrom :RoadOccupancy
+                                                                                         ]
+                                                                                       )
+                                                                         ]
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                                                           owl:allValuesFrom :Arc
+                                                                         ]
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                                                           owl:hasValue :vehicle_presence
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ]
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:hasValue :mean_travel_speed
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:hasValue :road_occupancy
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:hasValue :vehicle_volume
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                owl:hasValue :vehicle_presence
+                              ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
+:MeanTravelSpeed rdf:type owl:Class ;
+                 rdfs:subClassOf :TransportationOntologyThing ,
+                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                   owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                 ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Municipality
@@ -2048,10 +2242,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                         owl:allValuesFrom :Network
                       ] ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty :associatedLocation ;
-                        owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                      ] ,
-                      [ rdf:type owl:Restriction ;
                         owl:onProperty :hasControl ;
                         owl:allValuesFrom [ rdf:type owl:Class ;
                                             owl:unionOf ( :FlowControl
@@ -2126,6 +2316,33 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadId
 :RoadId rdf:type owl:Class ;
         rdfs:subClassOf :TransportationOntologyThing .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy
+:RoadOccupancy rdf:type owl:Class ;
+               rdfs:subClassOf :TransportationOntologyThing ,
+                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                 owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                     owl:allValuesFrom :RoadOccupancyUnit
+                                                   ]
+                               ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit
+:RoadOccupancyUnit rdf:type owl:Class ;
+                   rdfs:subClassOf :TransportationOntologyThing ,
+                                   <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                     owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                     owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                   ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
@@ -2270,14 +2487,196 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                              <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Transportation System ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume
+:VehicleVolume rdf:type owl:Class ;
+               rdfs:subClassOf :TransportationOntologyThing ,
+                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                 owl:allValuesFrom :LocVehiclePopulation
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                 owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/CardinalityUnitPerTime>
+                               ] .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Vehicle/Mode
 <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> rdf:type owl:Class ;
-                                                     rdfs:subClassOf :TransportationOntologyThing .
+                                                     rdfs:subClassOf :TransportationOntologyThing ,
+                                                                     <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> ;
+                                                     <http://purl.org/dc/elements/1.1/description> "A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing
+<http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> rdf:type owl:Class ;
+                                                               <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle
+<http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle> rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                     owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD>
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD>
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
+                                                                        <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                                                                          owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/hasSpeed> ;
+                                                                          owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/purchaseDate> ;
+                                                                          owl:allValuesFrom <http://www.w3.org/2006/time#DateTimeDescription>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesBicycle> ;
+                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onDataRange xsd:boolean
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/accommodatesWheelchair> ;
+                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onDataRange xsd:boolean
+                                                                        ] ;
+                                                        <http://purl.org/dc/elements/1.1/description> """A Vehicle provides a motorized means of transportation within the urban system.
+A Vehicle is associated with some Mode of transportation.
+A Vehicle has a Vintage.
+A Vehicle has a Manufacturer (make).
+There are different types (subclasses) of vehicles: Motorcycle, Sedan, Truck, Bus, Commercial Cargo Vehicle, Train,...
+A Vehicle has a capacity of passengers
+A Vehicle has a capacity of cargo
+A Vehicle may be occupied by at least one PersonAtT, and some cargo
+A Vehicle has a Speed at some point in time
+A Vehicle has a location at some point in time.
+A Vehicle is owned by some Person(s) or Firm""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> rdf:type owl:Class ;
+                                                                     <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Vehicle ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                       owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ] ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
+                                                                          <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad> ;
+                                                                            owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/brand> ;
+                                                                            owl:allValuesFrom <http://schema.org/Brand>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/cargoVolume> ;
+                                                                            owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/driveWheelConfiguration> ;
+                                                                            owl:allValuesFrom <http://schema.org/DriveWheelConfigurationValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/fuelConsumption> ;
+                                                                            owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/fuelEfficiency> ;
+                                                                            owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/fuelType> ;
+                                                                            owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/mileageFromOdometer> ;
+                                                                            owl:allValuesFrom <http://schema.org/QuantitativeValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/productionDate> ;
+                                                                            owl:allValuesFrom <http://www.w3.org/2006/time#DateTimeDescription>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/numberOfAxels> ;
+                                                                            owl:allValuesFrom xsd:integer
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/numberOfDoors> ;
+                                                                            owl:allValuesFrom xsd:integer
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://schema.org/vehicleSeatingCapacity> ;
+                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onDataRange xsd:integer
+                                                                          ] ;
+                                                          <http://purl.org/dc/elements/1.1/description> "A Vehicle changes over time. VehiclePD captures the entire entity of a vehicle, i.e. the \"vehicle perdurant\"." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
 <http://purl.org/vocommons/voaf#Vocabulary> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> .
+
+
+###  http://schema.org/Brand
+<http://schema.org/Brand> rdf:type owl:Class ;
+                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> .
+
+
+###  http://schema.org/DriveWheelConfigurationValue
+<http://schema.org/DriveWheelConfigurationValue> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> .
+
+
+###  http://schema.org/QuantitativeValue
+<http://schema.org/QuantitativeValue> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> ,
+                                                      <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration
@@ -2336,6 +2735,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -2486,7 +2891,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
+                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                              ] .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
@@ -2528,6 +2937,10 @@ Proper Parthood is transitive.""" .
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
 <http://www.w3.org/2004/02/skos/core#ConceptScheme> rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
+
+
+###  http://www.w3.org/2006/time#DateTimeDescription
+<http://www.w3.org/2006/time#DateTimeDescription> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#DurationDescription
@@ -3069,14 +3482,71 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour> rdf:type owl:NamedIndividual ,
-                                                                      <http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed
+:mean_travel_speed rdf:type owl:NamedIndividual ,
+                            <http://www.w3.org/ns/sosa/ObservableProperty> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
-                                                                               <http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy
+:road_occupancy rdf:type owl:NamedIndividual ,
+                         <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence
+:vehicle_presence rdf:type owl:NamedIndividual ,
+                           <http://www.w3.org/ns/ssn/Stimulus> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume
+:vehicle_volume rdf:type owl:NamedIndividual ,
+                         <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour
+:vehicles_per_hour rdf:type owl:NamedIndividual ,
+                            :LaneCapacity_unit .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane
+:vehicles_per_hour_per_lane rdf:type owl:NamedIndividual ,
+                                     :LinkCapacity_unit .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/CV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/CV> rdf:type owl:NamedIndividual ,
+                                                            <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/HGV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/HGV> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
+                                                    rdfs:comment "Heavy goods vehicle" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/LGV
+<http://ontology.eil.utoronto.ca/icity/Vehicle/LGV> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
+                                                    rdfs:comment "Light goods vehicle" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/coach
+<http://ontology.eil.utoronto.ca/icity/Vehicle/coach> rdf:type owl:NamedIndividual ,
+                                                               <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle
+<http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle> rdf:type owl:NamedIndividual ,
+                                                                    <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/private_car
+<http://ontology.eil.utoronto.ca/icity/Vehicle/private_car> rdf:type owl:NamedIndividual ,
+                                                                     <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.w3.org/ns/sosa/
@@ -3129,6 +3599,30 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
    <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
 [ <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
@@ -3144,10 +3638,10 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 [ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

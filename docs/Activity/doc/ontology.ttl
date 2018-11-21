@@ -144,7 +144,7 @@ above the local reference ellipsoid).""" ;
             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
             owl:propertyChainAxiom ( [ owl:inverseOf :effectOf
                                      ]
-                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                     :endOf
                                    ) ,
                                    ( [ owl:inverseOf :hasDecomp
                                      ]
@@ -153,8 +153,18 @@ above the local reference ellipsoid).""" ;
                                    ) ,
                                    ( [ owl:inverseOf :preconditionOf
                                      ]
-                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                     :beginOf
                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+:beginOf rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :ActivityOntologyProperty ;
+         rdfs:domain :Activity ;
+         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+         owl:propertyChainAxiom ( :occursAt
+                                  <http://www.w3.org/2006/time#hasBeginning>
+                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -183,6 +193,16 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 :enables rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf :ActivityOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+:endOf rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :ActivityOntologyProperty ;
+       rdfs:domain :Activity ;
+       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+       owl:propertyChainAxiom ( :occursAt
+                                <http://www.w3.org/2006/time#hasEnd>
+                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -276,6 +296,13 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
@@ -405,16 +432,6 @@ above the local reference ellipsoid).""" ;
 <http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf :ActivityOntologyProperty ;
-                                                    rdfs:domain :Activity ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( :occursAt
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf :achievedAt ;
@@ -425,16 +442,6 @@ above the local reference ellipsoid).""" ;
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf :achievedAt ;
                                                                   rdfs:domain :DisjunctiveState .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf :ActivityOntologyProperty ;
-                                                  rdfs:domain :Activity ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( :occursAt
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
@@ -508,16 +515,16 @@ above the local reference ellipsoid).""" ;
 :Activity rdf:type owl:Class ;
           rdfs:subClassOf :ActivityOntologyThing ,
                           [ rdf:type owl:Restriction ;
+                            owl:onProperty :beginOf ;
+                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :endOf ;
+                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
                             owl:onProperty :occursAt ;
                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :causes ;

@@ -391,6 +391,13 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
@@ -406,6 +413,13 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit> rdf:type owl:ObjectProperty ;
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
@@ -1086,18 +1100,6 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                              rdfs:comment "Reference systems to indicate geographic position." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
 <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> rdf:type owl:Class ;
                                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
@@ -1194,6 +1196,12 @@ A Monetary Value is measured with some currency.""" .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -1383,14 +1391,9 @@ Proper Parthood is transitive.""" .
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour> rdf:type owl:NamedIndividual ,
-                                                                      <http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
-                                                                               <http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

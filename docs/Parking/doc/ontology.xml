@@ -1309,10 +1309,19 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/occurrenceOf -->
+    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/occurrenceOf"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty"/>
+    </owl:ObjectProperty>
     
 
 
@@ -1357,6 +1366,17 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty">
         <rdfs:comment>Created for organizational purposes, to identify the object properties imported by geoSPARQL.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty"/>
+        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+        <rdfs:comment>Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it&apos;s footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur).</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -1592,6 +1612,17 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit">
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+        <rdfs:range rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Function"/>
     </owl:ObjectProperty>
     
 
@@ -3688,26 +3719,6 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit">
-        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"/>
-        <rdfs:comment>Capacity of traffic throughput for a lane (e.g. vehicles per time unit)</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit">
-        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"/>
-        <rdfs:comment>Nominal link capacity (per arc or lane) of traffic throughput.</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue -->
 
 
@@ -4298,7 +4309,7 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
                 <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5005,8 +5016,14 @@ Note that some properties are not defined in the Person ontology, but in an exte
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/occurrenceOf"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5033,6 +5050,12 @@ Note that some properties are not defined in the Person ontology, but in an exte
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5596,6 +5619,16 @@ A Role has some authority, requires some skill, and may also have some associate
     
 
 
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Function -->
+
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Function">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:label>function</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Length -->
 
 
@@ -5941,24 +5974,6 @@ Proper Parthood is transitive.</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour -->
-
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane -->
-
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/April -->
 
 
@@ -6154,14 +6169,23 @@ Proper Parthood is transitive.</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://schema.org/Wednesday">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/RecurringEvent/DayOfWeek"/>
     </owl:NamedIndividual>
-    <rdf:Description rdf:nodeID="genid319">
-        <RecurringEvent:AnnotationProperty></RecurringEvent:AnnotationProperty>
-        <RecurringEvent:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent:Literal>
-    </rdf:Description>
-    <rdf:Description rdf:nodeID="genid320">
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/average -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/average">
+        <rdf:type rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Function"/>
+    </owl:NamedIndividual>
+    <rdf:Description rdf:nodeID="genid321">
         <RecurringEvent:AnnotationProperty></RecurringEvent:AnnotationProperty>
         <RecurringEvent:Literal>Mark S. Fox
 http://eil.utoronto.ca</RecurringEvent:Literal>
+    </rdf:Description>
+    <rdf:Description rdf:nodeID="genid322">
+        <RecurringEvent:AnnotationProperty></RecurringEvent:AnnotationProperty>
+        <RecurringEvent:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent:Literal>
     </rdf:Description>
 </rdf:RDF>
 

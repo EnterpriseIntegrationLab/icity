@@ -237,7 +237,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                                             owl:propertyChainAxiom ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/effectOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/endOf>
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp>
                                                                                      ]
@@ -246,8 +246,18 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/beginOf>
                                                                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+<http://ontology.eil.utoronto.ca/icity/Activity/beginOf> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                         owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                  <http://www.w3.org/2006/time#hasBeginning>
+                                                                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -276,6 +286,16 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 <http://ontology.eil.utoronto.ca/icity/Activity/enables> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+<http://ontology.eil.utoronto.ca/icity/Activity/endOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                       owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                <http://www.w3.org/2006/time#hasEnd>
+                                                                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -498,13 +518,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                                <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation
-<http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation> rdf:type owl:ObjectProperty ;
-                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty> ;
-                                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Resource/Resource> ;
-                                                                       rdfs:comment "A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity
 <http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity> rdf:type owl:ObjectProperty ;
                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty> .
@@ -542,6 +555,13 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
@@ -1025,16 +1045,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                    rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
@@ -1045,16 +1055,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/DisjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                  rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
@@ -1164,16 +1164,16 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                           owl:equivalentClass <http://ontology.eil.utoronto.ca/organization.owl#Activity> ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyThing> ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/beginOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/endOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> ;
                                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/causes> ;
@@ -1858,6 +1858,10 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
                                                                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                           ] ,
@@ -1878,7 +1882,9 @@ Note that some properties are not defined in the Person ontology, but in an exte
 A Resource may have some Location, amount or availability, according to the definition of the Manifestation or TimeVaryingEntity.
 A Resource must be classified as some Resource Type.
 A Resource may participate in some Activity Occurrence.
-A specific Resource may be used in or consumed in some activity occurrence.""" .
+A specific Resource may be used in or consumed in some activity occurrence.
+
+A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing

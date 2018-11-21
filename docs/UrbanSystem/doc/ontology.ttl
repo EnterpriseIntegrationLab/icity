@@ -573,9 +573,18 @@ above the local reference ellipsoid).""" ;
                                                                  rdf:type owl:FunctionalProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithLoc
-<http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithLoc> rdf:type owl:ObjectProperty ;
-                                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithStop
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithStop> rdf:type owl:ObjectProperty ;
+                                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident> ;
+                                                                         rdfs:range <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip> rdf:type owl:ObjectProperty ;
+                                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident> ;
+                                                                         rdfs:range <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop
@@ -583,14 +592,33 @@ above the local reference ellipsoid).""" ;
                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident> ;
+                                                                rdfs:range <http://www.w3.org/2006/time#Interval> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/endsAtStop
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/endsAtStop> rdf:type owl:ObjectProperty ;
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDropoffType
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDropoffType> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                     rdfs:range <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasMonetaryCost
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasMonetaryCost> rdf:type owl:ObjectProperty ;
                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasPickupType
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/hasPickupType> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                    rdfs:range <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasRoutes
@@ -619,6 +647,23 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/operatedBy> rdf:type owl:ObjectProperty ;
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> ;
+                                                                 rdfs:domain [ rdf:type owl:Class ;
+                                                                               owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/Route>
+                                                                                             <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink>
+                                                                                             <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection>
+                                                                                           )
+                                                                             ] ;
+                                                                 rdfs:range <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor
@@ -663,11 +708,6 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLinkLength
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLinkLength> rdf:type owl:ObjectProperty ;
                                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation
-<http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation> rdf:type owl:ObjectProperty ;
-                                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/connectedTo
@@ -1427,12 +1467,6 @@ A parking policy may or may not apply during public holidays. If it does not app
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> rdf:type owl:DatatypeProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay
-<http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay> rdf:type owl:DatatypeProperty ;
-                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> ;
-                                                                  rdfs:range xsd:duration .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDisplayColor> rdf:type owl:DatatypeProperty ;
                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> .
@@ -1446,6 +1480,7 @@ A parking policy may or may not apply during public holidays. If it does not app
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode> rdf:type owl:DatatypeProperty ;
                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> ;
+                                                                      rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident> ;
                                                                       rdfs:range xsd:string .
 
 
@@ -1462,6 +1497,7 @@ A parking policy may or may not apply during public holidays. If it does not app
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitVehicleId
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitVehicleId> rdf:type owl:DatatypeProperty ;
                                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> ;
+                                                                          rdf:type owl:FunctionalProperty ;
                                                                           rdfs:domain [ rdf:type owl:Class ;
                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle>
                                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehiclePD>
@@ -1474,6 +1510,14 @@ A parking policy may or may not apply during public holidays. If it does not app
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible> rdf:type owl:DatatypeProperty ;
+                                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> ;
+                                                                             rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip> ;
+                                                                             rdfs:range xsd:boolean ;
+                                                                             rdfs:comment "Indicates whether the vehicle assigned to the trip will be able to accomodate a wheelchair(s)." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/routeShortName> rdf:type owl:DatatypeProperty ;
                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> .
@@ -1482,22 +1526,11 @@ A parking policy may or may not apply during public holidays. If it does not app
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/wheelchairBoarding
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/wheelchairBoarding> rdf:type owl:DatatypeProperty ;
                                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty> ;
-                                                                         rdfs:range [ rdf:type rdfs:Datatype ;
-                                                                                      owl:oneOf [ rdf:type rdf:List ;
-                                                                                                  rdf:first 0 ;
-                                                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                                                             rdf:first 1 ;
-                                                                                                             rdf:rest [ rdf:type rdf:List ;
-                                                                                                                        rdf:first 2 ;
-                                                                                                                        rdf:rest rdf:nil
-                                                                                                                      ]
-                                                                                                           ]
-                                                                                                ]
-                                                                                    ] ;
-                                                                         rdfs:comment """The field can have the following values:
-* 0 (or empty) - indicates that there is no accessibility information for the stop
-* 1 - indicates that at least some vehicles at this stop can be boarded by a rider in a wheelchair
-* 2 - wheelchair boarding is not possible at this stop""" .
+                                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint> ;
+                                                                         rdfs:range xsd:boolean ;
+                                                                         rdfs:comment """Indicates whether wheelchair boarding is possible at a particular stop point. True if at least some vehicles at the stop can be boarded by a rider in a wheelchair.
+False if wheelchair boarding is not possible at the stop.
+Undefined otherwise.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationDataProperty
@@ -2905,7 +2938,7 @@ An EV charger may be available or in use by some vehicle at a given time. Future
                                                                                           )
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation> ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
                                                                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
@@ -3388,7 +3421,7 @@ An AccessMethod may be valid for a specific distance or time.""" .
                                                                           owl:equivalentClass [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
                                                                                                                      [ rdf:type owl:Restriction ;
                                                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/wheelchairBoarding> ;
-                                                                                                                       owl:hasValue 1
+                                                                                                                       owl:hasValue "true"^^xsd:boolean
                                                                                                                      ]
                                                                                                                    ) ;
                                                                                                 rdf:type owl:Class
@@ -3438,6 +3471,10 @@ An AccessMethod may be valid for a specific distance or time.""" .
                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection>
                                                                             ] ,
                                                                             [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn> ;
+                                                                              owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
                                                                               owl:onProperty :executedBy ;
                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
                                                                             ] ,
@@ -3470,17 +3507,12 @@ A Route is executed by various Vehicles at different points in time.""" .
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink> rdf:type owl:Class ;
                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
                                                                                 [ rdf:type owl:Restriction ;
-                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop> ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
-                                                                                ] ,
-                                                                                [ rdf:type owl:Restriction ;
-                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/endsAtStop> ;
-                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
+                                                                                  owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
                                                                                 ] ;
-                                                                <http://purl.org/dc/elements/1.1/description> """A Route Link begins and ends at a Stop Point.
-A Route Link operates on an Arc.""" .
+                                                                <http://purl.org/dc/elements/1.1/description> """A Route Section is part of some Route and consists of Route Links.
+A Route Section begins and ends at a Stop Point.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/RoutePD
@@ -3549,6 +3581,10 @@ A Route Link operates on an Arc.""" .
                                                                                      owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink>
                                                                                    ] ,
                                                                                    [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/operatesOn> ;
+                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD>
+                                                                                   ] ,
+                                                                                   [ rdf:type owl:Restriction ;
                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/beginsAtStop> ;
                                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                      owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
@@ -3561,30 +3597,60 @@ A Route Link operates on an Arc.""" .
                                                                    <http://purl.org/dc/elements/1.1/description> "A Route Section is part of a Route and consists of Route Links." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteTimetable
-<http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteTimetable> rdf:type owl:Class ;
-                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
-                                                                                     [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/arrivalTime> ;
-                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                       owl:onClass <http://www.w3.org/2006/time#DateTimeDescription>
-                                                                                     ] ,
-                                                                                     [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor> ;
-                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                       owl:onClass [ rdf:type owl:Class ;
-                                                                                                     owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/Route>
-                                                                                                                   <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink>
-                                                                                                                 )
-                                                                                                   ]
-                                                                                     ] ,
-                                                                                     [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/travelTime> ;
-                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                       owl:onClass <http://www.w3.org/2006/time#DurationDescription>
-                                                                                     ] ;
-                                                                     <http://purl.org/dc/elements/1.1/description> """A Route Timetable represents schedule information for a particular Route, or Route Link.
-A RouteTimetable has an expected travel time (Duration) for the Route, or Route Link.""" .
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
+                                                                                           <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEvent> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/scheduledOn> ;
+                                                                                             owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                                 owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/Route>
+                                                                                                                               <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink>
+                                                                                                                               <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection>
+                                                                                                                             )
+                                                                                                               ]
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence> ;
+                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasDropoffType> ;
+                                                                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                             owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasPickupType> ;
+                                                                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                             owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/isOutbound> ;
+                                                                                             owl:allValuesFrom xsd:boolean
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/isWheelchairAccessible> ;
+                                                                                             owl:allValuesFrom xsd:boolean
+                                                                                           ] ;
+                                                                           rdfs:comment """ScheduledTransitTrip is a type of RecurringEvent that only has TransitTrips as occurrences. A ScheduledTransitTrip is scheduled on some Route, RouteLink, or RouteSection, however it is not necessarily the case that the trip is accessible to travelers at the beginning stop point. It is possible that the scheduled trip will not pick up any passengers, or that passengers must pre-arrange in order to be picked up by the scheduled trip. A Scheduled Transit Trip may have a pick-up type and/or drop-off type as defined by some Trip Access Arrangement Type: as scheduled, not available, arranged with agency, or arranged with driver.
+ScheduledTransitTrips may be used to specify route and stop timetables. Like a TransitTrip, a ScheduledTransitTrip may be described as inbound or outbound with the isOutbound data property. Scheduled trips may be defined to require only the assignment of vehicles that accommodate a wheelchair rider(s); this property may be captured with the isWheelchairAccessible data property.
+ScheduledTransitTrips may be used to specify route and stop timetables.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/Station
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/Station> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ;
+                                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
+                                                                              ] ;
+                                                              rdfs:comment """A Station is a specialized type of Stop Point that contains multiple Stop Points. 
+A Station may have an actual and associated location; it may provide various amenities (e.g. businesses or restrooms)""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint
@@ -3608,18 +3674,7 @@ A RouteTimetable has an expected travel time (Duration) for the Route, or Route 
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/wheelchairBoarding> ;
                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                                                                                    owl:oneOf [ rdf:type rdf:List ;
-                                                                                                                rdf:first 0 ;
-                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                           rdf:first 1 ;
-                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                      rdf:first 2 ;
-                                                                                                                                      rdf:rest rdf:nil
-                                                                                                                                    ]
-                                                                                                                         ]
-                                                                                                              ]
-                                                                                                  ]
+                                                                                  owl:onDataRange xsd:boolean
                                                                                 ] ;
                                                                 <http://purl.org/dc/elements/1.1/description> """A Stop Point marks the start or end of a Route Link.
 A Stop Point has a Location.
@@ -3629,39 +3684,33 @@ A Stop Point has a name that people will understand in the local and tourist ver
 A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.""" .
 
 
-###  http://ontology.eil.utoronto.ca/icity/PublicTransit/StopTimetable
-<http://ontology.eil.utoronto.ca/icity/PublicTransit/StopTimetable> rdf:type owl:Class ;
-                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
-                                                                                    [ rdf:type owl:Restriction ;
-                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/arrivalTime> ;
-                                                                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                      owl:onClass <http://www.w3.org/2006/time#DateTimeDescription>
-                                                                                    ] ,
-                                                                                    [ rdf:type owl:Restriction ;
-                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/timetableFor> ;
-                                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                      owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
-                                                                                    ] ;
-                                                                    <http://purl.org/dc/elements/1.1/description> "A StopTimetable has captures the expected arrival time (Time Instant) for some Stop Point." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitIncident> rdf:type owl:Class ;
                                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ,
                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
                                                                                       [ rdf:type owl:Restriction ;
-                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithLoc> ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithStop> ;
                                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint>
                                                                                       ] ,
                                                                                       [ rdf:type owl:Restriction ;
-                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/causedDelay> ;
-                                                                                        owl:allValuesFrom xsd:duration
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/associatedWithTrip> ;
+                                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/causedGap> ;
+                                                                                        owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
                                                                                       ] ,
                                                                                       [ rdf:type owl:Restriction ;
                                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/hasIncidentCode> ;
                                                                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                         owl:onDataRange xsd:string
-                                                                                      ] .
+                                                                                      ] ;
+                                                                      rdfs:comment """Transit Incidents are events of interest that occur on a particular transit trip. Typically, they are problematic, unplanned issues resulting in some delay.
+
+A TransitIncident is a subclass of Activity.
+It is associated with some station or stop point.
+An incident may be described (and so classified) by a predefined code: hasCode only xsd:String.
+An incident will have some resulting caused gap (i.e. the time from the incident until the next train arrives at the station).""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing
@@ -3743,6 +3792,7 @@ A TransitSystem may be accessed by some Fare or Transit Pass.""" .
                                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/Route>
                                                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteLink>
                                                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/RouteSection>
+                                                                                                                      <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
                                                                                                                     )
                                                                                                       ]
                                                                                   ] ,
@@ -3799,20 +3849,31 @@ A TransitSystem may be accessed by some Fare or Transit Pass.""" .
                                                                                        <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> rdf:type owl:Class ;
+                                                                            owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                  owl:oneOf ( <http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaAgency>
+                                                                                                              <http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaDriver>
+                                                                                                              <http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessAsScheduled>
+                                                                                                              <http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessNotAvailable>
+                                                                                                            )
+                                                                                                ] ;
+                                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/VehicleBlock
 <http://ontology.eil.utoronto.ca/icity/PublicTransit/VehicleBlock> rdf:type owl:Class ;
                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyThing> ,
                                                                                    [ rdf:type owl:Restriction ;
-                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor> ;
-                                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitTrip>
+                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo> ;
+                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle>
                                                                                    ] ,
                                                                                    [ rdf:type owl:Restriction ;
-                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedTo> ;
-                                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitVehicle>
+                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/PublicTransit/assignedFor> ;
+                                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/PublicTransit/ScheduledTransitTrip>
                                                                                    ] ;
-                                                                   rdfs:comment "A Vehicle Block represents an allocation of transit trips to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block is allocated to a single vehicle, therefore the allocatedTo property which relates vehicle blocks to vehicles is functional." .
+                                                                   rdfs:comment "A Vehicle Block represents a grouping of transit trips to be allocated to a particular vehicle. A transit trip is part of a single block and each block may contain multiple transit trips, therefore the allocatedFor property relating vehicle blocks and transit trips is inverse functional. Each block may be allocated multiple vehicles, but only one vehicle at a given point in time therefore the allocatedTo property which relates vehicle blocks to vehicles is functional." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/Resource
@@ -4018,6 +4079,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                             ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                               rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link> rdf:type owl:Class ;
                                                                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -4122,6 +4190,13 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                   ] .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                               rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkPD> rdf:type owl:Class ;
                                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -4156,6 +4231,79 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                       owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/NodePD>
                                                                                     ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population> ,
+                                                                                                  <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#defined_by> ;
+                                                                                                    owl:allValuesFrom [ owl:intersectionOf ( <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
+                                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                                                                                                                                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                                                                             ]
+                                                                                                                                           ) ;
+                                                                                                                        rdf:type owl:Class
+                                                                                                                      ]
+                                                                                                  ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/LoopDetector
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/LoopDetector> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                          <http://www.w3.org/ns/sosa/Sensor> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
+                                                                                            owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
+                                                                                                                                     [ rdf:type owl:Class ;
+                                                                                                                                       owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed>
+                                                                                                                                                     <http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume>
+                                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                                       owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                                                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy>
+                                                                                                                                                     ]
+                                                                                                                                                   )
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc>
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                                                                                                                       owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
+                                                                                                                                     ]
+                                                                                                                                   ) ;
+                                                                                                                rdf:type owl:Class
+                                                                                                              ]
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                                                                            owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
+                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                               owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                             ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Municipality
@@ -4250,10 +4398,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/associatedLocation> ;
-                                                                                    owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                                                                                  ] ,
-                                                                                  [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl> ;
                                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
                                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/FlowControl>
@@ -4332,6 +4476,33 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadId
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadId> rdf:type owl:Class ;
                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                             owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                                 owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit>
+                                                                                                               ]
+                                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/UnitDivision> ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator> ;
+                                                                                                 owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                               ] ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator> ;
+                                                                                                 owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                               ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
@@ -4490,6 +4661,20 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all classes defined in the Transportation System ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of> ;
+                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LocVehiclePopulation>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/CardinalityUnitPerTime>
+                                                                                           ] .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TravelCost/AccessFee
 <http://ontology.eil.utoronto.ca/icity/TravelCost/AccessFee> rdf:type owl:Class ;
                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TravelCost/TravelCost> ,
@@ -4628,6 +4813,12 @@ A Tour starts and ends at the same Location.""" .
                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity>
+                                                                                   ] ;
+                                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://ontology.eil.utoronto.ca/icity/Trip/Trip>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> ;
                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/Trip/Tour>
@@ -4665,7 +4856,7 @@ A Trip may incur some cost (monetary or otherwise).""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/TripSegment
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/Trip> ,
                                                                          [ rdf:type owl:Restriction ;
                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle> ;
                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
@@ -5116,7 +5307,11 @@ A Role has some authority, requires some skill, and may also have some associate
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class .
+<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
+                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                              ] .
 
 
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
@@ -5151,6 +5346,56 @@ A Role has some authority, requires some skill, and may also have some associate
 #################################################################
 #    Individuals
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaAgency
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaAgency> rdf:type owl:NamedIndividual ,
+                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaDriver
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessArrangedViaDriver> rdf:type owl:NamedIndividual ,
+                                                                                       <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessAsScheduled
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessAsScheduled> rdf:type owl:NamedIndividual ,
+                                                                                 <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessNotAvailable
+<http://ontology.eil.utoronto.ca/icity/PublicTransit/AccessNotAvailable> rdf:type owl:NamedIndividual ,
+                                                                                  <http://ontology.eil.utoronto.ca/icity/PublicTransit/TripAccessArrangement> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/mean_travel_speed> rdf:type owl:NamedIndividual ,
+                                                                                        <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/road_occupancy> rdf:type owl:NamedIndividual ,
+                                                                                     <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence> rdf:type owl:NamedIndividual ,
+                                                                                       <http://www.w3.org/ns/ssn/Stimulus> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_volume> rdf:type owl:NamedIndividual ,
+                                                                                     <http://www.w3.org/ns/sosa/ObservableProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour> rdf:type owl:NamedIndividual ,
+                                                                                        <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
+                                                                                                 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit> .
+
 
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/air
 :air rdf:type owl:NamedIndividual ,

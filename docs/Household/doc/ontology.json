@@ -1182,24 +1182,6 @@
     "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
   } ]
 }, {
-  "@id" : "http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
-  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)"
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
-    "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
-  } ]
-}, {
-  "@id" : "http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
-  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "Nominal link capacity (per arc or lane) of traffic throughput."
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
-    "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
-  } ]
-}, {
   "@id" : "http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
@@ -1257,12 +1239,6 @@
     "@id" : "http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty"
   } ]
 }, {
-  "@id" : "http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour",
-  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit" ]
-}, {
-  "@id" : "http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane",
-  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit" ]
-}, {
   "@id" : "http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
@@ -1279,6 +1255,18 @@
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
     "@value" : "Created for organizational purposes, to identify the classes imported from geoSPARQL."
+  } ]
+}, {
+  "@id" : "http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.opengis.net/ont/geosparql#Feature"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty"
   } ]
 }, {
   "@id" : "http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation",
@@ -1485,6 +1473,15 @@
     "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
   } ]
 }, {
+  "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Function",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://ontology.eil.utoronto.ca/icity/OM/OMThing"
+  } ]
+}, {
   "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Length",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
@@ -1647,8 +1644,23 @@
     "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
   } ]
 }, {
+  "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/average",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.ontology-of-units-of-measure.org/resource/om-2/Function" ]
+}, {
   "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"
+  } ]
+}, {
+  "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.ontology-of-units-of-measure.org/resource/om-2/Function"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
     "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"
   } ]
