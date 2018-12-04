@@ -186,11 +186,9 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty">
-        <dc:description>Added for organizational purposes, to identify properties defined in the Person ontology.</dc:description>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     
 
 
@@ -202,10 +200,18 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/hasAge -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasAge">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Person/hasIncome -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasIncome">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -213,7 +219,7 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/icity/Person/hasPersonID -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasPersonID">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -221,7 +227,7 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/icity/Person/hasQualification -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasQualification">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -230,7 +236,7 @@ Changes from previous version:
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasSex">
         <owl:equivalentProperty rdf:resource="http://schema.org/gender"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -238,7 +244,7 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/icity/Person/hasSkill -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasSkill">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -303,6 +309,33 @@ Changes from previous version:
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
         <dc:description>The person&apos;s spouse.</dc:description>
     </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -377,6 +410,20 @@ Changes from previous version:
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasAge"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Duration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Person may have a unique identifier.
@@ -543,6 +590,20 @@ Note that some properties are not defined in the Person ontology, but in an exte
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Person/male">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Sex"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty">
+        <dc:description>Added for organizational purposes, to identify properties defined in the Person ontology.</dc:description>
+    </rdf:Description>
 </rdf:RDF>
 
 
