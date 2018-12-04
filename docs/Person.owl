@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/Person/"
      xml:base="http://ontology.eil.utoronto.ca/icity/Person/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
+     xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -14,6 +14,7 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="http://ontology.eil.utoronto.ca/icity/Spatial/1.0/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:owl2="http://ontology.eil.utoronto.ca/icity/wgs/1.0/"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="http://ontology.eil.utoronto.ca/icity/OM/1.0/"
@@ -24,8 +25,8 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Person/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <dc:title>iCity Person Ontology</dc:title>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
@@ -144,7 +145,6 @@ Changes from previous version:
     
 
 
-
     <!-- http://www.w3.org/ns/adms#relatedDocumentation -->
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/adms#relatedDocumentation"/>
@@ -166,71 +166,6 @@ Changes from previous version:
      -->
 
     
-
-
-    <!-- http://schema.org/address -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/address">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>Physical address of the item.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/birthDate -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/birthDate">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>Date of birth.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/children -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/children">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>A child of the person.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/deathDate -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/deathDate">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>Date of death.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/gender -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/gender">
-        <owl:equivalentProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasSex"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>Gender of the person.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/parent -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/parent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>A parent of this person. Supersedes parents.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://schema.org/spouse -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/spouse">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
-        <dc:description>The person&apos;s spouse.</dc:description>
-    </owl:ObjectProperty>
-    
-
 
 
     <!-- http://ontology.eil.utoronto.ca/icity/Change/existsAt -->
@@ -294,6 +229,7 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/icity/Person/hasSex -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Person/hasSex">
+        <owl:equivalentProperty rdf:resource="http://schema.org/gender"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -307,6 +243,69 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/address -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/address">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>Physical address of the item.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/birthDate -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/birthDate">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>Date of birth.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/children -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/children">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>A child of the person.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/deathDate -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/deathDate">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>Date of death.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/gender -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/gender">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>Gender of the person.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/parent -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/parent">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>A parent of this person. Supersedes parents.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/spouse -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/spouse">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty"/>
+        <dc:description>The person&apos;s spouse.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -315,14 +314,6 @@ Changes from previous version:
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://schema.org/PostalAddress -->
-
-    <owl:Class rdf:about="http://schema.org/PostalAddress">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing"/>
-    </owl:Class>
     
 
 
@@ -359,6 +350,12 @@ Changes from previous version:
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasIncome"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/children"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
             </owl:Restriction>
@@ -377,22 +374,9 @@ Changes from previous version:
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasIncome"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/deathDate"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Person may have a unique identifier.
@@ -459,6 +443,13 @@ Note that some properties are not defined in the Person ontology, but in an exte
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasSex"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Sex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/birthDate"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
@@ -466,9 +457,9 @@ Note that some properties are not defined in the Person ontology, but in an exte
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/hasSex"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Sex"/>
+                <owl:onProperty rdf:resource="http://schema.org/deathDate"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Person changes over time, the entire entity of a Person is captured by the PersonPD (&quot;person perdurant&quot;) class.</dc:description>
@@ -497,6 +488,14 @@ Note that some properties are not defined in the Person ontology, but in an exte
     <!-- http://ontology.eil.utoronto.ca/icity/Person/Sex -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Person/Sex">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/female"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/male"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing"/>
     </owl:Class>
     
@@ -512,15 +511,38 @@ Note that some properties are not defined in the Person ontology, but in an exte
     
 
 
+    <!-- http://schema.org/PostalAddress -->
+
+    <owl:Class rdf:about="http://schema.org/PostalAddress">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing"/>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Annotations
+    // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
 
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/female -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Person/female">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Sex"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Person/male -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Person/male">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Sex"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
