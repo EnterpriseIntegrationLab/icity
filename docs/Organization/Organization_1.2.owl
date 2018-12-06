@@ -27,13 +27,13 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/1.0/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/organization.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/organization.owl"/>
         <dc:title>iCity Organization Ontology</dc:title>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
@@ -172,12 +172,6 @@ Changes from previous version:
     
 
 
-    <!-- http://schema.org/address -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/address"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Change/hasManifestation -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Change/hasManifestation"/>
@@ -214,6 +208,16 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Student"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Organization/hasAnnualPay -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasAnnualPay">
@@ -234,6 +238,16 @@ Changes from previous version:
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasEmployee">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Employee"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
     </owl:ObjectProperty>
     
 
@@ -324,6 +338,12 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/address -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/address"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -335,81 +355,11 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#Activity -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Activity">
-        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#Goal -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Goal">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/State"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
-        <dc:description>A goal represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
-    </rdf:Description>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#Organization -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization">
-        <dc:description>Organization: A company or other sort of group of individuals in the urban system with some goal(s).
-An Organization may own Property, including different types of Buildings.
-An Organization may have an address.
-An Organization has at least 2 members.
-An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
-    </rdf:Description>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasAuthority"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Authority"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>Organization Agent: Members of an organization.
-Organization Agents have goals, authority, and may be members of some team.
-An Organization Agent plays a Role within the Organization.</dc:description>
-    </rdf:Description>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#Resource -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Resource">
-        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Resource/Resource"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/organization.owl#Role -->
-
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Role">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
-        <dc:description>Role: A Role has a single (possibly complex) Goal.
-A Role has some authority, requires some skill, and may also have some associated processes.</dc:description>
-    </rdf:Description>
-    
-
-
-    <!-- http://schema.org/PostalAddress -->
-
-    <owl:Class rdf:about="http://schema.org/PostalAddress"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Activity/Activity -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Activity/Activity">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Activity"/>
+    </owl:Class>
     
 
 
@@ -527,11 +477,19 @@ A Business Establishment has a Location and may have an address.</dc:description
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Organization"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Organization/Employee -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Employee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/employedAs"/>
@@ -557,12 +515,36 @@ A Business Establishment has a Location and may have an address.</dc:description
                 <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <dc:description>Employee: An Firm has some Employees, whom it employs for some Occupation.
 An Employee is a type of Organization Agent.
 An Employee may be employed at a particular Business Establishment.
 An Employee may be responsible for one or more Roles within the Organization.
 An Employee is employed by some Organization, unless the Person is self-employed.
 An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_home"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
     </owl:Class>
     
 
@@ -588,12 +570,6 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Organization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasEstablishment"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/BusinessEstablishment"/>
             </owl:Restriction>
@@ -602,6 +578,12 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasIndustryType"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/IndustryType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/address"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -663,6 +645,15 @@ A Firm may have a Business Establishment(s).</dc:description>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/GeneralOffice -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/GeneralOffice">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Occupation"/>
+        <rdfs:comment>General Office / Clerical</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Organization/IndustryType -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/IndustryType">
@@ -677,14 +668,6 @@ A Firm may have a Business Establishment(s).</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
         <dc:description>Occupation: An Occupation is performed by some Person.
 An Occupation has a type (e.g. sales, skilled trades)</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/OccupationType -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/OccupationType">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
     </owl:Class>
     
 
@@ -770,6 +753,15 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/Professional -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Professional">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Occupation"/>
+        <rdfs:comment>Professional / Management / Technical</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Organization/Salary -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Salary">
@@ -781,6 +773,39 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/Sales -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Sales">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Occupation"/>
+        <rdfs:comment>Retail Sales and Service</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/Student -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Student">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/Trades -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Trades">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Occupation"/>
+        <rdfs:comment>Manufacturing / Construction / Trades</rdfs:comment>
     </owl:Class>
     
 
@@ -814,7 +839,120 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
 
     <!-- http://ontology.eil.utoronto.ca/icity/Resource/Resource -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/Resource"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Resource/Resource">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Activity -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Activity"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Goal -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Goal">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/State"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
+        <dc:description>A goal represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Organization -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Organization">
+        <dc:description>Organization: A company or other sort of group of individuals in the urban system with some goal(s).
+An Organization may own Property, including different types of Buildings.
+An Organization may have an address.
+An Organization has at least 2 members.
+An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasAuthority"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Authority"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description>Organization Agent: Members of an organization.
+Organization Agents have goals, authority, and may be members of some team.
+An Organization Agent plays a Role within the Organization.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Resource -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Resource"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/organization.owl#Role -->
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/organization.owl#Role">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
+        <dc:description>Role: A Role has a single (possibly complex) Goal.
+A Role has some authority, requires some skill, and may also have some associated processes.</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- http://schema.org/PostalAddress -->
+
+    <owl:Class rdf:about="http://schema.org/PostalAddress"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/parttime_home -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_home">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
