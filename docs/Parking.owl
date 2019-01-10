@@ -210,6 +210,15 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/hasAllocatedParking -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/hasAllocatedParking">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/parkingAllocatedTo"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/hasEVCharger -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/hasEVCharger">
@@ -763,6 +772,41 @@ An EV charger may be available or in use by some vehicle at a given time. Future
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/FreeParkingPolicy -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/FreeParkingPolicy">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/hasParkingRate"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/ParkingRate"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/hasMonetaryCost"/>
+                                <owl:allValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/numerical_value"/>
+                                                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:allValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingPolicy"/>
+        <rdfs:comment>A Parking Policy with a cost of 0. Free parking policies may be applicable for the general public, or allocated to specific groups of individuals (e.g. free parking for employees or customers).</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/GarageParkingArea -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/GarageParkingArea">
@@ -891,7 +935,16 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/parkingAllocatedTo"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/Organization"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+                            <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

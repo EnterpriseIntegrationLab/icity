@@ -247,7 +247,6 @@ Changes from previous version:
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
         <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Employee"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
     </owl:ObjectProperty>
     
 
@@ -515,36 +514,12 @@ A Business Establishment has a Location and may have an address.</dc:description
                 <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <dc:description>Employee: An Firm has some Employees, whom it employs for some Occupation.
 An Employee is a type of Organization Agent.
 An Employee may be employed at a particular Business Establishment.
 An Employee may be responsible for one or more Roles within the Organization.
 An Employee is employed by some Organization, unless the Person is self-employed.
 An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_home"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
     </owl:Class>
     
 
@@ -641,6 +616,39 @@ A Firm may have a Business Establishment(s).</dc:description>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Firms change over time. FirmPD captures the entire entity of a particular firm&apos;s &quot;process&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/FullTimeEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Employee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/FullTimeHomeEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeHomeEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeEmployee"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeRegEmployee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/FullTimeRegEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeRegEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeEmployee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/FullTimeStudent -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/FullTimeStudent">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Student"/>
     </owl:Class>
     
 
@@ -749,6 +757,39 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Organizations change over time. OrganizationPD captures the entire entity of a particular organization&apos;s &quot;process&quot;.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Employee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/PartTimeHomeEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeHomeEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeRegEmployee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/PartTimeRegEmployee -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeRegEmployee">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Organization/PartTimeStudent -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/PartTimeStudent">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/Student"/>
     </owl:Class>
     
 
@@ -910,49 +951,6 @@ A Role has some authority, requires some skill, and may also have some associate
     <!-- http://schema.org/PostalAddress -->
 
     <owl:Class rdf:about="http://schema.org/PostalAddress"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_home">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/fulltime_regular">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/parttime_home -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_home">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/parttime_regular">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/EmploymentStatus"/>
-    </owl:NamedIndividual>
 </rdf:RDF>
 
 
