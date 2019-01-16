@@ -10,6 +10,7 @@
                                                     owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Household/1.2/> ;
                                                     owl:imports <http://ontology.eil.utoronto.ca/icity/Change/1.1/> ,
                                                                 <http://ontology.eil.utoronto.ca/icity/OM/1.2/> ,
+                                                                <http://ontology.eil.utoronto.ca/icity/Person/1.2/> ,
                                                                 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ;
                                                     <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
                                                     <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
@@ -336,6 +337,51 @@ above the local reference ellipsoid).""" ;
             rdfs:subPropertyOf :HouseholdOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty
+<http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                                 <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasAge
+<http://ontology.eil.utoronto.ca/icity/Person/hasAge> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasIncome
+<http://ontology.eil.utoronto.ca/icity/Person/hasIncome> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasPersonID
+<http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasQualification
+<http://ontology.eil.utoronto.ca/icity/Person/hasQualification> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasSex
+<http://ontology.eil.utoronto.ca/icity/Person/hasSex> rdf:type owl:ObjectProperty ;
+                                                      owl:equivalentProperty <http://schema.org/gender> ;
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/hasSkill
+<http://ontology.eil.utoronto.ca/icity/Person/hasSkill> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+<http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> ;
+                                                                rdfs:domain <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
@@ -356,7 +402,45 @@ above the local reference ellipsoid).""" ;
 
 
 ###  http://schema.org/address
-<http://schema.org/address> rdf:type owl:ObjectProperty .
+<http://schema.org/address> rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                            <http://purl.org/dc/elements/1.1/description> "Physical address of the item." .
+
+
+###  http://schema.org/birthDate
+<http://schema.org/birthDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of birth." .
+
+
+###  http://schema.org/children
+<http://schema.org/children> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                             <http://purl.org/dc/elements/1.1/description> "A child of the person." .
+
+
+###  http://schema.org/deathDate
+<http://schema.org/deathDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of death." .
+
+
+###  http://schema.org/gender
+<http://schema.org/gender> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "Gender of the person." .
+
+
+###  http://schema.org/parent
+<http://schema.org/parent> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "A parent of this person. Supersedes parents." .
+
+
+###  http://schema.org/spouse
+<http://schema.org/spouse> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "The person's spouse." .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
@@ -561,6 +645,15 @@ above the local reference ellipsoid).""" ;
                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+<http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:range xsd:boolean .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                                                   rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL." .
@@ -741,6 +834,10 @@ above the local reference ellipsoid).""" ;
                                                                                           :GCISheltersThing ,
                                                                                           :HouseholdOntologyThing ,
                                                                                           [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty :hasMember ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                                                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                             owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
@@ -908,6 +1005,10 @@ A Dwelling Unit has some Location.""" .
                             ] ;
         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                         :HouseholdOntologyThing ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasMember ;
+                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                        ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1084,13 +1185,153 @@ A Monetary Value is measured with some currency.""" .
                                                         rdfs:comment "An amount of money that is defined relative to a particular year." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/Person
+<http://ontology.eil.utoronto.ca/icity/Person/Person> rdf:type owl:Class ;
+                                                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                   owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/PersonPD>
+                                                                                                 ]
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/PersonPD>
+                                                                                                 ]
+                                                                                               ) ;
+                                                                            rdf:type owl:Class
+                                                                          ] ;
+                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
+                                                                      <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/hasIncome> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/children> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/parent> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/spouse> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/hasAge> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Duration>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onDataRange xsd:boolean
+                                                                      ] ;
+                                                      <http://purl.org/dc/elements/1.1/description> """A Person may have a unique identifier.
+A Person has a date of birth, and may have a date of death.
+A Person may be a member of a Family and/or a Household.
+A Person has a mother and father, and may have a spouse and/or child(ren). Note that we define the parent relation as the legal relation as opposed to biological. This property may be specialized and restricted, for example hasBiologicalMother: exactly 1 Person.
+A Person may have some Job and associated Income.
+A Person may have access to some Vehicle.
+A Person may have access to some Bicycle.
+A Person may have some TransitPass.
+A Person has an address of residence and may have other contact information such as E-mail, phone number, etcetera.
+A Person has a Schedule for a given point (period) in time.
+Note that some properties are not defined in the Person ontology, but in an extension of the Person ontology that captures the interaction between iCity domain ontologies (e.g. Persons and their Vehicles)""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonId
+<http://ontology.eil.utoronto.ca/icity/Person/PersonId> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> rdf:type owl:Class ;
+                                                                   <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Person ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonPD
+<http://ontology.eil.utoronto.ca/icity/Person/PersonPD> rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                     owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
+                                                                        <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                          owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> ;
+                                                                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/PersonId>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/hasSex> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://ontology.eil.utoronto.ca/icity/Person/Sex>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/birthDate> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/deathDate> ;
+                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                        ] ;
+                                                        <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/Qualification
+<http://ontology.eil.utoronto.ca/icity/Person/Qualification> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> ;
+                                                             <http://purl.org/dc/elements/1.1/description> "A Qualification captures some official degree of accomplishment. It may be required for something and/or possessed by some Person." ;
+                                                             rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing
+<http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing> rdf:type owl:Class ;
+                                                              <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/Sex
+<http://ontology.eil.utoronto.ca/icity/Person/Sex> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ rdf:type owl:Class ;
+                                                                         owl:oneOf ( <http://ontology.eil.utoronto.ca/icity/Person/female>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Person/male>
+                                                                                   )
+                                                                       ] ;
+                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/Skill
+<http://ontology.eil.utoronto.ca/icity/Person/Skill> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> ;
+                                                     <http://purl.org/dc/elements/1.1/description> "A Skill captures an ability to perfom some activity or set of activities." ;
+                                                     rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> rdf:type owl:Class ;
                                                                            rdfs:comment "Created for organizational purposes, to identify the classes imported from geoSPARQL." .
 
 
 ###  http://schema.org/PostalAddress
-<http://schema.org/PostalAddress> rdf:type owl:Class .
+<http://schema.org/PostalAddress> rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration
@@ -1149,6 +1390,12 @@ A Monetary Value is measured with some currency.""" .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Duration
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> ;
+                                                                     rdfs:label "duration" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
@@ -1254,6 +1501,19 @@ A Monetary Value is measured with some currency.""" .
                                                                             rdfs:label "system of units" .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Time
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:label "time" .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
@@ -1328,6 +1588,16 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/female
+<http://ontology.eil.utoronto.ca/icity/Person/female> rdf:type owl:NamedIndividual ,
+                                                               <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/male
+<http://ontology.eil.utoronto.ca/icity/Person/male> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
 <http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
                                                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
@@ -1336,6 +1606,9 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 #################################################################
 #    Annotations
 #################################################################
+
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
+
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
                                            <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 

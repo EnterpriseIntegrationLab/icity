@@ -245,10 +245,39 @@ above the local reference ellipsoid).""" ;
              rdf:type owl:TransitiveProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursAfter
+:occursAfter rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :ActivityOntologyProperty ;
+             owl:inverseOf :occursBefore .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Activity/occursAt
 :occursAt rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :ActivityOntologyProperty ;
           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursBefore
+:occursBefore rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :ActivityOntologyProperty ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain :Activity ;
+              rdfs:range :Activity ;
+              rdfs:comment "An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter
+:occursDirectlyAfter rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :occursAfter ;
+                     owl:inverseOf :occursDirectlyBefore .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore
+:occursDirectlyBefore rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :occursBefore ;
+                      rdfs:domain :Activity ;
+                      rdfs:range :Activity ;
+                      rdfs:comment "An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/participatesIn
@@ -548,6 +577,14 @@ above the local reference ellipsoid).""" ;
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasSubactivity ;
+                            owl:allValuesFrom :Activity
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :occursBefore ;
+                            owl:allValuesFrom :Activity
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :occursDirectlyBefore ;
                             owl:allValuesFrom :Activity
                           ] ,
                           [ rdf:type owl:Restriction ;

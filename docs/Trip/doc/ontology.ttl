@@ -253,10 +253,39 @@ above the local reference ellipsoid).""" ;
                                                              rdf:type owl:TransitiveProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                             owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Activity/occursAt
 <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> rdf:type owl:ObjectProperty ;
                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
                                                           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                              rdf:type owl:TransitiveProperty ;
+                                                              rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:comment "An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> ;
+                                                                     owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                      rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:comment "An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/participatesIn
@@ -762,6 +791,14 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> ;
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;

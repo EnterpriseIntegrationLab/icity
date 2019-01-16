@@ -1198,6 +1198,12 @@ A Monetary Value is measured with some currency.""" .
                                                                      rdfs:label "area unit" .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Duration
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> ;
+                                                                     rdfs:label "duration" .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
@@ -1299,6 +1305,19 @@ A Monetary Value is measured with some currency.""" .
                                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
                                                                             rdfs:comment "In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other)." ;
                                                                             rdfs:label "system of units" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Time
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:label "time" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
