@@ -288,16 +288,6 @@ Changes from previous version:
     
 
 
-    <!-- http://schema.org/dayOfWeek -->
-
-
-    <owl:ObjectProperty rdf:about="http://schema.org/dayOfWeek">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyProperty"/>
-        <rdfs:range rdf:resource="http://schema.org/DayOfWeek"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyProperty -->
 
 
@@ -315,6 +305,16 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/dayOfWeek -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/dayOfWeek">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyProperty"/>
+        <rdfs:range rdf:resource="http://schema.org/DayOfWeek"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -324,6 +324,23 @@ Changes from previous version:
      -->
 
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Calendar/hasTime -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/hasTime">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -347,23 +364,6 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Calendar/hasTime -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/hasTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -376,39 +376,6 @@ Changes from previous version:
     
 
 
-    <!-- http://schema.org/DayOfWeek -->
-
-
-    <owl:Class rdf:about="http://schema.org/DayOfWeek">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://schema.org/Friday"/>
-                    <rdf:Description rdf:about="http://schema.org/Monday"/>
-                    <rdf:Description rdf:about="http://schema.org/PublicHoliday"/>
-                    <rdf:Description rdf:about="http://schema.org/Saturday"/>
-                    <rdf:Description rdf:about="http://schema.org/Sunday"/>
-                    <rdf:Description rdf:about="http://schema.org/Thursday"/>
-                    <rdf:Description rdf:about="http://schema.org/Tuesday"/>
-                    <rdf:Description rdf:about="http://schema.org/Wednesday"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarThing"/>
-        <rdfs:comment>A day of the week is a member of an enumerated class, covering the days of the week in the Gregorian calendar. Schema:DayOfWeek also includes a PublicHoliday individual that may be used to capture the distinction between a typical day of the week and a public holiday (e.g. where businesses may be closed or parking policies may vary).</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://schema.org/OpeningHoursSpecification -->
-
-
-    <owl:Class rdf:about="http://schema.org/OpeningHoursSpecification">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarThing"/>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Calendar/CalendarSpecification -->
 
 
@@ -416,14 +383,14 @@ Changes from previous version:
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/dayOfWeek"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/DayOfWeek"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/hasMonth"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/Month"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/hasMonth"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/Month"/>
+                <owl:onProperty rdf:resource="http://schema.org/dayOfWeek"/>
+                <owl:allValuesFrom rdf:resource="http://schema.org/DayOfWeek"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -497,8 +464,8 @@ Changes from previous version:
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/OpeningHoursSpecification">
-        <rdfs:subClassOf rdf:resource="http://schema.org/OpeningHoursSpecification"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarSpecification"/>
+        <rdfs:subClassOf rdf:resource="http://schema.org/OpeningHoursSpecification"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/dayOfWeek"/>
@@ -525,6 +492,39 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/DayOfWeek -->
+
+
+    <owl:Class rdf:about="http://schema.org/DayOfWeek">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://schema.org/Friday"/>
+                    <rdf:Description rdf:about="http://schema.org/Monday"/>
+                    <rdf:Description rdf:about="http://schema.org/PublicHoliday"/>
+                    <rdf:Description rdf:about="http://schema.org/Saturday"/>
+                    <rdf:Description rdf:about="http://schema.org/Sunday"/>
+                    <rdf:Description rdf:about="http://schema.org/Thursday"/>
+                    <rdf:Description rdf:about="http://schema.org/Tuesday"/>
+                    <rdf:Description rdf:about="http://schema.org/Wednesday"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarThing"/>
+        <rdfs:comment>A day of the week is a member of an enumerated class, covering the days of the week in the Gregorian calendar. Schema:DayOfWeek also includes a PublicHoliday individual that may be used to capture the distinction between a typical day of the week and a public holiday (e.g. where businesses may be closed or parking policies may vary).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/OpeningHoursSpecification -->
+
+
+    <owl:Class rdf:about="http://schema.org/OpeningHoursSpecification">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Calendar/CalendarThing"/>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -534,62 +534,6 @@ Changes from previous version:
      -->
 
 
-    
-
-
-    <!-- http://schema.org/Friday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Friday"/>
-    
-
-
-    <!-- http://schema.org/Monday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Monday"/>
-    
-
-
-    <!-- http://schema.org/PublicHoliday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/PublicHoliday"/>
-    
-
-
-    <!-- http://schema.org/Saturday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Saturday"/>
-    
-
-
-    <!-- http://schema.org/Sunday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Sunday"/>
-    
-
-
-    <!-- http://schema.org/Thursday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Thursday"/>
-    
-
-
-    <!-- http://schema.org/Tuesday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Tuesday"/>
-    
-
-
-    <!-- http://schema.org/Wednesday -->
-
-
-    <owl:NamedIndividual rdf:about="http://schema.org/Wednesday"/>
     
 
 
@@ -674,6 +618,62 @@ Changes from previous version:
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Calendar/September"/>
+    
+
+
+    <!-- http://schema.org/Friday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Friday"/>
+    
+
+
+    <!-- http://schema.org/Monday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Monday"/>
+    
+
+
+    <!-- http://schema.org/PublicHoliday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/PublicHoliday"/>
+    
+
+
+    <!-- http://schema.org/Saturday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Saturday"/>
+    
+
+
+    <!-- http://schema.org/Sunday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Sunday"/>
+    
+
+
+    <!-- http://schema.org/Thursday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Thursday"/>
+    
+
+
+    <!-- http://schema.org/Tuesday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Tuesday"/>
+    
+
+
+    <!-- http://schema.org/Wednesday -->
+
+
+    <owl:NamedIndividual rdf:about="http://schema.org/Wednesday"/>
 </rdf:RDF>
 
 

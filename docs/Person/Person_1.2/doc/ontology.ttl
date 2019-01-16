@@ -278,9 +278,8 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                                rdf:type owl:FunctionalProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty
-:PersonOntologyProperty rdf:type owl:ObjectProperty ;
-                        <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+:PersonOntologyDataProperty rdf:type owl:ObjectProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty
@@ -288,30 +287,41 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                    <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/hasAge
+:hasAge rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :PersonOntologyDataProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasIncome
 :hasIncome rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :PersonOntologyProperty .
+           rdfs:subPropertyOf :PersonOntologyDataProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasPersonID
 :hasPersonID rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :PersonOntologyProperty .
+             rdfs:subPropertyOf :PersonOntologyDataProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasQualification
 :hasQualification rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :PersonOntologyProperty .
+                  rdfs:subPropertyOf :PersonOntologyDataProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSex
 :hasSex rdf:type owl:ObjectProperty ;
         owl:equivalentProperty <http://schema.org/gender> ;
-        rdfs:subPropertyOf :PersonOntologyProperty .
+        rdfs:subPropertyOf :PersonOntologyDataProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSkill
 :hasSkill rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf :PersonOntologyProperty .
+          rdfs:subPropertyOf :PersonOntologyDataProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+:isLicensedDriver rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :PersonOntologyDataProperty ;
+                  rdfs:domain :Person .
 
 
 ###  http://schema.org/address
@@ -359,6 +369,13 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/derived_unit> rdf:type owl:ObjectProperty ;
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
@@ -425,6 +442,15 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 ###  http://ontology.eil.utoronto.ca/icity/OM/hasRelativeYear
 <http://ontology.eil.utoronto.ca/icity/OM/hasRelativeYear> rdf:type owl:DatatypeProperty ;
                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+:PersonOntologyDataProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+:isLicensedDriver rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:boolean .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent
@@ -689,18 +715,6 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                              rdfs:comment "Reference systems to indicate geographic position." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-<http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                                                             rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
 <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> rdf:type owl:Class ;
                                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
@@ -768,9 +782,14 @@ A Monetary Value is measured with some currency.""" .
                           owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://schema.org/deathDate> ;
-                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onClass <http://www.w3.org/2006/time#Instant>
+                          owl:onProperty :hasAge ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Duration>
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isLicensedDriver ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:boolean
                         ] ;
         <http://purl.org/dc/elements/1.1/description> """A Person may have a unique identifier.
 A Person has a date of birth, and may have a date of death.
@@ -827,6 +846,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
                             owl:onProperty <http://schema.org/birthDate> ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass <http://www.w3.org/2006/time#Instant>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://schema.org/deathDate> ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass <http://www.w3.org/2006/time#Instant>
                           ] ;
           <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class." .
 
@@ -845,6 +869,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/Sex
 :Sex rdf:type owl:Class ;
+     owl:equivalentClass [ rdf:type owl:Class ;
+                           owl:oneOf ( :female
+                                       :male
+                                     )
+                         ] ;
      rdfs:subClassOf :PersonOntologyThing .
 
 
@@ -916,6 +945,18 @@ Note that some properties are not defined in the Person ontology, but in an exte
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Duration
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> ;
+                                                                     rdfs:label "duration" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -1015,6 +1056,19 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                                             rdfs:label "system of units" .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Time
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:label "time" .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
@@ -1069,14 +1123,26 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                  rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour> rdf:type owl:NamedIndividual ,
-                                                                      <http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/Person/female
+:female rdf:type owl:NamedIndividual ,
+                 :Sex .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-<http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
-                                                                               <http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit> .
+###  http://ontology.eil.utoronto.ca/icity/Person/male
+:male rdf:type owl:NamedIndividual ,
+               :Sex .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:PersonOntologyDataProperty <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

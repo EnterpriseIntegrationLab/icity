@@ -326,6 +326,13 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                                          rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                                                 rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                                 rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit
 <http://www.ontology-of-units-of-measure.org/resource/om-2/hasBaseUnit> rdf:type owl:ObjectProperty ;
                                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
@@ -1157,18 +1164,6 @@ The range of this property is not specified, so can be replaced by any specific 
                    rdfs:comment "Reference systems to indicate geographic position." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/LaneCapacity_unit
-:LaneCapacity_unit rdf:type owl:Class ;
-                   rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                   rdfs:comment "Capacity of traffic throughput for a lane (e.g. vehicles per time unit)" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/LinkCapacity_unit
-:LinkCapacity_unit rdf:type owl:Class ;
-                   rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
-                   rdfs:comment "Nominal link capacity (per arc or lane) of traffic throughput." .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue
 :MonetaryValue rdf:type owl:Class ;
                rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
@@ -1260,6 +1255,18 @@ A Monetary Value is measured with some currency.""" .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> rdf:type owl:Class ;
                                                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
                                                                      rdfs:label "area unit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Duration
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> ;
+                                                                     rdfs:label "duration" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Function
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Function> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf :OMThing ;
+                                                                     rdfs:label "function" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Length
@@ -1357,6 +1364,19 @@ A Monetary Value is measured with some currency.""" .
                                                                             rdfs:subClassOf :OMThing ;
                                                                             rdfs:comment "In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other)." ;
                                                                             rdfs:label "system of units" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Time
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                                   owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> ;
+                                                                                                       owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit>
+                                                                                                     ]
+                                                                                 ] ;
+                                                                 rdfs:label "time" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
@@ -1875,14 +1895,9 @@ It is deprecated in this edition of OWL-Time. """ ;
        rdfs:comment "World Geodetic System of 1984. The reference system used by GPS." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour
-:vehicles_per_hour rdf:type owl:NamedIndividual ,
-                            :LaneCapacity_unit .
-
-
-###  http://ontology.eil.utoronto.ca/icity/OM/vehicles_per_hour_per_lane
-:vehicles_per_hour_per_lane rdf:type owl:NamedIndividual ,
-                                     :LinkCapacity_unit .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/average
+<http://www.ontology-of-units-of-measure.org/resource/om-2/average> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
 ###  http://www.w3.org/2006/time#Friday

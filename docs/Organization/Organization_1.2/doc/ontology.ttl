@@ -237,7 +237,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                                             owl:propertyChainAxiom ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/effectOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/endOf>
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp>
                                                                                      ]
@@ -246,8 +246,18 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/beginOf>
                                                                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+<http://ontology.eil.utoronto.ca/icity/Activity/beginOf> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                         owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                  <http://www.w3.org/2006/time#hasBeginning>
+                                                                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -276,6 +286,16 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 <http://ontology.eil.utoronto.ca/icity/Activity/enables> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+<http://ontology.eil.utoronto.ca/icity/Activity/endOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                       owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                <http://www.w3.org/2006/time#hasEnd>
+                                                                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -318,10 +338,39 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                              rdf:type owl:TransitiveProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                             owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Activity/occursAt
 <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> rdf:type owl:ObjectProperty ;
                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
                                                           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                              rdf:type owl:TransitiveProperty ;
+                                                              rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:comment "An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> ;
+                                                                     owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                      rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:comment "An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/participatesIn
@@ -381,6 +430,13 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
             rdfs:subPropertyOf :OrgOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn
+:enrolledIn rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :OrgOntologyProperty ;
+            rdfs:domain :Student ;
+            rdfs:range :EducationalInstitution .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Organization/hasAnnualPay
 :hasAnnualPay rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :OrgOntologyProperty .
@@ -394,6 +450,12 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/Organization/hasEmployee
 :hasEmployee rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :OrgOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/hasEmploymentStatus
+:hasEmploymentStatus rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :OrgOntologyProperty ;
+                     rdfs:domain :Employee .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Organization/hasEstablishment
@@ -446,9 +508,8 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
          rdfs:subPropertyOf :OrgOntologyProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty
-<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                                      <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> rdf:type owl:ObjectProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty
@@ -456,30 +517,40 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                  <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Person/hasAge
+<http://ontology.eil.utoronto.ca/icity/Person/hasAge> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasIncome
 <http://ontology.eil.utoronto.ca/icity/Person/hasIncome> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasPersonID
 <http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> rdf:type owl:ObjectProperty ;
-                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasQualification
 <http://ontology.eil.utoronto.ca/icity/Person/hasQualification> rdf:type owl:ObjectProperty ;
-                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSex
 <http://ontology.eil.utoronto.ca/icity/Person/hasSex> rdf:type owl:ObjectProperty ;
                                                       owl:equivalentProperty <http://schema.org/gender> ;
-                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSkill
 <http://ontology.eil.utoronto.ca/icity/Person/hasSkill> rdf:type owl:ObjectProperty ;
-                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+<http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> ;
+                                                                rdfs:domain <http://ontology.eil.utoronto.ca/icity/Person/Person> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty
@@ -496,13 +567,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://ontology.eil.utoronto.ca/icity/Resource/consumedBy> rdf:type owl:ObjectProperty ;
                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf> ,
                                                                                <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation
-<http://ontology.eil.utoronto.ca/icity/Resource/hasAssociatedLocation> rdf:type owl:ObjectProperty ;
-                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty> ;
-                                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Resource/Resource> ;
-                                                                       rdfs:comment "A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity
@@ -542,6 +606,13 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                                      rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
+                                                                      rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
@@ -1025,16 +1096,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                    rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
@@ -1045,16 +1106,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/DisjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                  rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
@@ -1078,6 +1129,15 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
+<http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:range xsd:boolean .
+
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> rdf:type owl:DatatypeProperty ;
@@ -1164,16 +1224,16 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                           owl:equivalentClass <http://ontology.eil.utoronto.ca/organization.owl#Activity> ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyThing> ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/beginOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/endOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> ;
                                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/causes> ;
@@ -1197,6 +1257,14 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> ;
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
@@ -1489,6 +1557,11 @@ A Business Establishment has a Location and may have an address.""" .
             rdfs:subClassOf :OrgOntologyThing .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution
+:EducationalInstitution rdf:type owl:Class ;
+                        rdfs:subClassOf :Organization .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Organization/Employee
 :Employee rdf:type owl:Class ;
           rdfs:subClassOf :OrgOntologyThing ,
@@ -1586,6 +1659,33 @@ A Firm may have a Business Establishment(s).""" .
         <http://purl.org/dc/elements/1.1/description> "Firms change over time. FirmPD captures the entire entity of a particular firm's \"process\"." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Organization/FullTimeEmployee
+:FullTimeEmployee rdf:type owl:Class ;
+                  rdfs:subClassOf :Employee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/FullTimeHomeEmployee
+:FullTimeHomeEmployee rdf:type owl:Class ;
+                      rdfs:subClassOf :FullTimeEmployee ;
+                      owl:disjointWith :FullTimeRegEmployee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/FullTimeRegEmployee
+:FullTimeRegEmployee rdf:type owl:Class ;
+                     rdfs:subClassOf :FullTimeEmployee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/FullTimeStudent
+:FullTimeStudent rdf:type owl:Class ;
+                 rdfs:subClassOf :Student .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/GeneralOffice
+:GeneralOffice rdf:type owl:Class ;
+               rdfs:subClassOf :Occupation ;
+               rdfs:comment "General Office / Clerical" .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Organization/IndustryType
 :IndustryType rdf:type owl:Class ;
               rdfs:subClassOf :OrgOntologyThing .
@@ -1596,11 +1696,6 @@ A Firm may have a Business Establishment(s).""" .
             rdfs:subClassOf :OrgOntologyThing ;
             <http://purl.org/dc/elements/1.1/description> """Occupation: An Occupation is performed by some Person.
 An Occupation has a type (e.g. sales, skilled trades)""" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Organization/OccupationType
-:OccupationType rdf:type owl:Class ;
-                rdfs:subClassOf :OrgOntologyThing .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing
@@ -1661,6 +1756,33 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                 <http://purl.org/dc/elements/1.1/description> "Organizations change over time. OrganizationPD captures the entire entity of a particular organization's \"process\"." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee
+:PartTimeEmployee rdf:type owl:Class ;
+                  rdfs:subClassOf :Employee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/PartTimeHomeEmployee
+:PartTimeHomeEmployee rdf:type owl:Class ;
+                      rdfs:subClassOf :PartTimeEmployee ;
+                      owl:disjointWith :PartTimeRegEmployee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/PartTimeRegEmployee
+:PartTimeRegEmployee rdf:type owl:Class ;
+                     rdfs:subClassOf :PartTimeEmployee .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/PartTimeStudent
+:PartTimeStudent rdf:type owl:Class ;
+                 rdfs:subClassOf :Student .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/Professional
+:Professional rdf:type owl:Class ;
+              rdfs:subClassOf :Occupation ;
+              rdfs:comment "Professional / Management / Technical" .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Organization/Salary
 :Salary rdf:type owl:Class ;
         rdfs:subClassOf :OrgOntologyThing ,
@@ -1669,6 +1791,28 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/Sales
+:Sales rdf:type owl:Class ;
+       rdfs:subClassOf :Occupation ;
+       rdfs:comment "Retail Sales and Service" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/Student
+:Student rdf:type owl:Class ;
+         rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :enrolledIn ;
+                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :EducationalInstitution
+                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Organization/Trades
+:Trades rdf:type owl:Class ;
+        rdfs:subClassOf :Occupation ;
+        rdfs:comment "Manufacturing / Construction / Trades" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Organization/Wage
@@ -1722,9 +1866,14 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                                                                         owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                                                                       ] ,
                                                                       [ rdf:type owl:Restriction ;
-                                                                        owl:onProperty <http://schema.org/deathDate> ;
-                                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                        owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/hasAge> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Duration>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onDataRange xsd:boolean
                                                                       ] ;
                                                       <http://purl.org/dc/elements/1.1/description> """A Person may have a unique identifier.
 A Person has a date of birth, and may have a date of death.
@@ -1781,6 +1930,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                                           owl:onProperty <http://schema.org/birthDate> ;
                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                           owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/deathDate> ;
+                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.w3.org/2006/time#Instant>
                                                                         ] ;
                                                         <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class." .
 
@@ -1799,6 +1953,11 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/Sex
 <http://ontology.eil.utoronto.ca/icity/Person/Sex> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ rdf:type owl:Class ;
+                                                                         owl:oneOf ( <http://ontology.eil.utoronto.ca/icity/Person/female>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Person/male>
+                                                                                   )
+                                                                       ] ;
                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
 
 
@@ -1858,6 +2017,10 @@ Note that some properties are not defined in the Person ontology, but in an exte
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
                                                                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                           ] ,
@@ -1878,7 +2041,9 @@ Note that some properties are not defined in the Person ontology, but in an exte
 A Resource may have some Location, amount or availability, according to the definition of the Manifestation or TimeVaryingEntity.
 A Resource must be classified as some Resource Type.
 A Resource may participate in some Activity Occurrence.
-A specific Resource may be used in or consumed in some activity occurrence.""" .
+A specific Resource may be used in or consumed in some activity occurrence.
+
+A Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing
@@ -2411,6 +2576,16 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 #    Individuals
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/icity/Person/female
+<http://ontology.eil.utoronto.ca/icity/Person/female> rdf:type owl:NamedIndividual ,
+                                                               <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Person/male
+<http://ontology.eil.utoronto.ca/icity/Person/male> rdf:type owl:NamedIndividual ,
+                                                             <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
+
+
 ###  http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa
 <http://ontology.eil.utoronto.ca/organization.owl#calgaryAbCa> rdf:type owl:NamedIndividual ,
                                                                         <http://schema.org/City> .
@@ -2519,6 +2694,9 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 #################################################################
 #    Annotations
 #################################################################
+
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
+
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
                                            <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 

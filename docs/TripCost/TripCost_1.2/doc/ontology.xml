@@ -425,6 +425,7 @@ A Tour starts and ends at the same Location.</dc:description>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/Trip">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -445,6 +446,17 @@ A Tour starts and ends at the same Location.</dc:description>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/occursOn"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -501,7 +513,7 @@ A Trip may incur some cost (monetary or otherwise).</dc:description>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/TripSegment">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"/>

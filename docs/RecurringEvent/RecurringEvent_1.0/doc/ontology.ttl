@@ -170,7 +170,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
                                                             owl:propertyChainAxiom ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/effectOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/endOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/endOf>
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp>
                                                                                      ]
@@ -179,8 +179,18 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                                                    ) ,
                                                                                    ( [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/preconditionOf>
                                                                                      ]
-                                                                                     <http://www.wurvoc.org/vocabularies/om-1.8/beginOf>
+                                                                                     <http://ontology.eil.utoronto.ca/icity/Activity/beginOf>
                                                                                    ) .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/beginOf
+<http://ontology.eil.utoronto.ca/icity/Activity/beginOf> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                         rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                         rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                         owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                  <http://www.w3.org/2006/time#hasBeginning>
+                                                                                ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/causedBy
@@ -209,6 +219,16 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 ###  http://ontology.eil.utoronto.ca/icity/Activity/enables
 <http://ontology.eil.utoronto.ca/icity/Activity/enables> rdf:type owl:ObjectProperty ;
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/endOf
+<http://ontology.eil.utoronto.ca/icity/Activity/endOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                       rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                       rdfs:range <http://www.w3.org/2006/time#Instant> ;
+                                                       owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
+                                                                                <http://www.w3.org/2006/time#hasEnd>
+                                                                              ) .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/hasDecomp
@@ -251,10 +271,39 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                              rdf:type owl:TransitiveProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                             owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Activity/occursAt
 <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> rdf:type owl:ObjectProperty ;
                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
                                                           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
+                                                              rdf:type owl:TransitiveProperty ;
+                                                              rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                              rdfs:comment "An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyAfter> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursAfter> ;
+                                                                     owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore
+<http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                      rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:range <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
+                                                                      rdfs:comment "An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Activity/participatesIn
@@ -303,8 +352,13 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
           rdfs:subPropertyOf :recurringEventProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/occurrenceOf
-:occurrenceOf rdf:type owl:ObjectProperty .
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasOccurrence
+:hasOccurrence rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/hasSubRecurringEvent
+:hasSubRecurringEvent rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :recurringEventProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/recurringEventProperty
@@ -688,16 +742,6 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
                                        rdfs:label "temporal unit type"@en .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/beginOf
-<http://www.wurvoc.org/vocabularies/om-1.8/beginOf> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                    rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                    rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                    owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                             <http://www.w3.org/2006/time#hasBeginning>
-                                                                           ) .
-
-
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
@@ -708,16 +752,6 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 <http://www.wurvoc.org/vocabularies/om-1.8/disjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/achievedAt> ;
                                                                   rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/DisjunctiveState> .
-
-
-###  http://www.wurvoc.org/vocabularies/om-1.8/endOf
-<http://www.wurvoc.org/vocabularies/om-1.8/endOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyProperty> ;
-                                                  rdfs:domain <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ;
-                                                  rdfs:range <http://www.w3.org/2006/time#Instant> ;
-                                                  owl:propertyChainAxiom ( <http://ontology.eil.utoronto.ca/icity/Activity/occursAt>
-                                                                           <http://www.w3.org/2006/time#hasEnd>
-                                                                         ) .
 
 
 ###  http://www.wurvoc.org/vocabularies/om-1.8/terminalAchievedAt
@@ -1027,16 +1061,16 @@ The range of this property is not specified, so can be replaced by any specific 
 <http://ontology.eil.utoronto.ca/icity/Activity/Activity> rdf:type owl:Class ;
                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/ActivityOntologyThing> ,
                                                                           [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/beginOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/endOf> ;
+                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursAt> ;
                                                                             owl:someValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/beginOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/endOf> ;
-                                                                            owl:someValuesFrom <http://www.w3.org/2006/time#Instant>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/causes> ;
@@ -1060,6 +1094,14 @@ The range of this property is not specified, so can be replaced by any specific 
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursBefore> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Activity/occursDirectlyBefore> ;
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
@@ -1259,8 +1301,12 @@ A state  cannot be both non-terminal and terminal.
                                   owl:allValuesFrom :Month
                                 ] ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty :occurrenceOf ;
+                                  owl:onProperty :hasOccurrence ;
                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Activity/Activity>
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasSubRecurringEvent ;
+                                  owl:allValuesFrom :RecurringEvent
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :recursAddition ;
@@ -1277,6 +1323,10 @@ A state  cannot be both non-terminal and terminal.
                                                                     <http://www.w3.org/2006/time#TemporalEntity>
                                                                   )
                                                     ]
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                  owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty <http://schema.org/dayOfWeek> ;
@@ -2191,12 +2241,12 @@ It is deprecated in this edition of OWL-Time. """ ;
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-_:genid160 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
-            <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
-
-_:genid161 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
+_:genid164 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
             <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> """Mark S. Fox
 http://eil.utoronto.ca""" .
+
+_:genid165 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
+            <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
 
 #################################################################
 #    Annotations

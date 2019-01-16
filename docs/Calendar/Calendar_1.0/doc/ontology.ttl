@@ -7,22 +7,22 @@
 @base <http://ontology.eil.utoronto.ca/icity/Calendar/> .
 
 <http://ontology.eil.utoronto.ca/icity/Calendar/> rdf:type owl:Ontology ;
-                                    owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Calendar/1.0/> ;
-                                    <http://purl.org/dc/elements/1.1/creator> "Mark Fox" ,
-                                                                              "Megan Katsumi" ;
-                                    <http://purl.org/dc/elements/1.1/description> """Ontology to capture concepts related to a calendar. Reuses some terms from schema.org. 
+                                                   owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Calendar/1.0/> ;
+                                                   <http://purl.org/dc/elements/1.1/creator> "Mark Fox" ,
+                                                                                             "Megan Katsumi" ;
+                                                   <http://purl.org/dc/elements/1.1/description> """Ontology to capture concepts related to a calendar. Reuses some terms from schema.org. 
 Beyond the representation of individual timepoints and time intervals, there is often a requirement to reference concepts from a calendar. These calendar concepts provide means of describing some reoccurring objects in time, it is important to note that calendar concepts are distinct from timepoints or intervals that may be characterized with these concepts. In fact, calendar concepts, such as a day of the week, or a month implicitly refer to a class of time objects. Further consideration of the formalization of this relationship should be addressed in future work. 
 Here, we define calendar concepts specific to the Gregorian calendar. If required, concepts from other sorts of calendars could be included here as well. These calendar concepts are required to capture properties such as hours of operation, transit schedules, parking policies, and so on.""" ;
-                                    <http://purl.org/dc/terms/created> "2018-07-06"^^xsd:date ;
-                                    <http://purl.org/dc/terms/title> "Calendar Ontology"@en ;
-                                    <http://purl.org/vocab/vann/preferredNamespacePrefix> "cal" ;
-                                    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/Calendar/" ;
-                                    rdfs:comment """Developed as part of the overall iCity ontology effort.
+                                                   <http://purl.org/dc/terms/created> "2018-07-06"^^xsd:date ;
+                                                   <http://purl.org/dc/terms/title> "Calendar Ontology"@en ;
+                                                   <http://purl.org/vocab/vann/preferredNamespacePrefix> "cal" ;
+                                                   <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/Calendar/" ;
+                                                   rdfs:comment """Developed as part of the overall iCity ontology effort.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
 Changes from previous version:
 """ ;
-                                    owl:versionInfo " Initial version of the Calendar ontology, reuses and extends concepts from schema.org / good relations to specify the basic concepts for a  calendar specification. "@en .
+                                                   owl:versionInfo " Initial version of the Calendar ontology, reuses and extends concepts from schema.org / good relations to specify the basic concepts for a  calendar specification. "@en .
 
 #################################################################
 #    Annotation properties
@@ -160,12 +160,6 @@ xsd:time rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://schema.org/dayOfWeek
-<http://schema.org/dayOfWeek> rdf:type owl:ObjectProperty ;
-                              rdfs:subPropertyOf :CalendarOntologyProperty ;
-                              rdfs:range <http://schema.org/DayOfWeek> .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyProperty
 :CalendarOntologyProperty rdf:type owl:ObjectProperty .
 
@@ -176,9 +170,25 @@ xsd:time rdf:type rdfs:Datatype .
           rdfs:range :Month .
 
 
+###  http://schema.org/dayOfWeek
+<http://schema.org/dayOfWeek> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :CalendarOntologyProperty ;
+                              rdfs:range <http://schema.org/DayOfWeek> .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty
+:CalendarOntologyDataProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Calendar/hasTime
+:hasTime rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :CalendarOntologyDataProperty ;
+         rdfs:range xsd:time .
+
 
 ###  http://schema.org/closes
 <http://schema.org/closes> rdf:type owl:DatatypeProperty ;
@@ -192,52 +202,20 @@ xsd:time rdf:type rdfs:Datatype .
                           rdfs:range xsd:time .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Calendar/CalendarOntologyDataProperty
-:CalendarOntologyDataProperty rdf:type owl:DatatypeProperty .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Calendar/hasTime
-:hasTime rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :CalendarOntologyDataProperty ;
-         rdfs:range xsd:time .
-
-
 #################################################################
 #    Classes
 #################################################################
-
-###  http://schema.org/DayOfWeek
-<http://schema.org/DayOfWeek> rdf:type owl:Class ;
-                              owl:equivalentClass [ rdf:type owl:Class ;
-                                                    owl:oneOf ( <http://schema.org/Friday>
-                                                                <http://schema.org/Monday>
-                                                                <http://schema.org/PublicHoliday>
-                                                                <http://schema.org/Saturday>
-                                                                <http://schema.org/Sunday>
-                                                                <http://schema.org/Thursday>
-                                                                <http://schema.org/Tuesday>
-                                                                <http://schema.org/Wednesday>
-                                                              )
-                                                  ] ;
-                              rdfs:subClassOf :CalendarThing ;
-                              rdfs:comment "A day of the week is a member of an enumerated class, covering the days of the week in the Gregorian calendar. Schema:DayOfWeek also includes a PublicHoliday individual that may be used to capture the distinction between a typical day of the week and a public holiday (e.g. where businesses may be closed or parking policies may vary)." .
-
-
-###  http://schema.org/OpeningHoursSpecification
-<http://schema.org/OpeningHoursSpecification> rdf:type owl:Class ;
-                                              rdfs:subClassOf :CalendarThing .
-
 
 ###  http://ontology.eil.utoronto.ca/icity/Calendar/CalendarSpecification
 :CalendarSpecification rdf:type owl:Class ;
                        rdfs:subClassOf :CalendarThing ,
                                        [ rdf:type owl:Restriction ;
-                                         owl:onProperty <http://schema.org/dayOfWeek> ;
-                                         owl:allValuesFrom <http://schema.org/DayOfWeek>
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
                                          owl:onProperty :hasMonth ;
                                          owl:allValuesFrom :Month
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://schema.org/dayOfWeek> ;
+                                         owl:allValuesFrom <http://schema.org/DayOfWeek>
                                        ] ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :hasTime ;
@@ -287,8 +265,8 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icity/Calendar/OpeningHoursSpecification
 :OpeningHoursSpecification rdf:type owl:Class ;
-                           rdfs:subClassOf <http://schema.org/OpeningHoursSpecification> ,
-                                           :CalendarSpecification ,
+                           rdfs:subClassOf :CalendarSpecification ,
+                                           <http://schema.org/OpeningHoursSpecification> ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty <http://schema.org/dayOfWeek> ;
                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -307,41 +285,31 @@ xsd:time rdf:type rdfs:Datatype .
                            rdfs:comment "Opening hours specification is a specialization of a calendar specification that includes a representation of opening and closing times. It is useful in specifying the hours of operation such as for businesses, services, or the hours of effect for parking policies." .
 
 
+###  http://schema.org/DayOfWeek
+<http://schema.org/DayOfWeek> rdf:type owl:Class ;
+                              owl:equivalentClass [ rdf:type owl:Class ;
+                                                    owl:oneOf ( <http://schema.org/Friday>
+                                                                <http://schema.org/Monday>
+                                                                <http://schema.org/PublicHoliday>
+                                                                <http://schema.org/Saturday>
+                                                                <http://schema.org/Sunday>
+                                                                <http://schema.org/Thursday>
+                                                                <http://schema.org/Tuesday>
+                                                                <http://schema.org/Wednesday>
+                                                              )
+                                                  ] ;
+                              rdfs:subClassOf :CalendarThing ;
+                              rdfs:comment "A day of the week is a member of an enumerated class, covering the days of the week in the Gregorian calendar. Schema:DayOfWeek also includes a PublicHoliday individual that may be used to capture the distinction between a typical day of the week and a public holiday (e.g. where businesses may be closed or parking policies may vary)." .
+
+
+###  http://schema.org/OpeningHoursSpecification
+<http://schema.org/OpeningHoursSpecification> rdf:type owl:Class ;
+                                              rdfs:subClassOf :CalendarThing .
+
+
 #################################################################
 #    Individuals
 #################################################################
-
-###  http://schema.org/Friday
-<http://schema.org/Friday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Monday
-<http://schema.org/Monday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/PublicHoliday
-<http://schema.org/PublicHoliday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Saturday
-<http://schema.org/Saturday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Sunday
-<http://schema.org/Sunday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Thursday
-<http://schema.org/Thursday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Tuesday
-<http://schema.org/Tuesday> rdf:type owl:NamedIndividual .
-
-
-###  http://schema.org/Wednesday
-<http://schema.org/Wednesday> rdf:type owl:NamedIndividual .
-
 
 ###  http://ontology.eil.utoronto.ca/icity/Calendar/April
 :April rdf:type owl:NamedIndividual .
@@ -389,6 +357,38 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icity/Calendar/September
 :September rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Friday
+<http://schema.org/Friday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Monday
+<http://schema.org/Monday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/PublicHoliday
+<http://schema.org/PublicHoliday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Saturday
+<http://schema.org/Saturday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Sunday
+<http://schema.org/Sunday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Thursday
+<http://schema.org/Thursday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Tuesday
+<http://schema.org/Tuesday> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/Wednesday
+<http://schema.org/Wednesday> rdf:type owl:NamedIndividual .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

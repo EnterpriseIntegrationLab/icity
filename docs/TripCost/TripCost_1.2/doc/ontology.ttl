@@ -240,7 +240,8 @@ A Tour starts and ends at the same Location.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/Trip
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
+                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Activity/Activity> ,
+                                                                  <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> ;
                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -255,6 +256,12 @@ A Tour starts and ends at the same Location.""" .
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> ;
                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onClass <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity>
+                                                                                   ] ;
+                                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://ontology.eil.utoronto.ca/icity/Trip/Trip>
                                                                   ] ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> ;
@@ -294,7 +301,7 @@ A Trip may incur some cost (monetary or otherwise).""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/TripSegment
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> ,
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Trip/Trip> ,
                                                                          [ rdf:type owl:Restriction ;
                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle> ;
                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>

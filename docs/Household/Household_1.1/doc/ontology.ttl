@@ -7,23 +7,23 @@
 @base <http://ontology.eil.utoronto.ca/icity/Household/> .
 
 <http://ontology.eil.utoronto.ca/icity/Household/> rdf:type owl:Ontology ;
-                                     owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Household/1.1/> ;
-                                     owl:imports <http://ontology.eil.utoronto.ca/icity/Foundation/1.1/> ;
-                                     <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
-                                     <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
-                                     <http://purl.org/dc/elements/1.1/description> "The Household ontology defines the classes: Household, Family, and DwellingUnit. These definitions serve as a basis which may be extended for more specific applications such as a surveys and simulations." ;
-                                     <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
-                                     <http://purl.org/dc/elements/1.1/title> "iCity Household Ontology" ;
-                                     <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-household" ;
-                                     <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/Household/" ;
-                                     rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Household Ontology is designed to capture concepts related to households.
+                                                    owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Household/1.1/> ;
+                                                    owl:imports <http://ontology.eil.utoronto.ca/icity/Foundation/1.1/> ;
+                                                    <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
+                                                    <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
+                                                    <http://purl.org/dc/elements/1.1/description> "The Household ontology defines the classes: Household, Family, and DwellingUnit. These definitions serve as a basis which may be extended for more specific applications such as a surveys and simulations." ;
+                                                    <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
+                                                    <http://purl.org/dc/elements/1.1/title> "iCity Household Ontology" ;
+                                                    <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-household" ;
+                                                    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/Household/" ;
+                                                    rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Household Ontology is designed to capture concepts related to households.
 		Changes from previous version:
 		-Imports revised ontologies of change (iCity-Change) and activity (iCity-Activity).
 		
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 		""" ;
-                                     owl:versionInfo 1.1 ;
-                                     <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
+                                                    owl:versionInfo 1.1 ;
+                                                    <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
 
 #################################################################
 #    Annotation properties
@@ -119,14 +119,6 @@ above the local reference ellipsoid).""" ;
 #    Object Properties
 #################################################################
 
-###  http://schema.org/address
-<http://schema.org/address> rdf:type owl:ObjectProperty .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Change/1.1/hasManifestation
 <http://ontology.eil.utoronto.ca/icity/Change/1.1/hasManifestation> rdf:type owl:ObjectProperty .
 
@@ -165,6 +157,14 @@ above the local reference ellipsoid).""" ;
             rdfs:subPropertyOf :HouseholdOntologyProperty .
 
 
+###  http://schema.org/address
+<http://schema.org/address> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
+
+
 #################################################################
 #    Classes
 #################################################################
@@ -194,10 +194,6 @@ above the local reference ellipsoid).""" ;
 A Household occupies a particular Dwelling, according to some tenure type. It is defined by this location, so that if the members move (even collectively), the new residence constitutes a new Household.
 We do not make any commitment regarding the identity of the Persons, and in fact a Person may belong to more than one Household.
 Note that a Household, and likely many other classes may have different definitions in different contexts/applications. To address this we may be required to introduce specializations of the class (e.g. ILUTE_Household, TTS_Household) in future extensions.""" .
-
-
-###  http://schema.org/PostalAddress
-<http://schema.org/PostalAddress> rdf:type owl:Class .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Change/1.1/TimeVaryingConcept
@@ -259,12 +255,12 @@ A Dwelling Unit has some Location.""" .
                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/1.1/TimeVaryingConcept> ,
                                 :HouseholdOntologyThing ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty <http://schema.org/address> ;
-                                  owl:allValuesFrom <http://schema.org/PostalAddress>
-                                ] ,
-                                [ rdf:type owl:Restriction ;
                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.0/hasLocation> ;
                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.0/SpatialFeature>
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty <http://schema.org/address> ;
+                                  owl:allValuesFrom <http://schema.org/PostalAddress>
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/1.1/existsAt> ;
@@ -373,6 +369,10 @@ To be defined in greater detail (if required) in future versions.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/1.1/Person
 <http://ontology.eil.utoronto.ca/icity/Person/1.1/Person> rdf:type owl:Class .
+
+
+###  http://schema.org/PostalAddress
+<http://schema.org/PostalAddress> rdf:type owl:Class .
 
 
 #################################################################

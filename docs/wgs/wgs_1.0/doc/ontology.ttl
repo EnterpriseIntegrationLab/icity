@@ -7,18 +7,18 @@
 @base <http://ontology.eil.utoronto.ca/icity/wgs/> .
 
 <http://ontology.eil.utoronto.ca/icity/wgs/> rdf:type owl:Ontology ;
-                               owl:versionIRI <http://ontology.eil.utoronto.ca/icity/wgs/1.0/> ;
-                               <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
-                               <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
-                               <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to location. Reuses the wgs ontology." ;
-                               <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
-                               <http://purl.org/dc/elements/1.1/title> "iCity wgs Ontology" ;
-                               <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-wgs" ;
-                               <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/wgs/" ;
-                               rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-wgs ontology is designed to capture concepts related to the geo location.
+                                              owl:versionIRI <http://ontology.eil.utoronto.ca/icity/wgs/1.0/> ;
+                                              <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
+                                              <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
+                                              <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to location. Reuses the wgs ontology." ;
+                                              <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
+                                              <http://purl.org/dc/elements/1.1/title> "iCity wgs Ontology" ;
+                                              <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-wgs" ;
+                                              <http://purl.org/vocab/vann/preferredNamespaceUri> "http://ontology.eil.utoronto.ca/icity/wgs/" ;
+                                              rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-wgs ontology is designed to capture concepts related to the geo location.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group""" ;
-                               owl:versionInfo 1.0 ;
-                               <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
+                                              owl:versionInfo 1.0 ;
+                                              <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
 
 #################################################################
 #    Annotation properties
@@ -26,6 +26,11 @@
 
 ###  http://creativecommons.org/ns#license
 <http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/wgs/wgsOntologyAnnotationProperty
+:wgsOntologyAnnotationProperty rdf:type owl:AnnotationProperty ;
+                               <http://purl.org/dc/elements/1.1/description> "Annotation property added for organizational purposes, to identify annotation properties defined in the wgs Ontology." .
 
 
 ###  http://purl.org/dc/elements/1.1/creator
@@ -122,30 +127,30 @@ above the local reference ellipsoid).""" ;
 <http://xmlns.com/foaf/0.1/based_near> rdf:type owl:AnnotationProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/wgs/wgsOntologyAnnotationProperty
-:wgsOntologyAnnotationProperty rdf:type owl:AnnotationProperty ;
-                               <http://purl.org/dc/elements/1.1/description> "Annotation property added for organizational purposes, to identify annotation properties defined in the wgs Ontology." .
-
-
 #################################################################
 #    Object Properties
 #################################################################
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ,
-                                                                      :wgsOntologyProperty ;
-                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
-
 
 ###  http://ontology.eil.utoronto.ca/icity/wgs/wgsOntologyProperty
 :wgsOntologyProperty rdf:type owl:ObjectProperty ;
                      <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the wgs Ontology." .
 
 
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf :wgsOntologyProperty ,
+                                                                      <http://xmlns.com/foaf/0.1/based_near> ;
+                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
 #################################################################
 #    Classes
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/icity/wgs/wgsOntologyThing
+:wgsOntologyThing rdf:type owl:Class ;
+                  <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the wgs Ontology." .
+
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
 <http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class ;
@@ -170,11 +175,6 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
  e.g. people, places, bowling balls, as well as abstract areas like cubes.
 """ ;
                                                        rdfs:label "SpatialThing" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/wgs/wgsOntologyThing
-:wgsOntologyThing rdf:type owl:Class ;
-                  <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the wgs Ontology." .
 
 
 #################################################################
