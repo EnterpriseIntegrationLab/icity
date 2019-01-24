@@ -334,14 +334,6 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNodeId -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNodeId">
@@ -445,6 +437,23 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/startNode">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
     </owl:ObjectProperty>
     
 
@@ -625,7 +634,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
             </owl:Restriction>
@@ -864,7 +873,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
             </owl:Restriction>
