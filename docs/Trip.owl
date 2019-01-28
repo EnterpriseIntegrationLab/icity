@@ -202,6 +202,28 @@ Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Trip/hasDriver -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
+        <rdfs:comment>All trips have participants. As a specialization of this, a trip may be defined to have a driver (in the case of an auto trip - in particular an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/Trip"/>
+        <rdfs:comment>All trips have participants. As a specialization of this, a trip may be defined to have a passenger (in particular, in the case of an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Trip/occursOn -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Trip/occursOn">
@@ -309,6 +331,18 @@ A Tour starts and ends at the same Location.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Trip/viaMode"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
             </owl:Restriction>
@@ -405,6 +439,12 @@ A Trip Segment occurs via some Arc(s).
 A Trip occurs on some Transportation Complex.
 A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
     </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle"/>
     
 
 
