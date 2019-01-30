@@ -21,6 +21,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Household/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
@@ -219,14 +220,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Household/hasMember -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Household/hasMember">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/HouseholdOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Household/hasValue -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Household/hasValue">
@@ -305,26 +298,8 @@ above the local reference ellipsoid).</rdfs:comment>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/GCISheltersThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/HouseholdOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/hasMember"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Household has one or more Persons as members. 
-A Household occupies a particular Dwelling, according to some tenure type. It is defined by this location, so that if the members move (even collectively), the new residence constitutes a new Household.
-We do not make any commitment regarding the identity of the Persons, and in fact a Person may belong to more than one Household.
-Note that a Household, and likely many other classes may have different definitions in different contexts/applications. To address this we may be required to introduce specializations of the class (e.g. ILUTE_Household, TTS_Household) in future extensions.</dc:description>
+        <dc:description>Household as defined in the GCIShelters Ontology</dc:description>
     </owl:Class>
     
 
@@ -458,7 +433,7 @@ A Dwelling Unit has some Location.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/HouseholdOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/hasMember"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -511,6 +486,33 @@ One question to consider is to what degree the general/extended Family concept m
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Household/GCISheltersThing">
         <dc:description>Added for organizational purposes, to capture the classes reused from the GCI-Shelters ontology. Notice that at this point in time we have not imported the entire GCI-Shelter Ontology and so we must manually reference the individual IRIs.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Household/Household -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Household/Household">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Household/HouseholdOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Household has one or more Persons as members. 
+A Household occupies a particular Dwelling, according to some tenure type. It is defined by this location, so that if the members move (even collectively), the new residence constitutes a new Household.
+We do not make any commitment regarding the identity of the Persons, and in fact a Person may belong to more than one Household.
+Note that a Household, and likely many other classes may have different definitions in different contexts/applications. To address this we may be required to introduce specializations of the class (e.g. ILUTE_Household, TTS_Household) in future extensions.</rdfs:comment>
     </owl:Class>
     
 
