@@ -645,6 +645,11 @@
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.opengis.net/ont/geosparql#Feature> .
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> <http://www.w3.org/2000/01/rdf-schema#comment> "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 # 
+# http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn> <http://www.w3.org/2002/07/owl#inverseOf> <http://www.opengis.net/ont/geosparql#sfContains> .
+# 
 # http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> .
@@ -662,10 +667,6 @@
 # http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad
 <http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
-# 
-# http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode
-<http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Vehicle/hasSpeed
 <http://ontology.eil.utoronto.ca/icity/Vehicle/hasSpeed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
@@ -2867,11 +2868,6 @@ _:genid271 <http://www.w3.org/2002/07/owl#cardinality> "1"^^<http://www.w3.org/2
 # http://ontology.eil.utoronto.ca/icity/Time/CalendarPeriod
 <http://ontology.eil.utoronto.ca/icity/Time/CalendarPeriod> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 # 
-# http://ontology.eil.utoronto.ca/icity/Vehicle/Mode
-<http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> <http://purl.org/dc/elements/1.1/description> "A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc)." .
-# 
 # http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing
 <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
@@ -2953,62 +2949,58 @@ _:genid288 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoro
 _:genid288 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid289 .
 _:genid289 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid289 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode> .
-_:genid289 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
+_:genid289 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> .
+_:genid289 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid290 .
 _:genid290 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid290 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> .
-_:genid290 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
+_:genid290 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/brand> .
+_:genid290 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/Brand> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid291 .
 _:genid291 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid291 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/brand> .
-_:genid291 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/Brand> .
+_:genid291 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/cargoVolume> .
+_:genid291 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid292 .
 _:genid292 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid292 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/cargoVolume> .
-_:genid292 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> .
+_:genid292 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/driveWheelConfiguration> .
+_:genid292 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/DriveWheelConfigurationValue> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid293 .
 _:genid293 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid293 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/driveWheelConfiguration> .
-_:genid293 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/DriveWheelConfigurationValue> .
+_:genid293 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelConsumption> .
+_:genid293 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/QuantitativeValue> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid294 .
 _:genid294 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid294 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelConsumption> .
+_:genid294 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelEfficiency> .
 _:genid294 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/QuantitativeValue> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid295 .
 _:genid295 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid295 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelEfficiency> .
+_:genid295 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelType> .
 _:genid295 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/QuantitativeValue> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid296 .
 _:genid296 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid296 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/fuelType> .
+_:genid296 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/mileageFromOdometer> .
 _:genid296 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/QuantitativeValue> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid297 .
 _:genid297 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid297 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/mileageFromOdometer> .
-_:genid297 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/QuantitativeValue> .
+_:genid297 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/productionDate> .
+_:genid297 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#DateTimeDescription> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid298 .
 _:genid298 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid298 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/productionDate> .
-_:genid298 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#DateTimeDescription> .
+_:genid298 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
+_:genid298 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid298 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid299 .
 _:genid299 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid299 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid299 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid299 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
+_:genid299 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/numberOfAxels> .
+_:genid299 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#integer> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid300 .
 _:genid300 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid300 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/numberOfAxels> .
+_:genid300 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/numberOfDoors> .
 _:genid300 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#integer> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid301 .
 _:genid301 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid301 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/numberOfDoors> .
-_:genid301 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#integer> .
-<http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid302 .
-_:genid302 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid302 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/vehicleSeatingCapacity> .
-_:genid302 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid302 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#integer> .
+_:genid301 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/vehicleSeatingCapacity> .
+_:genid301 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid301 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#integer> .
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehiclePD> <http://purl.org/dc/elements/1.1/description> "A Vehicle changes over time. VehiclePD captures the entire entity of a vehicle, i.e. the \"vehicle perdurant\"." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType
@@ -3028,10 +3020,10 @@ _:genid302 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/X
 # http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
-<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid303 .
-_:genid303 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid303 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
-_:genid303 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
+<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid302 .
+_:genid302 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid302 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
+_:genid302 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://purl.org/dc/elements/1.1/description> "Organization Agent: Members of an organization.\nOrganization Agents have goals, authority, and may be members of some team.\nAn Organization Agent plays a Role within the Organization." .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#Resource
@@ -3046,33 +3038,33 @@ _:genid303 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.ut
 # 
 # http://schema.org/DayOfWeek
 <http://schema.org/DayOfWeek> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://schema.org/DayOfWeek> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid304 .
-_:genid304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid304 <http://www.w3.org/2002/07/owl#oneOf> _:genid312 .
-_:genid312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Friday> .
-_:genid312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid311 .
+<http://schema.org/DayOfWeek> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid303 .
+_:genid303 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid303 <http://www.w3.org/2002/07/owl#oneOf> _:genid311 .
 _:genid311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Monday> .
+_:genid311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Friday> .
 _:genid311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid310 .
 _:genid310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/PublicHoliday> .
+_:genid310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Monday> .
 _:genid310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid309 .
 _:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Saturday> .
+_:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/PublicHoliday> .
 _:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid308 .
 _:genid308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Sunday> .
+_:genid308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Saturday> .
 _:genid308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid307 .
 _:genid307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Thursday> .
+_:genid307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Sunday> .
 _:genid307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid306 .
 _:genid306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Tuesday> .
+_:genid306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Thursday> .
 _:genid306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid305 .
 _:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Wednesday> .
-_:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Tuesday> .
+_:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid304 .
+_:genid304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://schema.org/Wednesday> .
+_:genid304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 <http://schema.org/DayOfWeek> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/RecurringEvent/RecurringEventThing> .
 # 
 # http://schema.org/DriveWheelConfigurationValue
@@ -3092,13 +3084,13 @@ _:genid305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid313 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid312 .
+_:genid312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid312 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid312 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid313 .
 _:genid313 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid313 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid313 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid314 .
-_:genid314 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid314 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid314 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit> .
+_:genid313 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid313 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration> <http://www.w3.org/2000/01/rdf-schema#label> "acceleration" .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/AccelerationUnit
@@ -3109,13 +3101,13 @@ _:genid314 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid315 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid314 .
+_:genid314 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid314 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid314 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid315 .
 _:genid315 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid315 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid315 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid316 .
-_:genid316 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid316 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid316 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit> .
+_:genid315 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid315 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoney> <http://www.w3.org/2000/01/rdf-schema#label> "amount of money" .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/AmountOfMoneyUnit
@@ -3126,13 +3118,13 @@ _:genid316 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Area
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid317 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid316 .
+_:genid316 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid316 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid316 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid317 .
 _:genid317 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid317 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid317 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid318 .
-_:genid318 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid318 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid318 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> .
+_:genid317 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid317 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/AreaUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/2000/01/rdf-schema#comment> "Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared." .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Area> <http://www.w3.org/2000/01/rdf-schema#label> "area" .
 # 
@@ -3154,21 +3146,21 @@ _:genid318 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Length
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid319 .
-_:genid319 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid319 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid319 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid320 .
-_:genid320 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid323 .
-_:genid323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> .
-_:genid323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid321 .
-_:genid321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid322 .
-_:genid322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid322 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid322 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/LengthUnit> .
-_:genid321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-_:genid320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid318 .
+_:genid318 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid318 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid318 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid319 .
+_:genid319 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid322 .
+_:genid322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> .
+_:genid322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid320 .
+_:genid320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid321 .
+_:genid321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid321 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid321 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/LengthUnit> .
+_:genid320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid319 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/2000/01/rdf-schema#comment> "Length is the amount of space between two geographical points along a curve. It is a base quantity in the International System of Units and other systems of units. Length is speed times time. The metre, a base unit of length in the International System of Units, is defined in terms of speed of light during a certain time interval." .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> <http://www.w3.org/2000/01/rdf-schema#label> "length" .
 # 
@@ -3180,13 +3172,13 @@ _:genid320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Mass
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid324 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid323 .
+_:genid323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid323 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid323 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid324 .
 _:genid324 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid324 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid324 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid325 .
-_:genid325 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid325 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid325 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/MassUnit> .
+_:genid324 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid324 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/MassUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/2000/01/rdf-schema#comment> "Mass is the amount of matter of a phenomenon. It is a base quantity in the International System of Units. Mass is force divided by acceleration." .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Mass> <http://www.w3.org/2000/01/rdf-schema#label> "mass" .
 # 
@@ -3198,19 +3190,19 @@ _:genid325 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/OM/OMThing> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid326 .
-_:genid326 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid326 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid326 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid325 .
+_:genid325 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid325 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid325 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> <http://www.w3.org/2000/01/rdf-schema#label> "measure" .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/OM/OMThing> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid327 .
-_:genid327 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid327 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid327 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid326 .
+_:genid326 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid326 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid326 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> <http://www.w3.org/2000/01/rdf-schema#label> "quantity" .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Scale
@@ -3221,13 +3213,13 @@ _:genid327 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Speed
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid328 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid327 .
+_:genid327 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid327 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid327 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid328 .
 _:genid328 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid328 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid328 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid329 .
-_:genid329 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid329 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid329 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/SpeedUnit> .
+_:genid328 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid328 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/SpeedUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/2000/01/rdf-schema#comment> "Speed is the time rate of motion measured by the distance moved over in unit time." .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Speed> <http://www.w3.org/2000/01/rdf-schema#label> "speed" .
 # 
@@ -3245,13 +3237,13 @@ _:genid329 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Time
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid330 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Time> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid329 .
+_:genid329 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid329 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid329 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid330 .
 _:genid330 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid330 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid330 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid331 .
-_:genid331 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid331 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid331 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit> .
+_:genid330 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid330 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Time> <http://www.w3.org/2000/01/rdf-schema#label> "time" .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/TimeUnit
@@ -3272,13 +3264,13 @@ _:genid331 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Volume
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid332 .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid331 .
+_:genid331 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid331 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+_:genid331 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid332 .
 _:genid332 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid332 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
-_:genid332 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid333 .
-_:genid333 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid333 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
-_:genid333 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/VolumeUnit> .
+_:genid332 <http://www.w3.org/2002/07/owl#onProperty> <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> .
+_:genid332 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of-units-of-measure.org/resource/om-2/VolumeUnit> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/2000/01/rdf-schema#comment> "Volume is a measure of how much three-dimensional space any phenomenon occupies. It is a derived quantity in the International System of Units. Volume is length to the power 3." .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Volume> <http://www.w3.org/2000/01/rdf-schema#label> "volume" .
 # 
@@ -3297,21 +3289,21 @@ _:genid333 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.ontology-of
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing> .
 # 
 # http://www.w3.org/2002/07/owl#Thing
-<http://www.w3.org/2002/07/owl#Thing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid334 .
-_:genid334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid334 <http://www.w3.org/2002/07/owl#unionOf> _:genid337 .
-_:genid337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid338 .
-_:genid338 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid338 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> .
-_:genid338 <http://www.w3.org/2002/07/owl#minCardinality> "2"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid335 .
-_:genid335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid336 .
-_:genid336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid336 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> .
-_:genid336 <http://www.w3.org/2002/07/owl#cardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2002/07/owl#Thing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid333 .
+_:genid333 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid333 <http://www.w3.org/2002/07/owl#unionOf> _:genid336 .
+_:genid336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid337 .
+_:genid337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid337 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> .
+_:genid337 <http://www.w3.org/2002/07/owl#minCardinality> "2"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid334 .
+_:genid334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid335 .
+_:genid335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid335 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> .
+_:genid335 <http://www.w3.org/2002/07/owl#cardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 <http://www.w3.org/2002/07/owl#Thing> <http://www.w3.org/2000/01/rdf-schema#comment> "An object cannot be a proper part of itself. Thus, any object must have more than one proper part.\nProper Parthood is transitive." .
 # 
 # http://www.w3.org/2004/02/skos/core#Collection
@@ -3450,10 +3442,10 @@ _:genid335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/
 <http://www.ontology-of-units-of-measure.org/resource/om-2/average> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <http://www.ontology-of-units-of-measure.org/resource/om-2/average> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 # 
+_:genid338 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" .
+_:genid338 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "Mark S. Fox\nhttp://eil.utoronto.ca" .
 _:genid339 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" .
-_:genid339 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "Mark S. Fox\nhttp://eil.utoronto.ca" .
-_:genid340 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" .
-_:genid340 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
+_:genid339 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
 # 
 # 
 # #################################################################

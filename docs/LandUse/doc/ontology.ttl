@@ -371,6 +371,12 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                                       rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                               owl:inverseOf <http://www.opengis.net/ont/geosparql#sfContains> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty ;
                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
@@ -898,6 +904,7 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                       <http://ontology.eil.utoronto.ca/icity/LBCS/LBCSThing> ,
                                                                       :LandUseOntologyThing ,
+                                                                      <http://www.opengis.net/ont/geosparql#Feature> ,
                                                                       [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :associatedArea ;
                                                                         owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Area>
@@ -1162,11 +1169,6 @@ TBD: should this be the same as the CLUMPWater class?""" .
                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass <http://www.w3.org/2006/time#Interval>
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                           ] ;
           <http://purl.org/dc/elements/1.1/description> "A parcel may change over time, ParcelPD captures the entire entity of a parcel, i.e. the parcel perdurant." .
 

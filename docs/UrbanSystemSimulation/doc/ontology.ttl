@@ -716,29 +716,15 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD
-<http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD> rdf:type owl:Class ;
-                                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode> ;
-                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode>
-                                                                                   ] .
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> rdf:type owl:Class .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
-<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment> rdf:type owl:Class ;
-                                                                         rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
-                                                                                                                  owl:allValuesFrom [ rdf:type owl:Restriction ;
-                                                                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode> ;
-                                                                                                                                      owl:hasValue <http://ontology.eil.utoronto.ca/icity/UrbanSystem/road>
-                                                                                                                                    ]
-                                                                                                                ]
-                                                                                                                [ rdf:type owl:Restriction ;
-                                                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/UrbanSystem/accessedBy> ;
-                                                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc>
-                                                                                                                ]
-                                                                                                              ) ;
-                                                                                           rdf:type owl:Class
-                                                                                         ] .
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment> rdf:type owl:Class .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing
@@ -807,13 +793,6 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 An Occupant may be a Driver or a Passenger""" .
 
 
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/Occupation
-<http://ontology.eil.utoronto.ca/icity/UrbanSystem/Occupation> rdf:type owl:Class ;
-                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyThing> ;
-                                                               <http://purl.org/dc/elements/1.1/description> """An Occupation is performed by some Person.
-An Occupation has a type (e.g. sales, skilled trades)""" .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/Schedule
 <http://ontology.eil.utoronto.ca/icity/UrbanSystem/Schedule> rdf:type owl:Class ;
                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyThing> ,
@@ -853,10 +832,6 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                                     rdfs:comment "Added for organizational purposes, to identify all classes included in the Urban System Simulation ontology." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/Mode
-<http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> rdf:type owl:Class .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing
 <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> rdf:type owl:Class ;
                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyThing> .
@@ -887,7 +862,11 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType
-<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> rdf:type owl:Class .
+<http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> rdf:type owl:Class ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode> ;
+                                                                              owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode>
+                                                                            ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#SchemaOrgThing
@@ -962,17 +941,17 @@ rdfs:Resource rdf:type owl:Class ;
 
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/air
 <http://ontology.eil.utoronto.ca/icity/UrbanSystem/air> rdf:type owl:NamedIndividual ,
-                                                                 <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
+                                                                 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/road
 <http://ontology.eil.utoronto.ca/icity/UrbanSystem/road> rdf:type owl:NamedIndividual ,
-                                                                  <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
+                                                                  <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/water
 <http://ontology.eil.utoronto.ca/icity/UrbanSystem/water> rdf:type owl:NamedIndividual ,
-                                                                   <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
+                                                                   <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
 
 
 #################################################################

@@ -806,6 +806,16 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://www.opengis.net/ont/geosparql#sfContains"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation -->
 
 
@@ -961,15 +971,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNodeId -->
 
 
@@ -1090,6 +1091,24 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Link"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgProperty -->
 
 
@@ -1112,15 +1131,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -2975,9 +2985,9 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3220,9 +3230,9 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasMode"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3440,19 +3450,21 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Observation"/>
-                            <owl:Class>
-                                <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed"/>
-                                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasResult"/>
-                                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy"/>
-                                    </owl:Restriction>
-                                </owl:unionOf>
-                            </owl:Class>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
                                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasResult"/>
+                                <owl:allValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed"/>
+                                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy"/>
+                                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:allValuesFrom>
                             </owl:Restriction>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/wasOriginatedBy"/>
@@ -3503,6 +3515,15 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 <owl:hasValue rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/average"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
     </owl:Class>
     
 
@@ -4033,17 +4054,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/Mode -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing"/>
-        <dc:description>A Mode indicates the means by which the vehicle performs transportation (e.g. road, rail, etc).</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing -->
 
 
@@ -4160,12 +4170,6 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/hasCargoCapacityLoad"/>
                 <owl:allValuesFrom rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/hasMode"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
