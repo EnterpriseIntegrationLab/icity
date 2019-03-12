@@ -1,28 +1,33 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/OM/"
      xml:base="http://ontology.eil.utoronto.ca/icity/OM/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="http://ontology.eil.utoronto.ca/icity/OM/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/OM/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/1.1/"/>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
-        <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
+        <dc:creator>Megan Katsumi</dc:creator>
+        <dc:description>Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as &quot;10 m&quot;, with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure&apos;s numerical value is given in (e.g. metres).
+		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.</dc:description>
+        <dc:issued>November 8, 2017</dc:issued>
+        <dc:title>The Ontology of Units of Measure</dc:title>
+        <vann:preferredNamespacePrefix>icity-om</vann:preferredNamespacePrefix>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
@@ -30,14 +35,9 @@ Changes from previous version:
 -combined with MonetaryValue ontology
 -added units required for network representation (lane capacity, etc).
 -updated imports from OM to new version, OM 2.0</rdfs:comment>
-        <dc:title>The Ontology of Units of Measure</dc:title>
-        <dc:creator>Megan Katsumi</dc:creator>
-        <dc:description>Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as &quot;10 m&quot;, with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure&apos;s numerical value is given in (e.g. metres).
-		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.</dc:description>
-        <vann:preferredNamespacePrefix>icity-om</vann:preferredNamespacePrefix>
-        <dc:issued>November 8, 2017</dc:issued>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">http://ontology.eil.utoronto.ca/icity/OM/1.1/</owl:priorVersion>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
+        <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -408,6 +408,24 @@ Changes from previous version:
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of">
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOf -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOver -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
     </owl:ObjectProperty>
     
 
@@ -1218,5 +1236,5 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
