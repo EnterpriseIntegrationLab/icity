@@ -46,6 +46,14 @@ Changes from previous version:
                                                                         <http://purl.org/dc/elements/1.1/description> "Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal
+<http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal> rdf:type owl:AnnotationProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty
 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> rdf:type owl:AnnotationProperty .
 
@@ -511,6 +519,18 @@ xsd:time rdf:type rdfs:Datatype .
 <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> rdf:type owl:ObjectProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOf
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                       rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOver
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOver> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                         rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the iCity-Organization ontology." .
@@ -729,6 +749,14 @@ xsd:time rdf:type rdfs:Datatype .
               rdfs:subPropertyOf :TransitOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/transitPass
+:transitPass rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :TransitOntologyProperty ;
+             rdfs:domain <http://ontology.eil.utoronto.ca/icity/Person/Person> ;
+             rdfs:range :TransitPass ;
+             rdfs:comment "Associates a person with a particular transit pass (e.g. valid for some transit system, with some cost, etc)." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/travelTime
 :travelTime rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :TransitOntologyProperty .
@@ -926,6 +954,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasRoadSegmentId
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasRoadSegmentId> rdf:type owl:ObjectProperty ;
                                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll
@@ -1381,6 +1414,14 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasStopCode
 :hasStopCode rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :PublicTransitDataProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitPass
+:hasTransitPass rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :PublicTransitDataProperty ;
+                rdfs:domain <http://ontology.eil.utoronto.ca/icity/Person/Person> ;
+                rdfs:range xsd:boolean ;
+                rdfs:comment "A boolean representation to incidate whether a person has a transit pass." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitVehicleId
@@ -2297,9 +2338,14 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                                                                                       ] ;
                                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                                   <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> ,
+                                                                                  <http://ontology.eil.utoronto.ca/organization.owl#Organization> ,
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
                                                                                     owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/Address>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                    owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://schema.org/address> ;
@@ -3097,6 +3143,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/AccessRestriction>
                                                                                  ] ,
                                                                                  [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI> ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll> ;
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
                                                                                  ] ,
@@ -3412,6 +3462,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
                                                                                           <http://www.w3.org/ns/sosa/Sensor> ,
                                                                                           [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
                                                                                             owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                                                                             owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
                                                                                                                                      [ rdf:type owl:Restriction ;
@@ -3451,6 +3505,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                             owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
                                                                                             owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
                                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                           owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                           owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                         ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
@@ -3760,6 +3832,25 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/signalLength> ;
                                                                                            owl:allValuesFrom <http://www.w3.org/2006/time#DurationDescription>
                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> ;
+                                                                 rdfs:comment "Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> ;
+                                                                     rdfs:comment "The Travel Time Index (TTI) calculated against the Maximum throughput speed (average speed at capacity)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> ;
+                                                                     rdfs:comment "The Travel Time Index calculated against the minimum throughput speed." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex
@@ -4118,6 +4209,12 @@ A Role has some authority, requires some skill, and may also have some associate
                                                                      rdfs:label "quantity" .
 
 
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                  rdfs:label "ratio" .
+
+
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Scale
 <http://www.ontology-of-units-of-measure.org/resource/om-2/Scale> rdf:type owl:Class ;
                                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/OMThing> ;
@@ -4411,12 +4508,12 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
                                                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/Function> .
 
 
-_:genid534 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
-           <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> """Mark S. Fox
+_:genid539 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty> "" ;
+           <http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal> """Mark S. Fox
 http://eil.utoronto.ca""" .
 
-_:genid535 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#AnnotationProperty> "" ;
-            <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
+_:genid540 <http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty> "" ;
+            <http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
 
 #################################################################
 #    Annotations

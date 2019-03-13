@@ -660,6 +660,26 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOver -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty -->
 
 
@@ -874,6 +894,15 @@
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasRoadSegmentId">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -2282,6 +2311,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
             </owl:Restriction>
@@ -2748,6 +2783,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -2800,6 +2841,36 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/detects"/>
                 <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"/>
+                <owl:hasValue rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/average"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"/>
+                <owl:hasValue rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/average"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3272,6 +3343,37 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio"/>
+        <rdfs:comment>Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+        <rdfs:comment>The Travel Time Index (TTI) calculated against the Maximum throughput speed (average speed at capacity).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+        <rdfs:comment>The Travel Time Index calculated against the minimum throughput speed.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex -->
 
 
@@ -3578,6 +3680,16 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label>quantity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio -->
+
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio">
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+        <rdfs:label>ratio</rdfs:label>
     </owl:Class>
     
 
@@ -4794,15 +4906,11 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <rdf:Description>
         <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid360">
+    <rdf:Description rdf:nodeID="genid364">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid361">
-        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
-        <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
-    </rdf:Description>
-    <rdf:Description>
+    <rdf:Description rdf:nodeID="genid365">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
@@ -4859,6 +4967,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
@@ -4871,13 +4980,16 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+        <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+    </rdf:Description>
+    <rdf:Description>
+        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
 </rdf:RDF>
 

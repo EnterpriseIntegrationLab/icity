@@ -445,6 +445,18 @@ Proper Parthood is transitive.
 Proper parthood is dense and so there exist no immediate proper parts; in other words, given some object, whatever proper part, x, we choose, there exists some slightly larger proper part of the object that also has x as a proper part.""" .
 
 
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOf
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                       rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOver
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOver> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                         rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty
 <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> rdf:type owl:ObjectProperty .
 
@@ -582,6 +594,11 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasRoadSegmentId
 :hasRoadSegmentId rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf :TransportationOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI
+:hasTTI rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll
@@ -1791,6 +1808,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                        owl:allValuesFrom :AccessRestriction
                      ] ,
                      [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasTTI ;
+                       owl:allValuesFrom :TTI
+                     ] ,
+                     [ rdf:type owl:Restriction ;
                        owl:onProperty :hasToll ;
                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
                      ] ,
@@ -2106,6 +2127,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
               rdfs:subClassOf :TransportationOntologyThing ,
                               <http://www.w3.org/ns/sosa/Sensor> ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                 owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
                                                                          [ rdf:type owl:Restriction ;
@@ -2145,6 +2170,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                 owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
                                 owl:hasValue :vehicle_presence
                               ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max
+:MeanTTI_Max rdf:type owl:Class ;
+             rdfs:subClassOf :TTI_Max ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                               owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                             ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min
+:MeanTTI_Min rdf:type owl:Class ;
+             rdfs:subClassOf :TTI_Min ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                               owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                             ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
@@ -2454,6 +2497,25 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                owl:onProperty :signalLength ;
                                owl:allValuesFrom <http://www.w3.org/2006/time#DurationDescription>
                              ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI
+:TTI rdf:type owl:Class ;
+     rdfs:subClassOf :TransportationOntologyThing ,
+                     <http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> ;
+     rdfs:comment "Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max
+:TTI_Max rdf:type owl:Class ;
+         rdfs:subClassOf :TTI ;
+         rdfs:comment "The Travel Time Index (TTI) calculated against the Maximum throughput speed (average speed at capacity)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min
+:TTI_Min rdf:type owl:Class ;
+         rdfs:subClassOf :TTI ;
+         rdfs:comment "The Travel Time Index calculated against the minimum throughput speed." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex
@@ -2812,6 +2874,12 @@ A Vehicle is owned by some Person(s) or Firm""" .
                                                                                        owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure>
                                                                                      ] ;
                                                                      rdfs:label "quantity" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                  rdfs:label "ratio" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Scale

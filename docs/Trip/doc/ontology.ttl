@@ -501,6 +501,11 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll> rdf:type owl:ObjectProperty ;
                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
@@ -1012,6 +1017,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/AccessRestriction>
                                                                                  ] ,
                                                                                  [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI> ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll> ;
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
                                                                                  ] ,
@@ -1327,6 +1336,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
                                                                                           <http://www.w3.org/ns/sosa/Sensor> ,
                                                                                           [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
                                                                                             owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                                                                             owl:allValuesFrom [ owl:intersectionOf ( <http://www.w3.org/ns/sosa/Observation>
                                                                                                                                      [ rdf:type owl:Restriction ;
@@ -1366,6 +1379,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                             owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
                                                                                             owl:hasValue <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence>
                                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                           owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction> ;
+                                                                                           owl:hasValue <http://www.ontology-of-units-of-measure.org/resource/om-2/average>
+                                                                                         ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed
@@ -1675,6 +1706,25 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/signalLength> ;
                                                                                            owl:allValuesFrom <http://www.w3.org/2006/time#DurationDescription>
                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
+                                                                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> ;
+                                                                 rdfs:comment "Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> ;
+                                                                     rdfs:comment "The Travel Time Index (TTI) calculated against the Maximum throughput speed (average speed at capacity)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI> ;
+                                                                     rdfs:comment "The Travel Time Index calculated against the minimum throughput speed." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex

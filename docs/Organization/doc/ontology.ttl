@@ -508,8 +508,9 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
          rdfs:subPropertyOf :OrgOntologyProperty .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty
-<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> rdf:type owl:ObjectProperty .
+###  http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                      <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty
@@ -519,38 +520,33 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasAge
 <http://ontology.eil.utoronto.ca/icity/Person/hasAge> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasIncome
 <http://ontology.eil.utoronto.ca/icity/Person/hasIncome> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasPersonID
 <http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> rdf:type owl:ObjectProperty ;
-                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasQualification
 <http://ontology.eil.utoronto.ca/icity/Person/hasQualification> rdf:type owl:ObjectProperty ;
-                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSex
 <http://ontology.eil.utoronto.ca/icity/Person/hasSex> rdf:type owl:ObjectProperty ;
                                                       owl:equivalentProperty <http://schema.org/gender> ;
-                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
+                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Person/hasSkill
 <http://ontology.eil.utoronto.ca/icity/Person/hasSkill> rdf:type owl:ObjectProperty ;
-                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver
-<http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> ;
-                                                                rdfs:domain <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyProperty
@@ -1724,9 +1720,14 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                                   ] ;
               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                               :OrgOntologyThing ,
+                              <http://ontology.eil.utoronto.ca/organization.owl#Organization> ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
                                 owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Contact/Address>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://schema.org/address> ;
@@ -2699,9 +2700,6 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 #################################################################
 #    Annotations
 #################################################################
-
-<http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyDataProperty> <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
-
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
                                            <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 

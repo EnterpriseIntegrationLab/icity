@@ -19,7 +19,8 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#">
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
+     xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/icity/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
@@ -75,6 +76,20 @@ Changes from previous version:
     <owl:AnnotationProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/OMOntologyAnnotationProperty">
         <dc:description>Annotation property introduced for organization purposes, to identify annotation properties defined in the Units of Measure Ontology.</dc:description>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty -->
+
+
+    <owl:AnnotationProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/AnnotationProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal -->
+
+
+    <owl:AnnotationProperty rdf:about="http://ontology.eil.utoronto.ca/icity/RecurringEvent/Literal"/>
     
 
 
@@ -879,6 +894,26 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/aggregateOver -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty -->
 
 
@@ -1256,6 +1291,18 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/transitPass -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/transitPass">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitPass"/>
+        <rdfs:comment>Associates a person with a particular transit pass (e.g. valid for some transit system, with some cost, etc).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/travelTime -->
 
 
@@ -1605,6 +1652,15 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasRoadSegmentId">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -2495,6 +2551,18 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasStopCode">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitPass -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/PublicTransit/hasTransitPass">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/PublicTransitDataProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment>A boolean representation to incidate whether a person has a transit pass.</rdfs:comment>
     </owl:DatatypeProperty>
     
 
@@ -4006,10 +4074,17 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#Organization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
                 <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Contact/Address"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5226,6 +5301,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasTTI"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
             </owl:Restriction>
@@ -5692,6 +5773,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -5744,6 +5831,36 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/detects"/>
                 <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicle_presence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"/>
+                <owl:hasValue rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/average"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Min">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"/>
+                <owl:hasValue rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/average"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6212,6 +6329,37 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DurationDescription"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio"/>
+        <rdfs:comment>Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Max">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+        <rdfs:comment>The Travel Time Index (TTI) calculated against the Maximum throughput speed (average speed at capacity).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI_Min">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI"/>
+        <rdfs:comment>The Travel Time Index calculated against the minimum throughput speed.</rdfs:comment>
     </owl:Class>
     
 
@@ -6776,6 +6924,16 @@ A Role has some authority, requires some skill, and may also have some associate
     
 
 
+    <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio -->
+
+
+    <owl:Class rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio">
+        <rdfs:subClassOf rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"/>
+        <rdfs:label>ratio</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://www.ontology-of-units-of-measure.org/resource/om-2/Scale -->
 
 
@@ -7292,14 +7450,14 @@ A Role has some authority, requires some skill, and may also have some associate
     <owl:NamedIndividual rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/average">
         <rdf:type rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Function"/>
     </owl:NamedIndividual>
-    <rdf:Description rdf:nodeID="genid534">
-        <RecurringEvent:AnnotationProperty></RecurringEvent:AnnotationProperty>
-        <RecurringEvent:Literal>Mark S. Fox
-http://eil.utoronto.ca</RecurringEvent:Literal>
+    <rdf:Description rdf:nodeID="genid539">
+        <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
+        <RecurringEvent1:Literal>Mark S. Fox
+http://eil.utoronto.ca</RecurringEvent1:Literal>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid535">
-        <RecurringEvent:AnnotationProperty></RecurringEvent:AnnotationProperty>
-        <RecurringEvent:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent:Literal>
+    <rdf:Description rdf:nodeID="genid540">
+        <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
+        <RecurringEvent1:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent1:Literal>
     </rdf:Description>
     
 
