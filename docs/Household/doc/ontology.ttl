@@ -286,9 +286,37 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                            <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Household ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Household/hasFamilyMember
+:hasFamilyMember rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :HouseholdOntologyProperty ,
+                                    <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                 owl:inverseOf :isMemberOfFamily ;
+                 rdfs:domain :Family ;
+                 rdfs:range <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Household/hasHouseholdMember
+:hasHouseholdMember rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :HouseholdOntologyProperty ,
+                                       <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                    owl:inverseOf :isMemberOfHousehold ;
+                    rdfs:domain :Household ;
+                    rdfs:range <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Household/hasValue
 :hasValue rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :HouseholdOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Household/isMemberOfFamily
+:isMemberOfFamily rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :HouseholdOntologyProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Household/isMemberOfHousehold
+:isMemberOfHousehold rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :HouseholdOntologyProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Household/occupiedBy
@@ -323,6 +351,7 @@ Immediate component-of is a subproperty of component-of.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/containedIn
 <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                               owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ;
                                                               <http://purl.org/dc/elements/1.1/description> """Something may be contained-in some other thing; more specifically it may be immediately contained in something.
 Containment is transitive. Immediate containment is not transitive.
@@ -330,7 +359,8 @@ Immediate containment is a subproperty of containment.""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/contains
-<http://ontology.eil.utoronto.ca/icity/Mereology/contains> rdf:type owl:ObjectProperty .
+<http://ontology.eil.utoronto.ca/icity/Mereology/contains> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent
@@ -344,6 +374,7 @@ Immediate containment is a subproperty of containment.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart
 <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                                 owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> .
 
 
@@ -359,6 +390,7 @@ Immediate containment is a subproperty of containment.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf
 <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                                <http://purl.org/dc/elements/1.1/description> """Something may be a Proper Part of some other thing.
 An object cannot be a proper part of itself. Thus, any object must have more than one proper part.
 Proper Parthood is transitive.
@@ -1030,7 +1062,7 @@ A Dwelling Unit has some Location.""" .
         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                         :HouseholdOntologyThing ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> ;
+                          owl:onProperty :hasFamilyMember ;
                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
                         ] ,
                         [ rdf:type owl:Restriction ;
