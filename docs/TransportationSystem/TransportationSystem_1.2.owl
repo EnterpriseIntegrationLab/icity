@@ -42,7 +42,7 @@ In this representation Nodes do not access the Transportation Infrastructure nor
 Currently, there is no need to capture an aggregate Arc; in other words, we do not require a subArc relation. It is possible this may change as the requirements evolve.
 </dc:description>
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">October 2017</dc:issued>
-        <dc:title>iCity Transportation System Ontology</dc:title>
+        <dc:title>Transportation System Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-transportation</vann:preferredNamespacePrefix>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-TransportationSystem ontology is designed to capture concepts related to the transportation system.
 		Changes from previous version:
@@ -1343,6 +1343,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -1500,7 +1506,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
-        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     </owl:Class>
     
 
@@ -1775,30 +1780,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
-                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road -->
 
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     
 
 
