@@ -18,7 +18,9 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
+     xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/icity/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/organization.owl"/>
@@ -37,7 +39,7 @@ An Organization has at least 2 members.
 An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.
 An Organization may be divided into Divisions.</dc:description>
         <dc:issued>November 7, 2017</dc:issued>
-        <dc:title>iCity Organization Ontology</dc:title>
+        <dc:title>Organization Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-org</vann:preferredNamespacePrefix>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Organization Ontology is designed to capture concepts related to organizations.
 		This ontology reuses the TOVE Organization ontology , as originally presented by (Fox, Barbuceanu, Gruninger, and Lin, 1998) with modifications to account for the difference in our representation of states, where a Goal is a subclass of StateType, and where Activities are enabled/caused by state types.
@@ -814,6 +816,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasMember"/>
     </owl:ObjectProperty>
     
 
@@ -2910,6 +2913,13 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/address"/>
                 <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

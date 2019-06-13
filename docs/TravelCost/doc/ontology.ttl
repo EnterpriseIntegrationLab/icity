@@ -14,7 +14,7 @@
                                                      <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                      <http://purl.org/dc/elements/1.1/description> "An extension of the transportation network (and other generic ontologies) is required in order to represent the different costs associated with accessing and travelling on the networks. These may take the form of direct costs such as tolls and fares, or possible indirect costs such as vehicle wear and tear, gas, etc. In addition, there may be non-monetary costs associated with travel such as pollution and travel time. Costs are associated with Network access, but also with individual Arcs. They may also be dependent on situational factors such as time of day, or age of traveler. Travel Costs define the costs associated with accessing the transportation system; a travel cost is a property of an arc or its network. We define a separate extension of Trip Costs to capture other, indirect costs that may vary between individual trips; a trip cost is a property of some instance of travelling." ;
                                                      <http://purl.org/dc/elements/1.1/issued> "November 7, 2017" ;
-                                                     <http://purl.org/dc/elements/1.1/title> "iCity Travel Cost Ontology" ;
+                                                     <http://purl.org/dc/elements/1.1/title> "Travel Cost Ontology" ;
                                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-travelcost" ;
                                                      rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-TravelCost ontology is designed to capture concepts related to travel costs.
 		Changes from previous version:
@@ -1029,6 +1029,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                    owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl> ;
                                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
                                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/FlowControl>
@@ -1138,8 +1142,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment> rdf:type owl:Class ;
-                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> ,
-                                                                                         <http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> .
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegmentId
@@ -1565,21 +1568,9 @@ A Vehicle is owned by some Person(s) or Firm""" .
 <http://www.opengis.net/ont/gml#Arc> rdf:type owl:Class .
 
 
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
-                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
-                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                                                              ] .
-
-
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
 <http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
-
-
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#DateTimeDescription

@@ -30,12 +30,12 @@
 There may be many different types (subclasses) of buildings, such as House, Apartment Building, Office Building, and so on.
 </dc:description>
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 7, 2017</dc:issued>
-        <dc:title>iCity Building Ontology</dc:title>
+        <dc:title>Building Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-building</vann:preferredNamespacePrefix>
-        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Building ontology is designed to capture concepts related to buildings.
+        <rdfs:comment xml:lang="2016 megan katsumi, icity research group">Developed as part of the overall iCity ontology effort, the iCity-Building ontology is designed to capture concepts related to buildings.
 		Changes from previous version:
 		-imported revised ontologies of activity (iCity-Activity) and change (iCity-Change).
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
+		Copyright </rdfs:comment>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
     </owl:Ontology>
@@ -479,11 +479,24 @@ There may be many different types (subclasses) of buildings, such as House, Apar
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasFacility -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasFacility">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding"/>
     </owl:ObjectProperty>
     
 
@@ -512,6 +525,17 @@ There may be many different types (subclasses) of buildings, such as House, Apar
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/locatedOn">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
         <dc:description>A Building is located on some parcel of land.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/componentOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"/>
     </owl:ObjectProperty>
     
 
@@ -1477,7 +1501,13 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1575,6 +1605,12 @@ A Building contains one or many units.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasRent"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
             </owl:Restriction>
@@ -1628,7 +1664,7 @@ A BuildingUnit has an address</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasFacility"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1640,16 +1676,16 @@ A BuildingUnit has an address</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

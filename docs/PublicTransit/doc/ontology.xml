@@ -35,7 +35,7 @@
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>Ontology to capture concepts related to public transit.</dc:description>
         <dc:issued>November 7, 2017</dc:issued>
-        <dc:title>iCity Public Transit Ontology</dc:title>
+        <dc:title>Public Transit Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-transit</vann:preferredNamespacePrefix>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/icity/PublicTransit/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
@@ -1030,6 +1030,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasMember"/>
     </owl:ObjectProperty>
     
 
@@ -4095,6 +4096,13 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
@@ -4637,7 +4645,7 @@ ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:co
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/StopPoint"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment>A Station is a specialized type of Stop Point that contains multiple Stop Points. 
+        <rdfs:comment>A Station is a specialized type of Stop Point that contains multiple Stop Points.
 A Station may have an actual and associated location; it may provide various amenities (e.g. businesses or restrooms)</rdfs:comment>
     </owl:Class>
     
@@ -6027,6 +6035,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -6192,7 +6206,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
-        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     </owl:Class>
     
 
@@ -7096,14 +7109,7 @@ A Role has some authority, requires some skill, and may also have some associate
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
 
 
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
-                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node"/>
     
 
 
@@ -7113,13 +7119,6 @@ A Role has some authority, requires some skill, and may also have some associate
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
-
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     
 
 
@@ -7450,12 +7449,12 @@ A Role has some authority, requires some skill, and may also have some associate
     <owl:NamedIndividual rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/average">
         <rdf:type rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Function"/>
     </owl:NamedIndividual>
-    <rdf:Description rdf:nodeID="genid539">
+    <rdf:Description rdf:nodeID="genid540">
         <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
         <RecurringEvent1:Literal>Mark S. Fox
 http://eil.utoronto.ca</RecurringEvent1:Literal>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid540">
+    <rdf:Description rdf:nodeID="genid541">
         <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
         <RecurringEvent1:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent1:Literal>
     </rdf:Description>

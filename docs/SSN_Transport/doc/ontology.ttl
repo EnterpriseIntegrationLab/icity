@@ -13,7 +13,7 @@
                                                                     <http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/> ;
                                                         <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                         <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to sensors and their observations for the transportation domain. Reuses the SSN Ontology." ;
-                                                        <http://purl.org/dc/elements/1.1/title> "iCity SSN Transport Ontology" ;
+                                                        <http://purl.org/dc/elements/1.1/title> "SSN Transport Ontology" ;
                                                         <http://purl.org/dc/terms/created> "2017-04-17"^^xsd:date ;
                                                         <http://purl.org/dc/terms/creator> _:genid1 ,
                                                                                            _:genid2 ;
@@ -1943,6 +1943,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                                                                                    owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl> ;
                                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
                                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/FlowControl>
@@ -2048,8 +2052,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment> rdf:type owl:Class ;
-                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> ,
-                                                                                         <http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> .
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegmentId
@@ -2459,21 +2462,9 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 <http://www.opengis.net/ont/gml#Arc> rdf:type owl:Class .
 
 
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
-                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
-                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                                                              ] .
-
-
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
 <http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
-
-
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#DurationDescription
@@ -3254,13 +3245,13 @@ _:genid365 rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
 [ <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
-[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
- ] .
-
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 [ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+ ] .
+
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

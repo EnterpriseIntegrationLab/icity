@@ -8,7 +8,8 @@
 
 <http://ontology.eil.utoronto.ca/icity/Household/> rdf:type owl:Ontology ;
                                                     owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Household/1.2/> ;
-                                                    owl:imports <http://ontology.eil.utoronto.ca/icity/Change/1.1/> ,
+                                                    owl:imports <http://ontology.eil.utoronto.ca/icity/Building/1.2/> ,
+                                                                <http://ontology.eil.utoronto.ca/icity/Change/1.1/> ,
                                                                 <http://ontology.eil.utoronto.ca/icity/Mereology/1.0/> ,
                                                                 <http://ontology.eil.utoronto.ca/icity/OM/1.2/> ,
                                                                 <http://ontology.eil.utoronto.ca/icity/Person/1.2/> ,
@@ -17,11 +18,11 @@
                                                     <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                     <http://purl.org/dc/elements/1.1/description> "The Household ontology defines the classes: Household, Family, and DwellingUnit. These definitions serve as a basis which may be extended for more specific applications such as a surveys and simulations." ;
                                                     <http://purl.org/dc/elements/1.1/issued> "November 8, 2017" ;
-                                                    <http://purl.org/dc/elements/1.1/title> "iCity Household Ontology" ;
+                                                    <http://purl.org/dc/elements/1.1/title> "Household Ontology" ;
                                                     <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-household" ;
                                                     rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Household Ontology is designed to capture concepts related to households.
 		Changes from previous version:
-		-Imports revised foundational ontologies 
+		-Imports revised foundational ontologies
 		Copyright @ 2016 Megan Katsumi, iCity Research Group""" ;
                                                     owl:priorVersion "http://ontology.eil.utoronto.ca/icity/Household/1.1/" ;
                                                     owl:versionInfo 1.2 ;
@@ -256,6 +257,53 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                              rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                          <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Building ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgProperty
+<http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                                   <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility
+<http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> ,
+                                                                                        <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit
+<http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> ,
+                                                                                    <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ,
+                                                                                    <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                                                                 owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasRent
+<http://ontology.eil.utoronto.ca/icity/Building/hasRent> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasUnitSize
+<http://ontology.eil.utoronto.ca/icity/Building/hasUnitSize> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/locatedOn
+<http://ontology.eil.utoronto.ca/icity/Building/locatedOn> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> ;
+                                                           <http://purl.org/dc/elements/1.1/description> "A Building is located on some parcel of land." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding
+<http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty> ,
+                                                                                   <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ,
+                                                                                   <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                       rdfs:comment "Added for organizational purposes to group properties defined in the Change Ontology." .
@@ -397,6 +445,10 @@ Proper Parthood is transitive.
 Proper parthood is dense and so there exist no immediate proper parts; in other words, given some object, whatever proper part, x, we choose, there exists some slightly larger proper part of the object that also has x as a proper part.""" .
 
 
+###  http://ontology.eil.utoronto.ca/icity/MonetaryValue/hasValue
+<http://ontology.eil.utoronto.ca/icity/MonetaryValue/hasValue> rdf:type owl:ObjectProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOf
 <http://ontology.eil.utoronto.ca/icity/OM/aggregateOf> rdf:type owl:ObjectProperty ;
                                                        rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
@@ -477,7 +529,8 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://schema.org/address
 <http://schema.org/address> rdf:type owl:ObjectProperty ;
-                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
+                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgProperty> ,
+                                               <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgProperty> ;
                             <http://purl.org/dc/elements/1.1/description> "Physical address of the item." .
 
 
@@ -705,6 +758,16 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 #    Data properties
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyDataProperty
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                              <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify data properties defined in the Building ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasRooms
+<http://ontology.eil.utoronto.ca/icity/Building/hasRooms> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyDataProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty
 <http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                                   <http://purl.org/dc/elements/1.1/description> "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology." .
@@ -904,6 +967,193 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                           <http://purl.org/dc/elements/1.1/description> "Household as defined in the GCIShelters Ontology" .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Building/ApartmentBuilding
+<http://ontology.eil.utoronto.ca/icity/Building/ApartmentBuilding> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/Building> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/Building
+<http://ontology.eil.utoronto.ca/icity/Building/Building> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                       owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingPD>
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingPD>
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ] ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> ,
+                                                                          <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/MonetaryValue/hasValue> ;
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
+                                                                            owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                          ] ;
+                                                          <http://purl.org/dc/elements/1.1/description> """Building: A Building is a structure with some location in the urban system. The location of the Building in space may change due to construction, but the Parcel/Lot of land it is located on cannot.
+There are different types (subclasses) of buildings; House, Apartment Building, Office Building...
+A Building has an owner, which may be a Persons or some Organization.
+A Building has occupants, which may or may not be the same Persons or Firm who own it.
+A Building has a market value.
+A Building may provide some Parking.
+A Building has some Location.
+A Building contains one or many units.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> rdf:type owl:Class ;
+                                                                       <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Building ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingPD
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingPD> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                         owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Building>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Building>
+                                                                                                       ]
+                                                                                                     ) ;
+                                                                                  rdf:type owl:Class
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> ,
+                                                                            <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                            ] ;
+                                                            <http://purl.org/dc/elements/1.1/description> "A Building may change over time, BuildingPD represents the entire process of some building entity (i.e. the Building perdurant)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit> rdf:type owl:Class ;
+                                                              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                           owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnitPD>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> ;
+                                                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnitPD>
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> ,
+                                                                              <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasRent> ;
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasUnitSize> ;
+                                                                                owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Area>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/MonetaryValue/hasValue> ;
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                              ] ;
+                                                              <http://purl.org/dc/elements/1.1/description> """BuildingUnit: A part of a Building which may be occupied by some Persons or Organization.
+A BuildingUnit has a size (square footage, number of rooms)
+A BuildingUnit may contain some Facilities, e.g. kitchen, bath.(Note that contain is distinct from the notion of including amenities, which may be part of the Tenure)
+A BuildingUnit has an address""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingUnitPD
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingUnitPD> rdf:type owl:Class ;
+                                                                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                             owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit>
+                                                                                                           ]
+                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> ;
+                                                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit>
+                                                                                                           ]
+                                                                                                         ) ;
+                                                                                      rdf:type owl:Class
+                                                                                    ] ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> ,
+                                                                                <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://schema.org/address> ;
+                                                                                  owl:allValuesFrom <http://schema.org/PostalAddress>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding> ;
+                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <http://ontology.eil.utoronto.ca/icity/Building/Building>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
+                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <http://www.w3.org/2006/time#Interval>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasRooms> ;
+                                                                                  owl:allValuesFrom xsd:integer
+                                                                                ] ;
+                                                                <http://purl.org/dc/elements/1.1/description> "A Building Unit may change over time, BuildingUnitPD represents the entire process of some building unit entity (i.e. the Building unit perdurant)." ,
+                                                                                                              "hasManifestation some BuildingUnit and hasManifestation only BuildingUnit" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/Facility
+<http://ontology.eil.utoronto.ca/icity/Building/Facility> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/House
+<http://ontology.eil.utoronto.ca/icity/Building/House> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/Building> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/IndustrialBuilding
+<http://ontology.eil.utoronto.ca/icity/Building/IndustrialBuilding> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/Building> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/OfficeBuilding
+<http://ontology.eil.utoronto.ca/icity/Building/OfficeBuilding> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/Building> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgThing
+<http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgThing> rdf:type owl:Class ;
+                                                                <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing
 <http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyThing> rdf:type owl:Class ;
                                                                    rdfs:comment "Added for organizational purposes to group the classes defined in the Change Ontology." .
@@ -989,7 +1239,8 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                        ) ;
                                     rdf:type owl:Class
                                   ] ;
-              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
+              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit> ,
+                              <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                               :HouseholdOntologyThing ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasValue ;
@@ -1009,7 +1260,7 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass <http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household>
                               ] ;
-              <http://purl.org/dc/elements/1.1/description> """A Dwelling Unit is occupied by a Household. 
+              <http://purl.org/dc/elements/1.1/description> """A Dwelling Unit is occupied by a Household.
 A Dwelling Unit has a market value.
 A Dwelling Unit is located in some Building (e.g. House, Apartment,...)
 A Dwelling Unit has some Location.""" .
@@ -1028,7 +1279,8 @@ A Dwelling Unit has some Location.""" .
                                                          ) ;
                                       rdf:type owl:Class
                                     ] ;
-                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
+                rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingUnitPD> ,
+                                <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
                                 :HouseholdOntologyThing ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
@@ -1063,7 +1315,8 @@ A Dwelling Unit has some Location.""" .
                         :HouseholdOntologyThing ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :hasFamilyMember ;
-                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                          owl:onClass <http://ontology.eil.utoronto.ca/icity/Person/Person>
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
@@ -1108,16 +1361,23 @@ One question to consider is to what degree the general/extended Family concept m
            rdfs:subClassOf <http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household> ,
                            <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                            :HouseholdOntologyThing ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> ;
-                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :hasHouseholdMember ;
+                                                    owl:someValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :hasHouseholdMember ;
+                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Person/Person>
+                                                  ]
+                                                ) ;
+                             rdf:type owl:Class
                            ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                            ] ;
-           rdfs:comment """A Household has one or more Persons as members. 
+           rdfs:comment """A Household has one or more Persons as members.
 A Household occupies a particular Dwelling, according to some tenure type. It is defined by this location, so that if the members move (even collectively), the new residence constitutes a new Household.
 We do not make any commitment regarding the identity of the Persons, and in fact a Person may belong to more than one Household.
 Note that a Household, and likely many other classes may have different definitions in different contexts/applications. To address this we may be required to introduce specializations of the class (e.g. ILUTE_Household, TTS_Household) in future extensions.""" .
@@ -1407,7 +1667,8 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
 ###  http://schema.org/PostalAddress
 <http://schema.org/PostalAddress> rdf:type owl:Class ;
-                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing> .
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgThing> ,
+                                                  <http://ontology.eil.utoronto.ca/icity/Person/SchemaOrgThing> .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Acceleration

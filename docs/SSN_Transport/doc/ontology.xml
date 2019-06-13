@@ -26,7 +26,7 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/1.2/"/>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>Ontology to capture concepts related to sensors and their observations for the transportation domain. Reuses the SSN Ontology.</dc:description>
-        <dc:title>iCity SSN Transport Ontology</dc:title>
+        <dc:title>SSN Transport Ontology</dc:title>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-17</terms:created>
         <terms:creator>
             <rdf:Description rdf:nodeID="genid1">
@@ -3037,6 +3037,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasControl"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -3202,7 +3208,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
-        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     </owl:Class>
     
 
@@ -3844,33 +3849,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     
 
 
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Node -->
-
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Node">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"/>
-                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road -->
 
 
     <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element -->
-
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element"/>
     
 
 
@@ -4983,13 +4967,13 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
-    </rdf:Description>
-    <rdf:Description>
         <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+    </rdf:Description>
+    <rdf:Description>
+        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
 </rdf:RDF>
 

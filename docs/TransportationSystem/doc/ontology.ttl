@@ -11,7 +11,7 @@
                                                                owl:imports <http://ontology.eil.utoronto.ca/icity/Change/1.1/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/Mereology/1.0/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/OM/1.2/> ,
-                                                                           <http://ontology.eil.utoronto.ca/icity/SSN/1.0/> ,
+                                                                           <http://ontology.eil.utoronto.ca/icity/Observations/1.0/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/> ,
                                                                            <http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/> ;
                                                                <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
@@ -24,7 +24,7 @@ In this representation Nodes do not access the Transportation Infrastructure nor
 Currently, there is no need to capture an aggregate Arc; in other words, we do not require a subArc relation. It is possible this may change as the requirements evolve.
 """ ;
                                                                <http://purl.org/dc/elements/1.1/issued> "October 2017"^^xsd:gYearMonth ;
-                                                               <http://purl.org/dc/elements/1.1/title> "iCity Transportation System Ontology" ;
+                                                               <http://purl.org/dc/elements/1.1/title> "Transportation System Ontology" ;
                                                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-transportation" ;
                                                                rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-TransportationSystem ontology is designed to capture concepts related to the transportation system.
 		Changes from previous version:
@@ -446,8 +446,18 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                          rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty
-<http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> rdf:type owl:ObjectProperty .
+###  http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty
+<http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/observedBy
+<http://ontology.eil.utoronto.ca/icity/Observations/observedBy> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty
+<http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> rdf:type owl:ObjectProperty ;
+                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
@@ -880,7 +890,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/actsOnProperty
 <http://www.w3.org/ns/sosa/actsOnProperty> rdf:type owl:ObjectProperty ;
-                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                            owl:inverseOf <http://www.w3.org/ns/sosa/isActedOnBy> ;
                                            <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ;
                                            <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/ActuatableProperty> ;
@@ -893,7 +903,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/hasFeatureOfInterest
 <http://www.w3.org/ns/sosa/hasFeatureOfInterest> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                                  owl:inverseOf <http://www.w3.org/ns/sosa/isFeatureOfInterestOf> ;
                                                  <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
                                                                                     <http://www.w3.org/ns/sosa/Observation> ,
@@ -909,7 +919,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/hasResult
 <http://www.w3.org/ns/sosa/hasResult> rdf:type owl:ObjectProperty ;
-                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                       owl:inverseOf <http://www.w3.org/ns/sosa/isResultOf> ;
                                       <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
                                                                          <http://www.w3.org/ns/sosa/Observation> ,
@@ -924,7 +934,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/hasSample
 <http://www.w3.org/ns/sosa/hasSample> rdf:type owl:ObjectProperty ;
-                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                       owl:inverseOf <http://www.w3.org/ns/sosa/isSampleOf> ;
                                       rdf:type owl:InverseFunctionalProperty ;
                                       <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
@@ -937,7 +947,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/hosts
 <http://www.w3.org/ns/sosa/hosts> rdf:type owl:ObjectProperty ;
-                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                   owl:inverseOf <http://www.w3.org/ns/sosa/isHostedBy> ;
                                   owl:propertyChainAxiom ( <http://www.w3.org/ns/ssn/inDeployment>
                                                            <http://www.w3.org/ns/ssn/deployedSystem>
@@ -955,7 +965,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isActedOnBy
 <http://www.w3.org/ns/sosa/isActedOnBy> rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                         <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/ActuatableProperty> ;
                                         <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Actuation> ;
                                         rdfs:comment "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
@@ -967,7 +977,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isFeatureOfInterestOf
 <http://www.w3.org/ns/sosa/isFeatureOfInterestOf> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                                   <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/FeatureOfInterest> ,
                                                                                      <http://www.w3.org/ns/sosa/Sample> ;
                                                   <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
@@ -981,7 +991,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isHostedBy
 <http://www.w3.org/ns/sosa/isHostedBy> rdf:type owl:ObjectProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                        <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuator> ,
                                                                           <http://www.w3.org/ns/sosa/Platform> ,
                                                                           <http://www.w3.org/ns/sosa/Sampler> ,
@@ -995,7 +1005,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isObservedBy
 <http://www.w3.org/ns/sosa/isObservedBy> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                          owl:inverseOf <http://www.w3.org/ns/sosa/observes> ;
                                          <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/ObservableProperty> ;
                                          <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Sensor> ;
@@ -1007,7 +1017,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isResultOf
 <http://www.w3.org/ns/sosa/isResultOf> rdf:type owl:ObjectProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                        <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Result> ,
                                                                           <http://www.w3.org/ns/sosa/Sample> ;
                                        <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
@@ -1021,7 +1031,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/isSampleOf
 <http://www.w3.org/ns/sosa/isSampleOf> rdf:type owl:ObjectProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                        rdf:type owl:FunctionalProperty ;
                                        <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Sample> ;
                                        <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
@@ -1033,7 +1043,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeActuation
 <http://www.w3.org/ns/sosa/madeActuation> rdf:type owl:ObjectProperty ;
-                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                           owl:inverseOf <http://www.w3.org/ns/sosa/madeByActuator> ;
                                           <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuator> ;
                                           <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Actuation> ;
@@ -1045,7 +1055,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeByActuator
 <http://www.w3.org/ns/sosa/madeByActuator> rdf:type owl:ObjectProperty ;
-                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                            <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ;
                                            <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Actuator> ;
                                            rdfs:comment "Relation linking an Actuation to the Actuator that made that Actuation."@en ;
@@ -1056,7 +1066,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeBySampler
 <http://www.w3.org/ns/sosa/madeBySampler> rdf:type owl:ObjectProperty ;
-                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                           owl:inverseOf <http://www.w3.org/ns/sosa/madeSampling> ;
                                           <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Sampling> ;
                                           <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Sampler> ;
@@ -1068,7 +1078,8 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeBySensor
 <http://www.w3.org/ns/sosa/madeBySensor> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/observedBy> ,
+                                                            <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                          owl:inverseOf <http://www.w3.org/ns/sosa/madeObservation> ;
                                          <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Observation> ;
                                          <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Sensor> ;
@@ -1080,7 +1091,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeObservation
 <http://www.w3.org/ns/sosa/madeObservation> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                             <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Sensor> ;
                                             <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Observation> ;
                                             rdfs:comment "Relation between a Sensor and an Observation made by the Sensor."@en ;
@@ -1091,7 +1102,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/madeSampling
 <http://www.w3.org/ns/sosa/madeSampling> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                          <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Sampler> ;
                                          <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Sampling> ;
                                          rdfs:comment "Relation between a Sampler (sampling device or entity) and the Sampling act it performed."@en ;
@@ -1102,7 +1113,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/observedProperty
 <http://www.w3.org/ns/sosa/observedProperty> rdf:type owl:ObjectProperty ;
-                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                              <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Observation> ;
                                              <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/ObservableProperty> ;
                                              rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
@@ -1124,7 +1135,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/phenomenonTime
 <http://www.w3.org/ns/sosa/phenomenonTime> rdf:type owl:ObjectProperty ;
-                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                            <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
                                                                               <http://www.w3.org/ns/sosa/Observation> ,
                                                                               <http://www.w3.org/ns/sosa/Sampling> ;
@@ -1137,7 +1148,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/usedProcedure
 <http://www.w3.org/ns/sosa/usedProcedure> rdf:type owl:ObjectProperty ;
-                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                           owl:propertyChainAxiom ( <http://www.w3.org/ns/sosa/madeByActuator>
                                                                    <http://www.w3.org/ns/ssn/implements>
                                                                  ) ,
@@ -1159,7 +1170,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/deployedOnPlatform
 <http://www.w3.org/ns/ssn/deployedOnPlatform> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                               owl:inverseOf <http://www.w3.org/ns/ssn/inDeployment> ;
                                               rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
                                               rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1169,7 +1180,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/deployedSystem
 <http://www.w3.org/ns/ssn/deployedSystem> rdf:type owl:ObjectProperty ;
-                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                           owl:inverseOf <http://www.w3.org/ns/ssn/hasDeployment> ;
                                           rdfs:comment "Relation between a Deployment and a deployed System."@en ;
                                           rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1179,7 +1190,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/detects
 <http://www.w3.org/ns/ssn/detects> rdf:type owl:ObjectProperty ;
-                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                    rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
                                    rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                    rdfs:label "detects"@en ;
@@ -1188,7 +1199,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/forProperty
 <http://www.w3.org/ns/ssn/forProperty> rdf:type owl:ObjectProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                        rdfs:comment "A relation between some aspect of an entity and a Property."@en ;
                                        rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                        rdfs:label "for property"@en ;
@@ -1198,7 +1209,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/hasDeployment
 <http://www.w3.org/ns/ssn/hasDeployment> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                          rdfs:comment "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
                                          rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                          rdfs:label "has deployment"@en ;
@@ -1207,7 +1218,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/hasInput
 <http://www.w3.org/ns/ssn/hasInput> rdf:type owl:ObjectProperty ;
-                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                     rdfs:comment "Relation between a Procedure and an Input to it."@en ;
                                     rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                     rdfs:label "has input"@en ;
@@ -1216,7 +1227,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/hasOutput
 <http://www.w3.org/ns/ssn/hasOutput> rdf:type owl:ObjectProperty ;
-                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                      rdfs:comment "Relation between a Procedure and an Output of it."@en ;
                                      rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                      rdfs:label "has output"@en ;
@@ -1225,7 +1236,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/hasProperty
 <http://www.w3.org/ns/ssn/hasProperty> rdf:type owl:ObjectProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                        owl:inverseOf <http://www.w3.org/ns/ssn/isPropertyOf> ;
                                        rdfs:comment "Relation between an entity and a Property of that entity."@en ;
                                        rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1235,7 +1246,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/hasSubSystem
 <http://www.w3.org/ns/ssn/hasSubSystem> rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                         rdfs:comment "Relation between a System and its component parts."@en ;
                                         rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                         rdfs:label "has subsystem"@en ;
@@ -1244,7 +1255,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/implementedBy
 <http://www.w3.org/ns/ssn/implementedBy> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                          owl:inverseOf <http://www.w3.org/ns/ssn/implements> ;
                                          rdfs:comment "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
                                          rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1255,7 +1266,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/implements
 <http://www.w3.org/ns/ssn/implements> rdf:type owl:ObjectProperty ;
-                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                       rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
                                       rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                       rdfs:label "implements"@en ;
@@ -1265,7 +1276,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/inDeployment
 <http://www.w3.org/ns/ssn/inDeployment> rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                         rdfs:comment "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
                                         rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                         rdfs:label "in deployment"@en ;
@@ -1275,7 +1286,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/isPropertyOf
 <http://www.w3.org/ns/ssn/isPropertyOf> rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                         rdfs:comment "Relation between a Property and the entity it belongs to."@en ;
                                         rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                         rdfs:label "is property of"@en ;
@@ -1284,7 +1295,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/isProxyFor
 <http://www.w3.org/ns/ssn/isProxyFor> rdf:type owl:ObjectProperty ;
-                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                       rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
                                       rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                       rdfs:label "is proxy for"@en ;
@@ -1294,7 +1305,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/ssn/wasOriginatedBy
 <http://www.w3.org/ns/ssn/wasOriginatedBy> rdf:type owl:ObjectProperty ;
-                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty> ;
+                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty> ;
                                            rdf:type owl:FunctionalProperty ;
                                            rdfs:comment "Relation between an Observation and the Stimulus that originated it."@en ;
                                            rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1331,8 +1342,13 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/OM/OMOntologyDataProperty> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty
-<http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty> rdf:type owl:DatatypeProperty .
+###  http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty
+<http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty
+<http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty
@@ -1421,7 +1437,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/hasSimpleResult
 <http://www.w3.org/ns/sosa/hasSimpleResult> rdf:type owl:DatatypeProperty ;
-                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty> ;
+                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty> ;
                                             <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
                                                                                <http://www.w3.org/ns/sosa/Observation> ,
                                                                                <http://www.w3.org/ns/sosa/Sampling> ;
@@ -1434,7 +1450,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://www.w3.org/ns/sosa/resultTime
 <http://www.w3.org/ns/sosa/resultTime> rdf:type owl:DatatypeProperty ;
-                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty> ;
+                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty> ;
                                        rdfs:range xsd:dateTime ;
                                        <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Actuation> ,
                                                                           <http://www.w3.org/ns/sosa/Observation> ,
@@ -1737,8 +1753,27 @@ A Monetary Value is measured with some currency.""" .
                                                         rdfs:comment "An amount of money that is defined relative to a particular year." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/SSNThing
-<http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> rdf:type owl:Class .
+###  http://ontology.eil.utoronto.ca/icity/Observations/Observation
+<http://ontology.eil.utoronto.ca/icity/Observations/Observation> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Observations/observedBy> ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Observations/Observer>
+                                                                                 ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing
+<http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/Observer
+<http://ontology.eil.utoronto.ca/icity/Observations/Observer> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/SSNThing
+<http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyThing
@@ -2286,6 +2321,10 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                         owl:allValuesFrom :Network
                       ] ,
                       [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
+                        owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                      ] ,
+                      [ rdf:type owl:Restriction ;
                         owl:onProperty :hasControl ;
                         owl:allValuesFrom [ rdf:type owl:Class ;
                                             owl:unionOf ( :FlowControl
@@ -2391,8 +2430,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment
 :RoadSegment rdf:type owl:Class ;
-             rdfs:subClassOf :TransportationComplex ,
-                             <http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> .
+             rdfs:subClassOf :TransportationComplex .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegmentId
@@ -2712,7 +2750,7 @@ A Vehicle is owned by some Person(s) or Firm""" .
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
 <http://purl.org/vocommons/voaf#Vocabulary> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> .
+                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> .
 
 
 ###  http://schema.org/Brand
@@ -2967,21 +3005,9 @@ A Vehicle is owned by some Person(s) or Firm""" .
 <http://www.opengis.net/ont/gml#Arc> rdf:type owl:Class .
 
 
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Node
-<http://www.pms.ifi.uni-muenchen.de/OTN#Node> rdf:type owl:Class ;
-                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
-                                                                owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
-                                                              ] .
-
-
 ###  http://www.pms.ifi.uni-muenchen.de/OTN#Road
 <http://www.pms.ifi.uni-muenchen.de/OTN#Road> rdf:type owl:Class ;
                                               rdfs:subClassOf :TransportationComplex .
-
-
-###  http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element
-<http://www.pms.ifi.uni-muenchen.de/OTN#Road_Element> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
@@ -3014,7 +3040,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/2006/time#TemporalEntity
 <http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> .
+                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> .
 
 
 ###  http://www.w3.org/ns/sosa/ActuatableProperty
@@ -3033,7 +3059,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/Actuation
 <http://www.w3.org/ns/sosa/Actuation> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                       [ rdf:type owl:Restriction ;
                                                         owl:onProperty <http://www.w3.org/ns/sosa/actsOnProperty> ;
                                                         owl:allValuesFrom <http://www.w3.org/ns/sosa/ActuatableProperty>
@@ -3105,7 +3131,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/FeatureOfInterest
 <http://www.w3.org/ns/sosa/FeatureOfInterest> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <http://www.w3.org/ns/sosa/hasSample> ;
                                                                 owl:allValuesFrom <http://www.w3.org/ns/sosa/Sample>
@@ -3151,7 +3177,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/Observation
 <http://www.w3.org/ns/sosa/Observation> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/Observation> ,
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
                                                           owl:allValuesFrom <http://www.w3.org/ns/sosa/FeatureOfInterest>
@@ -3213,7 +3239,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/Platform
 <http://www.w3.org/ns/sosa/Platform> rdf:type owl:Class ;
-                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
                                                        owl:allValuesFrom <http://www.w3.org/ns/ssn/System>
@@ -3231,7 +3257,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/Procedure
 <http://www.w3.org/ns/sosa/Procedure> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                       [ rdf:type owl:Restriction ;
                                                         owl:onProperty <http://www.w3.org/ns/ssn/hasInput> ;
                                                         owl:allValuesFrom <http://www.w3.org/ns/ssn/Input>
@@ -3254,7 +3280,7 @@ rdf:List rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/Spati
 
 ###  http://www.w3.org/ns/sosa/Result
 <http://www.w3.org/ns/sosa/Result> rdf:type owl:Class ;
-                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://www.w3.org/ns/sosa/isResultOf> ;
                                                      owl:minCardinality "1"^^xsd:nonNegativeInteger
@@ -3320,7 +3346,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/sosa/Sampling
 <http://www.w3.org/ns/sosa/Sampling> rdf:type owl:Class ;
-                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
                                                        owl:allValuesFrom <http://www.w3.org/ns/sosa/FeatureOfInterest>
@@ -3372,7 +3398,8 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/sosa/Sensor
 <http://www.w3.org/ns/sosa/Sensor> rdf:type owl:Class ;
-                                   rdfs:subClassOf <http://www.w3.org/ns/ssn/System> ,
+                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/Observer> ,
+                                                   <http://www.w3.org/ns/ssn/System> ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                                      owl:allValuesFrom <http://www.w3.org/ns/sosa/Observation>
@@ -3398,7 +3425,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/Deployment
 <http://www.w3.org/ns/ssn/Deployment> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                       [ rdf:type owl:Restriction ;
                                                         owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
                                                         owl:allValuesFrom <http://www.w3.org/ns/sosa/Platform>
@@ -3420,7 +3447,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/Input
 <http://www.w3.org/ns/ssn/Input> rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/hasInput>
                                                                   ] ;
@@ -3439,7 +3466,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/Output
 <http://www.w3.org/ns/ssn/Output> rdf:type owl:Class ;
-                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                   [ rdf:type owl:Restriction ;
                                                     owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/hasOutput>
                                                                    ] ;
@@ -3458,7 +3485,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/Property
 <http://www.w3.org/ns/ssn/Property> rdf:type owl:Class ;
-                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                     [ rdf:type owl:Restriction ;
                                                       owl:onProperty <http://www.w3.org/ns/ssn/isPropertyOf> ;
                                                       owl:allValuesFrom <http://www.w3.org/ns/sosa/FeatureOfInterest>
@@ -3471,7 +3498,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/Stimulus
 <http://www.w3.org/ns/ssn/Stimulus> rdf:type owl:Class ;
-                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                     [ rdf:type owl:Restriction ;
                                                       owl:onProperty <http://www.w3.org/ns/ssn/isProxyFor> ;
                                                       owl:allValuesFrom <http://www.w3.org/ns/sosa/ObservableProperty>
@@ -3494,7 +3521,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/ssn/System
 <http://www.w3.org/ns/ssn/System> rdf:type owl:Class ;
-                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> ,
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> ,
                                                   [ rdf:type owl:Restriction ;
                                                     owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
                                                     owl:allValuesFrom <http://www.w3.org/ns/sosa/Platform>
@@ -3524,7 +3551,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://xmlns.com/foaf/0.1/Agent
 <http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class ;
-                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/SSN/SSNThing> .
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/SSNThing> .
 
 
 #################################################################
@@ -3699,10 +3726,10 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 [ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

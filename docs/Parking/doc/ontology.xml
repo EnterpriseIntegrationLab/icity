@@ -42,13 +42,13 @@ A Parking Area may provide car changing stations.
 A Parking Area has some Location.
 There are different types (subclasses) of Parking Area, such as Street Parking Area, Lot Parking Area, Garage Parking Area, Illegal Parking Area, Loading/Unloading Zone Parking Area, Accessibility Parking Area</dc:description>
         <dc:issued>November 7, 2017</dc:issued>
-        <dc:title>iCity Parking Ontology</dc:title>
+        <dc:title>Parking Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-parking</vann:preferredNamespacePrefix>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Parking Ontology is designed to capture concepts related to parking.
 		To do: extend this to capture the activity of parking.
 Changes from previous version: updated foundational ontologies;
 extended the classes and properties identified to capture greater detail
-		
+
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/icity/Parking/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
@@ -681,11 +681,24 @@ extended the classes and properties identified to capture greater detail
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasFacility -->
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasFacility">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding"/>
     </owl:ObjectProperty>
     
 
@@ -714,6 +727,17 @@ extended the classes and properties identified to capture greater detail
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/locatedOn">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
         <dc:description>A Building is located on some parcel of land.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/componentOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"/>
     </owl:ObjectProperty>
     
 
@@ -997,6 +1021,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#hasMember"/>
     </owl:ObjectProperty>
     
 
@@ -1146,6 +1171,19 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/hasSubParkingArea -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/hasSubParkingArea">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/subParkingAreaOf"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Parking/hasVehicleCapacity -->
 
 
@@ -1243,6 +1281,18 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/policyAppliesTo">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Parking/subParkingAreaOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Parking/subParkingAreaOf">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
     </owl:ObjectProperty>
     
 
@@ -3311,7 +3361,13 @@ A parking policy may or may not apply during public holidays. If it does not app
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/contains"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/BuildingUnit"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3409,6 +3465,12 @@ A Building contains one or many units.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasRent"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
             </owl:Restriction>
@@ -3462,7 +3524,7 @@ A BuildingUnit has an address</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasFacility"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Facility"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3474,16 +3536,16 @@ A BuildingUnit has an address</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Building/Building"/>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4198,6 +4260,13 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
@@ -4550,12 +4619,6 @@ An EV charger may be available or in use by some vehicle at a given time. Future
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/hasEVCharger"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/EVCharger"/>
             </owl:Restriction>
@@ -4570,6 +4633,12 @@ An EV charger may be available or in use by some vehicle at a given time. Future
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/hasParkingService"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingService"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/hasSubParkingArea"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4732,11 +4801,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty>
-                    <rdf:Description>
-                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"/>
-                    </rdf:Description>
-                </owl:onProperty>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/subParkingAreaOf"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/icity/Parking/ParkingArea"/>
             </owl:Restriction>
@@ -6463,11 +6528,11 @@ A Role has some authority, requires some skill, and may also have some associate
     <owl:NamedIndividual rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/average">
         <rdf:type rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Function"/>
     </owl:NamedIndividual>
-    <rdf:Description rdf:nodeID="genid334">
+    <rdf:Description rdf:nodeID="genid336">
         <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
         <RecurringEvent1:Literal>City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology</RecurringEvent1:Literal>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid335">
+    <rdf:Description rdf:nodeID="genid337">
         <RecurringEvent1:AnnotationProperty></RecurringEvent1:AnnotationProperty>
         <RecurringEvent1:Literal>Mark S. Fox
 http://eil.utoronto.ca</RecurringEvent1:Literal>

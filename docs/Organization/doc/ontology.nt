@@ -11,7 +11,7 @@
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" .
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/dc/elements/1.1/description> "An organization may be a company or other sort of group of individuals in the urban system with some goal(s).\nAn Organization may own Property, including different types of Buildings.\nAn Organization may have an address.\nAn Organization has at least 2 members.\nAn Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups' responsibilities.\nAn Organization may be divided into Divisions." .
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/dc/elements/1.1/issued> "November 7, 2017" .
-<http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/dc/elements/1.1/title> "iCity Organization Ontology" .
+<http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/dc/elements/1.1/title> "Organization Ontology" .
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-org" .
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://www.w3.org/2000/01/rdf-schema#comment> "Developed as part of the overall iCity ontology effort, the iCity-Organization Ontology is designed to capture concepts related to organizations.\n\t\tThis ontology reuses the TOVE Organization ontology , as originally presented by (Fox, Barbuceanu, Gruninger, and Lin, 1998) with modifications to account for the difference in our representation of states, where a Goal is a subclass of StateType, and where Activities are enabled/caused by state types.\nThis modification also results in the removal of the StateEmpowerment class. Note that it is possible to introduce a similar concept if required, however this would likely take the form of a property that relates an organization agent to some state-types (where the states they are empowered to take an object to, and the object itself, are described by the state type).\n\n\t\tCopyright @ 2016 Megan Katsumi, iCity Research Group\n\nChanges from previous version:\n- updated foundational ontologies" .
 <http://ontology.eil.utoronto.ca/icity/Organization/> <http://www.w3.org/2002/07/owl#priorVersion> "http://ontology.eil.utoronto.ca/icity/Organization/1.1/" .
@@ -416,6 +416,7 @@ _:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1
 # http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember
 <http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyProperty> .
+<http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/organization.owl#hasMember> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Organization/hasPay
 <http://ontology.eil.utoronto.ca/icity/Organization/hasPay> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
@@ -1529,34 +1530,39 @@ _:genid115 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/address
 _:genid115 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://schema.org/PostalAddress> .
 <http://ontology.eil.utoronto.ca/icity/Organization/Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid116 .
 _:genid116 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid116 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid116 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid116 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
+_:genid116 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/hasOrgMember> .
+_:genid116 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "2"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid116 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
+<http://ontology.eil.utoronto.ca/icity/Organization/Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid117 .
+_:genid117 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid117 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
+_:genid117 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid117 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD
 <http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid117 .
-_:genid117 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid120 .
-_:genid120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid121 .
-_:genid121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid121 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
-_:genid121 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Organization> .
-_:genid120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid118 .
-_:genid118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid119 .
-_:genid119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid119 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
-_:genid119 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Organization> .
-_:genid118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-_:genid117 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid118 .
+_:genid118 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid121 .
+_:genid121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid122 .
+_:genid122 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid122 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
+_:genid122 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Organization> .
+_:genid121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid119 .
+_:genid119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid120 .
+_:genid120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid120 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
+_:genid120 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Organization> .
+_:genid119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> .
 <http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid122 .
-_:genid122 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid122 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid122 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid122 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
+<http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid123 .
+_:genid123 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid123 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
+_:genid123 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid123 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
 <http://ontology.eil.utoronto.ca/icity/Organization/OrganizationPD> <http://purl.org/dc/elements/1.1/description> "Organizations change over time. OrganizationPD captures the entire entity of a particular organization's \"process\"." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Organization/PartTimeEmployee
@@ -1584,11 +1590,11 @@ _:genid122 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#
 # http://ontology.eil.utoronto.ca/icity/Organization/Salary
 <http://ontology.eil.utoronto.ca/icity/Organization/Salary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Organization/Salary> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Organization/Salary> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid123 .
-_:genid123 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid123 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/hasAnnualPay> .
-_:genid123 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid123 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
+<http://ontology.eil.utoronto.ca/icity/Organization/Salary> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid124 .
+_:genid124 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid124 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/hasAnnualPay> .
+_:genid124 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid124 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Organization/Sales
 <http://ontology.eil.utoronto.ca/icity/Organization/Sales> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1598,11 +1604,11 @@ _:genid123 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto
 # http://ontology.eil.utoronto.ca/icity/Organization/Student
 <http://ontology.eil.utoronto.ca/icity/Organization/Student> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Organization/Student> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
-<http://ontology.eil.utoronto.ca/icity/Organization/Student> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid124 .
-_:genid124 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid124 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn> .
-_:genid124 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid124 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution> .
+<http://ontology.eil.utoronto.ca/icity/Organization/Student> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid125 .
+_:genid125 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid125 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/enrolledIn> .
+_:genid125 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid125 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Organization/EducationalInstitution> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Organization/Trades
 <http://ontology.eil.utoronto.ca/icity/Organization/Trades> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1612,66 +1618,66 @@ _:genid124 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto
 # http://ontology.eil.utoronto.ca/icity/Organization/Wage
 <http://ontology.eil.utoronto.ca/icity/Organization/Wage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Organization/Wage> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Organization/Wage> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid125 .
-_:genid125 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid125 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/overtimePay> .
-_:genid125 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
 <http://ontology.eil.utoronto.ca/icity/Organization/Wage> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid126 .
 _:genid126 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid126 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/hourlyPay> .
-_:genid126 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid126 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
+_:genid126 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/overtimePay> .
+_:genid126 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
+<http://ontology.eil.utoronto.ca/icity/Organization/Wage> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid127 .
+_:genid127 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid127 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Organization/hourlyPay> .
+_:genid127 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid127 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/Person
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid127 .
-_:genid127 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid130 .
-_:genid130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid131 .
-_:genid131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid131 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> .
-_:genid131 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> .
-_:genid130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid128 .
-_:genid128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid129 .
-_:genid129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid129 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> .
-_:genid129 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> .
-_:genid128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-_:genid127 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid128 .
+_:genid128 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid131 .
+_:genid131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid132 .
+_:genid132 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid132 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> .
+_:genid132 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> .
+_:genid131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid129 .
+_:genid129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid130 .
+_:genid130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid130 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/manifestationOf> .
+_:genid130 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> .
+_:genid129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid132 .
-_:genid132 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid132 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasIncome> .
-_:genid132 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid133 .
 _:genid133 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid133 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/children> .
-_:genid133 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+_:genid133 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasIncome> .
+_:genid133 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid134 .
 _:genid134 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid134 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/parent> .
+_:genid134 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/children> .
 _:genid134 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid135 .
 _:genid135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid135 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/spouse> .
+_:genid135 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/parent> .
 _:genid135 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid136 .
 _:genid136 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid136 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid136 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid136 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
+_:genid136 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/spouse> .
+_:genid136 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid137 .
 _:genid137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid137 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasAge> .
+_:genid137 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
 _:genid137 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid137 <http://www.w3.org/2002/07/owl#onClass> <http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> .
+_:genid137 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid138 .
 _:genid138 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid138 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> .
+_:genid138 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasAge> .
 _:genid138 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid138 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#boolean> .
+_:genid138 <http://www.w3.org/2002/07/owl#onClass> <http://www.ontology-of-units-of-measure.org/resource/om-2/Duration> .
+<http://ontology.eil.utoronto.ca/icity/Person/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid139 .
+_:genid139 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid139 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/isLicensedDriver> .
+_:genid139 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid139 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#boolean> .
 <http://ontology.eil.utoronto.ca/icity/Person/Person> <http://purl.org/dc/elements/1.1/description> "A Person may have a unique identifier.\nA Person has a date of birth, and may have a date of death.\nA Person may be a member of a Family and/or a Household.\nA Person has a mother and father, and may have a spouse and/or child(ren). Note that we define the parent relation as the legal relation as opposed to biological. This property may be specialized and restricted, for example hasBiologicalMother: exactly 1 Person.\nA Person may have some Job and associated Income.\nA Person may have access to some Vehicle.\nA Person may have access to some Bicycle.\nA Person may have some TransitPass.\nA Person has an address of residence and may have other contact information such as E-mail, phone number, etcetera.\nA Person has a Schedule for a given point (period) in time.\nNote that some properties are not defined in the Person ontology, but in an extension of the Person ontology that captures the interaction between iCity domain ontologies (e.g. Persons and their Vehicles)" .
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/PersonId
@@ -1684,46 +1690,46 @@ _:genid138 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/X
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/PersonPD
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid139 .
-_:genid139 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid142 .
-_:genid142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid143 .
-_:genid143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid143 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
-_:genid143 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
-_:genid142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid140 .
-_:genid140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid141 .
-_:genid141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid141 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
-_:genid141 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
-_:genid140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-_:genid139 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid140 .
+_:genid140 <http://www.w3.org/2002/07/owl#intersectionOf> _:genid143 .
+_:genid143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid144 .
+_:genid144 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid144 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
+_:genid144 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+_:genid143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid141 .
+_:genid141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid142 .
+_:genid142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid142 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/hasManifestation> .
+_:genid142 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
+_:genid141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid144 .
-_:genid144 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid144 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid144 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#Interval> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid145 .
 _:genid145 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid145 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> .
-_:genid145 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonId> .
+_:genid145 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
+_:genid145 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#Interval> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid146 .
 _:genid146 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid146 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasSex> .
-_:genid146 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid146 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
+_:genid146 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasPersonID> .
+_:genid146 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Person/PersonId> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid147 .
 _:genid147 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid147 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/birthDate> .
+_:genid147 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Person/hasSex> .
 _:genid147 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid147 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Instant> .
+_:genid147 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Person/Sex> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid148 .
 _:genid148 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid148 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/deathDate> .
-_:genid148 <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid148 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/birthDate> .
+_:genid148 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid148 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Instant> .
+<http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid149 .
+_:genid149 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid149 <http://www.w3.org/2002/07/owl#onProperty> <http://schema.org/deathDate> .
+_:genid149 <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid149 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Instant> .
 <http://ontology.eil.utoronto.ca/icity/Person/PersonPD> <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/Qualification
@@ -1738,15 +1744,15 @@ _:genid148 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/Sex
 <http://ontology.eil.utoronto.ca/icity/Person/Sex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Person/Sex> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid149 .
-_:genid149 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid149 <http://www.w3.org/2002/07/owl#oneOf> _:genid151 .
+<http://ontology.eil.utoronto.ca/icity/Person/Sex> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid150 .
+_:genid150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid150 <http://www.w3.org/2002/07/owl#oneOf> _:genid152 .
+_:genid152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Person/female> .
+_:genid152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid151 .
 _:genid151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Person/female> .
-_:genid151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid150 .
-_:genid150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Person/male> .
-_:genid150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Person/male> .
+_:genid151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 <http://ontology.eil.utoronto.ca/icity/Person/Sex> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Person/PersonOntologyThing> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Person/Skill
@@ -1758,78 +1764,78 @@ _:genid150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/
 # http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource
 <http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Resource/Resource> .
-<http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid152 .
-_:genid152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid152 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity> .
-_:genid152 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/CapacitySize> .
+<http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid153 .
+_:genid153 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid153 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/hasAvailableCapacity> .
+_:genid153 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/CapacitySize> .
 <http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> <http://www.w3.org/2002/07/owl#disjointWith> <http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource
 <http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Resource/Resource> .
-<http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid153 .
-_:genid153 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid153 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
-_:genid153 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid153 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+<http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid154 .
+_:genid154 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid154 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
+_:genid154 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid154 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
 # 
 # http://ontology.eil.utoronto.ca/icity/Resource/Resource
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2002/07/owl#equivalentClass> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid154 .
-_:genid154 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid154 <http://www.w3.org/2002/07/owl#unionOf> _:genid157 .
-_:genid157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid158 .
-_:genid158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid158 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/consumedBy> .
-_:genid158 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
-_:genid157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid155 .
-_:genid155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid156 .
-_:genid156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid156 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
-_:genid156 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
-_:genid155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid159 .
+<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid155 .
+_:genid155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid155 <http://www.w3.org/2002/07/owl#unionOf> _:genid158 .
+_:genid158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid159 .
 _:genid159 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid159 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/capacityInUse> .
-_:genid159 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/CapacitySize> .
+_:genid159 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/consumedBy> .
+_:genid159 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+_:genid158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid156 .
+_:genid156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid157 .
+_:genid157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid157 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
+_:genid157 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+_:genid156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid160 .
 _:genid160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid160 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/hasCapacity> .
+_:genid160 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/capacityInUse> .
 _:genid160 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/CapacitySize> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid161 .
 _:genid161 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid161 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
-_:genid161 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+_:genid161 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/hasCapacity> .
+_:genid161 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/CapacitySize> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid162 .
 _:genid162 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid162 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> .
-_:genid162 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.opengis.net/ont/geosparql#Feature> .
+_:genid162 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Resource/usedBy> .
+_:genid162 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid163 .
 _:genid163 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid163 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> .
+_:genid163 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> .
 _:genid163 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.opengis.net/ont/geosparql#Feature> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid164 .
 _:genid164 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid164 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Activity/participatesIn> .
-_:genid164 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid164 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+_:genid164 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> .
+_:genid164 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.opengis.net/ont/geosparql#Feature> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid165 .
 _:genid165 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid165 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
-_:genid165 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid165 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
-<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:genid167 .
+_:genid165 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Activity/participatesIn> .
+_:genid165 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid165 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
+<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid166 .
+_:genid166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid166 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Change/existsAt> .
+_:genid166 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid166 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#TemporalEntity> .
+<http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:genid168 .
+_:genid168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> .
+_:genid168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid167 .
 _:genid167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Resource/DivisibleResource> .
-_:genid167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid166 .
-_:genid166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> .
-_:genid166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Resource/NonDivisibleResource> .
+_:genid167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 <http://ontology.eil.utoronto.ca/icity/Resource/Resource> <http://purl.org/dc/elements/1.1/description> "A Resource is a generic representation of some Thing that can be \"used\" in an Activity.\nA Resource may have some Location, amount or availability, according to the definition of the Manifestation or TimeVaryingEntity.\nA Resource must be classified as some Resource Type.\nA Resource may participate in some Activity Occurrence.\nA specific Resource may be used in or consumed in some activity occurrence.\n\nA Resource may have some associated location. This property captures an approximate location that may or may not differ from its actual location. For example, a landmark may be associated with a particular point (single set of coordinates), whereas the landmark itself in fact has a location that extends beyond this single point. It may even be the case that the associated location is distinct from (ie. not contained in) the actual location." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Resource/ResourceOntologyThing
@@ -1848,47 +1854,47 @@ _:genid166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/
 # http://ontology.eil.utoronto.ca/organization.owl#Activity
 <http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid168 .
-_:genid168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid168 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#causes> .
-_:genid168 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid169 .
 _:genid169 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid169 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#enabledBy> .
+_:genid169 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#causes> .
 _:genid169 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
+<http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid170 .
+_:genid170 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid170 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#enabledBy> .
+_:genid170 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#Activity> <http://purl.org/dc/terms/description> "An activity is the basic transformational action primitive with which processes and operations can be represented; it specifies how the world is changed. An enabling state defines what has to be true of the world in order for the activity to be performed. A caused state defines what is true of the world once the activity has been completed.\n\nAn activity, along with its enabling and caused states, is called an activity cluster.The state tree linked by an enables relation to an activity specifies what has to be true in order for the activity to be performed. The state tree linked to an activity by a causes relation defines what is true of the world once the activity has been completed. Intermediate states of an activity can be defined by elaborating the aggregate activity into an activity network."@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment
 <http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#Empowerment> .
-<http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid170 .
-_:genid170 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid170 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forAction> .
-_:genid170 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid171 .
-_:genid171 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid171 <http://www.w3.org/2002/07/owl#oneOf> _:genid174 .
+<http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid171 .
+_:genid171 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid171 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forAction> .
+_:genid171 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid172 .
+_:genid172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid172 <http://www.w3.org/2002/07/owl#oneOf> _:genid175 .
+_:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#complete> .
+_:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid174 .
 _:genid174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#complete> .
+_:genid174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#execute> .
 _:genid174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid173 .
 _:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#execute> .
-_:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid172 .
-_:genid172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#suspend> .
-_:genid172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-<http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid175 .
-_:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid175 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forActivity> .
-_:genid175 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
+_:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#suspend> .
+_:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid176 .
+_:genid176 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid176 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forActivity> .
+_:genid176 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
 <http://ontology.eil.utoronto.ca/organization.owl#ActivityEmpowerment> <http://www.w3.org/2000/01/rdf-schema#comment> "Activity empowerment specifies the range of stati through which an oa may take an activity by performing the appropriate actions, such as execute and suspend. Even though an activity may be enabled, the oa whose role contains the process which contains the activity may not be empowered to start its execution.\n\nforActivity: defines the Activity that the agent is being empowered for.\nforAction: defines the action on the Activity the agent is being empowered for"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#AndState
 <http://ontology.eil.utoronto.ca/organization.owl#AndState> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#AndState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#State> .
-<http://ontology.eil.utoronto.ca/organization.owl#AndState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid176 .
-_:genid176 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid176 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSubState> .
-_:genid176 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
+<http://ontology.eil.utoronto.ca/organization.owl#AndState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid177 .
+_:genid177 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid177 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSubState> .
+_:genid177 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#AndState> <http://www.w3.org/2000/01/rdf-schema#label> "And State"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#Authority
@@ -1903,60 +1909,60 @@ _:genid176 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.ut
 # http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid177 .
-_:genid177 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid177 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasInterest> .
-_:genid177 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid178 .
 _:genid178 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid178 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasReceivingAgent> .
-_:genid178 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
+_:genid178 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasInterest> .
+_:genid178 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid179 .
 _:genid179 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid179 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasReceivingRole> .
-_:genid179 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid179 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasReceivingAgent> .
+_:genid179 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid180 .
 _:genid180 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid180 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSendingAgent> .
-_:genid180 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
+_:genid180 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasReceivingRole> .
+_:genid180 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid181 .
 _:genid181 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid181 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSendingRole> .
-_:genid181 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid181 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSendingAgent> .
+_:genid181 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid182 .
 _:genid182 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid182 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#willVolunteer> .
-_:genid182 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:genid182 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSendingRole> .
+_:genid182 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+<http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid183 .
+_:genid183 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid183 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#willVolunteer> .
+_:genid183 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://purl.org/dc/terms/description> "Communication-links are established among organizational agents in various roles. Communication-links capture the notion of benevolent communication in which agents regard each other as peers volunteer information that they believe relevant to other agents. This exchange does not create obligations for any agent.\n\nThe communication-link is a unidirectional link used to communicate information from one agent to another. It describes, for an agent in a given organizational role, the information it is interested in receiving and the information it can benevolently distribute to others.\n\nFor example, an agent in the “C++ programmer” role may distribute information about the state of the file server to other programmers, alerting them each time the server is down."@en .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> <http://www.w3.org/2000/01/rdf-schema#label> "Communication Link"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> .
-<http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid183 .
-_:genid183 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid183 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasEmpowerment> .
-_:genid183 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Empowerment> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid184 .
 _:genid184 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid184 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
-_:genid184 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
+_:genid184 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasEmpowerment> .
+_:genid184 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Empowerment> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid185 .
 _:genid185 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid185 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasResource> .
-_:genid185 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
+_:genid185 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
+_:genid185 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid186 .
 _:genid186 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid186 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRole> .
-_:genid186 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid186 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasResource> .
+_:genid186 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid187 .
 _:genid187 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid187 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSupervisee> .
-_:genid187 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
+_:genid187 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRole> .
+_:genid187 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid188 .
 _:genid188 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid188 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSupervisor> .
+_:genid188 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSupervisee> .
 _:genid188 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
+<http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid189 .
+_:genid189 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid189 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSupervisor> .
+_:genid189 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> .
 <http://ontology.eil.utoronto.ca/organization.owl#CommunicationWithAuthority> <http://purl.org/dc/terms/description> "A special kind of authority is the control relationship between two organizational agents. For OA1 to have authority over OA2 implies that OA1 is able to extract a commitment from OA2 to achieve a goal that is defined as part of OA2’s organization-roles. In order to extract that commitment, OA1 has to be related directly or indirectly by a communication-with-authority (CWA) link relation.\n\nThe Communication-with-Authority link, used when communication is intended to create obligations, specifies the two agents, one in the authority position (called supervisor) and the other in the controled position (called supervisee), among which communication takes place. Because we model communication as exchange of speech-acts, authority of an agent appears as the set of speech-acts this agent can use in order to create obligations for the other agent. For example, an agent may have authority to request another agent to perform action A1, but not to perform action A2. In this case, the second agent will have to commit to achieving A1 when requested by the first agent, but not A2."@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#Constraint
@@ -1971,19 +1977,19 @@ _:genid188 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.ut
 # http://ontology.eil.utoronto.ca/organization.owl#Division
 <http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid189 .
-_:genid189 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid189 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#consistsOf> .
-_:genid189 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
 <http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid190 .
 _:genid190 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid190 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRole> .
-_:genid190 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid190 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#consistsOf> .
+_:genid190 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
 <http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid191 .
 _:genid191 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid191 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasName> .
-_:genid191 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid191 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid191 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRole> .
+_:genid191 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+<http://ontology.eil.utoronto.ca/organization.owl#Division> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid192 .
+_:genid192 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid192 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasName> .
+_:genid192 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid192 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#string> .
 <http://ontology.eil.utoronto.ca/organization.owl#Division> <http://purl.org/dc/terms/description> "An organization consists of divisions and contains Roles."@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#Empowerment
@@ -2004,24 +2010,24 @@ _:genid191 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/X
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Activity/State> .
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid192 .
-_:genid192 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid192 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#dependsOn> .
-_:genid192 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid193 .
 _:genid193 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid193 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#satisfiedBy> .
-_:genid193 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
+_:genid193 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#dependsOn> .
+_:genid193 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
+<http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid194 .
+_:genid194 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid194 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#satisfiedBy> .
+_:genid194 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://purl.org/dc/elements/1.1/description> "A goal represents some state or complex states, and allows for the representation of various groups' responsibilities." .
 <http://ontology.eil.utoronto.ca/organization.owl#Goal> <http://purl.org/dc/terms/description> "A goal is achieved if the state that it is linked to via a satisfiedBy property is true. A Goal achieved by the performance of a Process. \n\nGoals can be ordered directly via the dependsOn property."@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization
 <http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#Organization> .
-<http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid194 .
-_:genid194 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid194 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> .
-_:genid194 <http://www.w3.org/2002/07/owl#hasValue> <http://ontology.eil.utoronto.ca/organization.owl#government_owned> .
+<http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid195 .
+_:genid195 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid195 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> .
+_:genid195 <http://www.w3.org/2002/07/owl#hasValue> <http://ontology.eil.utoronto.ca/organization.owl#government_owned> .
 <http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/2002/07/owl#disjointWith> <http://ontology.eil.utoronto.ca/organization.owl#NonProfitOrganization> .
 <http://ontology.eil.utoronto.ca/organization.owl#GovernmentOrganization> <http://www.w3.org/2000/01/rdf-schema#label> "Government Organization"@en .
 # 
@@ -2040,57 +2046,57 @@ _:genid194 <http://www.w3.org/2002/07/owl#hasValue> <http://ontology.eil.utoront
 # http://ontology.eil.utoronto.ca/organization.owl#OrState
 <http://ontology.eil.utoronto.ca/organization.owl#OrState> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#State> .
-<http://ontology.eil.utoronto.ca/organization.owl#OrState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid195 .
-_:genid195 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid195 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSubState> .
-_:genid195 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
+<http://ontology.eil.utoronto.ca/organization.owl#OrState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid196 .
+_:genid196 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid196 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasSubState> .
+_:genid196 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrState> <http://www.w3.org/2000/01/rdf-schema#label> "Or State"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#Organization
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid196 .
-_:genid196 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid196 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> .
-_:genid196 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icontact.owl#Address> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid197 .
 _:genid197 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid197 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> .
-_:genid197 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber> .
+_:genid197 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> .
+_:genid197 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icontact.owl#Address> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid198 .
 _:genid198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid198 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#consistsOf> .
-_:genid198 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
+_:genid198 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icontact.owl#hasTelephone> .
+_:genid198 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icontact.owl#PhoneNumber> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid199 .
 _:genid199 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid199 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
-_:genid199 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
+_:genid199 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#consistsOf> .
+_:genid199 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid200 .
 _:genid200 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid200 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus> .
-_:genid200 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:genid200 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
+_:genid200 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid201 .
 _:genid201 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid201 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> .
-_:genid201 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Ownership> .
+_:genid201 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasLegalStatus> .
+_:genid201 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid202 .
 _:genid202 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid202 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasName> .
-_:genid202 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid202 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#has_Ownership> .
+_:genid202 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Ownership> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid203 .
 _:genid203 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid203 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress> .
+_:genid203 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasName> .
 _:genid203 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid204 .
 _:genid204 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid204 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasLegalName> .
-_:genid204 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid204 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid204 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasRawAddress> .
+_:genid204 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid205 .
 _:genid205 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid205 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees> .
+_:genid205 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasLegalName> .
 _:genid205 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid205 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid205 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#string> .
+<http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid206 .
+_:genid206 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid206 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#numberOfEmployees> .
+_:genid206 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid206 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://purl.org/dc/elements/1.1/description> "Organization: A company or other sort of group of individuals in the urban system with some goal(s).\nAn Organization may own Property, including different types of Buildings.\nAn Organization may have an address.\nAn Organization has at least 2 members.\nAn Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups' responsibilities." .
 <http://ontology.eil.utoronto.ca/organization.owl#Organization> <http://purl.org/dc/terms/description> "An organization is a set of constraints on the activities performed by agents. An organization consists of a set of divisions and subdivisions (recursive definition), a set of organization-agents (said to be members of a division of the organization), a set of roles that the members play in the organization, and an organization-goal tree that specifies the goals (and their decomposition into subgoals) the members try to achieve.\n\nThe hasOwnership property takes as values individuals of Ownership."@en .
 # 
@@ -2099,26 +2105,26 @@ _:genid205 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/X
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Person/Person> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid206 .
-_:genid206 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid206 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#commitedTo> .
-_:genid206 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid207 .
 _:genid207 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid207 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
-_:genid207 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
+_:genid207 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#commitedTo> .
+_:genid207 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid208 .
 _:genid208 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid208 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasCommunicationLink> .
-_:genid208 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> .
+_:genid208 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
+_:genid208 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid209 .
 _:genid209 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid209 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#memberOf> .
-_:genid209 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
+_:genid209 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasCommunicationLink> .
+_:genid209 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#CommunicationLink> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid210 .
 _:genid210 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid210 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#plays> .
-_:genid210 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid210 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#memberOf> .
+_:genid210 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Division> .
+<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid211 .
+_:genid211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid211 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#plays> .
+_:genid211 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://purl.org/dc/elements/1.1/description> "Organization Agent: Members of an organization.\nOrganization Agents have goals, authority, and may be members of some team.\nAn Organization Agent plays a Role within the Organization." .
 <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> <http://purl.org/dc/terms/description> "An organization-agent (or in short agent) plays one or more roles. Each role is defined with a set of goals that the role is created to fulfill and is allocated with proper authority at the level that the role can achieve its goals. Agents perform activities in the organization, each of which may consume resource (e.g. materials, labors, tools, etc.) and there is a set of constraints that constrain the activities. An agent can also be a member of a team set up in response to a special task, has skill requirements, and has a set of communication-link defining the protocol that it communicates with other agents in the organization."@en .
 # 
@@ -2171,38 +2177,38 @@ _:genid210 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.ut
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Organization/OrgOntologyThing> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid211 .
-_:genid211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid211 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
-_:genid211 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid212 .
 _:genid212 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid212 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
-_:genid212 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
+_:genid212 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> .
+_:genid212 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Authority> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid213 .
 _:genid213 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid213 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasPolicy> .
-_:genid213 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Policy> .
+_:genid213 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasGoal> .
+_:genid213 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Goal> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid214 .
 _:genid214 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid214 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasProcess> .
-_:genid214 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Process> .
+_:genid214 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasPolicy> .
+_:genid214 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Policy> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid215 .
 _:genid215 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid215 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasResource> .
-_:genid215 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
+_:genid215 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasProcess> .
+_:genid215 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Process> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid216 .
 _:genid216 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid216 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#requiresSkill> .
-_:genid216 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Skill> .
+_:genid216 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#hasResource> .
+_:genid216 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid217 .
 _:genid217 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid217 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#specializedRoleOf> .
-_:genid217 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+_:genid217 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#requiresSkill> .
+_:genid217 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Skill> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid218 .
 _:genid218 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid218 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#subordinateOf> .
+_:genid218 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#specializedRoleOf> .
 _:genid218 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
+<http://ontology.eil.utoronto.ca/organization.owl#Role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid219 .
+_:genid219 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid219 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#subordinateOf> .
+_:genid219 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Role> .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://purl.org/dc/elements/1.1/description> "Role: A Role has a single (possibly complex) Goal.\nA Role has some authority, requires some skill, and may also have some associated processes." .
 <http://ontology.eil.utoronto.ca/organization.owl#Role> <http://purl.org/dc/terms/description> "A Role defines one or more prototypical job functions in an organization."@en .
 # 
@@ -2214,57 +2220,57 @@ _:genid218 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.ut
 # http://ontology.eil.utoronto.ca/organization.owl#State
 <http://ontology.eil.utoronto.ca/organization.owl#State> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#State> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#OrganizationThing> .
-<http://ontology.eil.utoronto.ca/organization.owl#State> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid219 .
-_:genid219 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid219 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#causedBy> .
-_:genid219 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
 <http://ontology.eil.utoronto.ca/organization.owl#State> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid220 .
 _:genid220 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid220 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#enables> .
+_:genid220 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#causedBy> .
 _:genid220 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
+<http://ontology.eil.utoronto.ca/organization.owl#State> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid221 .
+_:genid221 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid221 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#enables> .
+_:genid221 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
 <http://ontology.eil.utoronto.ca/organization.owl#State> <http://purl.org/dc/terms/description> "An enabling state defines what has to be true of the world in order for the activity to be performed. A caused state defines what is true of the world once the activity has been completed.\n\nAn activity, along with its enabling and caused states, is called an activity cluster. The state tree linked by an enables relation to an activity specifies what has to be true in order for the activity to be performed. The state tree linked to an activity by a causes relation defines what is true of the world once the activity has been completed."@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment
 <http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#Empowerment> .
-<http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid221 .
-_:genid221 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid221 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forAction> .
-_:genid221 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid222 .
-_:genid222 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid222 <http://www.w3.org/2002/07/owl#oneOf> _:genid227 .
+<http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid222 .
+_:genid222 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid222 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forAction> .
+_:genid222 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid223 .
+_:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid223 <http://www.w3.org/2002/07/owl#oneOf> _:genid228 .
+_:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#commit> .
+_:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid227 .
 _:genid227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#commit> .
+_:genid227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#complete> .
 _:genid227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid226 .
 _:genid226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#complete> .
+_:genid226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#disenable> .
 _:genid226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid225 .
 _:genid225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#disenable> .
+_:genid225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#enable> .
 _:genid225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid224 .
 _:genid224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#enable> .
-_:genid224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid223 .
-_:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#reenable> .
-_:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-<http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid228 .
-_:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid228 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forState> .
-_:genid228 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
+_:genid224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/organization.owl#reenable> .
+_:genid224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid229 .
+_:genid229 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid229 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forState> .
+_:genid229 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#State> .
 <http://ontology.eil.utoronto.ca/organization.owl#StateEmpowerment> <http://www.w3.org/2000/01/rdf-schema#comment> "State empowerment specifies the range of stati through which an oa may take a state by performing the appropriate actions, such as commit. State empowerment not only specifies allowable status changes but may be used to restrict the set of resources an oa is empowered to commit to a use/consume state. An oa may be empowered for any type of resource, including other oas. The implication being the first oa may commit the second to a state.\n\nforState: defines the state that the agent is being empowered for.\nforAction: defines the action on the state the agent is being empowered for"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#TerminalState
 <http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/organization.owl#State> .
-<http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid229 .
-_:genid229 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid229 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forActivity> .
-_:genid229 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
 <http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid230 .
 _:genid230 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid230 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forResource> .
-_:genid230 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
+_:genid230 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forActivity> .
+_:genid230 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Activity> .
+<http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid231 .
+_:genid231 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid231 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/organization.owl#forResource> .
+_:genid231 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/organization.owl#Resource> .
 <http://ontology.eil.utoronto.ca/organization.owl#TerminalState> <http://www.w3.org/2000/01/rdf-schema#label> "Terminal State"@en .
 # 
 # http://ontology.eil.utoronto.ca/organization.owl#UseState

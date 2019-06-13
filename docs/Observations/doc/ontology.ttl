@@ -1,29 +1,18 @@
-@prefix : <http://ontology.eil.utoronto.ca/icity/SSN/> .
+@prefix : <http://ontology.eil.utoronto.ca/icity/Observations/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://ontology.eil.utoronto.ca/icity/SSN/> .
+@base <http://ontology.eil.utoronto.ca/icity/Observations/> .
 
-<http://ontology.eil.utoronto.ca/icity/SSN/> rdf:type owl:Ontology ;
-                                              owl:versionIRI <http://ontology.eil.utoronto.ca/icity/SSN/1.0/> ;
-                                              owl:imports <http://www.w3.org/ns/sosa/> ,
-                                                          <http://www.w3.org/ns/ssn/> ;
-                                              <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to sensors and their observations. Directly reuses the SSN Ontology; adds classes and properties for organization of terms." ;
-                                              <http://purl.org/dc/elements/1.1/title> "SSN Ontology" ;
-                                              <http://purl.org/dc/terms/created> "2017-04-17"^^xsd:date ;
-                                              <http://purl.org/dc/terms/creator> _:genid1 ;
-                                              <http://purl.org/dc/terms/license> <http://www.opengeospatial.org/ogc/Software> ,
-                                                                                 <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-                                              <http://purl.org/dc/terms/rights> "Copyright 2017 W3C/OGC." ;
-                                              <http://purl.org/dc/terms/title> "Semantic Sensor Network Ontology"@en ,
-                                                                               "Sensor, Observation, Sample, and Actuator (SOSA) Ontology"@en ;
-                                              <http://purl.org/vocab/vann/preferredNamespacePrefix> "ssn" ;
-                                              rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> .
-
-_:genid1 rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
-          <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en .
+<http://ontology.eil.utoronto.ca/icity/Observations/> rdf:type owl:Ontology ;
+                                                       owl:versionIRI <http://ontology.eil.utoronto.ca/icity/Observations/1.0/> ;
+                                                       owl:imports <http://www.w3.org/ns/sosa/> ,
+                                                                   <http://www.w3.org/ns/ssn/> ;
+                                                       <http://purl.org/dc/elements/1.1/description> "Ontology to capture concepts related to observations. Directly reuses the SSN Ontology to capture the concept of sensors; adds classes and properties for organization of terms." ;
+                                                       <http://purl.org/dc/elements/1.1/title> "Observations Ontology" ;
+                                                       <http://purl.org/vocab/vann/preferredNamespacePrefix> "obs" .
 
 #################################################################
 #    Annotation properties
@@ -181,8 +170,18 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty
-:ssnObjectProperty rdf:type owl:ObjectProperty .
+###  http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty
+:observationsObjectProperty rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/observedBy
+:observedBy rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :observationsObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty
+:ssnObjectProperty rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :observationsObjectProperty .
 
 
 ###  http://www.w3.org/ns/sosa/actsOnProperty
@@ -375,7 +374,8 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://www.w3.org/ns/sosa/madeBySensor
 <http://www.w3.org/ns/sosa/madeBySensor> rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf :ssnObjectProperty ;
+                                         rdfs:subPropertyOf :observedBy ,
+                                                            :ssnObjectProperty ;
                                          owl:inverseOf <http://www.w3.org/ns/sosa/madeObservation> ;
                                          <http://schema.org/domainIncludes> <http://www.w3.org/ns/sosa/Observation> ;
                                          <http://schema.org/rangeIncludes> <http://www.w3.org/ns/sosa/Sensor> ;
@@ -614,8 +614,13 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #    Data properties
 #################################################################
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty
-:ssnDataProperty rdf:type owl:DatatypeProperty .
+###  http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty
+:observationsDataProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty
+:ssnDataProperty rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :observationsDataProperty .
 
 
 ###  http://www.w3.org/ns/sosa/hasSimpleResult
@@ -648,8 +653,27 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #    Classes
 #################################################################
 
-###  http://ontology.eil.utoronto.ca/icity/SSN/SSNThing
-:SSNThing rdf:type owl:Class .
+###  http://ontology.eil.utoronto.ca/icity/Observations/Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf :ObservationsThing ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :observedBy ;
+                               owl:allValuesFrom :Observer
+                             ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing
+:ObservationsThing rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/Observer
+:Observer rdf:type owl:Class ;
+          rdfs:subClassOf :ObservationsThing .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Observations/SSNThing
+:SSNThing rdf:type owl:Class ;
+          rdfs:subClassOf :ObservationsThing .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
@@ -796,7 +820,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://www.w3.org/ns/sosa/Observation
 <http://www.w3.org/ns/sosa/Observation> rdf:type owl:Class ;
-                                        rdfs:subClassOf :SSNThing ,
+                                        rdfs:subClassOf :Observation ,
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
                                                           owl:allValuesFrom <http://www.w3.org/ns/sosa/FeatureOfInterest>
@@ -1017,7 +1041,8 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 ###  http://www.w3.org/ns/sosa/Sensor
 <http://www.w3.org/ns/sosa/Sensor> rdf:type owl:Class ;
-                                   rdfs:subClassOf <http://www.w3.org/ns/ssn/System> ,
+                                   rdfs:subClassOf :Observer ,
+                                                   <http://www.w3.org/ns/ssn/System> ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                                      owl:allValuesFrom <http://www.w3.org/ns/sosa/Observation>
@@ -1204,8 +1229,9 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
    <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
-_:genid96 rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
-           <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en .
+[ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
+   <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
 
 [ rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
    <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
@@ -1279,13 +1305,13 @@ _:genid96 rdf:type <http://xmlns.com/foaf/0.1/Agent> ;
 [ <http://xmlns.com/foaf/0.1/name> "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

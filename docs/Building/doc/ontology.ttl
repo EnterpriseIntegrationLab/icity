@@ -18,12 +18,12 @@
 There may be many different types (subclasses) of buildings, such as House, Apartment Building, Office Building, and so on.
 """ ;
                                                    <http://purl.org/dc/elements/1.1/issued> "November 7, 2017"^^xsd:date ;
-                                                   <http://purl.org/dc/elements/1.1/title> "iCity Building Ontology" ;
+                                                   <http://purl.org/dc/elements/1.1/title> "Building Ontology" ;
                                                    <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-building" ;
                                                    rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Building ontology is designed to capture concepts related to buildings.
 		Changes from previous version:
 		-imported revised ontologies of activity (iCity-Activity) and change (iCity-Change).
-		Copyright @ 2016 Megan Katsumi, iCity Research Group""" ;
+		Copyright """@2016 megan katsumi, icity research group ;
                                                    owl:versionInfo 1.2 ;
                                                    <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
 
@@ -266,9 +266,18 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                    <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Building/hasFacility
-:hasFacility rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :BuildingOntologyProperty .
+###  http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility
+:hasBuildingFacility rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :BuildingOntologyProperty ,
+                                        <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit
+:hasBuildingUnit rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :BuildingOntologyProperty ,
+                                    <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ,
+                                    <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                 owl:inverseOf :unitInBuilding .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Building/hasRent
@@ -285,6 +294,13 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 :locatedOn rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :BuildingOntologyProperty ;
            <http://purl.org/dc/elements/1.1/description> "A Building is located on some parcel of land." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding
+:unitInBuilding rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :BuildingOntologyProperty ,
+                                   <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ,
+                                   <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Change/ChangeOntologyProperty
@@ -809,7 +825,11 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
           rdfs:subClassOf :BuildingOntologyThing ,
                           <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ;
+                            owl:onProperty :hasBuildingFacility ;
+                            owl:allValuesFrom :Facility
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasBuildingUnit ;
                             owl:allValuesFrom :BuildingUnit
                           ] ,
                           [ rdf:type owl:Restriction ;
@@ -879,6 +899,10 @@ A Building contains one or many units.""" .
               rdfs:subClassOf :BuildingOntologyThing ,
                               <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasBuildingFacility ;
+                                owl:allValuesFrom :Facility
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasRent ;
                                 owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
                               ] ,
@@ -917,7 +941,7 @@ A BuildingUnit has an address""" .
                 rdfs:subClassOf :BuildingOntologyThing ,
                                 <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty :hasFacility ;
+                                  owl:onProperty :hasBuildingFacility ;
                                   owl:allValuesFrom :Facility
                                 ] ,
                                 [ rdf:type owl:Restriction ;
@@ -925,14 +949,14 @@ A BuildingUnit has an address""" .
                                   owl:allValuesFrom <http://schema.org/PostalAddress>
                                 ] ,
                                 [ rdf:type owl:Restriction ;
+                                  owl:onProperty :unitInBuilding ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Building
+                                ] ,
+                                [ rdf:type owl:Restriction ;
                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onClass <http://www.w3.org/2006/time#Interval>
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass :Building
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :hasRooms ;
