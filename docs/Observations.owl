@@ -286,6 +286,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Observations/observedBy -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/observedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty">
@@ -528,6 +536,7 @@
     <!-- http://www.w3.org/ns/sosa/madeBySensor -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeBySensor">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observedBy"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -898,9 +907,31 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/Observations/Observation -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/Observation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observedBy"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/Observations/Observer -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/Observer">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
+    </owl:Class>
     
 
 
@@ -1124,7 +1155,7 @@
     <!-- http://www.w3.org/ns/sosa/Observation -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
@@ -1432,6 +1463,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <!-- http://www.w3.org/ns/sosa/Sensor -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sensor">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observer"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/ssn/System"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1772,13 +1804,13 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
         <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+        <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
-        <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
 </rdf:RDF>
 
