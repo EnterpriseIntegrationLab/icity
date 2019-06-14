@@ -197,6 +197,10 @@ This section provides details for each class and property defined by iCity Build
             title="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity">quantity</a>
       </li>
       <li>
+         <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio"
+            title="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio">ratio</a>
+      </li>
+      <li>
          <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Scale"
             title="http://www.ontology-of-units-of-measure.org/resource/om-2/Scale">scale</a>
       </li>
@@ -465,8 +469,17 @@ A Building contains one or many units.</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/contains"
-               title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</a>
+            <a href="#hasBuildingFacility"
+               title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">has building facility</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <a href="#Facility"
+               title="http://ontology.eil.utoronto.ca/icity/Building/Facility">facility</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasBuildingUnit"
+               title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">has building unit</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">only</span> 
             <a href="#BuildingUnit"
@@ -620,6 +633,15 @@ A BuildingUnit has an address</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#hasBuildingFacility"
+               title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">has building facility</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <a href="#Facility"
+               title="http://ontology.eil.utoronto.ca/icity/Building/Facility">facility</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
             <a href="#hasRent"
                title="http://ontology.eil.utoronto.ca/icity/Building/hasRent">has rent</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -691,8 +713,8 @@ A BuildingUnit has an address</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasFacility"
-               title="http://ontology.eil.utoronto.ca/icity/Building/hasFacility">has facility</a>
+            <a href="#hasBuildingFacility"
+               title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">has building facility</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">only</span> 
             <a href="#Facility"
@@ -707,18 +729,18 @@ A BuildingUnit has an address</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Change/existsAt"
-               title="http://ontology.eil.utoronto.ca/icity/Change/existsAt">exists at</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.w3.org/2006/time#Interval">interval</span>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"
-               title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">contained in</a>
+            <a href="#unitInBuilding"
+               title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">unit in building</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#Building"
                title="http://ontology.eil.utoronto.ca/icity/Building/Building">building</a>
             <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Change/existsAt"
+               title="http://ontology.eil.utoronto.ca/icity/Change/existsAt">exists at</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.w3.org/2006/time#Interval">interval</span>
          </dd>
          <dd>
             <a href="#hasRooms"
@@ -1428,6 +1450,8 @@ A Monetary Value is measured with some currency.</span>
                title="http://www.ontology-of-units-of-measure.org/resource/om-2/Length">length</a>
             <sup class="type-c" title="class">c</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Mass"
                title="http://www.ontology-of-units-of-measure.org/resource/om-2/Mass">mass</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio"
+               title="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio">ratio</a>
             <sup class="type-c" title="class">c</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Speed"
                title="http://www.ontology-of-units-of-measure.org/resource/om-2/Speed">speed</a>
             <sup class="type-c" title="class">c</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Time"
@@ -1438,11 +1462,31 @@ A Monetary Value is measured with some currency.</span>
          </dd>
          <dt>is in domain of</dt>
          <dd>
-            <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"
+            <a href="#http://ontology.eil.utoronto.ca/icity/OM/aggregateOf"
+               title="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">aggregate of</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/OM/aggregateOver"
+               title="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">aggregate over</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction"
                title="http://www.ontology-of-units-of-measure.org/resource/om-2/hasAggregateFunction">has aggregate function</a>
             <sup class="type-op" title="object property">op</sup>, <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue"
                title="http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue">has value</a>
             <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio">
+      <h3>ratio<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"
+               title="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity">quantity</a>
+            <sup class="type-c" title="class">c</sup>
          </dd>
       </dl>
    </div>
@@ -1833,6 +1877,18 @@ A Monetary Value is measured with some currency.</span>
          </a>
       </li>
       <li>
+         <a href="#http://ontology.eil.utoronto.ca/icity/OM/aggregateOf"
+            title="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">
+            <span>aggregate of</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://ontology.eil.utoronto.ca/icity/OM/aggregateOver"
+            title="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">
+            <span>aggregate over</span>
+         </a>
+      </li>
+      <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"
             title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation">
             <span>associated location</span>
@@ -1865,6 +1921,12 @@ A Monetary Value is measured with some currency.</span>
       <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"
             title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">
+            <span>contained in</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn"
+            title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn">
             <span>contained in</span>
          </a>
       </li>
@@ -1911,6 +1973,18 @@ A Monetary Value is measured with some currency.</span>
          </a>
       </li>
       <li>
+         <a href="#hasBuildingFacility"
+            title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">
+            <span>has building facility</span>
+         </a>
+      </li>
+      <li>
+         <a href="#hasBuildingUnit"
+            title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">
+            <span>has building unit</span>
+         </a>
+      </li>
+      <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"
             title="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">
             <span>has component</span>
@@ -1919,12 +1993,6 @@ A Monetary Value is measured with some currency.</span>
       <li>
          <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator"
             title="http://www.ontology-of-units-of-measure.org/resource/om-2/hasDenominator">has denominator</a>
-      </li>
-      <li>
-         <a href="#hasFacility"
-            title="http://ontology.eil.utoronto.ca/icity/Building/hasFacility">
-            <span>has facility</span>
-         </a>
       </li>
       <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"
@@ -1941,12 +2009,6 @@ A Monetary Value is measured with some currency.</span>
       <li>
          <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator"
             title="http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumerator">has numerator</a>
-      </li>
-      <li>
-         <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-            title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">
-            <span>has part</span>
-         </a>
       </li>
       <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"
@@ -2005,12 +2067,6 @@ A Monetary Value is measured with some currency.</span>
          </a>
       </li>
       <li>
-         <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-            title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">
-            <span>part of</span>
-         </a>
-      </li>
-      <li>
          <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf"
             title="http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf">
             <span>proper part of</span>
@@ -2034,6 +2090,12 @@ A Monetary Value is measured with some currency.</span>
             <span>spatial loc ontology property</span>
          </a>
       </li>
+      <li>
+         <a href="#unitInBuilding"
+            title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">
+            <span>unit in building</span>
+         </a>
+      </li>
    </ul>
    <div class="entity" id="http://schema.org/address">
       <h3>address<sup class="type-op" title="object property">op</sup>
@@ -2049,6 +2111,54 @@ A Monetary Value is measured with some currency.</span>
                <a href="#SchemaOrgProperty"
                   title="http://ontology.eil.utoronto.ca/icity/Building/SchemaOrgProperty">schema org property</a>
                <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/OM/aggregateOf">
+      <h3>aggregate of<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/OM/aggregateOf</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted"
+                     title="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty">o m property</span>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"
+                  title="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity">quantity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/OM/aggregateOver">
+      <h3>aggregate over<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/OM/aggregateOver</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted"
+                     title="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty">o m property</span>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity"
+                  title="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity">quantity</a>
+               <sup class="type-c" title="class">c</sup>
             </dd>
          </dl>
       </div>
@@ -2092,14 +2202,18 @@ A Monetary Value is measured with some currency.</span>
          <dl>
             <dt>has sub-properties</dt>
             <dd>
-               <a href="#hasFacility"
-                  title="http://ontology.eil.utoronto.ca/icity/Building/hasFacility">has facility</a>
+               <a href="#hasBuildingFacility"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">has building facility</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#hasBuildingUnit"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">has building unit</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#hasRent"
                   title="http://ontology.eil.utoronto.ca/icity/Building/hasRent">has rent</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#hasUnitSize"
                   title="http://ontology.eil.utoronto.ca/icity/Building/hasUnitSize">has unit size</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#locatedOn"
                   title="http://ontology.eil.utoronto.ca/icity/Building/locatedOn">located on</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#unitInBuilding"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">unit in building</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
          </dl>
@@ -2167,14 +2281,16 @@ Immediate component-of is a subproperty of component-of.</span>
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">part of</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf">proper part of</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>has sub-properties</dt>
             <dd>
                <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/immediateComponentOf"
                   title="http://ontology.eil.utoronto.ca/icity/Mereology/immediateComponentOf">immediate component of</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#unitInBuilding"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">unit in building</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2202,14 +2318,16 @@ Immediate containment is a subproperty of containment.</span>
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">part of</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>has sub-properties</dt>
             <dd>
                <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/immediatelyContainedIn"
                   title="http://ontology.eil.utoronto.ca/icity/Mereology/immediatelyContainedIn">immediately contained in</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#unitInBuilding"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">unit in building</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2217,6 +2335,28 @@ Immediate containment is a subproperty of containment.</span>
                <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/contains"
                   title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</a>
                <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn">
+      <h3>contained in<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty">spatial loc ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <span class="dotted" title="http://www.opengis.net/ont/geosparql#sfContains">sf contains</span>
             </dd>
          </dl>
       </div>
@@ -2232,8 +2372,14 @@ Immediate containment is a subproperty of containment.</span>
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">has part</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#hasBuildingUnit"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">has building unit</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2384,6 +2530,63 @@ Immediate containment is a subproperty of containment.</span>
          </dl>
       </div>
    </div>
+   <div class="entity" id="hasBuildingFacility">
+      <h3>has building facility<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#BuildingOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty">building ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">has component</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasBuildingUnit">
+      <h3>has building unit<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#BuildingOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty">building ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/contains"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">has component</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#unitInBuilding"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding">unit in building</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
    <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">
       <h3>has component<sup class="type-op" title="object property">op</sup>
          <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
@@ -2395,8 +2598,16 @@ Immediate containment is a subproperty of containment.</span>
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">has part</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart">has proper part</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#hasBuildingFacility"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility">has building facility</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#hasBuildingUnit"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">has building unit</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2434,24 +2645,6 @@ Immediate containment is a subproperty of containment.</span>
                <a href="#http://www.ontology-of-units-of-measure.org/resource/om-2/Unit"
                   title="http://www.ontology-of-units-of-measure.org/resource/om-2/Unit">unit</a>
                <sup class="type-c" title="class">c</sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-   <div class="entity" id="hasFacility">
-      <h3>has facility<sup class="type-op" title="object property">op</sup>
-         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
-         </span>
-      </h3>
-      <p>
-         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Building/hasFacility</p>
-      <div class="description">
-         <dl>
-            <dt>has super-properties</dt>
-            <dd>
-               <a href="#BuildingOntologyProperty"
-                  title="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty">building ontology property</a>
-               <sup class="type-op" title="object property">op</sup>
             </dd>
          </dl>
       </div>
@@ -2537,40 +2730,6 @@ Immediate containment is a subproperty of containment.</span>
          </dl>
       </div>
    </div>
-   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">
-      <h3>has part<sup class="type-op" title="object property">op</sup>
-         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
-         </span>
-      </h3>
-      <p>
-         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Mereology/hasPart</p>
-      <div class="description">
-         <dl>
-            <dt>has super-properties</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-            <dt>has sub-properties</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/contains"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</a>
-               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">has component</a>
-               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart">has proper part</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-            <dt>is inverse of</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">part of</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
    <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart">
       <h3>has proper part<sup class="type-op" title="object property">op</sup>
          <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
@@ -2582,8 +2741,14 @@ Immediate containment is a subproperty of containment.</span>
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">has part</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent">has component</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2776,44 +2941,14 @@ Immediate containment is a subproperty of containment.</span>
          <dl>
             <dt>has sub-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">has part</a>
-               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">part of</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">
-      <h3>part of<sup class="type-op" title="object property">op</sup>
-         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
-         </span>
-      </h3>
-      <p>
-         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Mereology/partOf</p>
-      <div class="description">
-         <dl>
-            <dt>has super-properties</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-            <dt>has sub-properties</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/componentOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/componentOf">component of</a>
-               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"
                   title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">contained in</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/contains"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart">has proper part</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf"
                   title="http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf">proper part of</a>
-               <sup class="type-op" title="object property">op</sup>
-            </dd>
-            <dt>is inverse of</dt>
-            <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/hasPart"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/hasPart">has part</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
          </dl>
@@ -2836,8 +2971,14 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
          <dl>
             <dt>has super-properties</dt>
             <dd>
-               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/partOf"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/partOf">part of</a>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty">mereology ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/componentOf"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/componentOf">component of</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
             <dt>is inverse of</dt>
@@ -2915,8 +3056,44 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
             <dd>
                <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation"
                   title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation">associated location</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn"
+                  title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn">contained in</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation"
                   title="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation">has location</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="unitInBuilding">
+      <h3>unit in building<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Building/unitInBuilding</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#BuildingOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyProperty">building ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/componentOf"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/componentOf">component of</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Mereology/containedIn"
+                  title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">contained in</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#hasBuildingUnit"
+                  title="http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit">has building unit</a>
                <sup class="type-op" title="object property">op</sup>
             </dd>
          </dl>

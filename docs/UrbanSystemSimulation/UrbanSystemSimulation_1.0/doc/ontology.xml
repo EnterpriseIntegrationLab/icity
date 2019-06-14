@@ -19,7 +19,8 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="http://schema.org/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#">
+     xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/icity/RecurringEvent/#"
+     xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/icity/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystemSimulation/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystemSimulation/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/1.2/"/>
@@ -492,15 +493,6 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMember -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMember">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode -->
 
 
@@ -541,15 +533,6 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasSchedule">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasTransitPass -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasTransitPass">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -702,9 +685,9 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
 
 
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyProperty"/>
-    </rdf:Description>
+    </owl:ObjectProperty>
     
 
 
@@ -910,14 +893,7 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/icity/Household/Family -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Household/Family">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMember"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Person/Person"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Household/Family"/>
     
 
 
@@ -1159,12 +1135,6 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasTransitPass"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/PublicTransit/TransitPass"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/worksFor"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1329,41 +1299,21 @@ Copyright @ 2018 Megan Katsumi, iCity Research Group</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/ArcPD"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
     
 
 
     <!-- http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment">
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/manifestationOf"/>
-                        <owl:allValuesFrom>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode"/>
-                                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/road"/>
-                            </owl:Restriction>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/accessedBy"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-    </owl:Class>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment"/>
     
 
 
@@ -1477,17 +1427,6 @@ An Occupant may be a Driver or a Passenger</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/Occupation -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/Occupation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/UrbanSystemOntologyThing"/>
-        <dc:description>An Occupation is performed by some Person.
-An Occupation has a type (e.g. sales, skilled trades)</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/UrbanSystem/Schedule -->
 
 
@@ -1551,13 +1490,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/Mode -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing -->
 
 
@@ -1613,7 +1545,14 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/UrbanSystem/hasMode"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1752,7 +1691,7 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/air">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
     </owl:NamedIndividual>
     
 
@@ -1761,7 +1700,7 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/road">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
     </owl:NamedIndividual>
     
 
@@ -1770,7 +1709,7 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
 
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/UrbanSystem/water">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode"/>
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode"/>
     </owl:NamedIndividual>
     
 

@@ -171,6 +171,9 @@ This section provides details for each class and property defined by iCity Trip 
       </h3>
       <p>
          <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Trip/Tour</p>
+      <div class="comment">
+         <span class="markdown">Future work: define a new property to enforce the same start and end location constraint.</span>
+      </div>
       <div class="info">
          <span class="markdown">A sequence of Trips made by one Person.
 A Tour starts and ends at the same Location.</span>
@@ -178,59 +181,24 @@ A Tour starts and ends at the same Location.</span>
       <dl class="description">
          <dt>has super-classes</dt>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing">trip ontology thing</a>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
             <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/contains">contains</span>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/accessesArc"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/accessesArc">accesses arc</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc">arc</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork">accesses network</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network">network</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/occursOn"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/occursOn">occurs on</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex">transportation complex</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/during"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/during">during</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.w3.org/2006/time#Interval">interval</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/endLoc"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/endLoc">end loc</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.opengis.net/ont/geosparql#Feature">feature</span>
          </dd>
          <dd>
             <a href="#http://ontology.eil.utoronto.ca/icity/Trip/startLoc"
                title="http://ontology.eil.utoronto.ca/icity/Trip/startLoc">start loc</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.opengis.net/ont/geosparql#Feature">feature</span>
+            <span class="logic">only</span> 
+            <span class="logic">inverse</span> 
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/endLoc"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/endLoc">end loc</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dd>
+            <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity">has subactivity</span> 
+            <span class="logic">min</span> 1 <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
+            <sup class="type-c" title="class">c</sup>
          </dd>
       </dl>
    </div>
@@ -264,6 +232,40 @@ A Trip may incur some cost (monetary or otherwise).</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasDriver"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">has driver</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/Change/Manifestation">manifestation</span>
+         </dd>
+         <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">has passenger</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/Change/Manifestation">manifestation</span>
+         </dd>
+         <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/viaMode"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/viaMode">via mode</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode">mode</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle">via vehicle</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">only</span> 
+            <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle">vehicle</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
             <a href="#http://ontology.eil.utoronto.ca/icity/Trip/accessesArc"
                title="http://ontology.eil.utoronto.ca/icity/Trip/accessesArc">accesses arc</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -288,27 +290,6 @@ A Trip may incur some cost (monetary or otherwise).</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <span class="logic">inverse</span> 
-            <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity">has subactivity</span> 
-            <span class="logic">min</span> 1 <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">contained in</span>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Tour" title="http://ontology.eil.utoronto.ca/icity/Trip/Tour">tour</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/during"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/during">during</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.w3.org/2006/time#Interval">interval</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#http://ontology.eil.utoronto.ca/icity/Trip/endLoc"
                title="http://ontology.eil.utoronto.ca/icity/Trip/endLoc">end loc</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -322,9 +303,18 @@ A Trip may incur some cost (monetary or otherwise).</span>
          </dd>
          <dt>has sub-classes</dt>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/TripSegment"
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Tour" title="http://ontology.eil.utoronto.ca/icity/Trip/Tour">tour</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/TripSegment"
                title="http://ontology.eil.utoronto.ca/icity/Trip/TripSegment">trip segment</a>
             <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasDriver"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">has driver</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger"
+               title="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">has passenger</a>
+            <sup class="type-op" title="object property">op</sup>
          </dd>
       </dl>
    </div>
@@ -414,8 +404,7 @@ A Trip may incur some cost (monetary or otherwise).</span>
       <dl class="description">
          <dt>has sub-classes</dt>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Tour" title="http://ontology.eil.utoronto.ca/icity/Trip/Tour">tour</a>
-            <sup class="type-c" title="class">c</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
       </dl>
@@ -444,70 +433,20 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle">via vehicle</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">only</span> 
+            <span class="logic">inverse</span> 
             <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle">vehicle</span>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/accessesArc"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/accessesArc">accesses arc</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc">arc</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork">accesses network</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network">network</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/occursOn"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/occursOn">occurs on</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex">transportation complex</span>
+                  title="http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity">has subactivity</span> 
+            <span class="logic">some</span> 
+            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
             <a href="#http://ontology.eil.utoronto.ca/icity/Trip/viaMode"
                title="http://ontology.eil.utoronto.ca/icity/Trip/viaMode">via mode</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">min</span> 1 <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Vehicle/Mode">mode</span>
+            <span class="logic">exactly</span> 1 <span class="dotted"
+                  title="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode">mode</span>
             <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <span class="dotted"
-                  title="http://ontology.eil.utoronto.ca/icity/Mereology/containedIn">contained in</span>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/during"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/during">during</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.w3.org/2006/time#Interval">interval</span>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/endLoc"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/endLoc">end loc</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.opengis.net/ont/geosparql#Feature">feature</span>
-         </dd>
-         <dd>
-            <a href="#http://ontology.eil.utoronto.ca/icity/Trip/startLoc"
-               title="http://ontology.eil.utoronto.ca/icity/Trip/startLoc">start loc</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <span class="dotted" title="http://www.opengis.net/ont/geosparql#Feature">feature</span>
          </dd>
       </dl>
    </div>
@@ -573,6 +512,12 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
          </a>
       </li>
       <li>
+         <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasDriver"
+            title="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">
+            <span>has driver</span>
+         </a>
+      </li>
+      <li>
          <a href="#hasDurationCost"
             title="http://ontology.eil.utoronto.ca/icity/TripCost/hasDurationCost">
             <span>has duration cost</span>
@@ -588,6 +533,12 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
          <a href="#hasMonetaryCost"
             title="http://ontology.eil.utoronto.ca/icity/TripCost/hasMonetaryCost">
             <span>has monetary cost</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger"
+            title="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">
+            <span>has passenger</span>
          </a>
       </li>
       <li>
@@ -759,6 +710,36 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
          </dl>
       </div>
    </div>
+   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">
+      <h3>has driver<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Trip/hasDriver</p>
+      <div class="comment">
+         <span class="markdown">All trips have participants. As a specialization of this, a trip may be defined to have a driver (in the case of an auto trip - in particular an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted"
+                     title="http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant">has participant</span>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty">trip ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
    <div class="entity" id="hasDurationCost">
       <h3>has duration cost<sup class="type-op" title="object property">op</sup>
          <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
@@ -809,6 +790,36 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
                <a href="#TripCostOntologyProperty"
                   title="http://ontology.eil.utoronto.ca/icity/TripCost/TripCostOntologyProperty">trip cost ontology property</a>
                <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">
+      <h3>has passenger<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger</p>
+      <div class="comment">
+         <span class="markdown">All trips have participants. As a specialization of this, a trip may be defined to have a passenger (in particular, in the case of an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted"
+                     title="http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant">has participant</span>
+            </dd>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty"
+                  title="http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty">trip ontology property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#http://ontology.eil.utoronto.ca/icity/Trip/Trip" title="http://ontology.eil.utoronto.ca/icity/Trip/Trip">trip</a>
+               <sup class="type-c" title="class">c</sup>
             </dd>
          </dl>
       </div>
@@ -922,6 +933,10 @@ A Trip Segment may incur some cost (monetary or otherwise).</span>
                   title="http://ontology.eil.utoronto.ca/icity/Trip/during">during</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/endLoc"
                   title="http://ontology.eil.utoronto.ca/icity/Trip/endLoc">end loc</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasDriver"
+                  title="http://ontology.eil.utoronto.ca/icity/Trip/hasDriver">has driver</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger"
+                  title="http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger">has passenger</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/occursOn"
                   title="http://ontology.eil.utoronto.ca/icity/Trip/occursOn">occurs on</a>
                <sup class="type-op" title="object property">op</sup>, <a href="#http://ontology.eil.utoronto.ca/icity/Trip/startLoc"

@@ -94,6 +94,20 @@
 <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty> .
 # 
+# http://ontology.eil.utoronto.ca/icity/Trip/hasDriver
+<http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> <http://www.w3.org/2000/01/rdf-schema#comment> "All trips have participants. As a specialization of this, a trip may be defined to have a driver (in the case of an auto trip - in particular an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants)." .
+# 
+# http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger
+<http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Activity/hasParticipant> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
+<http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> <http://www.w3.org/2000/01/rdf-schema#comment> "All trips have participants. As a specialization of this, a trip may be defined to have a passenger (in particular, in the case of an auto trip that faciliates the travel of some passenger, as a means of distinguishing between the types of participants)." .
+# 
 # http://ontology.eil.utoronto.ca/icity/Trip/occursOn
 <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyProperty> .
@@ -157,6 +171,9 @@
 # http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 # 
+# http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
 # http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 # 
@@ -165,89 +182,68 @@
 # 
 # http://ontology.eil.utoronto.ca/icity/Trip/Tour
 <http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> .
+<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid1 .
 _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid1 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/contains> .
-_:genid1 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid1 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid2 .
+_:genid1 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/startLoc> .
+_:genid1 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid2 .
 _:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid2 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> .
-_:genid2 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid2 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid3 .
-_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid3 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork> .
-_:genid3 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid3 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network> .
+_:genid2 <http://www.w3.org/2002/07/owl#onProperty> _:genid3 .
+_:genid3 <http://www.w3.org/2002/07/owl#inverseOf> <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> .
+_:genid2 <http://www.w3.org/2002/07/owl#hasSelf> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid4 .
 _:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid4 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> .
+_:genid4 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> .
 _:genid4 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid4 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid5 .
-_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid5 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/during> .
-_:genid5 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid5 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid6 .
-_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid6 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> .
-_:genid6 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid6 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid7 .
-_:genid7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid7 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/startLoc> .
-_:genid7 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid7 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
+_:genid4 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://purl.org/dc/elements/1.1/description> "A sequence of Trips made by one Person.\nA Tour starts and ends at the same Location." .
+<http://ontology.eil.utoronto.ca/icity/Trip/Tour> <http://www.w3.org/2000/01/rdf-schema#comment> "Future work: define a new property to enforce the same start and end location constraint." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Trip/Trip
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Activity/Activity> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing> .
+<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid5 .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid5 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/hasDriver> .
+_:genid5 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> .
+<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid6 .
+_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid6 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/hasPassenger> .
+_:genid6 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> .
+<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid7 .
+_:genid7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid7 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/viaMode> .
+_:genid7 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid8 .
 _:genid8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid8 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> .
-_:genid8 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid8 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc> .
+_:genid8 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle> .
+_:genid8 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid9 .
 _:genid9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid9 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork> .
+_:genid9 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> .
 _:genid9 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid9 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network> .
+_:genid9 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid10 .
 _:genid10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid10 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> .
+_:genid10 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork> .
 _:genid10 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid10 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
+_:genid10 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid11 .
 _:genid11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid11 <http://www.w3.org/2002/07/owl#onProperty> _:genid12 .
-_:genid12 <http://www.w3.org/2002/07/owl#inverseOf> <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> .
+_:genid11 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> .
 _:genid11 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid11 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
+_:genid11 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
+<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid12 .
+_:genid12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid12 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> .
+_:genid12 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid12 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid13 .
 _:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid13 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> .
+_:genid13 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/startLoc> .
 _:genid13 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid13 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Trip/Tour> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid14 .
-_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid14 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/during> .
-_:genid14 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid14 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid15 .
-_:genid15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid15 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> .
-_:genid15 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid15 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
-<http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid16 .
-_:genid16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid16 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/startLoc> .
-_:genid16 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid16 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
+_:genid13 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
 <http://ontology.eil.utoronto.ca/icity/Trip/Trip> <http://purl.org/dc/elements/1.1/description> "A Trip describes movement of a Persons from one location to another via some Mode(s).\nA Trip is made by a Person to facilitate participation in some Activity.\nA Trip starts at some Location and ends at some Location.\nA Trip occurs during some Interval.\nA Trip occurs in some Network(s).\nA Trip occurs via some Arc(s).\nA Trip occurs on some Transportation Complex. (e.g. a road or a rail)\nA Trip contains some Trip Segments.\nA Trip may incur some cost (monetary or otherwise)." .
 # 
 # http://ontology.eil.utoronto.ca/icity/Trip/TripOntologyThing
@@ -257,50 +253,16 @@ _:genid16 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/ge
 # http://ontology.eil.utoronto.ca/icity/Trip/TripSegment
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid17 .
-_:genid17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid17 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/viaVehicle> .
-_:genid17 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid18 .
-_:genid18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid18 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesArc> .
-_:genid18 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid18 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid19 .
-_:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid19 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/accessesNetwork> .
-_:genid19 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid19 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid20 .
-_:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid20 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/occursOn> .
-_:genid20 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid20 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid21 .
-_:genid21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid21 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/viaMode> .
-_:genid21 <http://www.w3.org/2002/07/owl#minQualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid21 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid22 .
-_:genid22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid22 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> .
-_:genid22 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid22 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid23 .
-_:genid23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid23 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/during> .
-_:genid23 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid23 <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2006/time#Interval> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid24 .
-_:genid24 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid24 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/endLoc> .
-_:genid24 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid24 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
-<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid25 .
-_:genid25 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid25 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/startLoc> .
-_:genid25 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid25 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/geosparql#Feature> .
+<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid14 .
+_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid14 <http://www.w3.org/2002/07/owl#onProperty> _:genid15 .
+_:genid15 <http://www.w3.org/2002/07/owl#inverseOf> <http://ontology.eil.utoronto.ca/icity/Activity/hasSubactivity> .
+_:genid14 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
+<http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid16 .
+_:genid16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid16 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/Trip/viaMode> .
+_:genid16 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid16 <http://www.w3.org/2002/07/owl#onClass> <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
 <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> <http://purl.org/dc/elements/1.1/description> "A Trip Segment describes part of a trip. It may be used, for example, to identify different parts of a the Trip by Mode.\nThe restrictions on the Mode and possibly Vehicle used will become more complicated as we begin to incorporate restrictions based on a Persons access to a vehicle (age, household)\nA Trip Segment is part of some Trip.\nA Trip Segment occurs during some Interval.\nA Trip Segment occurs in some Network(s).\nA Trip Segment occurs via some Arc(s).\nA Trip occurs on some Transportation Complex.\nA Trip Segment may incur some cost (monetary or otherwise)." .
 # 
 # http://ontology.eil.utoronto.ca/icity/TripCost/CarbonEmissions
@@ -311,57 +273,57 @@ _:genid25 <http://www.w3.org/2002/07/owl#onClass> <http://www.opengis.net/ont/ge
 # http://ontology.eil.utoronto.ca/icity/TripCost/DistanceCost
 <http://ontology.eil.utoronto.ca/icity/TripCost/DistanceCost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/TripCost/DistanceCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> .
-<http://ontology.eil.utoronto.ca/icity/TripCost/DistanceCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid26 .
-_:genid26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid26 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasDistanceCost> .
-_:genid26 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid27 .
-_:genid27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid27 <http://www.w3.org/2002/07/owl#unionOf> _:genid29 .
-_:genid29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
-_:genid29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid28 .
-_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> .
-_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://ontology.eil.utoronto.ca/icity/TripCost/DistanceCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid17 .
+_:genid17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid17 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasDistanceCost> .
+_:genid17 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid18 .
+_:genid18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid18 <http://www.w3.org/2002/07/owl#unionOf> _:genid20 .
+_:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
+_:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid19 .
+_:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> .
+_:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 # 
 # http://ontology.eil.utoronto.ca/icity/TripCost/DurationCost
 <http://ontology.eil.utoronto.ca/icity/TripCost/DurationCost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/TripCost/DurationCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> .
-<http://ontology.eil.utoronto.ca/icity/TripCost/DurationCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid30 .
-_:genid30 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid30 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasDurationCost> .
-_:genid30 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#DurationDescription> .
+<http://ontology.eil.utoronto.ca/icity/TripCost/DurationCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid21 .
+_:genid21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid21 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasDurationCost> .
+_:genid21 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2006/time#DurationDescription> .
 # 
 # http://ontology.eil.utoronto.ca/icity/TripCost/EnvironmentalCost
 <http://ontology.eil.utoronto.ca/icity/TripCost/EnvironmentalCost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/TripCost/EnvironmentalCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> .
-<http://ontology.eil.utoronto.ca/icity/TripCost/EnvironmentalCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid31 .
-_:genid31 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid31 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasEnvironmentalCost> .
-_:genid31 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/TripCost/CarbonEmissions> .
+<http://ontology.eil.utoronto.ca/icity/TripCost/EnvironmentalCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid22 .
+_:genid22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid22 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasEnvironmentalCost> .
+_:genid22 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/TripCost/CarbonEmissions> .
 # 
 # http://ontology.eil.utoronto.ca/icity/TripCost/TripCost
 <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/TripCost/TripCostOntologyThing> .
-<http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid32 .
-_:genid32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid32 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasMonetaryCost> .
-_:genid32 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
-<http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid33 .
-_:genid33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-_:genid33 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/tripCostOf> .
-_:genid33 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid34 .
-_:genid34 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-_:genid34 <http://www.w3.org/2002/07/owl#unionOf> _:genid37 .
-_:genid37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/Tour> .
-_:genid37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid36 .
-_:genid36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
-_:genid36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid35 .
-_:genid35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> .
-_:genid35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid23 .
+_:genid23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid23 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/hasMonetaryCost> .
+_:genid23 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue> .
+<http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid24 .
+_:genid24 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid24 <http://www.w3.org/2002/07/owl#onProperty> <http://ontology.eil.utoronto.ca/icity/TripCost/tripCostOf> .
+_:genid24 <http://www.w3.org/2002/07/owl#allValuesFrom> _:genid25 .
+_:genid25 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:genid25 <http://www.w3.org/2002/07/owl#unionOf> _:genid28 .
+_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/Tour> .
+_:genid28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid27 .
+_:genid27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/Trip> .
+_:genid27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid26 .
+_:genid26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://ontology.eil.utoronto.ca/icity/Trip/TripSegment> .
+_:genid26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 # 
 # http://ontology.eil.utoronto.ca/icity/TripCost/TripCostOntologyThing
 <http://ontology.eil.utoronto.ca/icity/TripCost/TripCostOntologyThing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -371,8 +333,8 @@ _:genid35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1
 <http://ontology.eil.utoronto.ca/icity/TripCost/VehicleCost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <http://ontology.eil.utoronto.ca/icity/TripCost/VehicleCost> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.eil.utoronto.ca/icity/TripCost/TripCost> .
 # 
-# http://ontology.eil.utoronto.ca/icity/Vehicle/Mode
-<http://ontology.eil.utoronto.ca/icity/Vehicle/Mode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle
+<http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 # 
 # http://www.w3.org/2006/time#DurationDescription
 <http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .

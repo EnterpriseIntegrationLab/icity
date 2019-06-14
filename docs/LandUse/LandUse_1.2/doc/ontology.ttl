@@ -15,7 +15,7 @@
                                                   <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
                                                   <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                   <http://purl.org/dc/elements/1.1/description> """The iCity-LandUse Ontology captures concepts related to land use and cover over time. The ontology reuses and extends the Land Based Classification Standards (LBCS) Ontology  presented by (Montenegro, Gomes, Urbano, and Duarte, 2011) for this purpose.
-		
+
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
 Changes from prior version:
@@ -23,7 +23,7 @@ Changes from prior version:
 - added CLUMP and AAFC land use classifications
 - imported GCI-Foundation ontology to capture population information""" ;
                                                   <http://purl.org/dc/elements/1.1/issued> "November 7, 2017" ;
-                                                  <http://purl.org/dc/elements/1.1/title> "iCity Land Use Ontology" ;
+                                                  <http://purl.org/dc/elements/1.1/title> "Land Use Ontology" ;
                                                   <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-landuse" ;
                                                   rdfs:comment "Developed as part of the overall iCity ontology effort, the iCity-LandUse Ontology is designed to capture concepts related to land use." ;
                                                   owl:priorVersion "http://ontology.eil.utoronto.ca/icity/LandUse/1.1/" ;
@@ -359,6 +359,18 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                        rdfs:comment "A parcel may have some population of residents at a given point in time." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOf
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOf> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                       rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/OM/aggregateOver
+<http://ontology.eil.utoronto.ca/icity/OM/aggregateOver> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
+                                                         rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty
 <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                               rdfs:comment "Created for organizational purposes, to identify the object properties imported by geoSPARQL." .
@@ -369,6 +381,12 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
                                                                       rdfs:range <http://www.opengis.net/ont/geosparql#Feature> ;
                                                                       rdfs:comment "Describes an approximate location of some object (spatial or non-spatial). For example, a Building has an actual location (represented by it's footprint or 3d massing), but it may also have an associated location(s) of some specific point coordinate. Recurring events may not have an actual location, but may be associated with some location (at which their occurrences are likely to occur)." .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/containedIn> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyProperty> ;
+                                                               owl:inverseOf <http://www.opengis.net/ont/geosparql#sfContains> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation
@@ -898,6 +916,7 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                       <http://ontology.eil.utoronto.ca/icity/LBCS/LBCSThing> ,
                                                                       :LandUseOntologyThing ,
+                                                                      <http://www.opengis.net/ont/geosparql#Feature> ,
                                                                       [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :associatedArea ;
                                                                         owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Area>
@@ -1021,8 +1040,7 @@ TBD: should this be the same as the CLUMPWater class?""" .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/LandUse/FunctionClassification
-:FunctionClassification rdf:type owl:Class ;
-                        rdfs:subClassOf :ActivityClassification .
+:FunctionClassification rdf:type owl:Class .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/LandUse/GrasslandManaged
@@ -1162,11 +1180,6 @@ TBD: should this be the same as the CLUMPWater class?""" .
                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass <http://www.w3.org/2006/time#Interval>
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                           ] ;
           <http://purl.org/dc/elements/1.1/description> "A parcel may change over time, ParcelPD captures the entire entity of a parcel, i.e. the parcel perdurant." .
 
@@ -1611,6 +1624,12 @@ A Monetary Value is measured with some currency.""" .
                                                                                        owl:allValuesFrom <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure>
                                                                                      ] ;
                                                                      rdfs:label "quantity" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Ratio> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                  rdfs:label "ratio" .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Scale

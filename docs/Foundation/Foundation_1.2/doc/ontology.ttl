@@ -186,6 +186,15 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 <http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
+                                                   rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+                                                   rdfs:label "location" ;
                                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
@@ -437,7 +446,7 @@ xsd:gYear rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/componentOf
 <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> rdf:type owl:ObjectProperty ;
-                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/partOf> ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> ;
                                                               owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
                                                               <http://purl.org/dc/elements/1.1/description> """Something may be a Component of some other thing
 More specifically, something may be a immediate component of something; in other words, if x is an immediate component of y, then there does not exist any other object that is a component of y and has x as a component.
@@ -447,7 +456,7 @@ Immediate component-of is a subproperty of component-of.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/containedIn
 <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> rdf:type owl:ObjectProperty ;
-                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/partOf> ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                               owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/contains> ;
                                                               <http://purl.org/dc/elements/1.1/description> """Something may be contained-in some other thing; more specifically it may be immediately contained in something.
 Containment is transitive. Immediate containment is not transitive.
@@ -456,23 +465,17 @@ Immediate containment is a subproperty of containment.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/contains
 <http://ontology.eil.utoronto.ca/icity/Mereology/contains> rdf:type owl:ObjectProperty ;
-                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> .
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent
 <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> rdf:type owl:ObjectProperty ;
-                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Mereology/hasPart
-<http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
-                                                          owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/partOf> .
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart
 <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> rdf:type owl:ObjectProperty ;
-                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasPart> ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                                 owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> .
 
 
@@ -486,14 +489,9 @@ Immediate containment is a subproperty of containment.""" .
                                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/containedIn> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Mereology/partOf
-<http://ontology.eil.utoronto.ca/icity/Mereology/partOf> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> .
-
-
 ###  http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf
 <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> rdf:type owl:ObjectProperty ;
-                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/partOf> ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/MereologyOntologyProperty> ;
                                                                <http://purl.org/dc/elements/1.1/description> """Something may be a Proper Part of some other thing.
 An object cannot be a proper part of itself. Thus, any object must have more than one proper part.
 Proper Parthood is transitive.
@@ -594,10 +592,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 ###  http://ontology.eil.utoronto.ca/icity/Trip/1.1//1.1#during
 <http://ontology.eil.utoronto.ca/icity/Trip/1.1//1.1#during> rdf:type owl:ObjectProperty .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
 ###  http://www.w3.org/2006/time#after
@@ -1317,22 +1311,6 @@ A specific Resource may be used in or consumed in some activity occurrence.""" .
                                                         rdfs:subClassOf <http://www.w3.org/2006/time#DateTimeDescription> .
 
 
-###  http://www.w3.org/2002/07/owl#Thing
-owl:Thing rdfs:subClassOf [ rdf:type owl:Class ;
-                            owl:unionOf ( [ rdf:type owl:Restriction ;
-                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> ;
-                                            owl:minCardinality "2"^^xsd:nonNegativeInteger
-                                          ]
-                                          [ rdf:type owl:Restriction ;
-                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasProperPart> ;
-                                            owl:cardinality "0"^^xsd:nonNegativeInteger
-                                          ]
-                                        )
-                          ] ;
-          rdfs:comment """An object cannot be a proper part of itself. Thus, any object must have more than one proper part.
-Proper Parthood is transitive.""" .
-
-
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
 <http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasAltitude> ;
@@ -1547,17 +1525,6 @@ basic geo vocab
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
                                                    rdfs:label "lat/long" .
-
-
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """ ;
-                                                   rdfs:label "location" .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/
