@@ -1,33 +1,37 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/icity/Activity/"
      xml:base="http://ontology.eil.utoronto.ca/icity/Activity/"
-     xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
-     xmlns:adms="http://www.w3.org/ns/adms#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:ns5="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="http://ontology.eil.utoronto.ca/icity/Spatial/1.0/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:owl2="http://ontology.eil.utoronto.ca/icity/wgs/1.0/"
-     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:owl3="http://ontology.eil.utoronto.ca/icity/OM/1.0/"
+     xmlns:owl4="http://ontology.eil.utoronto.ca/icity/Geom/1.0/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/icity/Activity/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
+        <dc:creator>Megan Katsumi</dc:creator>
+        <dc:description>Ontology to capture concepts related to activities.</dc:description>
+        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 6, 2017</dc:issued>
         <dc:title>Activity Ontology</dc:title>
+        <vann:preferredNamespacePrefix>icity-activity</vann:preferredNamespacePrefix>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Activity ontology is designed to capture concepts related to activities.
 		Changes from previous version:
 		-imported revised ontology of change (iCity-Change).
@@ -35,15 +39,11 @@
 		-added beginOf and endOf properties
 		-added axioms for preconditionOf, effectOf, and achievedAt properties
 		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
-        <vann:preferredNamespacePrefix>icity-activity</vann:preferredNamespacePrefix>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#date">http://ontology.eil.utoronto.ca/icity/Activity/</owl:priorVersion>
-        <dc:creator>Megan Katsumi</dc:creator>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Version 1. under development. 
 Please refer to report on iCity Ontology v1, 
 Also 2017 WOP Submssion &quot;A Design Pattern for Representing Preconditions and Effects in OWL&quot;</adms:relatedDocumentation>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 6, 2017</dc:issued>
-        <dc:description>Ontology to capture concepts related to activities.</dc:description>
     </owl:Ontology>
     
 
@@ -390,6 +390,13 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Activity/endOf"/>
+            <rdf:Description rdf:about="http://www.w3.org/2006/time#before"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/beginOf"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
         <rdfs:comment>An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -410,6 +417,13 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/occursBefore"/>
         <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
         <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/Activity"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/Activity/occursAt"/>
+            <rdf:Description rdf:about="http://www.w3.org/2006/time#intervalMeets"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Activity/occursAt"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
         <rdfs:comment>An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -836,5 +850,5 @@ basic geo vocab
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
