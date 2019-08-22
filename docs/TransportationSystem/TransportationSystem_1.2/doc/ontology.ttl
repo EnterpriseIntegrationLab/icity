@@ -565,6 +565,12 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                  rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent
+:hasNetworkComponent rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ,
+                                        :TransportationOntologyProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNodeId
 :hasNodeId rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :TransportationOntologyProperty .
@@ -1768,7 +1774,12 @@ A Monetary Value is measured with some currency.""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Observations/Observer
 <http://ontology.eil.utoronto.ca/icity/Observations/Observer> rdf:type owl:Class ;
-                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> .
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/Observations/observedBy>
+                                                                                               ] ;
+                                                                                owl:allValuesFrom <http://www.w3.org/ns/sosa/Observation>
+                                                                              ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Observations/SSNThing
@@ -1820,10 +1831,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                      :TransportationOntologyThing ,
                      [ rdf:type owl:Restriction ;
-                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ;
-                       owl:allValuesFrom :Network
-                     ] ,
-                     [ rdf:type owl:Restriction ;
                        owl:onProperty :accessesComplex ;
                        owl:allValuesFrom :TransportationComplex
                      ] ,
@@ -1838,6 +1845,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                      [ rdf:type owl:Restriction ;
                        owl:onProperty :hasToll ;
                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty [ owl:inverseOf :hasNetworkComponent
+                                      ] ;
+                       owl:allValuesFrom :Network
                      ] ,
                      [ rdf:type owl:Restriction ;
                        owl:onProperty :supportsMode ;
@@ -2000,6 +2012,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasToll ;
                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty [ owl:inverseOf :hasNetworkComponent
+                                       ] ;
+                        owl:allValuesFrom :Network
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :containsArc ;
@@ -2251,7 +2268,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                          :TransportationOntologyThing ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                           owl:onProperty :hasNetworkComponent ;
                            owl:allValuesFrom [ rdf:type owl:Class ;
                                                owl:unionOf ( :Arc
                                                              :Node
@@ -2317,10 +2334,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
       rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                       :TransportationOntologyThing ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ;
-                        owl:allValuesFrom :Network
-                      ] ,
-                      [ rdf:type owl:Restriction ;
                         owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
                         owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                       ] ,
@@ -2332,6 +2345,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                           :SignalControl
                                                         )
                                           ]
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty [ owl:inverseOf :hasNetworkComponent
+                                       ] ;
+                        owl:allValuesFrom :Network
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :connectedTo ;
@@ -3726,10 +3744,10 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 [ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/

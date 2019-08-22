@@ -571,6 +571,12 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
 
 
+###  http://ontology.eil.utoronto.ca/icity/Parking/parkingPartOfBuilding
+<http://ontology.eil.utoronto.ca/icity/Parking/parkingPartOfBuilding> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> ,
+                                                                                         <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icity/Parking/policyAppliesFor
 <http://ontology.eil.utoronto.ca/icity/Parking/policyAppliesFor> rdf:type owl:ObjectProperty ;
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyProperty> .
@@ -888,6 +894,12 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasLinkCapacity
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasLinkCapacity> rdf:type owl:ObjectProperty ;
                                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent
+<http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ,
+                                                                                                    <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNodeId
@@ -1836,7 +1848,7 @@ Undefined otherwise.""" .
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
-                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingFacility>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingUnit> ;
@@ -1876,6 +1888,11 @@ A Building has a market value.
 A Building may provide some Parking.
 A Building has some Location.
 A Building contains one or many units.""" .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Building/BuildingFacility
+<http://ontology.eil.utoronto.ca/icity/Building/BuildingFacility> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing
@@ -1928,7 +1945,7 @@ A Building contains one or many units.""" .
                                                                               <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                               [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
-                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingFacility>
                                                                               ] ,
                                                                               [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasRent> ;
@@ -1970,7 +1987,7 @@ A BuildingUnit has an address""" .
                                                                                 <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Building/hasBuildingFacility> ;
-                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Facility>
+                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/BuildingFacility>
                                                                                 ] ,
                                                                                 [ rdf:type owl:Restriction ;
                                                                                   owl:onProperty <http://schema.org/address> ;
@@ -1992,11 +2009,6 @@ A BuildingUnit has an address""" .
                                                                                 ] ;
                                                                 <http://purl.org/dc/elements/1.1/description> "A Building Unit may change over time, BuildingUnitPD represents the entire process of some building unit entity (i.e. the Building unit perdurant)." ,
                                                                                                               "hasManifestation some BuildingUnit and hasManifestation only BuildingUnit" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Building/Facility
-<http://ontology.eil.utoronto.ca/icity/Building/Facility> rdf:type owl:Class ;
-                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Building/BuildingOntologyThing> .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Building/House
@@ -3363,6 +3375,10 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept> ,
                                                                               <http://ontology.eil.utoronto.ca/icity/Parking/ParkingOntologyThing> ,
                                                                               [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/parkingPartOfBuilding> ;
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Building/Building>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/Change/existsAt> ;
                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                 owl:onClass <http://www.w3.org/2006/time#Interval>
@@ -3386,11 +3402,6 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasLocation> ;
                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                 owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
-                                                                              ] ,
-                                                                              [ rdf:type owl:Restriction ;
-                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/properPartOf> ;
-                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                owl:onClass <http://ontology.eil.utoronto.ca/icity/Building/Building>
                                                                               ] ;
                                                               rdfs:comment "Parking areas may change over time. ParkingAreaPD captures the entire entity of a parking area, i.e. the parking area perdurant." .
 
@@ -4295,10 +4306,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                                  <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
                                                                                  [ rdf:type owl:Restriction ;
-                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ;
-                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
-                                                                                 ] ,
-                                                                                 [ rdf:type owl:Restriction ;
                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/accessesComplex> ;
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex>
                                                                                  ] ,
@@ -4317,6 +4324,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                  [ rdf:type owl:Restriction ;
                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TravelCost/hasTravelCost> ;
                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TravelCost/TravelCost>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent>
+                                                                                                  ] ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                  ] ,
                                                                                  [ rdf:type owl:Restriction ;
                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/supportsMode> ;
@@ -4479,6 +4491,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll> ;
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent>
+                                                                                                   ] ;
+                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/containsArc> ;
@@ -4730,7 +4747,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                                      <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
                                                                                      [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/hasComponent> ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent> ;
                                                                                        owl:allValuesFrom [ rdf:type owl:Class ;
                                                                                                            owl:unionOf ( <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Arc>
                                                                                                                          <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Node>
@@ -4796,10 +4813,6 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Change/Manifestation> ,
                                                                                   <http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing> ,
                                                                                   [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/icity/Mereology/componentOf> ;
-                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
-                                                                                  ] ,
-                                                                                  [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/SpatialLoc/associatedLocation> ;
                                                                                     owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
                                                                                   ] ,
@@ -4815,6 +4828,11 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TravelCost/hasTravelCost> ;
                                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TravelCost/TravelCost>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty [ owl:inverseOf <http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasNetworkComponent>
+                                                                                                   ] ;
+                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Network>
                                                                                   ] ,
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/icity/TransportationSystem/connectedTo> ;
