@@ -263,6 +263,11 @@ above the local reference ellipsoid).""" ;
               rdf:type owl:TransitiveProperty ;
               rdfs:domain :Activity ;
               rdfs:range :Activity ;
+              owl:propertyChainAxiom ( :endOf
+                                       <http://www.w3.org/2006/time#before>
+                                       [ owl:inverseOf :beginOf
+                                       ]
+                                     ) ;
               rdfs:comment "An activity occursBefore another if its endOf instant is before the beginOf instant of the other activity; the occursBefore relation is transitive. We cannot define this semantics in OWL, though it could be captured in future work by an extension with rules." .
 
 
@@ -277,6 +282,11 @@ above the local reference ellipsoid).""" ;
                       rdfs:subPropertyOf :occursBefore ;
                       rdfs:domain :Activity ;
                       rdfs:range :Activity ;
+                      owl:propertyChainAxiom ( :occursAt
+                                               <http://www.w3.org/2006/time#intervalMeets>
+                                               [ owl:inverseOf :occursAt
+                                               ]
+                                             ) ;
                       rdfs:comment "An activity occursDirectlyBefore another if it occursAt an interval that meets the interval of the other activity. We cannot define this semantics in OWL, though it could be captured by an extension with rules." .
 
 
