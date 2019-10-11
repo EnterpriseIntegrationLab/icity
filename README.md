@@ -1,5 +1,5 @@
 # icity
-Ontologies developed for the UTTRI ORF [iCity Project](http://uttri.utoronto.ca/research/projects/icity-urban-informatics-sustainable-metropolitan-growth/). This project is supported by the Ontario Ministry of Research and Innovation through the ORF-RE program.
+Ontologies developed for the UTTRI [iCity-ORF Project](http://uttri.utoronto.ca/research/projects/icity-urban-informatics-sustainable-metropolitan-growth/). This project is supported by the Ontario Ministry of Research and Innovation through the ORF-RE program.
 
 **Version 1**
 The first version of the ontology created for transportation systems knowledge. This draft communicates the basic scope and design to the iCity team. This is an important step as the iCity team is the core group of the eventual users, and source of data for the Urban System Ontology. This draft is the basis with which we can begin testing implementation tool options. It is also the starting point for further extensions and refinement as the iCity researchers provide feedback, and as we learn about more fine-grained requirements via the transportation data provided by iCity projects.
