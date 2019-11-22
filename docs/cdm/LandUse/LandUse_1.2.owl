@@ -13,6 +13,7 @@
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:obda="https://w3id.org/obda/vocabulary#"
      xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:owl1="http://ontology.eil.utoronto.ca/cdm/Spatial/1.0/"
      xmlns:owl2="http://ontology.eil.utoronto.ca/cdm/wgs/1.0/"
@@ -150,9 +151,9 @@ Changes from prior version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of -->
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#cardinality_of -->
 
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of">
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#cardinality_of">
         <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasCardinality"/>
     </rdf:Description>
     
@@ -258,6 +259,14 @@ Changes from prior version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/cdm/LandUse/hasParcelSize -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/LandUse/hasParcelSize">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/LandUse/hasPopulation -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/LandUse/hasPopulation">
@@ -330,9 +339,9 @@ Changes from prior version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/govstat.owl#Population -->
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/govstat.owl#Population"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
     
 
 
@@ -384,49 +393,6 @@ Changes from prior version:
     <!-- http://ontology.eil.utoronto.ca/cdm/LBCSv2/Parcel -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/LBCSv2/Parcel">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/Manifestation"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/associatedArea"/>
-                <owl:allValuesFrom rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Area"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasPopulation"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#Population"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasLandUse"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseClassification"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <dc:description>A Parcel is a way of defining some area in an urban system.
 A Parcel has a Location.
 A Parcel may be classified as having some type of Land Use.
@@ -762,6 +728,55 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/cdm/LandUse/Parcel -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/LandUse/Parcel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LBCSv2/Parcel"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/associatedArea"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Area"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasLandUse"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseClassification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasPopulation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/existsAt"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/LandUse/ParcelPD">
@@ -783,9 +798,22 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLocation"/>
+                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/existsAt"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/hasParcelSize"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Area"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A parcel may change over time, ParcelPD captures the entire entity of a parcel, i.e. the parcel perdurant.</dc:description>
@@ -812,7 +840,7 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/cdm/LandUse/ResidentPopulation -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/LandUse/ResidentPopulation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#Population"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/LandUseOntologyThing"/>
         <rdfs:comment>The population that resides within a given area (Parcel)</rdfs:comment>
     </owl:Class>
@@ -898,7 +926,7 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LBCSv2/Parcel"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/LandUse/Parcel"/>
     </owl:Class>
     
 
