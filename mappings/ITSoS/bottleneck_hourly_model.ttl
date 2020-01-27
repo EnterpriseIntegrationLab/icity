@@ -1,0 +1,1764 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix RecurringEvent: <http://ontology.eil.utoronto.ca/icity/RecurringEvent/> .
+@prefix LBCSv2: <http://ontology.eil.utoronto.ca/icity/LBCSv2/> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix WV: <http://www.wurvoc.org/vocabularies/WV/> .
+@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix OM: <http://ontology.eil.utoronto.ca/icity/OM/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix RecurringEvent1: <http://ontology.eil.utoronto.ca/icity/RecurringEvent/#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix om-1: <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix ns: <http://creativecommons.org/ns#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1dah7q4bfx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	km-dev:modelPublicationTime "1557504266607"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"Time\"}],[{\"columnName\":\"Mean_Value_Max\"}],[{\"columnName\":\"Date\"}],[{\"columnName\":\"WayID\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"Instant1_IRI\"}],[{\"columnName\":\"Interval\"}],[{\"columnName\":\"end_time\"}],[{\"columnName\":\"WayID-IRI\"}],[{\"columnName\":\"Time_2\"}],[{\"columnName\":\"Instant2_IRI\"}],[{\"columnName\":\"Measure_IRI\"}],[{\"columnName\":\"MeanTTIMax_2\"}],[{\"columnName\":\"start_time\"}],[{\"columnName\":\"Mean_Value_Max\"}],[{\"columnName\":\"MeanTTIMax\"}]]" ;
+	km-dev:hasModelLabel "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Time\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"Time_2\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"Time\\\").split(\\\":\\\")[0]\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"MeanTTIMax\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"Measure_IRI\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"measure_\\\" + getValue(\\\"WayID\\\") + getValue(\\\"Date\\\") + getValue(\\\"Time_2\\\") + \\\"_\\\" + getValue(\\\"Mean_Value_Max\\\").replace(\\\".\\\",\\\"\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Mean_Value_Max\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Measure_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Date\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"end_time\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"from datetime import datetime\\r\\nfrom datetime import timedelta\\r\\n\\r\\ndate=getValue(\\\"Date\\\").split(\\\"_\\\")\\r\\nyear=str(date[0])\\r\\nmonth=str(date[1])\\r\\nday=str(date[2])\\r\\nhrs = int(float(getValue(\\\"Time_2\\\")))\\r\\n\\r\\ndaystring = month + ' ' + day + ' ' + year + ' 12:00AM'\\r\\ndatetime_object = datetime.strptime(daystring, '%m %d %Y %I:%M%p')\\r\\ndatetime_object = datetime_object + timedelta(hours = hrs) + timedelta(hours = 1)\\r\\ndatestring = str(datetime_object)+\\\"-05:00\\\"\\r\\nreturn datestring.replace(\\\" \\\", \\\"T\\\")\\r\\n\\r\\n\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"end_time\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Date\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"start_time\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"# Parse the date value:\\r\\nfrom datetime import datetime\\r\\nfrom datetime import timedelta\\r\\n\\r\\ndate=getValue(\\\"Date\\\").split(\\\"_\\\")\\r\\nyear=str(date[0])\\r\\nmonth=str(date[1])\\r\\nday=str(date[2])\\r\\nhrs = int(float(getValue(\\\"Time_2\\\")))\\r\\n\\r\\ndaystring = month + ' ' + day + ' ' + year + ' 12:00AM'\\r\\ndatetime_object = datetime.strptime(daystring, '%m %d %Y %I:%M%p')\\r\\ndatetime_object = datetime_object + timedelta(hours = hrs)\\r\\ndatestring = str(datetime_object)+\\\"-05:00\\\"\\r\\nreturn datestring.replace(\\\" \\\", \\\"T\\\")\\r\\n\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"start_time\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"WayID\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"MeanTTIMax\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"tti_max_\\\" + getValue(\\\"WayID\\\") + getValue(\\\"Date\\\") + getValue(\\\"Time_2\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Date\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"Interval\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"interval_\\\" + getValue(\\\"Date\\\") + getValue(\\\"Time_2\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Interval\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"MeanTTIMax\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"MeanTTIMax_2\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"tti_max_\\\" + getValue(\\\"WayID\\\") + getValue(\\\"Date\\\") + getValue(\\\"Time_2\\\") + \\\"_2\\\"\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax_2\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"WayID\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"WayID-IRI\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"http://osm_wayids/\\\" + getValue(\\\"WayID\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID-IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Date\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"Instant1_IRI\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return \\\"instant_\\\" + getValue(\\\"Date\\\") + \\\"_\\\" + getValue(\\\"Time_2\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant1_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Instant1_IRI\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"Instant2_IRI\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"time=int(getValue(\\\"Time_2\\\"))+1\\nreturn \\\"instant_\\\" + getValue(\\\"Date\\\") + \\\"_\\\" + str(time)\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Time_2\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant2_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Mean_Value_Max\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure\",
+                    \"DomainId\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://www.wurvoc.org/vocabularies/om-1.8/numerical_value\",
+                    \"DomainLabel\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure/Measure1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Mean_Value_Max\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Mean_Value_Max\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"start_time\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"DomainId\": \"http://www.w3.org/2006/time#Instant1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://www.w3.org/2006/time#inXSDDateTime\",
+                    \"DomainLabel\": \"time:Instant1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"xsd:dateTime\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"start_time\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"start_time\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"end_time\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"DomainId\": \"http://www.w3.org/2006/time#Instant2\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://www.w3.org/2006/time#inXSDDateTime\",
+                    \"DomainLabel\": \"time:Instant2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"xsd:dateTime\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"end_time\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"end_time\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Interval\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Interval\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Interval1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.w3.org/2006/time#Interval\",
+                    \"DomainId\": \"http://www.w3.org/2006/time#Interval1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"time:Interval1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Interval\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Interval\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"MeanTTIMax\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\",
+                    \"DomainId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max/MeanTTI_Max1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"MeanTTIMax_2\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max2\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\",
+                    \"DomainId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max2\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max/MeanTTI_Max2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax_2\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"MeanTTIMax_2\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Measure_IRI\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure\",
+                    \"DomainId\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure/Measure1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Measure_IRI\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Measure_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"WayID-IRI\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment\",
+                    \"DomainId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment/RoadSegment1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID-IRI\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"WayID-IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Instant1_IRI\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Instant\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Instant1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"DomainId\": \"http://www.w3.org/2006/time#Instant1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"time:Instant1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant1_IRI\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant1_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Instant2_IRI\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Instant\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://www.w3.org/2006/time#Instant2\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"DomainId\": \"http://www.w3.org/2006/time#Instant2\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"time:Instant2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant2_IRI\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Instant2_IRI\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure1\",
+                    \"edgeId\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue\",
+                    \"edgeTargetUri\": \"http://www.ontology-of-units-of-measure.org/resource/om-2/Measure\",
+                    \"edgeSourceId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1\",
+                    \"edgeSourceUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://www.w3.org/2006/time#Interval1\",
+                    \"edgeId\": \"http://ontology.eil.utoronto.ca/icity/OM/aggregateOver\",
+                    \"edgeTargetUri\": \"http://www.w3.org/2006/time#Interval\",
+                    \"edgeSourceId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1\",
+                    \"edgeSourceUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://www.w3.org/2006/time#Instant1\",
+                    \"edgeId\": \"http://www.w3.org/2006/time#hasBeginning\",
+                    \"edgeTargetUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"edgeSourceId\": \"http://www.w3.org/2006/time#Interval1\",
+                    \"edgeSourceUri\": \"http://www.w3.org/2006/time#Interval\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://www.w3.org/2006/time#Instant2\",
+                    \"edgeId\": \"http://www.w3.org/2006/time#hasEnd\",
+                    \"edgeTargetUri\": \"http://www.w3.org/2006/time#Instant\",
+                    \"edgeSourceId\": \"http://www.w3.org/2006/time#Interval1\",
+                    \"edgeSourceUri\": \"http://www.w3.org/2006/time#Interval\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max2\",
+                    \"edgeId\": \"http://ontology.eil.utoronto.ca/icity/OM/aggregateOf\",
+                    \"edgeTargetUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\",
+                    \"edgeSourceId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1\",
+                    \"edgeSourceUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLinkCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"edge\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"edgeTargetId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment1\",
+                    \"edgeId\": \"http://ontology.eil.utoronto.ca/icity/OM/aggregateOver\",
+                    \"edgeTargetUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment\",
+                    \"edgeSourceId\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max2\",
+                    \"edgeSourceUri\": \"http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max\"
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    }
+]""" .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx2 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx2 .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a rr:logicalTable _:node1dah7q4bfx2 ;
+	rr:subjectMap _:node1dah7q4bfx3 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx3 .
+
+_:node1dah7q4bfx3 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max1" ;
+	rr:class <http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max> ;
+	rr:template "tti_max_{WayID}{Date}{Time_2}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_daeefd51-114e-4081-8874-b42eefca093c rr:predicate OM:aggregateOf .
+
+km-dev:RefObjectMap_d6a15a9b-15cc-4d61-a657-29ee52634e6e a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_d6a15a9b-15cc-4d61-a657-29ee52634e6e .
+
+km-dev:PredicateObjectMap_daeefd51-114e-4081-8874-b42eefca093c rr:objectMap km-dev:RefObjectMap_d6a15a9b-15cc-4d61-a657-29ee52634e6e .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a rr:predicateObjectMap km-dev:PredicateObjectMap_daeefd51-114e-4081-8874-b42eefca093c .
+
+km-dev:PredicateObjectMap_daeefd51-114e-4081-8874-b42eefca093c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_daeefd51-114e-4081-8874-b42eefca093c .
+
+km-dev:PredicateObjectMap_60cfb66a-0bca-4d62-b181-da336bc383b1 rr:predicate <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> .
+
+km-dev:RefObjectMap_78da4323-a239-4936-94a9-f0b65a9418ce a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_78da4323-a239-4936-94a9-f0b65a9418ce .
+
+km-dev:PredicateObjectMap_60cfb66a-0bca-4d62-b181-da336bc383b1 rr:objectMap km-dev:RefObjectMap_78da4323-a239-4936-94a9-f0b65a9418ce .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a rr:predicateObjectMap km-dev:PredicateObjectMap_60cfb66a-0bca-4d62-b181-da336bc383b1 .
+
+km-dev:PredicateObjectMap_60cfb66a-0bca-4d62-b181-da336bc383b1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_60cfb66a-0bca-4d62-b181-da336bc383b1 .
+
+km-dev:PredicateObjectMap_596c2b05-d0d6-407c-87f3-2dcb78a4ad5c rr:predicate OM:aggregateOver .
+
+km-dev:RefObjectMap_4c149529-780f-4a4b-b3de-b95bcdf574d6 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_4c149529-780f-4a4b-b3de-b95bcdf574d6 .
+
+km-dev:PredicateObjectMap_596c2b05-d0d6-407c-87f3-2dcb78a4ad5c rr:objectMap km-dev:RefObjectMap_4c149529-780f-4a4b-b3de-b95bcdf574d6 .
+
+km-dev:TriplesMap_0e9b684a-4b7f-4bcb-a6d3-b89f7a1f228a rr:predicateObjectMap km-dev:PredicateObjectMap_596c2b05-d0d6-407c-87f3-2dcb78a4ad5c .
+
+km-dev:PredicateObjectMap_596c2b05-d0d6-407c-87f3-2dcb78a4ad5c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_596c2b05-d0d6-407c-87f3-2dcb78a4ad5c .
+
+km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 .
+
+km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx4 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx4 .
+
+km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 rr:logicalTable _:node1dah7q4bfx4 ;
+	rr:subjectMap _:node1dah7q4bfx5 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx5 .
+
+_:node1dah7q4bfx5 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max2" ;
+	rr:class <http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTTI_Max> ;
+	rr:template "tti_max_{WayID}{Date}{Time_2}_2" .
+
+km-dev:PredicateObjectMap_26971461-46be-4460-b860-eac08696f731 rr:predicate OM:aggregateOver .
+
+km-dev:RefObjectMap_02a2c0d8-296e-4415-8868-5d6ba0878895 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_a002ffb1-156a-4dd2-bd94-bc9a7d60bc6c ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_02a2c0d8-296e-4415-8868-5d6ba0878895 .
+
+km-dev:PredicateObjectMap_26971461-46be-4460-b860-eac08696f731 rr:objectMap km-dev:RefObjectMap_02a2c0d8-296e-4415-8868-5d6ba0878895 .
+
+km-dev:TriplesMap_d72f4d26-b5f8-4d7d-9c0b-b1bb9c47aa34 rr:predicateObjectMap km-dev:PredicateObjectMap_26971461-46be-4460-b860-eac08696f731 .
+
+km-dev:PredicateObjectMap_26971461-46be-4460-b860-eac08696f731 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_26971461-46be-4460-b860-eac08696f731 .
+
+km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba .
+
+km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx6 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx6 .
+
+km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba rr:logicalTable _:node1dah7q4bfx6 ;
+	rr:subjectMap _:node1dah7q4bfx7 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx7 .
+
+_:node1dah7q4bfx7 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.ontology-of-units-of-measure.org/resource/om-2/Measure1" ;
+	rr:class <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+	rr:template "{Measure_IRI}" .
+
+km-dev:PredicateObjectMap_40365833-6351-4337-8f82-a19a594a9b50 rr:predicate om-1:numerical_value .
+
+_:node1dah7q4bfx8 rr:column "Mean_Value_Max" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap _:node1dah7q4bfx8 .
+
+km-dev:PredicateObjectMap_40365833-6351-4337-8f82-a19a594a9b50 rr:objectMap _:node1dah7q4bfx8 .
+
+km-dev:TriplesMap_aa7d9bf0-bd39-4b53-9f8d-a7e98aa4dbba rr:predicateObjectMap km-dev:PredicateObjectMap_40365833-6351-4337-8f82-a19a594a9b50 .
+
+km-dev:PredicateObjectMap_40365833-6351-4337-8f82-a19a594a9b50 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_40365833-6351-4337-8f82-a19a594a9b50 .
+
+km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb .
+
+km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx9 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx9 .
+
+km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb rr:logicalTable _:node1dah7q4bfx9 ;
+	rr:subjectMap _:node1dah7q4bfx10 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx10 .
+
+_:node1dah7q4bfx10 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/2006/time#Interval1" ;
+	rr:class time:Interval ;
+	rr:template "interval_{Date}{Time_2}" .
+
+km-dev:PredicateObjectMap_add8ee0e-25bf-4b20-9dc1-b4e53b2dcb4f rr:predicate time:hasBeginning .
+
+km-dev:RefObjectMap_902c86d4-f6e5-4b3f-b98e-3edbe2ca98f3 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_902c86d4-f6e5-4b3f-b98e-3edbe2ca98f3 .
+
+km-dev:PredicateObjectMap_add8ee0e-25bf-4b20-9dc1-b4e53b2dcb4f rr:objectMap km-dev:RefObjectMap_902c86d4-f6e5-4b3f-b98e-3edbe2ca98f3 .
+
+km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb rr:predicateObjectMap km-dev:PredicateObjectMap_add8ee0e-25bf-4b20-9dc1-b4e53b2dcb4f .
+
+km-dev:PredicateObjectMap_add8ee0e-25bf-4b20-9dc1-b4e53b2dcb4f a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_add8ee0e-25bf-4b20-9dc1-b4e53b2dcb4f .
+
+km-dev:PredicateObjectMap_158e8cf1-5c27-44f6-87ed-20303307053d rr:predicate time:hasEnd .
+
+km-dev:RefObjectMap_7fb1cdcd-fc42-4608-a204-2dbb198a22b4 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap km-dev:RefObjectMap_7fb1cdcd-fc42-4608-a204-2dbb198a22b4 .
+
+km-dev:PredicateObjectMap_158e8cf1-5c27-44f6-87ed-20303307053d rr:objectMap km-dev:RefObjectMap_7fb1cdcd-fc42-4608-a204-2dbb198a22b4 .
+
+km-dev:TriplesMap_1c768632-f4ba-45f7-88a0-e7338b2181bb rr:predicateObjectMap km-dev:PredicateObjectMap_158e8cf1-5c27-44f6-87ed-20303307053d .
+
+km-dev:PredicateObjectMap_158e8cf1-5c27-44f6-87ed-20303307053d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_158e8cf1-5c27-44f6-87ed-20303307053d .
+
+km-dev:TriplesMap_a002ffb1-156a-4dd2-bd94-bc9a7d60bc6c a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_a002ffb1-156a-4dd2-bd94-bc9a7d60bc6c .
+
+km-dev:TriplesMap_a002ffb1-156a-4dd2-bd94-bc9a7d60bc6c km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx11 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx11 .
+
+km-dev:TriplesMap_a002ffb1-156a-4dd2-bd94-bc9a7d60bc6c rr:logicalTable _:node1dah7q4bfx11 ;
+	rr:subjectMap _:node1dah7q4bfx12 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx12 .
+
+_:node1dah7q4bfx12 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment1" ;
+	rr:class <http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment> ;
+	rr:template "http://osm_wayids/{WayID}" .
+
+km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d .
+
+km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx13 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx13 .
+
+km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d rr:logicalTable _:node1dah7q4bfx13 ;
+	rr:subjectMap _:node1dah7q4bfx14 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx14 .
+
+_:node1dah7q4bfx14 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/2006/time#Instant1" ;
+	rr:class time:Instant ;
+	rr:template "instant_{Date}_{Time_2}" .
+
+km-dev:PredicateObjectMap_64fe05a0-4fc2-4477-a92e-d986a4a4ee85 rr:predicate time:inXSDDateTime .
+
+_:node1dah7q4bfx15 rr:column "start_time" ;
+	a rr:ObjectMap ;
+	rr:datatype "http://www.w3.org/2001/XMLSchema#dateTime" ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap _:node1dah7q4bfx15 .
+
+km-dev:PredicateObjectMap_64fe05a0-4fc2-4477-a92e-d986a4a4ee85 rr:objectMap _:node1dah7q4bfx15 .
+
+km-dev:TriplesMap_5eea3302-a184-4e34-9ed5-b81eaee0699d rr:predicateObjectMap km-dev:PredicateObjectMap_64fe05a0-4fc2-4477-a92e-d986a4a4ee85 .
+
+km-dev:PredicateObjectMap_64fe05a0-4fc2-4477-a92e-d986a4a4ee85 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_64fe05a0-4fc2-4477-a92e-d986a4a4ee85 .
+
+km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b a rr:TriplesMap .
+
+_:node1dah7q4bfx1 km-dev:hasTriplesMap km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b .
+
+km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx16 rr:tableName "July_2017_Hourly_WayID_Included_Clean v2.csv" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasLogicalTable _:node1dah7q4bfx16 .
+
+km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b rr:logicalTable _:node1dah7q4bfx16 ;
+	rr:subjectMap _:node1dah7q4bfx17 .
+
+_:node1dah7q4bfx1 km-dev:hasSubjectMap _:node1dah7q4bfx17 .
+
+_:node1dah7q4bfx17 km-dev:isPartOfMapping _:node1dah7q4bfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/2006/time#Instant2" ;
+	rr:class time:Instant ;
+	rr:template "{Instant2_IRI}" .
+
+km-dev:PredicateObjectMap_547c58a6-ea3a-47dc-9994-dafebde1379a rr:predicate time:inXSDDateTime .
+
+_:node1dah7q4bfx18 rr:column "end_time" ;
+	a rr:ObjectMap ;
+	rr:datatype "http://www.w3.org/2001/XMLSchema#dateTime" ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasObjectMap _:node1dah7q4bfx18 .
+
+km-dev:PredicateObjectMap_547c58a6-ea3a-47dc-9994-dafebde1379a rr:objectMap _:node1dah7q4bfx18 .
+
+km-dev:TriplesMap_c3d9dd20-d27a-4e9c-96fc-17cec103c12b rr:predicateObjectMap km-dev:PredicateObjectMap_547c58a6-ea3a-47dc-9994-dafebde1379a .
+
+km-dev:PredicateObjectMap_547c58a6-ea3a-47dc-9994-dafebde1379a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1dah7q4bfx1 .
+
+_:node1dah7q4bfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_547c58a6-ea3a-47dc-9994-dafebde1379a .
