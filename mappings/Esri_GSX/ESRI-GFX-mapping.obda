@@ -1,0 +1,61 @@
+[PrefixDeclaration]
+:		http://ontology.eil.utoronto.ca/icity/ESRI-GFX/
+OM:		http://ontology.eil.utoronto.ca/icity/OM/
+WV:		http://www.wurvoc.org/vocabularies/WV/
+dc:		http://purl.org/dc/elements/1.1/
+ns:		http://creativecommons.org/ns#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+adms:		http://www.w3.org/ns/adms#
+bibo:		http://purl.org/ontology/bibo/
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+om-1:		http://www.wurvoc.org/vocabularies/om-1.8/
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+skos:		http://www.w3.org/2004/02/skos/core#
+vann:		http://purl.org/vocab/vann/
+terms:		http://purl.org/dc/terms/
+schema:		http://schema.org/
+wgs84_pos:	http://www.w3.org/2003/01/geo/wgs84_pos#
+RecurringEvent:	http://ontology.eil.utoronto.ca/icity/RecurringEvent/
+RecurringEvent1:	http://ontology.eil.utoronto.ca/icity/RecurringEvent/#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPID-landuse
+target		<http://esricanada.com/gfx_ontology_prototype/{feature_hash}> a <http://ontology.eil.utoronto.ca/icity/LandUse/Parcel> ; <http://ontology.eil.utoronto.ca/icity/LandUse/hasLandUse> <http://esricanada.com/gfx_ontology_prototype/_:landuse{feature_hash}> . <http://esricanada.com/gfx_ontology_prototype/_:landuse{feature_hash}> :hasGFXLandUseClassCode {lu_class} ; foaf:name {name1}@en . 
+source		SELECT "feature_hash", "lu_class", "name1" from "landuse_mun"
+
+mappingId 	MAPID-neighbourhood
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash}> a :Neighbourhood ; foaf:name {name1}@en . 
+source SELECT feature_hash, name1 FROM neighbourhood_mun
+
+mappingId 	MAPID-landcover
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash}> <http://ontology.eil.utoronto.ca/icity/LandUse/hasLandUse> <http://esricanada.com/gfx_ontology_prototype/_:landcover{feature_hash}> . <http://esricanada.com/gfx_ontology_prototype/_:landcover{feature_hash}> :hasGFXLandCoverClassCode {cover} .
+source 		SELECT feature_hash,cover FROM landcover_mun
+
+mappingId 	MAPID-poiparcel
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash}> a <http://ontology.eil.utoronto.ca/icity/LandUse/Parcel> . <http://esricanada.com/gfx_ontology_prototype/_:poiparcel{feature_hash}> :locatedOnParcel <http://esricanada.com/gfx_ontology_prototype/{feature_hash}> ; :hasGFXPOIClassCode {poi_class} ; foaf:name {name1}@en . 
+source 		SELECT feature_hash, poi_class, name1 from pointofinterest_mun
+
+mappingId 	MAPID-roadsegment
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash}> a :GFXRoadSegment ; :hasGFXRoadClassCode {road_class} ; foaf:name {fullname}@en ; :hasRoadLevel <http://esricanada.com/gfx_ontology_prototype/_:roadlevel{feature_hash}> . <http://esricanada.com/gfx_ontology_prototype/_:roadlevel{feature_hash}> a :GFXRoadLevel ; :hasGFXRoadLevelCode {roadlevel} . 
+source 		SELECT feature_hash, road_class, roadlevel, fullname FROM roadsegment_mun
+
+mappingId 	MAPID-neighbourhoodintersect
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash_rd}> :routeIntersects <http://esricanada.com/gfx_ontology_prototype/{feature_hash_neigh}> . 
+source 		select feature_hash_rd,feature_hash_neigh from Road_Intersect_Neighbourhood
+
+mappingId 	MAPID-nearlanduse
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash_rd}> :routeNear <http://esricanada.com/gfx_ontology_prototype/{feature_hash_lu}> . 
+source 		select feature_hash_LU, feature_hash_rd from Road_Near_LandUse
+
+mappingId 	MAPID-nearlandcover
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash_rd}> :routeNear <http://esricanada.com/gfx_ontology_prototype/{feature_hash_LC}> . 
+source 		SELECT feature_hash_LC,feature_hash_rd from Road_Near_LandCover
+
+mappingId 	MAPID-nearPOI
+target 		<http://esricanada.com/gfx_ontology_prototype/{feature_hash_rd}> :routeNear <http://esricanada.com/gfx_ontology_prototype/{feature_hash_poi}> . 
+source 		select feature_hash_poi,feature_hash_rd from Road_Near_POI
+]]

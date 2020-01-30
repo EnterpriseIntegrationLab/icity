@@ -1,0 +1,21 @@
+@PREFIX ex: <http://esricanada.com/gfx_ontology_prototype/>.
+@PREFIX lu: <http://ontology.eil.utoronto.ca/icity/LandUse/>.
+@PREFIX gfx: <http://ontology.eil.utoronto.ca/icity/ESRI-GFX/>.
+ex:{feature_hash} a lu:Parcel;
+lu:hasLandUse _:{feature_hash}.
+_:{feature_hash} gfx:hasGFXLandUseClassCode {lu_class};
+foaf:name {name1}.
+
+SELECT feature_hash, lu_class, name1, desc_english from landuse_mun
+
+*note: used feature_hash to generate a unique id for the landuse class blank node; currently getting errors with creating more complex blank node names as described in documentation https://github.com/ontop/ontop/issues/303
+
+
+ontop command: 
+	.\ontop materialize --disable-reasoning -f rdfxml -m ESRI-GFX-mapping.obda -o ESRI_GFX_Instances.rdf -p ESRI-GFX.properties
+
+
+need to explicitly connect blank nodes (within a single rule)
+mappingId	MAPID-landuseclass
+target		_:{feature_hash} :hasGFXLandUseClassCode {lu_class} ; foaf:name {name1}@en . 
+source		SELECT "feature_hash", "lu_class", "name1" from "landuse_mun"
