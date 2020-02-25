@@ -24,7 +24,7 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Mereology/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/1.2/"/>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
@@ -543,6 +543,15 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
     
 
 
+    <!-- http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4 -->
+
+
+    <rdfs:Datatype rdf:about="http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4">
+        <skos:prefLabel>nD Lat Lon</skos:prefLabel>
+    </rdfs:Datatype>
+    
+
+
     <!-- http://www.w3.org/2001/XMLSchema#date -->
 
 
@@ -780,28 +789,97 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/derived_unit -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/observedBy -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/observedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/derived_unit">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasAggregateFunction -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observationsObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasAggregateFunction">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Function"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasBaseUnit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasBaseUnit">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/System_of_units"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasDenominator -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasDenominator">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>has denominator</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasLength -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasLength">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Length"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasNumerator -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasNumerator">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>has numerator</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasUnit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasUnit">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
+        <rdfs:label>has unit</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasValue -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:label>has value</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
     
 
 
@@ -1273,83 +1351,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/derived_unit -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/derived_unit">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasAggregateFunction -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasAggregateFunction">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Function"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasBaseUnit -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasBaseUnit">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/System_of_units"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasDenominator -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasDenominator">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>has denominator</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasNumerator -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasNumerator">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>has numerator</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasUnit -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasUnit">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
-        <rdfs:label>has unit</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/hasValue -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/OM/hasValue">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:label>has value</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.opengis.net/ont/geosparql#ehContains -->
 
 
@@ -1624,7 +1625,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/actsOnProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isActedOnBy"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
@@ -1641,7 +1642,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasFeatureOfInterest">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isFeatureOfInterestOf"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -1661,7 +1662,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasResult">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isResultOf"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -1680,7 +1681,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hasSample">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isSampleOf"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
@@ -1697,7 +1698,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/hosts">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/isHostedBy"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.w3.org/ns/ssn/inDeployment"/>
@@ -1720,7 +1721,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isActedOnBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <rdfs:comment xml:lang="en">Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.</rdfs:comment>
@@ -1736,7 +1737,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isFeatureOfInterestOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -1754,7 +1755,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isHostedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
@@ -1772,7 +1773,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isObservedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/observes"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
@@ -1788,7 +1789,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isResultOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Result"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -1806,7 +1807,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/isSampleOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sample"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
@@ -1822,7 +1823,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeActuation">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeByActuator"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
@@ -1838,7 +1839,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeByActuator">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
         <rdfs:comment xml:lang="en">Relation linking an Actuation to the Actuator that made that Actuation.</rdfs:comment>
@@ -1853,7 +1854,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeBySampler">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeSampling"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
@@ -1869,8 +1870,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeBySensor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observedBy"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
@@ -1886,7 +1886,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeObservation">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <rdfs:comment xml:lang="en">Relation between a Sensor and an Observation made by the Sensor.</rdfs:comment>
@@ -1901,7 +1901,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeSampling">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampler"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
         <rdfs:comment xml:lang="en">Relation between a Sampler (sampling device or entity) and the Sampling act it performed.</rdfs:comment>
@@ -1916,7 +1916,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/observedProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:rangeIncludes rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
         <rdfs:comment xml:lang="en">Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.</rdfs:comment>
@@ -1946,7 +1946,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/phenomenonTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
@@ -1963,7 +1963,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/usedProcedure">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.w3.org/ns/sosa/madeByActuator"/>
             <rdf:Description rdf:about="http://www.w3.org/ns/ssn/implements"/>
@@ -1992,7 +1992,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/deployedOnPlatform">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/inDeployment"/>
         <rdfs:comment xml:lang="en">Relation between a Deployment and the Platform on which the Systems are deployed.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -2006,7 +2006,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/deployedSystem">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/hasDeployment"/>
         <rdfs:comment xml:lang="en">Relation between a Deployment and a deployed System.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -2020,7 +2020,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/detects">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some ObservableProperty.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">detects</rdfs:label>
@@ -2033,7 +2033,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/forProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation between some aspect of an entity and a Property.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">for property</rdfs:label>
@@ -2047,7 +2047,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasDeployment">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a System and a Deployment, recording that the System is deployed in that Deployment.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has deployment</rdfs:label>
@@ -2060,7 +2060,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasInput">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure and an Input to it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has input</rdfs:label>
@@ -2073,7 +2073,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasOutput">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure and an Output of it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has output</rdfs:label>
@@ -2086,7 +2086,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/isPropertyOf"/>
         <rdfs:comment xml:lang="en">Relation between an entity and a Property of that entity.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -2100,7 +2100,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/hasSubSystem">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a System and its component parts.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">has subsystem</rdfs:label>
@@ -2113,7 +2113,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/implementedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/implements"/>
         <rdfs:comment xml:lang="en">Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -2128,7 +2128,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/implements">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">implements</rdfs:label>
@@ -2142,7 +2142,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/inDeployment">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">in deployment</rdfs:label>
@@ -2156,7 +2156,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/isPropertyOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">Relation between a Property and the entity it belongs to.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">is property of</rdfs:label>
@@ -2169,7 +2169,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/isProxyFor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdfs:comment xml:lang="en">A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:label xml:lang="en">is proxy for</rdfs:label>
@@ -2183,7 +2183,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/ssn/wasOriginatedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:comment xml:lang="en">Relation between an Observation and the Stimulus that originated it.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/"/>
@@ -2247,19 +2247,10 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty -->
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty -->
 
 
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observationsDataProperty"/>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
     
 
 
@@ -2268,6 +2259,26 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty">
         <rdfs:comment>Created for organizational purposes, to identify data properties imported from geoSPARQL.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/as_nDLatLon -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/as_nDLatLon">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization"/>
+        <rdfs:domain rdf:resource="http://www.opengis.net/ont/sf#Geometry"/>
+        <rdfs:range rdf:resource="http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -2389,7 +2400,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#hasSerialization">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization"/>
     </rdf:Description>
     
 
@@ -2434,7 +2445,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/sosa/hasSimpleResult">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
@@ -2451,7 +2462,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/sosa/resultTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ssnDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/ssnDataProperty"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Actuation"/>
         <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
@@ -2610,6 +2621,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2651,6 +2663,7 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl#Population_size">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Distinct_count"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2669,6 +2682,74 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
         <rdfs:comment>gci:Population_size is a subclass of om:Quantity.  Its om:unit_of_measure is the gci:population_cardinality_unit. It is also a subclass of gs:Cardinality which provides the cardinality_of property that links to a gs:Population.</rdfs:comment>
         <rdfs:label>Population Size</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Distinct_count -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Distinct_count"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Scale"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/System_of_units"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure -->
+
+
+    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+    </rdf:Description>
     
 
 
@@ -2776,6 +2857,100 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Acceleration -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Acceleration">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>acceleration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>acceleration unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoney -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoney">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>amount of money</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>amount of money unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Area -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Area">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AreaUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared.</rdfs:comment>
+        <rdfs:label>area</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/AreaUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AreaUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>area unit</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/OM/Capacity -->
 
 
@@ -2876,12 +3051,117 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Duration -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Duration">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Time"/>
+        <rdfs:label>duration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Function -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Function">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:label>function</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/OM/Geo_Position_unit -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Geo_Position_unit">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
         <rdfs:comment>Reference systems to indicate geographic position.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Length -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Length">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/LengthUnit"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Length is the amount of space between two geographical points along a curve. It is a base quantity in the International System of Units and other systems of units. Length is speed times time. The metre, a base unit of length in the International System of Units, is defined in terms of speed of light during a certain time interval.</rdfs:comment>
+        <rdfs:label>length</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/LengthUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/LengthUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>length unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Mass -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Mass">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MassUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Mass is the amount of matter of a phenomenon. It is a base quantity in the International System of Units. Mass is force divided by acceleration.</rdfs:comment>
+        <rdfs:label>mass</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/MassUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/MassUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>mass unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Measure -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Measure">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>measure</rdfs:label>
     </owl:Class>
     
 
@@ -2917,6 +3197,136 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Quantity -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Quantity">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>quantity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Ratio -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Ratio">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:label>ratio</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:label>scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Speed -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Speed">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Speed is the time rate of motion measured by the distance moved over in unit time.</rdfs:comment>
+        <rdfs:label>speed</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>speed unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/System_of_units -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/System_of_units">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:comment>In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other).</rdfs:comment>
+        <rdfs:label>system of units</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Time -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Time">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/TimeUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>time</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/TimeUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/TimeUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>time unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Unit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
+        <rdfs:label>unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/UnitDivision -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>unit division</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/icity/OM/ValueOfMoney -->
 
 
@@ -2933,53 +3343,42 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/Observation -->
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/Volume -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/Observation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Volume">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observedBy"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observer"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>Volume is a measure of how much three-dimensional space any phenomenon occupies. It is a derived quantity in the International System of Units. Volume is length to the power 3.</rdfs:comment>
+        <rdfs:label>volume</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing -->
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/Observer -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/Observer">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty>
-                    <rdf:Description>
-                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/observedBy"/>
-                    </rdf:Description>
-                </owl:onProperty>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:label>volume unit</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Observations/SSNThing -->
+    <!-- http://ontology.eil.utoronto.ca/icity/SSN/SSNThing -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/ObservationsThing"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
     
 
 
@@ -3072,6 +3471,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/hasToll"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/inMunicipality"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Municipality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3270,7 +3675,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplexPD"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -3289,8 +3694,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LaneCapacity_unit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:comment>Capacity of traffic throughput for a lane (e.g. vehicles per time unit)</rdfs:comment>
     </owl:Class>
     
@@ -3464,8 +3869,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:comment>Nominal link capacity (per arc or lane) of traffic throughput.</rdfs:comment>
     </owl:Class>
     
@@ -3654,8 +4059,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/MeanTravelSpeed">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Speed"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasAggregateFunction"/>
@@ -3911,7 +4316,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Road">
-        <rdfs:subClassOf rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN#Road"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/aggregationOf"/>
@@ -3941,8 +4346,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancy">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
@@ -3962,8 +4367,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadOccupancyUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasDenominator"/>
@@ -3985,6 +4390,12 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/RoadSegment">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/inMunicipality"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/Municipality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4129,8 +4540,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TTI">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Ratio"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:comment>Travel Time Index: a ratio of the inverse speed (travel time) to the inverse of some calculated, threshold speed (travel time).</rdfs:comment>
     </owl:Class>
     
@@ -4223,8 +4634,8 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/TransportationSystem/VehicleVolume">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/govstat.owl#cardinality_of"/>
@@ -4457,7 +4868,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://purl.org/vocommons/voaf#Vocabulary">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
     </owl:Class>
     
 
@@ -4484,369 +4895,8 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://schema.org/QuantitativeValue">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Acceleration -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Acceleration">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>acceleration</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AccelerationUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>acceleration unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoney -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoney">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>amount of money</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AmountOfMoneyUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>amount of money unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Area -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Area">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/AreaUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared.</rdfs:comment>
-        <rdfs:label>area</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/AreaUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/AreaUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>area unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Duration -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Duration">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Time"/>
-        <rdfs:label>duration</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Function -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Function">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:label>function</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Length -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Length">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/LengthUnit"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Length is the amount of space between two geographical points along a curve. It is a base quantity in the International System of Units and other systems of units. Length is speed times time. The metre, a base unit of length in the International System of Units, is defined in terms of speed of light during a certain time interval.</rdfs:comment>
-        <rdfs:label>length</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/LengthUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/LengthUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>length unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Mass -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Mass">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/MassUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Mass is the amount of matter of a phenomenon. It is a base quantity in the International System of Units. Mass is force divided by acceleration.</rdfs:comment>
-        <rdfs:label>mass</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/MassUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/MassUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>mass unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Measure -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Measure">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>measure</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Quantity -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Quantity">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Measure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>quantity</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Ratio -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Ratio">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:label>ratio</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Scale -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Scale">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:label>scale</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Speed -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Speed">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Speed is the time rate of motion measured by the distance moved over in unit time.</rdfs:comment>
-        <rdfs:label>speed</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/SpeedUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>speed unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/System_of_units -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/System_of_units">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:comment>In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other).</rdfs:comment>
-        <rdfs:label>system of units</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Time -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Time">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/TimeUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>time</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/TimeUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/TimeUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>time unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Unit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Unit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/OMThing"/>
-        <rdfs:label>unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/UnitDivision -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/UnitDivision">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>unit division</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/Volume -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/Volume">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasValue"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/hasUnit"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Volume is a measure of how much three-dimensional space any phenomenon occupies. It is a derived quantity in the International System of Units. Volume is length to the power 3.</rdfs:comment>
-        <rdfs:label>volume</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/OM/VolumeUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Unit"/>
-        <rdfs:label>volume unit</rdfs:label>
     </owl:Class>
     
 
@@ -4871,15 +4921,6 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.opengis.net/ont/gml#Arc"/>
-    
-
-
-    <!-- http://www.pms.ifi.uni-muenchen.de/OTN#Road -->
-
-
-    <owl:Class rdf:about="http://www.pms.ifi.uni-muenchen.de/OTN#Road">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/TransportationSystem/TransportationComplex"/>
-    </owl:Class>
     
 
 
@@ -4944,7 +4985,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
     </owl:Class>
     
 
@@ -4973,7 +5014,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Actuation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/actsOnProperty"/>
@@ -5079,7 +5120,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/FeatureOfInterest">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasSample"/>
@@ -5151,7 +5192,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
@@ -5243,7 +5284,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Platform">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hosts"/>
@@ -5269,7 +5310,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Procedure">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/hasInput"/>
@@ -5302,7 +5343,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Result">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isResultOf"/>
@@ -5394,7 +5435,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sampling">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
@@ -5466,7 +5507,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sensor">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/Observer"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/ssn/System"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5505,7 +5545,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Deployment">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/deployedOnPlatform"/>
@@ -5537,7 +5577,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Input">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -5570,7 +5610,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Output">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -5603,7 +5643,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Property">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/isPropertyOf"/>
@@ -5622,7 +5662,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/Stimulus">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/isProxyFor"/>
@@ -5661,7 +5701,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/System">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isHostedBy"/>
@@ -5708,7 +5748,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Observations/SSNThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/SSN/SSNThing"/>
     </owl:Class>
     
 
@@ -5741,6 +5781,15 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/OM/WGS84">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Geo_Position_unit"/>
         <rdfs:comment>World Geodetic System of 1984. The reference system used by GPS.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/icity/OM/average -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/OM/average">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Function"/>
     </owl:NamedIndividual>
     
 
@@ -5851,15 +5900,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
     <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/Vehicle/private_car">
         <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/OM/average -->
-
-
-    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/icity/OM/average">
-        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/icity/OM/Function"/>
     </owl:NamedIndividual>
     
 

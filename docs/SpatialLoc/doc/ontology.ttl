@@ -33,26 +33,22 @@ This ontology was created to organize the reuse of the geoSPARQL vocabulary in t
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
-<http://purl.org/dc/elements/1.1/contributor> <http://purl.org/dc/terms/description> "Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."@en ;
-                                              <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#contributor-006> ;
+<http://purl.org/dc/elements/1.1/contributor> <http://purl.org/dc/terms/description> "The guidelines for using names of persons or organizations as creators also apply to contributors.  Typically, the name of a Contributor should be used to indicate the entity."@en ;
                                               <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                              <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                               rdfs:comment "An entity responsible for making contributions to the resource."@en ;
                                               rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                               rdfs:label "Contributor"@en ;
-                                              <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                              <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/contributor) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 ###  http://purl.org/dc/elements/1.1/date
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty ;
-                                       <http://purl.org/dc/terms/description> "Date may be used to express temporal information at any level of granularity.  Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en ;
-                                       <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#date-006> ;
+                                       <http://purl.org/dc/terms/description> "Date may be used to express temporal information at any level of granularity.  Recommended practice is to express the date, date/time, or period of time according to ISO 8601-1 [[ISO 8601-1](https://www.iso.org/iso-8601-date-and-time-format.html)] or a published profile of the ISO standard, such as the W3C Note on Date and Time Formats [[W3CDTF](https://www.w3.org/TR/NOTE-datetime)] or the Extended Date/Time Format Specification [[EDTF](http://www.loc.gov/standards/datetime/)].  If the full date is unknown, month and year (YYYY-MM) or just year (YYYY) may be used. Date ranges may be specified using ISO 8601 period of time specification in which start and end dates are separated by a '/' (slash) character.  Either the start or end date may be missing."@en ;
                                        <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                       <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                        rdfs:comment "A point or period of time associated with an event in the lifecycle of the resource."@en ;
                                        rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                        rdfs:label "Date"@en ;
-                                       <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                       <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 ###  http://purl.org/dc/elements/1.1/description
@@ -106,6 +102,11 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 #################################################################
 #    Datatypes
 #################################################################
+
+###  http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4
+<http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4> rdf:type rdfs:Datatype ;
+                                                                                                         <http://www.w3.org/2004/02/skos/core#prefLabel> "nD Lat Lon" .
+
 
 ###  http://www.opengis.net/ont/geosparql#gmlLiteral
 <http://www.opengis.net/ont/geosparql#gmlLiteral> rdf:type rdfs:Datatype ;
@@ -887,6 +888,18 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                 rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/as_nDLatLon
+:as_nDLatLon rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :hasSerialization ;
+             rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+             rdfs:range <http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization
+:hasSerialization rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :SpatialLocOntologyDataProperty .
+
+
 ###  http://www.opengis.net/ont/geosparql#asGML
 <http://www.opengis.net/ont/geosparql#asGML> rdf:type owl:DatatypeProperty ;
                                              rdfs:subPropertyOf :SpatialLocOntologyDataProperty ,
@@ -995,7 +1008,7 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 
 ###  http://www.opengis.net/ont/geosparql#hasSerialization
 <http://www.opengis.net/ont/geosparql#hasSerialization> rdf:type owl:DatatypeProperty ;
-                                                        rdfs:subPropertyOf :SpatialLocOntologyDataProperty ;
+                                                        rdfs:subPropertyOf :hasSerialization ;
                                                         rdfs:domain <http://www.opengis.net/ont/geosparql#Geometry> ;
                                                         rdfs:range rdfs:Literal ;
                                                         <http://purl.org/dc/elements/1.1/contributor> "Matthew Perry" ;
@@ -1214,134 +1227,107 @@ rdf:List rdfs:subClassOf :SpatialLocOntologyThing .
                                    <http://purl.org/dc/terms/title> "Dublin Core Metadata Element Set, Version 1.1"@en .
 
 
-<http://purl.org/dc/elements/1.1/coverage> <http://purl.org/dc/terms/description> "Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended best practice is to use a controlled vocabulary such as the Thesaurus of Geographic Names [TGN]. Where appropriate, named places or time periods can be used in preference to numeric identifiers such as sets of coordinates or date ranges."@en ;
-                                           <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#coverage-006> ;
+<http://purl.org/dc/elements/1.1/coverage> <http://purl.org/dc/terms/description> "Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names [[TGN](https://www.getty.edu/research/tools/vocabulary/tgn/index.html)]. Where appropriate, named places or time periods may be used in preference to numeric identifiers such as sets of coordinates or date ranges."@en ;
                                            <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                           <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
-                                           rdfs:comment "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant."@en ;
+                                           rdfs:comment "The spatial or temporal topic of the resource, spatial applicability of the resource, or jurisdiction under which the resource is relevant."@en ;
                                            rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                            rdfs:label "Coverage"@en ;
-                                           <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                           <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 <http://purl.org/dc/elements/1.1/creator> <http://purl.org/dc/terms/description> "Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity."@en ;
-                                          <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#creator-006> ;
                                           <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                          <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                           rdfs:comment "An entity primarily responsible for making the resource."@en ;
                                           rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                           rdfs:label "Creator"@en ;
-                                          <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                          <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 <http://purl.org/dc/elements/1.1/description> <http://purl.org/dc/terms/description> "Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource."@en ;
-                                              <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#description-006> ;
                                               <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                              <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                               rdfs:comment "An account of the resource."@en ;
                                               rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                               rdfs:label "Description"@en ;
-                                              <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                              <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/format> <http://purl.org/dc/terms/description> "Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME]."@en ;
-                                         <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#format-007> ;
+<http://purl.org/dc/elements/1.1/format> <http://purl.org/dc/terms/description> "Recommended practice is to use a controlled vocabulary where available. For example, for file formats one could use the list of Internet Media Types [[MIME](https://www.iana.org/assignments/media-types/media-types.xhtml)]."@en ;
                                          <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                         <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                          rdfs:comment "The file format, physical medium, or dimensions of the resource."@en ;
                                          rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                          rdfs:label "Format"@en ;
-                                         <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                         <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/format) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/identifier> <http://purl.org/dc/terms/description> "Recommended best practice is to identify the resource by means of a string conforming to a formal identification system. "@en ;
-                                             <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#identifier-006> ;
+<http://purl.org/dc/elements/1.1/identifier> <http://purl.org/dc/terms/description> "Recommended practice is to identify the resource by means of a string conforming to an identification system."@en ;
                                              <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                             <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                              rdfs:comment "An unambiguous reference to the resource within a given context."@en ;
                                              rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                              rdfs:label "Identifier"@en ;
-                                             <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                             <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/language> <http://purl.org/dc/terms/description> "Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]."@en ;
-                                           <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#language-007> ;
+<http://purl.org/dc/elements/1.1/language> <http://purl.org/dc/terms/description> "Recommended practice is to use either a non-literal value representing a language from a controlled vocabulary such as ISO 639-2 or ISO 639-3, or a literal value consisting of an IETF Best Current Practice 47 [[IETF-BCP47](https://tools.ietf.org/html/bcp47)] language tag."@en ;
                                            <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                           <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                            rdfs:comment "A language of the resource."@en ;
                                            rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                            rdfs:label "Language"@en ;
-                                           rdfs:seeAlso <http://www.ietf.org/rfc/rfc4646.txt> ;
-                                           <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                           <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 <http://purl.org/dc/elements/1.1/publisher> <http://purl.org/dc/terms/description> "Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity."@en ;
-                                            <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#publisher-006> ;
                                             <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                            <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                             rdfs:comment "An entity responsible for making the resource available."@en ;
                                             rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                             rdfs:label "Publisher"@en ;
-                                            <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                            <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/relation> <http://purl.org/dc/terms/description> "Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system. "@en ;
-                                           <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#relation-006> ;
+<http://purl.org/dc/elements/1.1/relation> <http://purl.org/dc/terms/description> "Recommended practice is to identify the related resource by means of a URI. If this is not possible or feasible, a string conforming to a formal identification system may be provided."@en ;
                                            <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                           <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                            rdfs:comment "A related resource."@en ;
                                            rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                            rdfs:label "Relation"@en ;
-                                           <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                           <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/relation) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 <http://purl.org/dc/elements/1.1/rights> <http://purl.org/dc/terms/description> "Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights."@en ;
-                                         <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#rights-006> ;
                                          <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                         <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                          rdfs:comment "Information about rights held in and over the resource."@en ;
                                          rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                          rdfs:label "Rights"@en ;
-                                         <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                         <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/rights) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 <http://purl.org/dc/elements/1.1/source> <http://purl.org/dc/terms/description> "The described resource may be derived from the related resource in whole or in part. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system."@en ;
-                                         <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#source-006> ;
                                          <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                         <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                          rdfs:comment "A related resource from which the described resource is derived."@en ;
                                          rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                          rdfs:label "Source"@en ;
-                                         <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                         <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/source) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/subject> <http://purl.org/dc/terms/description> "Typically, the subject will be represented using keywords, key phrases, or classification codes. Recommended best practice is to use a controlled vocabulary."@en ;
-                                          <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#subject-007> ;
+<http://purl.org/dc/elements/1.1/subject> <http://purl.org/dc/terms/description> "Typically, the subject will be represented using keywords, key phrases, or classification codes.  Recommended best practice is to use a controlled vocabulary."@en ;
                                           <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                          <http://purl.org/dc/terms/modified> "2012-06-14"^^xsd:date ;
                                           rdfs:comment "The topic of the resource."@en ;
                                           rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                           rdfs:label "Subject"@en ;
-                                          <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                          <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/title> <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#title-006> ;
-                                        <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                        <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
+<http://purl.org/dc/elements/1.1/title> <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
                                         rdfs:comment "A name given to the resource."@en ;
                                         rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                         rdfs:label "Title"@en ;
-                                        <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                        <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/title) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
-<http://purl.org/dc/elements/1.1/type> <http://purl.org/dc/terms/description> "Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element."@en ;
-                                       <http://purl.org/dc/terms/hasVersion> <http://dublincore.org/usage/terms/history/#type-006> ;
+<http://purl.org/dc/elements/1.1/type> <http://purl.org/dc/terms/description> "Recommended practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [[DCMI-TYPE](http://dublincore.org/documents/dcmi-type-vocabulary/)]. To describe the file format, physical medium, or dimensions of the resource, use the Format element."@en ;
                                        <http://purl.org/dc/terms/issued> "1999-07-02"^^xsd:date ;
-                                       <http://purl.org/dc/terms/modified> "2008-01-14"^^xsd:date ;
                                        rdfs:comment "The nature or genre of the resource."@en ;
                                        rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
                                        rdfs:label "Type"@en ;
-                                       <http://www.w3.org/2004/02/skos/core#note> "A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation."@en .
+                                       <http://www.w3.org/2004/02/skos/core#note> "A [second property](/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/type) with the same name as this property has been declared in the [dcterms: namespace](http://purl.org/dc/terms/).  See the Introduction to the document [DCMI Metadata Terms](/specifications/dublin-core/dcmi-terms/) for an explanation."@en .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/
