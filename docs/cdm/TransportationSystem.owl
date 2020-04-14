@@ -248,6 +248,10 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesArc">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationOntologyProperty"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/hasSubRoute"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesArc"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -425,6 +429,14 @@ Currently, there is no need to capture an aggregate Arc; in other words, we do n
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/hasRoadSegmentId">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/TransportationSystem/hasSubRoute -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/hasSubRoute">
+        <rdfs:subPropertyOf rdf:resource="http://www.opengis.net/ont/geosparql#sfContains"/>
     </owl:ObjectProperty>
     
 
@@ -1641,22 +1653,24 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Route">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationOntologyThing"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesArc"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/ArcPD"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesArc"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/ArcPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesArc"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/ArcPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#sfContains"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Route"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/RouteLink"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/hasSubRoute"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Route"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>A possible path of travel on one or more transportation networks.</rdfs:comment>
