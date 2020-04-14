@@ -310,6 +310,14 @@ Changes from previous version:
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasTransitRoute -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasTransitRoute">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/inTransitSystem -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/inTransitSystem">
@@ -839,28 +847,8 @@ An incident will have some resulting caused gap (i.e. the time from the incident
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/existsAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasSection"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasDisplayColor"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasRouteTextColor"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1092,17 +1080,9 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/Trip"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/occursOn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationComplex"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasTransitRoute"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
