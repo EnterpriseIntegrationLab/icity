@@ -342,24 +342,6 @@ Changes from previous version:
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/operatesOn -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/operatesOn">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyProperty"/>
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/ArcPD"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/scheduledOn -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/scheduledOn">
@@ -624,42 +606,11 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/operatesOn"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/ArcPD"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Route Section is part of some Route and consists of Route Links.
-A Route Section begins and ends at a Stop Point.</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/ScheduledTransitTrip -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/ScheduledTransitTrip">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/RecurringEvent/RecurringEvent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/scheduledOn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/RecurringEvent/hasOccurrence"/>
@@ -725,7 +676,7 @@ ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:co
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Node"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationComplex"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLocation"/>
@@ -759,6 +710,30 @@ A Person may enter or exit the transit vehicle at a Stop Point.
 A Stop Point has a stop code: a short text or a number that uniquely identifies the stop for passengers.
 A Stop Point has a name that people will understand in the local and tourist vernacular.
 A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNode -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNode">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Node"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesComplex"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/NodePD"/>
     </owl:Class>
     
 
@@ -847,8 +822,14 @@ An incident will have some resulting caused gap (i.e. the time from the incident
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/hasSection"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/routeBegins"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/routeEnds"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -964,29 +945,6 @@ A Route is executed by various Vehicles at different points in time.</dc:descrip
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Routes change over time. RoutePD captures the entire entity of a route, i.e. the route perdurant.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/beginsAtStop"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/endsAtStop"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Route Section is part of a Route and consists of Route Links.</dc:description>
     </owl:Class>
     
 
@@ -1110,36 +1068,8 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRoute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitRouteSection"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
