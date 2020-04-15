@@ -1,6 +1,6 @@
 # To do list:
 
-* look into skos core import error
+* ~~look into skos core import error~~
 * resolve/replace schema:address references with iContact:Address
   * BusinessEstablishment
   * DwellingUnitPD
