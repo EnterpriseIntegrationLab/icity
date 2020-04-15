@@ -606,16 +606,6 @@ An AccessMethod may be valid for a specific distance or time.</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
-        <dc:description>A Route Section is part of some Route and consists of Route Links.
-A Route Section begins and ends at a Stop Point.</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/ScheduledTransitTrip -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/ScheduledTransitTrip">
@@ -686,7 +676,6 @@ ScheduledTransitTrips may be used to specify route and stop timetables.</rdfs:co
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Node"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLocation"/>
@@ -720,6 +709,30 @@ A Person may enter or exit the transit vehicle at a Stop Point.
 A Stop Point has a stop code: a short text or a number that uniquely identifies the stop for passengers.
 A Stop Point has a name that people will understand in the local and tourist vernacular.
 A Stop Point may or may not be wheelchair accessible. The wheelchairAccessible data property value indicates whether wheelchair boardings are possible from the specified stop, station, or station entrance.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNode -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNode">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Node"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/accessesComplex"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPoint"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/StopPointNodePD">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/NodePD"/>
     </owl:Class>
     
 
@@ -1053,13 +1066,6 @@ A TransitSystem may be accessed by some Fare or Transit Pass.</dc:description>
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitVehicle">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/TransitOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/Vehicle"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/RouteLink"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/PublicTransit/onRoute"/>
