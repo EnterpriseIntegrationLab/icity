@@ -6,5 +6,5 @@
   * ~~DwellingUnitPD~~
   * ~~Firm~~
   * ~~Organization~~
-* resolve: StopPoint (not) subclassOf NodePD
-* (re-)define Arc and subclasses: AtomicArc, Link
+* ~~resolve: StopPoint (not) subclassOf NodePD~~
+* ~~(re-)define Arc and subclasses: AtomicArc, Link~~
