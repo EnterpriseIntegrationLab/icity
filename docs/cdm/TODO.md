@@ -3,7 +3,7 @@
 * ~~look into skos core import error~~
 * resolve/replace schema:address references with iContact:Address
   * BusinessEstablishment
-  * DwellingUnitPD
+  * ~~DwellingUnitPD~~
   * Firm
   * Organization
 * resolve: StopPoint (not) subclassOf NodePD
