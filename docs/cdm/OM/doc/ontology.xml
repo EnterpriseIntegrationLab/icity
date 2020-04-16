@@ -18,10 +18,12 @@
      xmlns:time="http://www.w3.org/2006/time#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:iso21972="http://ontology.eil.utoronto.ca/ISO21972/iso21972#"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/1.2/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/1.1/"/>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as &quot;10 m&quot;, with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure&apos;s numerical value is given in (e.g. metres).
@@ -283,6 +285,13 @@ Changes from previous version:
     
 
 
+    <!-- http://www.w3.org/2001/XMLSchema#pattern -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2001/XMLSchema#pattern"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#versionInfo -->
 
 
@@ -490,20 +499,43 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by -->
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#base -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#base">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">base</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has base</om-1:alternative_label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval -->
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_quantity -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_quantity">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:label xml:lang="en">base quantity</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has base quantity</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_unit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_unit">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">base unit</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has base unit</om-1:alternative_label>
     </owl:ObjectProperty>
     
 
@@ -512,7 +544,415 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#cardinality_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of"/>
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#definition -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#definition">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">denominatot</rdfs:label>
+        <rdfs:label>has denominator</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has denominatot</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#derived_quantity -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#derived_quantity">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:label xml:lang="en">derived quantity</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has derived quantity</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_described_by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#distinct_count_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#distinct_count_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#element -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#element">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_city -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_city">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_characteristic -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_characteristic">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_characteristic_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_an_estimate_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_an_estimate_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_characteristic_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_characteristic_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_composed_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_composed_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#member_of"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_described_by -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_described_by">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_part_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_part_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#located_in -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#located_in">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#mean_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#mean_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Mean"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#measurement_scale -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#measurement_scale">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Application_area"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale"/>
+        <rdfs:label xml:lang="en">measurement scale</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has measurement scale</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#member_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#member_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">numerator</rdfs:label>
+        <rdfs:label>has numerator</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has numerator</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#parameter_of_var -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#parameter_of_var">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#phenomenon -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#phenomenon">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:label xml:lang="en">phenomenon</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has phenomenon</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#prefix -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#prefix">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix"/>
+        <rdfs:label xml:lang="en">prefix</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has prefix</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#singular_unit -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#singular_unit">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+        <rdfs:label xml:lang="en">singular unit</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has singular unit</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#std_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#std_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Standard_deviation"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#sum_of -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#sum_of">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#description_of"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sum"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_1 -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_1">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiplication"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">term 1</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has term 1</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_2 -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_2">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiplication"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">term 2</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has term 2</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Application_area"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinal_scale"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:comment>For quantity classes this property indicates a commonly-used unit.</rdfs:comment>
+        <rdfs:label xml:lang="en">unit of measure</rdfs:label>
+        <rdfs:label>has unit</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has unit of measure</om-1:alternative_label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#value -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+        <rdfs:label xml:lang="en">value</rdfs:label>
+        <rdfs:label>has value</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#zero_element -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#zero_element">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#iso21972ObjectProperty"/>
     </owl:ObjectProperty>
     
 
@@ -522,7 +962,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/aggregateOf">
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
     </owl:ObjectProperty>
     
 
@@ -532,16 +972,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/aggregateOver">
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty">
-        <dc:description>Property added for organizational purposes, to identify properties defined in the Time Ontology.</dc:description>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
     </owl:ObjectProperty>
     
 
@@ -560,65 +991,17 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/hasAggregateFunction">
         <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Function"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_unit -->
+    <!-- http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty -->
 
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#base_unit">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>has denominator</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>has numerator</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-        <rdfs:label>has unit</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#value -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value">
-        <rdfs:subPropertyOf rdf:resource="http://www.wurvoc.org/vocabularies/om-1.8/OMProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
-        <rdfs:label>has value</rdfs:label>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty">
+        <dc:description>Property added for organizational purposes, to identify properties defined in the Time Ontology.</dc:description>
     </owl:ObjectProperty>
     
 
@@ -735,7 +1118,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasTRS">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain>
             <owl:Class>
@@ -757,7 +1140,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasTemporalDuration">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalDuration"/>
         <rdfs:comment xml:lang="en">Duration of a temporal entity.</rdfs:comment>
@@ -771,7 +1154,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasTime">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
         <rdfs:comment xml:lang="en">Supports the association of a temporal entity (instant or interval) to any thing</rdfs:comment>
         <rdfs:label xml:lang="en">has time</rdfs:label>
@@ -799,7 +1182,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#inTemporalPosition">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Instant"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalPosition"/>
         <rdfs:comment xml:lang="en">Position of a time instant</rdfs:comment>
@@ -885,7 +1268,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#intervalDisjoint">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
         <rdfs:comment xml:lang="en">If a proper interval T1 is intervalDisjoint another proper interval T2, then the beginning of T1 is after the end of T2, or the end of T1 is before the beginning of T2, i.e. the intervals do not overlap in any way, but their ordering relationship is not known.</rdfs:comment>
@@ -956,7 +1339,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#intervalIn">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
         <rdfs:comment xml:lang="en">If a proper interval T1 is intervalIn another proper interval T2, then the beginning of T1 is after the beginning of T2 or is coincident with the beginning of T2, and the end of T1 is before the end of T2, or is coincident with the end of T2, except that end of T1 may not be coincident with the end of T2 if the beginning of T1 is coincident with the beginning of T2.</rdfs:comment>
@@ -1053,7 +1436,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#monthOfYear">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#GeneralDateTimeDescription"/>
         <rdfs:range rdf:resource="http://www.w3.org/2006/time#MonthOfYear"/>
         <rdfs:comment xml:lang="en">The month of the year, whose value is a member of the class time:MonthOfYear</rdfs:comment>
@@ -1121,6 +1504,84 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">exponent</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has exponent</om-1:alternative_label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#factor -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#factor">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:label xml:lang="en">factor</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has factor</om-1:alternative_label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_Name -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_Name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerical_value -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerical_value">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:label xml:lang="en">numerical value</rdfs:label>
+        <rdfs:label>has numerical value</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has numerical value</om-1:alternative_label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordered_measurement_scale_category"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">rank</rdfs:label>
+        <om-1:alternative_label xml:lang="en">has rank</om-1:alternative_label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#symbol -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#symbol"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty -->
 
 
@@ -1139,10 +1600,10 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty -->
+    <!-- http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty -->
 
 
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty">
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty">
         <dc:description>Data property added for organizational purposes, to identify data properties defined in the Time Ontology.</dc:description>
     </owl:DatatypeProperty>
     
@@ -1194,7 +1655,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#hasXSDDuration">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#duration"/>
         <rdfs:comment xml:lang="en">Extent of a temporal entity, expressed using xsd:duration</rdfs:comment>
@@ -1235,7 +1696,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#inXSDDate">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Instant"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:comment xml:lang="en">Position of an instant, expressed using xsd:date</rdfs:comment>
@@ -1264,7 +1725,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#inXSDDateTimeStamp">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Instant"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
         <rdfs:comment xml:lang="en">Position of an instant, expressed using xsd:dateTimeStamp</rdfs:comment>
@@ -1278,7 +1739,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#inXSDgYear">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Instant"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
         <rdfs:comment xml:lang="en">Position of an instant, expressed using xsd:gYear</rdfs:comment>
@@ -1292,7 +1753,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#inXSDgYearMonth">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Instant"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
         <rdfs:comment xml:lang="en">Position of an instant, expressed using xsd:gYearMonth</rdfs:comment>
@@ -1361,7 +1822,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#nominalPosition">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#TimePosition"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">The (nominal) value indicating temporal position in an ordinal reference system </rdfs:comment>
@@ -1375,7 +1836,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#numericDuration">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#Duration"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
         <rdfs:comment xml:lang="en">Value of a temporal extent expressed as a decimal number scaled by a temporal unit</rdfs:comment>
@@ -1389,7 +1850,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#numericPosition">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty"/>
         <rdfs:domain rdf:resource="http://www.w3.org/2006/time#TimePosition"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
         <rdfs:comment xml:lang="en">The (numeric) value indicating position within a temporal coordinate system </rdfs:comment>
@@ -1488,124 +1949,6 @@ The range of this property is not specified, so can be replaced by any specific 
     
 
 
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_amount_of_substance_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_electric_current_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_electric_current_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_length_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_length_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_luminous_intensity_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_luminous_intensity_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_mass_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_mass_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_thermodynamic_temperature_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_thermodynamic_temperature_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/SI_time_dimension_exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/SI_time_dimension_exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/definition_factor -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/definition_factor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.wurvoc.org/vocabularies/om-1.8/definition_off-set -->
-
-
-    <owl:DatatypeProperty rdf:about="http://www.wurvoc.org/vocabularies/om-1.8/definition_off-set">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#factor -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#factor">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerical_value -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerical_value">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-        <rdfs:label>has numerical value</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank -->
-
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1618,14 +1961,431 @@ The range of this property is not specified, so can be replaced by any specific 
     
 
 
+    <!-- http://http://www.opengis.net/ont/geosparql#Polygon -->
+
+
+    <owl:Class rdf:about="http://http://www.opengis.net/ont/geosparql#Polygon"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Application_area -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Application_area">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Binary_prefix -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Binary_prefix">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinal_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinal_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#element"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_point"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">cardinal scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#cardinality_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Cardinality of the Population.
+Note that there is no property that links Cardinality to a Variable.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ratio_scale"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#zero_element"/>
+                <owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#fixed_zero_cardinality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_unit -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_scale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment>Just as the meter is the unit of measure for length, a gci:Cardinality_unit is the unit of measure for the size of a set. The gci:Cardinality_unit is a ratio scale: gci:Cardinality_scale, which is a subclass of om:Ratio_scale and is has a zero element (namely zero).</rdfs:comment>
         <rdfs:comment>Reused from GCI Foundation Ontology</rdfs:comment>
         <rdfs:label>Cardinality Unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#City -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://schema.org/City"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Compound_unit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Compound_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label xml:lang="en">compound unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Dimension -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Dimension">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Distinct_count -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Distinct_count">
+        <owl:equivalentClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population_size"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#distinct_count_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Distinct_count class that is a Parameter that represents
+         the number of distinct values of a property of the members of a
+         Population</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature">
+        <rdfs:subClassOf rdf:resource="http://http://www.opengis.net/ont/geosparql#Polygon"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_point -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_point">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#definition"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_point"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">fixed point</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_zero_point -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_zero_point">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Fixed_point"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerical_value"/>
+                <owl:hasValue>0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">fixed zero point</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Indicator -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Indicator">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_city"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#DateTimeInterval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description xml:lang="en">An indicator is a quantity that is a ratio of a numerator and denominator that are also quantities. It has a city and time period associated with it. The numerator and denominator quantities can have different units of measure. One example of a unit of measure is the size of a population. A population_cardinality_unit is defined to be an individual of a Cardinality_unit that is a subclass of a Singular_unit.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Interval_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Interval_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinal_scale"/>
+        <rdfs:label xml:lang="en">interval scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Mean -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Mean">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#mean_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Standard_deviation"/>
+        <rdfs:comment xml:lang="en">Mean represents the mean value of a property all members of the Population have and is specified by the parameter_of_var property.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A measure combines a number to a unit of measure or an interval or ratio scale. For example, &quot;3 m&quot; is a measure.</rdfs:comment>
+        <rdfs:label xml:lang="en">measure</rdfs:label>
+        <rdfs:label>measure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Interval_scale"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Nominal_scale"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordinal_scale"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ratio_scale"/>
+        </owl:disjointUnionOf>
+        <rdfs:comment xml:lang="en">Measurement scales are concepts used for the expression of quantities. Four types of measurement scales are: nominal scales, ordinal scales, interval scales and ratio scales. The latter two scales are also called cardinal scales. An example of a scale is the Celsius scale, a temperature scale.</rdfs:comment>
+        <rdfs:label xml:lang="en">measurement scale</rdfs:label>
+        <rdfs:label>scale</rdfs:label>
+        <om-1:alternative_label xml:lang="en">scale</om-1:alternative_label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale_category -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale_category">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label>amount of money unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Nominal_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Nominal_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#element"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale_category"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">nominal scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#member_of"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_characteristic"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Observation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordered_measurement_scale_category -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordered_measurement_scale_category">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordinal_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordinal_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#element"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ordered_measurement_scale_category"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">ordinal scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#parameter_of_var"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Parameter is the Class of all  measures that can be made of a Population, both statistical, e.g., Mean, Starndard_devation, and others, e.g., Cardinality, Sum.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Phenomenon -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Phenomenon">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:comment xml:lang="en">A phenomenon is the qualitative object (e.g., food, star, molecule) that has quantifiable (standardized) aspects (e.g, length, mass, time).</rdfs:comment>
+        <rdfs:label xml:lang="en">phenomenon</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:comment xml:lang="en">A point is an element of an interval scale or a ratio scale, for example, 273.16 on the Kelvin scale indicates the triple point of water thermodynamic temperature.</rdfs:comment>
+        <rdfs:label xml:lang="en">point</rdfs:label>
     </owl:Class>
     
 
@@ -1634,11 +2394,43 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DateTimeInterval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_composed_of"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_described_by"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#defined_by"/>
                 <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#definition"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1648,7 +2440,11 @@ The range of this property is not specified, so can be replaced by any specific 
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <dc:description xml:lang="en">The core class is the Population to be measured. A Population is linked to a parameter (e.g., mean, standard deviation, cardinality) by the is_described_by property, and the parameter is a sub class of Parameter. Depending on the subclass of Parameter, there is a reverse link back to the Population.
+  
+parameter links back to the using cardinality_of. parameter links back using the   property. parameter links back using the mean_of property.</dc:description>
         <rdfs:comment>The govstat Population is specialized for indicator use to include what defines a member of the population, the location of the population, and the time the population was measured.</rdfs:comment>
+        <rdfs:label xml:lang="en">Population</rdfs:label>
     </owl:Class>
     
 
@@ -1675,7 +2471,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population_size">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -1692,6 +2488,483 @@ The range of this property is not specified, so can be replaced by any specific 
         <rdfs:comment>Reused from GCI Foundation ontology: http://ontology.eil.utoronto.ca/GCI/Foundation/GCI-Foundation-v2.owl</rdfs:comment>
         <rdfs:comment>gci:Population_size is a subclass of om:Quantity.  Its om:unit_of_measure is the gci:population_cardinality_unit. It is also a subclass of gs:Cardinality which provides the cardinality_of property that links to a gs:Population.</rdfs:comment>
         <rdfs:label>Population Size</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Binary_prefix"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        </owl:disjointUnionOf>
+        <rdfs:comment xml:lang="en">A prefix is a name that precedes a basic unit of measure to indicate a decimal multiple or fraction of the unit. Each prefix has a unique symbol that is prepended to the unit symbol. For example, an electric current of 0.000 000 001 ampere is written by using the SI-prefix nano as 1 nanoampere or 1 nA.</rdfs:comment>
+        <rdfs:label xml:lang="en">prefix</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A quantity is a representation of a quantifiable (standardized) aspect (such as length, mass, and time) of a phenomenon (e.g., a star, food, or a molecule). Quantities are classified according to similarity in (implicit) metrological aspect, e.g. the length of my speedboat and the length of my racing car are classified as length.</rdfs:comment>
+        <rdfs:label xml:lang="en">quantity</rdfs:label>
+        <rdfs:label>quantity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#RatioIndicator -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#RatioIndicator">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Indicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ratio_scale -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Ratio_scale">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinal_scale"/>
+        <rdfs:label xml:lang="en">ratio scale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix"/>
+        <rdfs:label xml:lang="en">SI prefix</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_composed_of"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_described_by"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_part_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_cardinality -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_cardinality">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_mean -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_mean">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_standard_deviation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_standard_deviation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_standard_deviation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_sum -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample_sum">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Standard_deviation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Standard_deviation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#std_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_an_estimate_of"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sum -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sum">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#sum_of"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Sum defines the sum over a variable possessed by members of the Population.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+        <rdfs:comment>In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other).</rdfs:comment>
+        <rdfs:label>system of units</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#denominator"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#numerator"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Compound_unit"/>
+        <rdfs:label xml:lang="en">unit division</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#base"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Compound_unit"/>
+        <rdfs:label xml:lang="en">unit exponentiation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#definition"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">unit multiple or submultiple</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiplication -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiplication">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_1"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#term_2"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Compound_unit"/>
+        <rdfs:label xml:lang="en">unit multiplication</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiplication"/>
+        </owl:disjointUnionOf>
+        <rdfs:comment xml:lang="en">A unit of measure is a definite magnitude of a quantity, defined and adopted by convention and/or by law. It is used as a standard for measurement of the same quantity, where any other value of the quantity can be expressed as a simple multiple of the unit of measure. For example, length is a quantity; the metre is a unit of length that represents a definite predetermined length. When we say 10 metre (or 10 m), we actually mean 10 times the definite predetermined length called &quot;metre&quot;.</rdfs:comment>
+        <rdfs:label xml:lang="en">unit of measure</rdfs:label>
+        <rdfs:label>unit</rdfs:label>
+        <om-1:alternative_label xml:lang="en">unit</om-1:alternative_label>
+        <om-1:alternative_label xml:lang="en">unit of measurement</om-1:alternative_label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label>unit division</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#is_characteristic_of"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#has_Name"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The property that is being measured in the population.  Since Protege is not Full DL, cannot make the property a subclass of Variable, so have to specify it as a string name using has_Name.</rdfs:comment>
+        <rdfs:label xml:lang="en">Variable</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Vectorial_or_tensorial_character -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Vectorial_or_tensorial_character">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#ISO21972Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Acceleration -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Acceleration">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>acceleration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label>acceleration unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>amount of money</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Area -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Area">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared.</rdfs:comment>
+        <rdfs:label>area</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:label>area unit</rdfs:label>
     </owl:Class>
     
 
@@ -1715,7 +2988,7 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/CapacityRate">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -1742,11 +3015,16 @@ The range of this property is not specified, so can be replaced by any specific 
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/CapacitySize">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/CardinalityMeasure"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_unit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1796,166 +3074,6 @@ The range of this property is not specified, so can be replaced by any specific 
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Geo_Position_unit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Geo_Position_unit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:comment>Reference systems to indicate geographic position.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/hasRelativeYear"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>A Monetary Value has a numerical value that is relative to a particular date (year).
-A Monetary Value is measured with some currency.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/OMThing -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/ValueOfMoney -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/ValueOfMoney">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>An amount of money that is defined relative to a particular year.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing">
-        <dc:description>Class added for organizational purposes, to identify classes defined in the Time Ontology.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Acceleration -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Acceleration">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>acceleration</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AccelerationUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>acceleration unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>amount of money</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>amount of money unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Area -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Area">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>Area expresses the two-dimensional size of a defined part of a surface, typically a region bounded by a closed curve. It is a derived quantity in the International System of Units. Area is length squared.</rdfs:comment>
-        <rdfs:label>area</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/AreaUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>area unit</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/Duration -->
 
 
@@ -1976,11 +3094,21 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Geo_Position_unit -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Geo_Position_unit">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+        <rdfs:comment>Reference systems to indicate geographic position.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/Length -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Length">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -2017,7 +3145,7 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Mass">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -2045,35 +3173,34 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure -->
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Monetary_unit"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label>measure</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/hasRelativeYear"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A Monetary Value has a numerical value that is relative to a particular date (year).
+A Monetary Value is measured with some currency.</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/OM/Quantity -->
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/OMThing -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Quantity">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>quantity</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
     
 
 
@@ -2081,18 +3208,8 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Ratio">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:label>ratio</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
-        <rdfs:label>scale</rdfs:label>
     </owl:Class>
     
 
@@ -2101,7 +3218,7 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Speed">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -2129,22 +3246,11 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
-        <rdfs:comment>In order to achieve a coherent, interdependent set of units of measure in the wide variety of units that exist, units are organised in systems of units. A system of units is based on a set of units chosen by convention to be the system’s base units, units that are considered to be mutually independent (i.e., can’t be expressed in terms of each other).</rdfs:comment>
-        <rdfs:label>system of units</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/Time -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Time">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -2171,22 +3277,18 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure -->
+    <!-- http://ontology.eil.utoronto.ca/cdm/OM/ValueOfMoney -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/OMThing"/>
-        <rdfs:label>unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measureDivision">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
-        <rdfs:label>unit division</rdfs:label>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/ValueOfMoney">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/AmountOfMoney"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>An amount of money that is defined relative to a particular year.</rdfs:comment>
     </owl:Class>
     
 
@@ -2195,7 +3297,7 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Volume">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/OM/Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
@@ -2220,6 +3322,43 @@ A Monetary Value is measured with some currency.</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
         <rdfs:label>volume unit</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing">
+        <dc:description>Class added for organizational purposes, to identify classes defined in the Time Ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/City -->
+
+
+    <owl:Class rdf:about="http://schema.org/City"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DataTypeProperty -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#DataTypeProperty"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ObjectProperty -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Feature -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Feature"/>
     
 
 
@@ -2276,7 +3415,7 @@ A Monetary Value is measured with some currency.</rdfs:comment>
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#DayOfWeek">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:comment xml:lang="en">The day of week</rdfs:comment>
         <rdfs:label xml:lang="en">Day of week</rdfs:label>
         <skos:changeNote xml:lang="en">Remove enumeration from definition, in order to allow other days to be used when required in other calendars. 
@@ -2657,7 +3796,7 @@ In the original OWL-Time the following constraint appeared:
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TRS">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:comment xml:lang="en">A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
 
 This is a stub class, representing the set of all temporal reference systems.</rdfs:comment>
@@ -2674,7 +3813,7 @@ This is a stub class, representing the set of all temporal reference systems.</s
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalDuration">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:comment xml:lang="en">Time extent; duration of a time interval separate from its particular start position</rdfs:comment>
         <rdfs:label xml:lang="en">Temporal duration</rdfs:label>
         <skos:definition xml:lang="en">Time extent; duration of a time interval separate from its particular start position</skos:definition>
@@ -2694,7 +3833,7 @@ This is a stub class, representing the set of all temporal reference systems.</s
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:comment xml:lang="en">A temporal interval or instant.</rdfs:comment>
         <rdfs:label xml:lang="en">Temporal entity</rdfs:label>
         <skos:definition xml:lang="en">A temporal interval or instant.</skos:definition>
@@ -2706,7 +3845,7 @@ This is a stub class, representing the set of all temporal reference systems.</s
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalPosition">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTRS"/>
@@ -2776,7 +3915,7 @@ In the original OWL-Time the following constraint appeared:
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#TimeZone">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:comment xml:lang="en">A Time Zone specifies the amount by which the local time is offset from UTC. 
 	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
 The region where it applies and the offset from UTC are specified by a locally recognised governing authority.</rdfs:comment>
@@ -2874,7 +4013,7 @@ It is deprecated in this edition of OWL-Time. </skos:historyNote>
 
 
     <rdf:Description rdf:about="http://www.w3.org/2006/time#generalYear">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     </rdf:Description>
     
@@ -2889,6 +4028,380 @@ It is deprecated in this edition of OWL-Time. </skos:historyNote>
      -->
 
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#cubic_metre -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#cubic_metre">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation"/>
+        <iso21972:base rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#metre"/>
+        <iso21972:exponent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</iso21972:exponent>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#decibel -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#decibel">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#fixed_zero_cardinality -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#fixed_zero_cardinality">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point"/>
+        <iso21972:numerical_value rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</iso21972:numerical_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#giga -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#giga">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        <iso21972:factor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000000000</iso21972:factor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#gigapc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#gigapc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:prefix rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#giga"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:symbol>gigapc</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#gram -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#gram">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        <iso21972:factor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100000</iso21972:factor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo_pc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo_pc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:prefix rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:symbol>hecto_kilo_pc</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour_per_interruption -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour_per_interruption">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption_per_year -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption_per_year">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#year"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#interruption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilo -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilo">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        <iso21972:factor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</iso21972:factor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilopc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilopc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:symbol>kilopc</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:prefix rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilo"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#watt"/>
+        <iso21972:symbol>kwh</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt_hour -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt_hour">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hour"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_pc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_pc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#square_metre"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:symbol>kwh_per_pc</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_square_metre -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_square_metre">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#square_metre"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt_hour"/>
+        <iso21972:symbol>kwh_per_m2</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_year -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kwh_per_year">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#year"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#kilowatt"/>
+        <iso21972:symbol>kwh_per_year</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#mega -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#mega">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        <iso21972:factor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000000</iso21972:factor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#megapc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#megapc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:prefix rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#mega"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:symbol>megapc</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#metre -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#metre">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+        <iso21972:symbol>m2</iso21972:symbol>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#micro -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#micro">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#SI_prefix"/>
+        <iso21972:factor rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.000001</iso21972:factor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#microgram -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#microgram">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_multiple_or_submultiple"/>
+        <iso21972:prefix rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#micro"/>
+        <iso21972:singular_unit rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#gram"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#microgram_per_cubic_metre -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#microgram_per_cubic_metre">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#cubic_metre"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#microgram"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#minute-time -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#minute-time">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#minute-time_per_occurence -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#minute-time_per_occurence">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurrence"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#minute-time"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurence_per_hecto_kilo_pc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurence_per_hecto_kilo_pc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo_pc"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurrence"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurrence -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#occurrence">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#pc_per_hecto_kilo_pc -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#pc_per_hecto_kilo_pc">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#hecto_kilo_pc"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Cardinality_unit"/>
+        <iso21972:symbol>pc</iso21972:symbol>
+        <dc:description xml:lang="en">population_cardinality_unit is depicted to be an instance of Cardinality_unit, which is the unit of measure for the cardinality of a set defined by a Population (defined in the next clause), and is associated with the symbol “pc”. For example, 1100pc represents a population cardinality (or size) of 1100. This document takes advantage of prefix notations to scale the numbers by defining units of measures: kilopc, megapc and gigapc, which are multiples of population_cardinality_unit. 1.1 kilopc represents 1100 pc.</dc:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_ratio_unit -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_ratio_unit">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_division"/>
+        <iso21972:denominator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <iso21972:numerator rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#population_cardinality_unit"/>
+        <dc:description xml:lang="en">population_ratio_unit is defined to be an instance of Unit_division. It has two properties:
+• whose range is restricted to being a population_cardinality_unit;
+• whose range is restricted to being a population_cardinality_unit.
+
+In other words, a population ratio is the ratio of two population cardinalities (i.e., number of members/elements in each population)</dc:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#square_metre -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#square_metre">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_exponentiation"/>
+        <iso21972:base rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#metre"/>
+        <iso21972:exponent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</iso21972:exponent>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#watt -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#watt">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#year -->
+
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#year">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Singular_unit"/>
+    </owl:NamedIndividual>
     
 
 
@@ -3305,6 +4818,46 @@ It is deprecated in this edition of OWL-Time. </skos:historyNote>
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</rdfs:comment>
         <rdfs:label xml:lang="en">Generalized year</rdfs:label>
         <skos:definition xml:lang="en">Year number - generalization of xsd:gYear, formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</skos:definition>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Application_area"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Dimension"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measurement_scale_category"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Phenomenon"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Point"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Prefix"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#System_of_units"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Vectorial_or_tensorial_character"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Observation"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Parameter"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Sample"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Statistic"/>
+            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Variable"/>
+        </owl:members>
     </rdf:Description>
 </rdf:RDF>
 

@@ -340,6 +340,15 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4 -->
+
+
+    <rdfs:Datatype rdf:about="http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4">
+        <skos:prefLabel>nD Lat Lon</skos:prefLabel>
+    </rdfs:Datatype>
+    
+
+
     <!-- http://www.w3.org/2001/XMLSchema#date -->
 
 
@@ -1659,6 +1668,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#ehContains">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Mereology/contains"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyProperty"/>
     </rdf:Description>
     
@@ -1767,6 +1777,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#rcc8ntpp">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Mereology/properPartOf"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyProperty"/>
     </rdf:Description>
     
@@ -1794,6 +1805,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#rcc8tpp">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Mereology/properPartOf"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyProperty"/>
     </rdf:Description>
     
@@ -2010,6 +2022,26 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/cdm/SpatialLoc/as_nDLatLon -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/as_nDLatLon">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasSerialization"/>
+        <rdfs:domain rdf:resource="http://www.opengis.net/ont/sf#Geometry"/>
+        <rdfs:range rdf:resource="http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasSerialization -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasSerialization">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/organization.owl#achieved -->
 
 
@@ -2108,7 +2140,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <rdf:Description rdf:about="http://www.opengis.net/ont/geosparql#hasSerialization">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasSerialization"/>
     </rdf:Description>
     
 
@@ -2580,8 +2612,8 @@ The class of TimeVaryingConcepts is equivalent to the class of things that have 
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/Contact/Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2731,12 +2763,6 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Organization/hasIndustryType"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/cdm/Organization/IndustryType"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2907,12 +2933,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/associatedLocation"/>
                 <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:allValuesFrom rdf:resource="http://schema.org/PostalAddress"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
