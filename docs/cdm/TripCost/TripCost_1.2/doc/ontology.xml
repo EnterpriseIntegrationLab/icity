@@ -177,15 +177,6 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/TripOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/cdm/Trip/accessesNetwork -->
 
 
@@ -357,6 +348,13 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue -->
 
 
@@ -458,13 +456,6 @@ A Tour starts and ends at the same Location.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Arc"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/accessesNetwork"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Network"/>
@@ -472,16 +463,16 @@ A Tour starts and ends at the same Location.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/occursOn"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationComplex"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/endLoc"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/endLoc"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/occursOn"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Route"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -568,8 +559,8 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Length"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
@@ -674,13 +665,6 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
 </rdf:RDF>
 
 

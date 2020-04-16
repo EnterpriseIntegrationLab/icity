@@ -1,30 +1,22 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/cdm/Vehicle/"
      xml:base="http://ontology.eil.utoronto.ca/cdm/Vehicle/"
-     xmlns:OM="http://ontology.eil.utoronto.ca/cdm/OM/"
-     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
-     xmlns:ns1="http://creativecommons.org/ns#"
+     xmlns:ns="http://creativecommons.org/ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:Geom="http://ontology.eil.utoronto.ca/cdm/Geom/"
      xmlns:adms="http://www.w3.org/ns/adms#"
-     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:Spatial="http://ontology.eil.utoronto.ca/cdm/Spatial/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/cdm/Vehicle/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/cdm/Foundation/1.1/"/>
-        <ns1:license>http://creativecommons.org/licenses/by/3.0/</ns1:license>
+        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>Ontology to capture concepts related to vehicles.</dc:description>
         <dc:issued>November 29, 2016</dc:issued>
@@ -137,6 +129,13 @@
     
 
 
+    <!-- http://www.w3.org/2002/07/owl#qualifiedCardinality -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#qualifiedCardinality"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#versionInfo -->
 
 
@@ -233,6 +232,13 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Change/1.1/manifestationOf"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/SpatialLoc/1.0/hasLocation -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/1.0/hasLocation"/>
     
 
 
@@ -431,10 +437,31 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/Change/1.1/Manifestation -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/Change/1.1/Manifestation"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/Change/1.1/TimeVaryingConcept -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/Change/1.1/TimeVaryingConcept"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/cdm/SpatialLoc/1.0/SpatialFeature -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/1.0/SpatialFeature"/>
     
 
 
@@ -477,6 +504,7 @@ above the local reference ellipsoid).</rdfs:comment>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/1.1/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://org.semanticweb.owlapi/error#Error1"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/SpatialLoc/1.0/hasLocation"/>
@@ -493,13 +521,6 @@ above the local reference ellipsoid).</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/purchaseDate"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DateTimeDescription"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/1.1/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>A Vehicle provides a motorized means of transportation within the urban system.
@@ -546,6 +567,7 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/1.1/TimeVaryingConcept"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://org.semanticweb.owlapi/error#Error2"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/hasCargoCapacityLoad"/>
@@ -614,13 +636,6 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Change/1.1/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://schema.org/numberOfAxels"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
             </owl:Restriction>
@@ -652,6 +667,20 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
     
 
 
+    <!-- http://org.semanticweb.owlapi/error#Error1 -->
+
+
+    <owl:Class rdf:about="http://org.semanticweb.owlapi/error#Error1"/>
+    
+
+
+    <!-- http://org.semanticweb.owlapi/error#Error2 -->
+
+
+    <owl:Class rdf:about="http://org.semanticweb.owlapi/error#Error2"/>
+    
+
+
     <!-- http://schema.org/Brand -->
 
 
@@ -674,9 +703,22 @@ A Vehicle is owned by some Person(s) or Firm</dc:description>
 
 
     <owl:Class rdf:about="http://schema.org/QuantitativeValue">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/SchemaOrgThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Vehicle/SchemaOrgThing"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DateTimeDescription -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DateTimeDescription"/>
+    <rdf:Description>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </rdf:Description>
+    <rdf:Description>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </rdf:Description>
     
 
 
