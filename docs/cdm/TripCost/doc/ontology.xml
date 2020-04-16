@@ -26,7 +26,7 @@
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>Different costs are associated with the performance of Trips. These may take the form of direct costs such as those presented in the Travel Cost Ontology, but there are also possible indirect costs such as vehicle wear and tear, gas, etc. In addition, there may be non-monetary costs associated with travel over different arcs such as pollution and travel time. Trip Costs capture these indirect costs that may vary between individual trips; a trip cost is a property of some instance of travelling.</dc:description>
         <dc:issued>November 7, 2017</dc:issued>
-        <dc:title>Trip Cost Ontology</dc:title>
+        <dc:title>iCity Trip Cost Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-tripcost</vann:preferredNamespacePrefix>
         <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-TripCost ontology is designed to capture concepts related to trip costs.
 		Changes from previous version:
@@ -173,15 +173,6 @@
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Trip/TripOntologyProperty">
         <dc:description>Added for organizational purposes, to identify all properties defined in the Trip ontology.</dc:description>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/TripOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -357,6 +348,13 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue -->
 
 
@@ -458,13 +456,6 @@ A Tour starts and ends at the same Location.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/accessesArc"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Arc"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/accessesNetwork"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Network"/>
@@ -472,16 +463,16 @@ A Tour starts and ends at the same Location.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/occursOn"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/TransportationComplex"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/endLoc"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/endLoc"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/cdm/Trip/occursOn"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/cdm/TransportationSystem/Route"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -568,8 +559,8 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/Length"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/cdm/OM/MonetaryValue"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
@@ -674,13 +665,6 @@ A Trip Segment may incur some cost (monetary or otherwise).</dc:description>
 
 
     <owl:Class rdf:about="http://www.w3.org/2006/time#Interval"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
 </rdf:RDF>
 
 
