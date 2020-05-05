@@ -1,7 +1,13 @@
-# icity
-Ontologies developed for the UTTRI [iCity-ORF Project](http://uttri.utoronto.ca/research/projects/icity-urban-informatics-sustainable-metropolitan-growth/). This project is supported by the Ontario Ministry of Research and Innovation through the ORF-RE program.
+# iCity-ORF Project 1.1: Ontology for Urban Modelling & Design
+This repository houses the iCity Transportation Planning Suite of Ontologies (TPSO) developed for the UTTRI [iCity-ORF Project](http://uttri.utoronto.ca/research/projects/icity-urban-informatics-sustainable-metropolitan-growth/). This project is supported by the Ontario Ministry of Research and Innovation through the ORF-RE program.
 
-**Version 1**
-The first version of the ontology created for transportation systems knowledge. This draft communicates the basic scope and design to the iCity team. This is an important step as the iCity team is the core group of the eventual users, and source of data for the Urban System Ontology. This draft is the basis with which we can begin testing implementation tool options. It is also the starting point for further extensions and refinement as the iCity researchers provide feedback, and as we learn about more fine-grained requirements via the transportation data provided by iCity projects.
+The ontology has been designed to support the representation and integration of transportation planning data - with a focus on the projects in Theme 2 of iCity-ORF: Urban Mobility & Integrated Urban Systems Design.
 
-To encourage reusability and ease of use, it is built from a collection of micro-theories; at the lowest level: a set of foundational ontologies that capture fundamental concepts such as time and space; above this: a set of generic ontologies that capture domain-specific concepts such as Persons, Households, and Transportation Networks. Development of this first draft involved addressing some challenges for representing foundational concepts, such as change and activities, in the Web Ontology Language (OWL2). Katsumi and Fox have described the solutions to these challenges in two conference papers (currently under review). 
+![project  diagram](./diagrams/1_icity_TPSO_projects.png "TPSO and iCity Projects")
+
+The iCity TPSO is comprised of a collection of ontologies, that may be stratefied according to 3 levels: the Foundation, the City Level ontologies, and the Service Level ontologies.
+![modules](./diagrams/6_icity_modules_detail.png "TPSO levels")
+
+The full report, along with current and past versions of the ontology can be accessed in the /docs/ folder.
+
+
