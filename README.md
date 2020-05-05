@@ -6,7 +6,7 @@ The ontology has been designed to support the representation and integration of 
 ![project  diagram](./diagrams/1_icity_TPSO_projects.png "TPSO and iCity Projects")
 
 The iCity TPSO is comprised of a collection of ontologies, that may be stratefied according to 3 levels: the Foundation, the City Level ontologies, and the Service Level ontologies.
-![modules](./diagrams/6_icity_modules_detail.png "TPSO levels" | width=250)
+![modules](./diagrams/6_icity_modules_detail.png&s=200 "TPSO levels")
 
 The full report, along with current and past versions of the ontology can be accessed in the /docs/ folder.
 
