@@ -557,9 +557,9 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                   rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
-###  http://ontology.eil.utoronto.ca/cdm/TransportationSystem/associatedLinkLength
-:associatedLinkLength rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf :TransportationOntologyProperty .
+###  http://ontology.eil.utoronto.ca/cdm/TransportationSystem/associatedComplexLength
+:associatedComplexLength rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :TransportationOntologyProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/TransportationSystem/connectedTo
@@ -745,11 +745,6 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/hasSpeed
 <http://ontology.eil.utoronto.ca/cdm/Vehicle/hasSpeed> rdf:type owl:ObjectProperty ;
                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleOntologyProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/cdm/Vehicle/hasVehicleType
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/hasVehicleType> rdf:type owl:ObjectProperty ;
-                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleOntologyProperty> .
 
 
 ###  http://schema.org/brand
@@ -2063,7 +2058,7 @@ AccessRestriction may apply to certain Vehicle types (bus, cab, eco-friendly), V
                        owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                      ] ,
                      [ rdf:type owl:Restriction ;
-                       owl:onProperty :associatedLinkLength ;
+                       owl:onProperty :associatedComplexLength ;
                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                        owl:onClass <http://ontology.eil.utoronto.ca/cdm/OM/Length>
                      ] ,
@@ -2866,10 +2861,6 @@ A Vehicle is owned by some Person(s) or Firm""" .
                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/cdm/OM/Quantity>
                                                                         ] ,
                                                                         [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/cdm/Vehicle/hasVehicleType> ;
-                                                                          owl:allValuesFrom <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType>
-                                                                        ] ,
-                                                                        [ rdf:type owl:Restriction ;
                                                                           owl:onProperty <http://schema.org/brand> ;
                                                                           owl:allValuesFrom <http://schema.org/Brand>
                                                                         ] ,
@@ -2920,11 +2911,6 @@ A Vehicle is owned by some Person(s) or Firm""" .
                                                                           owl:onDataRange xsd:integer
                                                                         ] ;
                                                         <http://purl.org/dc/elements/1.1/description> "A Vehicle changes over time. VehiclePD captures the entire entity of a vehicle, i.e. the \"vehicle perdurant\"." .
-
-
-###  http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> rdf:type owl:Class ;
-                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleOntologyThing> .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
@@ -3555,35 +3541,29 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/CV
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/CV> rdf:type owl:NamedIndividual ,
-                                                          <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> .
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/CV> rdf:type owl:NamedIndividual .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/HGV
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/HGV> rdf:type owl:NamedIndividual ,
-                                                           <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> ;
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/HGV> rdf:type owl:NamedIndividual ;
                                                   rdfs:comment "Heavy goods vehicle" .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/LGV
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/LGV> rdf:type owl:NamedIndividual ,
-                                                           <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> ;
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/LGV> rdf:type owl:NamedIndividual ;
                                                   rdfs:comment "Light goods vehicle" .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/coach
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/coach> rdf:type owl:NamedIndividual ,
-                                                             <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> .
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/coach> rdf:type owl:NamedIndividual .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/motorcycle
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/motorcycle> rdf:type owl:NamedIndividual ,
-                                                                  <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> .
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/motorcycle> rdf:type owl:NamedIndividual .
 
 
 ###  http://ontology.eil.utoronto.ca/cdm/Vehicle/private_car
-<http://ontology.eil.utoronto.ca/cdm/Vehicle/private_car> rdf:type owl:NamedIndividual ,
-                                                                   <http://ontology.eil.utoronto.ca/cdm/Vehicle/VehicleType> .
+<http://ontology.eil.utoronto.ca/cdm/Vehicle/private_car> rdf:type owl:NamedIndividual .
 
 
 ###  http://www.w3.org/ns/sosa/

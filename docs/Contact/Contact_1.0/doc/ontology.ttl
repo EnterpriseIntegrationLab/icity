@@ -166,6 +166,11 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
 #    Datatypes
 #################################################################
 
+###  http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4
+<http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4> rdf:type rdfs:Datatype ;
+                                                                                                         <http://www.w3.org/2004/02/skos/core#prefLabel> "nD Lat Lon" .
+
+
 ###  http://www.w3.org/2001/XMLSchema#date
 xsd:date rdf:type rdfs:Datatype .
 
@@ -320,12 +325,6 @@ xsd:time rdf:type rdfs:Datatype .
 <http://ontology.eil.utoronto.ca/icontact.owl#hasCountry> rdf:type owl:ObjectProperty ;
                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#addressProperty> ;
                                                           rdfs:label "has Country"@en .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#hasEmail
-<http://ontology.eil.utoronto.ca/icontact.owl#hasEmail> rdf:type owl:ObjectProperty ;
-                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> ;
-                                                        rdfs:label "has Email"@en .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasGeoCoordinates
@@ -633,14 +632,21 @@ xsd:time rdf:type rdfs:Datatype .
                                                                                   rdfs:comment "Created for organizational purposes, to identify data properties imported from geoSPARQL." .
 
 
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/as_nDLatLon
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/as_nDLatLon> rdf:type owl:DatatypeProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization> ;
+                                                               rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+                                                               rdfs:range <http://franz.com/ns/allegrograph/5.0/geo/nd#_lat_la_-9.+1_+9.+1_+1.-4_+1.-1_lon_lo_-1.8+2_+1.8+2_+1.-4> .
+
+
+###  http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization
+<http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization> rdf:type owl:DatatypeProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty> rdf:type owl:DatatypeProperty ;
                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasContactDataProperty> .
-
-
-###  http://ontology.eil.utoronto.ca/icontact.owl#emailDataProperty
-<http://ontology.eil.utoronto.ca/icontact.owl#emailDataProperty> rdf:type owl:DatatypeProperty ;
-                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasContactDataProperty> .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasAreaCode
@@ -688,6 +694,11 @@ xsd:time rdf:type rdfs:Datatype .
                                                        rdfs:label "has Date"@en .
 
 
+###  http://ontology.eil.utoronto.ca/icontact.owl#hasEmail
+<http://ontology.eil.utoronto.ca/icontact.owl#hasEmail> rdf:type owl:DatatypeProperty ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasContactDataProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasLocation
 <http://ontology.eil.utoronto.ca/icontact.owl#hasLocation> rdf:type owl:DatatypeProperty ;
                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasContactDataProperty> ;
@@ -705,7 +716,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasPersonalEmail
 <http://ontology.eil.utoronto.ca/icontact.owl#hasPersonalEmail> rdf:type owl:DatatypeProperty ;
-                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#emailDataProperty> ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasEmail> ;
                                                                 rdfs:label "has Personal Email"@en .
 
 
@@ -755,7 +766,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#hasWorkEmail
 <http://ontology.eil.utoronto.ca/icontact.owl#hasWorkEmail> rdf:type owl:DatatypeProperty ;
-                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#emailDataProperty> ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#hasEmail> ;
                                                             rdfs:label "has Work Email"@en .
 
 
@@ -786,7 +797,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasSerialization
-<http://www.opengis.net/ont/geosparql#hasSerialization> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/SpatialLocOntologyDataProperty> .
+<http://www.opengis.net/ont/geosparql#hasSerialization> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/SpatialLoc/hasSerialization> .
 
 
 ###  http://www.opengis.net/ont/geosparql#isEmpty
@@ -804,14 +815,14 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:DatatypeProperty ;
                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty> ;
-                                              rdfs:range xsd:string ;
+                                              rdfs:range xsd:decimal ;
                                               rdfs:label "lattitude"@en .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#long
 <http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:DatatypeProperty ;
                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icontact.owl#addressDataProperty> ;
-                                               rdfs:range xsd:string ;
+                                               rdfs:range xsd:decimal ;
                                                rdfs:label "longitude"@en .
 
 
@@ -1157,7 +1168,7 @@ xsd:time rdf:type rdfs:Datatype .
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasStreetNumber> ;
                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                         owl:onDataRange xsd:nonNegativeInteger
+                                                                         owl:onDataRange xsd:string
                                                                        ] ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasUnitNumber> ;

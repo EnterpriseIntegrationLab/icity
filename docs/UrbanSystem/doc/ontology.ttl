@@ -1285,11 +1285,6 @@ owl:versionInfo rdf:type owl:AnnotationProperty .
                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
 
 
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType
-<http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> rdf:type owl:ObjectProperty ;
-                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyProperty> .
-
-
 ###  http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty
 <http://ontology.eil.utoronto.ca/icontact.owl#icontactProperty> rdfs:subPropertyOf :UrbanSystemOntologyProperty .
 
@@ -3573,7 +3568,7 @@ There are different types (subclasses) of Parking Area, such as Street Parking A
                                                                               ] ,
                                                                               [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/policyAppliesFor> ;
-                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType>
+                                                                                owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/Vehicle>
                                                                               ] ,
                                                                               [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/icity/Parking/policyAppliesTo> ;
@@ -5607,10 +5602,6 @@ A Vehicle is owned by some Person(s) or Firm""" .
                                                                             owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/OM/Quantity>
                                                                           ] ,
                                                                           [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icity/Vehicle/hasVehicleType> ;
-                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType>
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
                                                                             owl:onProperty <http://schema.org/brand> ;
                                                                             owl:allValuesFrom <http://schema.org/Brand>
                                                                           ] ,
@@ -5665,11 +5656,15 @@ A Vehicle is owned by some Person(s) or Firm""" .
 
 ###  http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType
 <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> rdf:type owl:Class ;
-                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleOntologyThing> ,
-                                                                            [ rdf:type owl:Restriction ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                                               owl:onProperty :hasMode ;
                                                                               owl:allValuesFrom <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode>
                                                                             ] .
+
+
+###  http://ontology.eil.utoronto.ca/icity/Vehicle/quantity
+<http://ontology.eil.utoronto.ca/icity/Vehicle/quantity> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://schema.org/QuantitativeValue> .
 
 
 ###  http://ontology.eil.utoronto.ca/icontact.owl#SchemaOrgThing
@@ -5748,8 +5743,7 @@ A Role has some authority, requires some skill, and may also have some associate
 
 ###  http://schema.org/QuantitativeValue
 <http://schema.org/QuantitativeValue> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/OM/Quantity> ,
-                                                      <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> .
+                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/icity/Vehicle/SchemaOrgThing> .
 
 
 ###  http://www.opengis.net/ont/geosparql#Feature
@@ -5873,53 +5867,6 @@ rdfs:Resource rdf:type owl:Class ;
 ###  http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane
 <http://ontology.eil.utoronto.ca/icity/TransportationSystem/vehicles_per_hour_per_lane> rdf:type owl:NamedIndividual ,
                                                                                                  <http://ontology.eil.utoronto.ca/icity/TransportationSystem/LinkCapacity_unit> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/air
-:air rdf:type owl:NamedIndividual ,
-              <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/road
-:road rdf:type owl:NamedIndividual ,
-               <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/UrbanSystem/water
-:water rdf:type owl:NamedIndividual ,
-                <http://ontology.eil.utoronto.ca/icity/TransportationSystem/Mode> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/CV
-<http://ontology.eil.utoronto.ca/icity/Vehicle/CV> rdf:type owl:NamedIndividual ,
-                                                            <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/HGV
-<http://ontology.eil.utoronto.ca/icity/Vehicle/HGV> rdf:type owl:NamedIndividual ,
-                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
-                                                    rdfs:comment "Heavy goods vehicle" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/LGV
-<http://ontology.eil.utoronto.ca/icity/Vehicle/LGV> rdf:type owl:NamedIndividual ,
-                                                             <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> ;
-                                                    rdfs:comment "Light goods vehicle" .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/coach
-<http://ontology.eil.utoronto.ca/icity/Vehicle/coach> rdf:type owl:NamedIndividual ,
-                                                               <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle
-<http://ontology.eil.utoronto.ca/icity/Vehicle/motorcycle> rdf:type owl:NamedIndividual ,
-                                                                    <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
-
-
-###  http://ontology.eil.utoronto.ca/icity/Vehicle/private_car
-<http://ontology.eil.utoronto.ca/icity/Vehicle/private_car> rdf:type owl:NamedIndividual ,
-                                                                     <http://ontology.eil.utoronto.ca/icity/Vehicle/VehicleType> .
 
 
 ###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/
