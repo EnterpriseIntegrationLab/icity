@@ -2,11 +2,11 @@
   "_comment" : "Created with OWL2VOWL (version 0.3.4), http://vowl.visualdataweb.org",
   "header" : {
     "languages" : [ "de", "ru", "pt", "jp", "kr", "en", "it", "fr", "es", "zh", "undefined", "ar", "ja", "pl", "nl" ],
-    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://schema.org", "http://www.w3.org/2001/XMLSchema", "http://ontology.eil.utoronto.ca/cdm/Activity", "http://ontology.eil.utoronto.ca/cdm/Time", "http://geovocab.org/geometry", "http://www.opengis.net/ont/sf", "http://ontology.eil.utoronto.ca/cdm/Spatial", "http://www.opengis.net/ont/gml", "http://ontology.eil.utoronto.ca/cdm/SpatialLoc", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://www.w3.org/2000/01/rdf-schema", "http://ontology.eil.utoronto.ca/cdm/Geom", "http://ontology.eil.utoronto.ca/cdm/OM", "http://www.wurvoc.org/vocabularies/om-1.8", "http://ontology.eil.utoronto.ca/cdm/Trip/1.1//1.1", "http://www.w3.org/2006/time", "http://geovocab.org/spatial", "http://ontology.eil.utoronto.ca/cdm/Change", "http://www.opengis.net/ont/geosparql", "http://www.w3.org/2004/02/skos/core" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://schema.org", "http://www.w3.org/2001/XMLSchema", "http://ontology.eil.utoronto.ca/5087/Activity", "http://ontology.eil.utoronto.ca/5087/Time", "http://geovocab.org/geometry", "http://www.opengis.net/ont/sf", "http://ontology.eil.utoronto.ca/5087/Spatial", "http://www.opengis.net/ont/gml", "http://ontology.eil.utoronto.ca/5087/SpatialLoc", "http://www.w3.org/2003/01/geo/wgs84_pos", "http://www.w3.org/2000/01/rdf-schema", "http://ontology.eil.utoronto.ca/5087/Geom", "http://ontology.eil.utoronto.ca/5087/OM", "http://www.wurvoc.org/vocabularies/om-1.8", "http://ontology.eil.utoronto.ca/5087/Trip/1.1//1.1", "http://www.w3.org/2006/time", "http://geovocab.org/spatial", "http://ontology.eil.utoronto.ca/5087/Change", "http://www.opengis.net/ont/geosparql", "http://www.w3.org/2004/02/skos/core" ],
     "title" : {
       "undefined" : "iCity Activity Ontology"
     },
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/",
     "version" : "1.1",
     "author" : [ "Megan Katsumi" ],
     "description" : {
@@ -717,8 +717,8 @@
     "type" : "owl:Class"
   } ],
   "classAttribute" : [ {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/State",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/State",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "A state refers to a class of manifestations. It may be a precondition or effect of some Activity, or more generally it may enabled or be caused by some Activity. If a state is complex, it may refer to some combination of classes of manifestations.\nA note on complex states:\nSay that a shopping activity, Activity-Shop, requires both the VehicleW30LGas state, but also some state wherein the mall is open, OpenMall. Each state would first be defined separately. Then, we can simply state:\nprecondition(VehicleW30LGas,Activity-Shop) AND  precondition(OpenMall,Activity-Shop)\nwere the preconditions required disjunctively, we could state:\nprecondition(VehicleW30LGas,Activity-Shop) OR precondition(OpenMall,Activity-Shop)\nHowever, in large and complex domains, there will be cases in which the above approach is undesirable. In particular, due to the complexity of the description that results as the state being described becomes more detailed. In many cases it will be more natural and convenient to be able to refer to a single, aggregate state. We therefore extend the representation of States to capture aggregation, as approached in the concept of state trees introduced by TOVE as a construct for the activity cluster.\n\nA State may be either non-terminal or terminal. A terminal state has no child states, and therefore refers directly to a class of manifestations, whereas a non-terminal state has child states, which may define some classes of manifestations, or further define some other complex states.\n\tNonTerminalState(x) v TerminalState(x) = State(x)\nA state  cannot be both non-terminal and terminal.\n\tTerminalState disjointWith NonTerminalState"
@@ -943,8 +943,8 @@
       "undefined" : "Thing"
     }
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/NonTerminalState",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/NonTerminalState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "A non-terminal state type has substates. It may be conjunctive or disjunctive. \nA state type cannot be both conjunctive and disjunctive.\n\tConjunctiveStateType disjointWith DisjunctiveStateType\nConjunctive and disjunctive state types, which do have substates, are achieved at some time if their decomposition of state types is achieved.\nNote that in this representation, decomp_of is not a transitive relation, it only refers to the direct children of a non-terminal state type. A more general relation that is transitive is the substate relation.\ndecomp_of(x,y) -> substate(x,y)"
@@ -1131,8 +1131,8 @@
       "undefined" : "Thing"
     }
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/Manifestation",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/Manifestation",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "instances" : 0,
     "description" : {
       "undefined" : "A Manifestation of some TimeVaryingConcept at a particular point/interval in time.\nA Manifestation exists at some Instant.\nThe class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation."
@@ -1302,8 +1302,8 @@
     "id" : "164",
     "superClasses" : [ "177" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Spatial/SpatialOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Spatial",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Spatial/SpatialOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Spatial",
     "instances" : 0,
     "description" : {
       "undefined" : "Class added for organizational purposes, to identify classes defined in the GeoVocab Spatial ontology."
@@ -1393,8 +1393,8 @@
     "id" : "165",
     "superClasses" : [ "164", "163" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/ChangeOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "instances" : 0,
     "label" : {
       "IRI-based" : "ChangeOntologyThing"
@@ -1644,8 +1644,8 @@
     "id" : "243",
     "superClasses" : [ "301" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/TimeVaryingConcept",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "instances" : 0,
     "description" : {
       "undefined" : "A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).\nA TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.\nDifferent types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.\nA TimeVaryingConcept exists at some Interval.\nThe class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation."
@@ -1657,8 +1657,8 @@
     "id" : "236",
     "superClasses" : [ "133" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/TerminalState",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/TerminalState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "A terminal state type has no substates (cannot be decomposed). It corresponds to a particular class of manifestations. A terminal state is achieved at some time if and only if there exists a manifestation within its defined classification, that exists at that time."
@@ -4192,8 +4192,8 @@
     "id" : "175",
     "superClasses" : [ "53" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/DisjunctiveState",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/DisjunctiveState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."
@@ -4235,8 +4235,8 @@
     "attributes" : [ "external" ],
     "id" : "58"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialLocOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "instances" : 0,
     "description" : {
       "undefined" : "Class added for organizational purposes, to identify classes defined in the iCity-SpatialLoc ontology."
@@ -4480,8 +4480,8 @@
     "attributes" : [ "external" ],
     "id" : "139"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/ConjunctiveState",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/ConjunctiveState",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "Naturally, a conjunctive state type is defined by the conjunction of its child state types, whereas a disjunctive state type is defined by the disjunction of its child states."
@@ -5511,9 +5511,9 @@
     "id" : "449",
     "superClasses" : [ "301" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialFeature",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialFeature",
     "equivalent" : [ "187" ],
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "instances" : 0,
     "label" : {
       "IRI-based" : "SpatialFeature"
@@ -5863,8 +5863,8 @@
     "id" : "341",
     "superClasses" : [ "260" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/ActivityOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/ActivityOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "Added for organizational purposes, to identify all classes defined in the Activity ontology."
@@ -5985,8 +5985,8 @@
     "id" : "85",
     "superClasses" : [ "63" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Geom/GeomOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Geom",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Geom/GeomOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Geom",
     "instances" : 0,
     "description" : {
       "undefined" : "Class added for organizational purposes, to group classes defined in the Geovocab Geometry ontology."
@@ -6104,8 +6104,8 @@
     "id" : "221",
     "superClasses" : [ "103" ]
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyThing",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Time",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyThing",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Time",
     "instances" : 0,
     "description" : {
       "undefined" : "Class added for organizational purposes, to identify classes defined in the Time Ontology."
@@ -6117,8 +6117,8 @@
     "attributes" : [ "external" ],
     "id" : "7"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/Activity",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "instances" : 0,
     "description" : {
       "undefined" : "An Activity describes something that occurs in the domain.\nAn Activity may be further defined by (decomposed into) Subactivities.\nAn Activity may have precondition and/or effect State.\nAn Activity may be enabled by or cause some State. An enabling of causing state is a generalization of a precondition/effect; an Activity is enabled by or causes some State if it has a subactivity with a precondition or effect (respectively) of that State. \nIn other words, the state may not be required directly before, or cause directly after the activity, but by some more specialized sub-activity.\nAn Activity occurs at some point in time and space.\nAn Activity takes place during some interval, and so has some duration.\nAn Activity may have some Manifestations that participate in it."
@@ -7915,8 +7915,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "114"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyDataProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Time",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyDataProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Time",
     "range" : "116",
     "description" : {
       "undefined" : "Data property added for organizational purposes, to identify data properties defined in the Time Ontology."
@@ -8134,8 +8134,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "160"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Geom/GeomOntologyDataProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Geom",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Geom/GeomOntologyDataProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Geom",
     "range" : "162",
     "description" : {
       "undefined" : "Data property added for organizational purposes, to group data properties defined in the Geovocab Geometry ontology."
@@ -8241,8 +8241,8 @@
     "attributes" : [ "object", "anonymous" ],
     "id" : "191"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Trip/1.1//1.1#during",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Trip/1.1//1.1",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Trip/1.1//1.1#during",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Trip/1.1//1.1",
     "range" : "43",
     "label" : {
       "IRI-based" : "during"
@@ -8328,8 +8328,8 @@
     "attributes" : [ "reflexive", "object", "external" ],
     "id" : "204"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/existsAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/existsAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "range" : "35",
     "description" : {
       "undefined" : "Objects (e.g. perdurants and their manifestations) exist at some time interval or time point."
@@ -8520,8 +8520,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "231"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/ChangeOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "range" : "43",
     "label" : {
       "IRI-based" : "ChangeOntologyProperty"
@@ -8729,8 +8729,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "270"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Time/TimeOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Time",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Time",
     "range" : "43",
     "description" : {
       "undefined" : "Property added for organizational purposes, to identify properties defined in the Time Ontology."
@@ -9085,9 +9085,9 @@
     "attributes" : [ "object", "anonymous" ],
     "id" : "312"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasPrecondition",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasPrecondition",
     "inverse" : "314",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasPrecondition"
@@ -9097,8 +9097,8 @@
     "attributes" : [ "object" ],
     "id" : "313"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLongitude",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLongitude",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "43",
     "label" : {
       "IRI-based" : "hasLongitude"
@@ -9507,9 +9507,9 @@
     "attributes" : [ "allValues", "external", "datatype" ],
     "id" : "354"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/hasManifestation",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/hasManifestation",
     "inverse" : "237",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "range" : "132",
     "label" : {
       "IRI-based" : "hasManifestation"
@@ -9519,8 +9519,8 @@
     "attributes" : [ "allValues", "inverse functional", "object", "external" ],
     "id" : "355"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/existsAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/existsAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "range" : "131",
     "description" : {
       "undefined" : "Objects (e.g. perdurants and their manifestations) exist at some time interval or time point."
@@ -9682,8 +9682,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "363"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/achievedAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/achievedAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "35",
     "label" : {
       "IRI-based" : "achievedAt"
@@ -9819,8 +9819,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "370"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/achievedAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/achievedAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "35",
     "label" : {
       "IRI-based" : "achievedAt"
@@ -9854,8 +9854,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "226"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/OM/OMOntologyDataProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/OM",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/OM",
     "range" : "79",
     "description" : {
       "undefined" : "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology."
@@ -9895,8 +9895,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "373"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/preconditionOf",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "preconditionOf"
@@ -9935,8 +9935,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "377"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Change/manifestationOf",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Change",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Change/manifestationOf",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Change",
     "range" : "236",
     "label" : {
       "IRI-based" : "manifestationOf"
@@ -9946,8 +9946,8 @@
     "attributes" : [ "allValues", "functional", "object", "external" ],
     "id" : "378"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/enables",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/enables",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "enables"
@@ -9957,8 +9957,8 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "379"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasSubstate",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasSubstate",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasSubstate"
@@ -9968,9 +9968,9 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "380"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/effectOf",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/effectOf",
     "inverse" : "383",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "effectOf"
@@ -9981,9 +9981,9 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "382"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/causedBy",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/causedBy",
     "inverse" : "384",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "causedBy"
@@ -10155,8 +10155,8 @@
     "attributes" : [ "allValues", "external", "datatype" ],
     "id" : "410"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLocation",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "172",
     "label" : {
       "IRI-based" : "hasLocation"
@@ -10234,8 +10234,8 @@
     "attributes" : [ "allValues", "external", "datatype" ],
     "id" : "414"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasAltitude",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasAltitude",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "43",
     "label" : {
       "IRI-based" : "hasAltitude"
@@ -10272,8 +10272,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "421"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/participatesIn",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/participatesIn",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "43",
     "label" : {
       "IRI-based" : "participatesIn"
@@ -10465,8 +10465,8 @@
     "attributes" : [ "transitive", "object", "external" ],
     "id" : "19"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/SpatialLocOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialLocOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "43",
     "description" : {
       "undefined" : "Property added for organizational purposes, to identify properties defined in the iCity-SpatialLoc ontology."
@@ -10659,9 +10659,9 @@
     "attributes" : [ "object", "external" ],
     "id" : "21"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/effectOf",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/effectOf",
     "inverse" : "383",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "effectOf"
@@ -11039,8 +11039,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "462"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasEffect",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasEffect",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasEffect"
@@ -11725,8 +11725,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "217"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/occursAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/occursAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "35",
     "label" : {
       "IRI-based" : "occursAt"
@@ -11774,8 +11774,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "488"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasDecomp",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasDecomp",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasDecomp"
@@ -11967,8 +11967,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "493"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/stateTypeOf",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/stateTypeOf",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "132",
     "label" : {
       "IRI-based" : "stateTypeOf"
@@ -12426,9 +12426,9 @@
     "attributes" : [ "object", "anonymous" ],
     "id" : "519"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasParticipant",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasParticipant",
     "inverse" : "423",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "132",
     "label" : {
       "IRI-based" : "hasParticipant"
@@ -12791,8 +12791,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "542"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Geom/GeomOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Geom",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Geom/GeomOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Geom",
     "range" : "43",
     "description" : {
       "undefined" : "Property added for organizational purposes, to group properties defined in the Geovocab Geometry ontology."
@@ -13117,8 +13117,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "555"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLatitude",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLatitude",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "43",
     "label" : {
       "IRI-based" : "hasLatitude"
@@ -13471,9 +13471,9 @@
     "attributes" : [ "object", "external" ],
     "id" : "543"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasParticipant",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasParticipant",
     "inverse" : "423",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "132",
     "label" : {
       "IRI-based" : "hasParticipant"
@@ -13483,9 +13483,9 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "564"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/enabledBy",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/enabledBy",
     "inverse" : "566",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "enabledBy"
@@ -13495,8 +13495,8 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "565"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc/hasLocation",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/SpatialLoc",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/SpatialLoc",
     "range" : "172",
     "label" : {
       "IRI-based" : "hasLocation"
@@ -13509,8 +13509,8 @@
     "attributes" : [ "allValues", "object", "external" ],
     "id" : "567"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasSubactivity",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasSubactivity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "150",
     "label" : {
       "IRI-based" : "hasSubactivity"
@@ -13520,9 +13520,9 @@
     "attributes" : [ "allValues", "object" ],
     "id" : "568"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasPrecondition",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasPrecondition",
     "inverse" : "314",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasPrecondition"
@@ -13560,8 +13560,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "570"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/occursAt",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/occursAt",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "131",
     "label" : {
       "IRI-based" : "occursAt"
@@ -13581,8 +13581,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "572"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/causes",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/causes",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "causes"
@@ -13603,8 +13603,8 @@
     "attributes" : [ "object", "external" ],
     "id" : "213"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/hasEffect",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/hasEffect",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "0",
     "label" : {
       "IRI-based" : "hasEffect"
@@ -13675,8 +13675,8 @@
     "attributes" : [ "external", "datatype" ],
     "id" : "577"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Activity/ActivityOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Activity",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Activity/ActivityOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Activity",
     "range" : "43",
     "description" : {
       "undefined" : "Added for organizational purposes, to identify all properties defined in the Activity ontology."
@@ -13804,8 +13804,8 @@
     "attributes" : [ "transitive", "object", "external" ],
     "id" : "18"
   }, {
-    "iri" : "http://ontology.eil.utoronto.ca/cdm/Spatial/SpatialOntologyProperty",
-    "baseIri" : "http://ontology.eil.utoronto.ca/cdm/Spatial",
+    "iri" : "http://ontology.eil.utoronto.ca/5087/Spatial/SpatialOntologyProperty",
+    "baseIri" : "http://ontology.eil.utoronto.ca/5087/Spatial",
     "range" : "43",
     "description" : {
       "undefined" : "Property added for organizational purposes, to identify properties defined in the GeoVocab Spatial ontology."
