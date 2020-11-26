@@ -11,6 +11,6 @@ The iCity TPSO is comprised of a collection of ontologies, that may be stratefie
 
 The full report, along with current and past versions of the ontology can be accessed in the [docs folder](./docs/).
 
-The iCity TPSO is serving as initial input to several ISO Standards Projects. Continued development towards this is captured in the ontologies in the [cdm folder](./docs/cdm/).
+The iCity TPSO is serving as initial input to several ISO Standards Projects. Continued development towards this is captured in the ontologies in the [5087 folder](./docs/5087/).
 
 
