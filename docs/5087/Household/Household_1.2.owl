@@ -18,6 +18,7 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:Change="http://ontology.eil.utoronto.ca/5087/Change/"
      xmlns:schema="http://schema.org/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/5087/RecurringEvent/#"
@@ -36,10 +37,10 @@
         <dc:issued>November 8, 2017</dc:issued>
         <dc:title>Household Ontology</dc:title>
         <vann:preferredNamespacePrefix>icity-household</vann:preferredNamespacePrefix>
-        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-Household Ontology is designed to capture concepts related to households.
+        <rdfs:comment xml:lang="2016 megan katsumi, icity research group">Developed as part of the overall iCity ontology effort, the iCity-Household Ontology is designed to capture concepts related to households.
 		Changes from previous version:
 		-Imports revised foundational ontologies
-		Copyright @ 2016 Megan Katsumi, iCity Research Group</rdfs:comment>
+		Copyright </rdfs:comment>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/5087/Household/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
         <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
@@ -185,6 +186,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/Household/dwellingUnitOccupiedBy -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/dwellingUnitOccupiedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Household/hasFamilyMember -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/hasFamilyMember">
@@ -217,6 +226,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/Household/householdOccupies -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/householdOccupies">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Household/isMemberOfFamily -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/isMemberOfFamily">
@@ -228,22 +245,6 @@
     <!-- http://ontology.eil.utoronto.ca/5087/Household/isMemberOfHousehold -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/isMemberOfHousehold">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Household/occupiedBy -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/occupiedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Household/occupies -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Household/occupies">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -283,29 +284,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/GCISheltersThing"/>
-        <dc:description>Household as defined in the GCIShelters Ontology</dc:description>
-    </owl:Class>
     
 
 
@@ -362,7 +340,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/occupiedBy"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/dwellingUnitOccupiedBy"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household"/>
             </owl:Restriction>
@@ -501,9 +479,9 @@ One question to consider is to what degree the general/extended Family concept m
     <!-- http://ontology.eil.utoronto.ca/5087/Household/Household -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Household/Household">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household"/>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -569,7 +547,7 @@ Note that a Household, and likely many other classes may have different definiti
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/occupies"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/householdOccupies"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/DwellingUnit"/>
             </owl:Restriction>
@@ -601,6 +579,29 @@ To be defined in greater detail (if required) in future versions.</rdfs:comment>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/GCI/Shelters/GCI-Shelters.owl#Household">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdPD"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/HouseholdPD"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Household/GCISheltersThing"/>
+        <dc:description>Household as defined in the GCIShelters Ontology</dc:description>
+    </owl:Class>
+    
+
+
     <!-- http://schema.org/PostalAddress -->
 
     <owl:Class rdf:about="http://schema.org/PostalAddress"/>
@@ -608,5 +609,5 @@ To be defined in greater detail (if required) in future versions.</rdfs:comment>
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.18.2020-10-27T15:06:34Z) https://github.com/owlcs/owlapi -->
 
