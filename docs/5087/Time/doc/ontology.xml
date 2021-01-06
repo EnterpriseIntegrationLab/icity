@@ -12,8 +12,7 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:time="http://www.w3.org/2006/time#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+     xmlns:terms="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/Time/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/Time/1.1/"/>
         <owl:imports rdf:resource="http://www.w3.org/2006/time#2016"/>
@@ -175,18 +174,6 @@ Ontology engineering by Simon J D Cox</skos:historyNote>
     
 
 
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#alt -->
-
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#alt">
-        <rdfs:comment>The WGS84 altitude of a SpatialThing (decimal meters 
-above the local reference ellipsoid).</rdfs:comment>
-        <rdfs:label>altitude</rdfs:label>
-        <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-    </owl:AnnotationProperty>
-    
-
-
     <!-- http://www.w3.org/ns/adms#relatedDocumentation -->
 
 
@@ -256,7 +243,18 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
     <!-- http://www.w3.org/2006/time#generalYear -->
 
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2006/time#generalYear"/>
+    <rdfs:Datatype rdf:about="http://www.w3.org/2006/time#generalYear">
+        <rdfs:comment xml:lang="es">Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</rdfs:comment>
+        <rdfs:label xml:lang="es">Año generalizado</rdfs:label>
+        <rdfs:label xml:lang="en">Generalized year</rdfs:label>
+        <skos:definition xml:lang="es">Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo.</skos:definition>
+        <skos:definition xml:lang="en">Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</skos:definition>
+    </rdfs:Datatype>
     
 
 
@@ -1323,13 +1321,6 @@ The range of this property is not specified, so can be replaced by any specific 
     
 
 
-    <!-- http://www.w3.org/2000/01/rdf-schema#Resource -->
-
-
-    <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    
-
-
     <!-- http://www.w3.org/2006/time#DateTimeDescription -->
 
 
@@ -2055,16 +2046,6 @@ It is deprecated in this edition of OWL-Time. </skos:historyNote>
     
 
 
-    <!-- http://www.w3.org/2006/time#generalYear -->
-
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#generalYear">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </owl:Class>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2447,43 +2428,18 @@ It is deprecated in this edition of OWL-Time. </skos:historyNote>
         <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
+        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
+    </rdf:Description>
+    <rdf:Description>
         <xsd:pattern>---(0[1-9]|[1-9][0-9])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
     <rdf:Description>
         <xsd:pattern>-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
     </rdf:Description>
-    <rdf:Description>
-        <xsd:pattern>--(0[1-9]|1[0-9]|20)(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?</xsd:pattern>
-    </rdf:Description>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-
-    <rdf:Description rdf:about="http://www.w3.org/2006/time#generalYear">
-        <rdfs:comment xml:lang="es">Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
-            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo.</rdfs:comment>
-        <rdfs:comment xml:lang="en">Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
-Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</rdfs:comment>
-        <rdfs:label xml:lang="es">Año generalizado</rdfs:label>
-        <rdfs:label xml:lang="en">Generalized year</rdfs:label>
-        <skos:definition xml:lang="es">Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
-            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo.</skos:definition>
-        <skos:definition xml:lang="en">Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
-Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</skos:definition>
-        <skos:definition xml:lang="en">Year number - generalization of xsd:gYear, formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type.</skos:definition>
-    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/ -->
+<!-- Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/ -->
 
 

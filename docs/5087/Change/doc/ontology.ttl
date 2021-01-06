@@ -7,19 +7,19 @@
 @base <http://ontology.eil.utoronto.ca/5087/Change/> .
 
 <http://ontology.eil.utoronto.ca/5087/Change/> rdf:type owl:Ontology ;
-                                               owl:versionIRI <http://ontology.eil.utoronto.ca/5087/Change/1.1/> ;
-                                               owl:imports <http://ontology.eil.utoronto.ca/5087/Time/1.1/> ;
-                                               <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
-                                               <http://purl.org/dc/elements/1.1/description> "Many of the concepts identified in the urban system ontologies are subject to change. For example, a Vehicle will have one location at one time, and another location at a later time; it may have only one passenger at one time, and four passengers at a later time. Similarly, many attributes of Persons, Households, and even Transportation Networks are subject to change. An approach to representing changing properties, or fluents, that leverages the 4-dimensionalist perspective was proposed by (Welty, Fikes, and Makarios, 2006). We adopt a similar approach, based on a re-interpretation by Krieger (2008) requiring the division of classes that are subject to change into two parts: invariant and variant parts of the concept; we refer to these as TimeVaryingConcept and Manifestation classes, respectively. By distinguishing between these class types and recognizing the properties that are (and aren't) subject to change, the ontology supports the capture of both the static and dynamic aspects of a particular entity. " ;
-                                               <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
-                                               <http://purl.org/dc/elements/1.1/title> "iCity Change Ontology" ;
-                                               <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-Change" ;
-                                               rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Vehicle ontology is designed to capture concepts related to vehicles.
+                                                owl:versionIRI <http://ontology.eil.utoronto.ca/5087/Change/1.1/> ;
+                                                owl:imports <http://ontology.eil.utoronto.ca/5087/Time/1.1/> ;
+                                                <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
+                                                <http://purl.org/dc/elements/1.1/description> "Many of the concepts identified in the urban system ontologies are subject to change. For example, a Vehicle will have one location at one time, and another location at a later time; it may have only one passenger at one time, and four passengers at a later time. Similarly, many attributes of Persons, Households, and even Transportation Networks are subject to change. An approach to representing changing properties, or fluents, that leverages the 4-dimensionalist perspective was proposed by (Welty, Fikes, and Makarios, 2006). We adopt a similar approach, based on a re-interpretation by Krieger (2008) requiring the division of classes that are subject to change into two parts: invariant and variant parts of the concept; we refer to these as TimeVaryingConcept and Manifestation classes, respectively. By distinguishing between these class types and recognizing the properties that are (and aren't) subject to change, the ontology supports the capture of both the static and dynamic aspects of a particular entity. " ;
+                                                <http://purl.org/dc/elements/1.1/issued> "November 29, 2016" ;
+                                                <http://purl.org/dc/elements/1.1/title> "iCity Change Ontology" ;
+                                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-Change" ;
+                                                rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Vehicle ontology is designed to capture concepts related to vehicles.
 		Changes from previous version:
 		-Added property to indicate when another two objects are part of the same TimeVaryingConcept: sameTimeVaryingConcept
-		Copyright @ 2016 Megan Katsumi, iCity Research Group""" ;
-                                               owl:versionInfo 1.1 ;
-                                               <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Refer to Report of iCity Ontology v1." .
+		Copyright """@2016 megan katsumi, icity research group ;
+                                                owl:versionInfo 1.1 ;
+                                                <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Refer to Report of iCity Ontology v1." .
 
 #################################################################
 #    Annotation properties
@@ -27,6 +27,12 @@
 
 ###  http://creativecommons.org/ns#license
 <http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/isInvariant
+:isInvariant rdf:type owl:AnnotationProperty ;
+             rdfs:comment "Identifies whether a property is to be interpreted as invariant (i.e., its value is not subject to change over time)."@en ;
+             rdfs:range xsd:boolean .
 
 
 ###  http://purl.org/dc/elements/1.1/creator
@@ -85,14 +91,6 @@
 owl:versionInfo rdf:type owl:AnnotationProperty .
 
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
-<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
-above the local reference ellipsoid).""" ;
-                                              rdfs:label "altitude" ;
-                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
-
-
 ###  http://www.w3.org/ns/adms#relatedDocumentation
 <http://www.w3.org/ns/adms#relatedDocumentation> rdf:type owl:AnnotationProperty .
 
@@ -137,26 +135,36 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 ###  http://ontology.eil.utoronto.ca/5087/Change/existsAt
 :existsAt rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :ChangeOntologyProperty ;
+          rdfs:domain :Manifestation ;
           rdfs:range <http://www.w3.org/2006/time#TemporalEntity> ;
           <http://purl.org/dc/elements/1.1/description> "Objects (e.g. perdurants and their manifestations) exist at some time interval or time point." .
 
 
-###  http://ontology.eil.utoronto.ca/5087/Change/hasManifestation
-:hasManifestation rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :ChangeOntologyProperty ;
-                  owl:inverseOf :manifestationOf ;
-                  rdf:type owl:InverseFunctionalProperty .
+###  http://ontology.eil.utoronto.ca/5087/Change/hasNextManifestation
+:hasNextManifestation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :ChangeOntologyProperty ;
+                      rdf:type owl:InverseFunctionalProperty ;
+                      rdfs:domain :Manifestation ;
+                      rdfs:range :Manifestation .
 
 
-###  http://ontology.eil.utoronto.ca/5087/Change/manifestationOf
-:manifestationOf rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf :ChangeOntologyProperty ;
-                 rdf:type owl:FunctionalProperty .
+###  http://ontology.eil.utoronto.ca/5087/Change/precedesManifestation
+:precedesManifestation rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :ChangeOntologyProperty ;
+                       rdfs:domain :FirstManifestation ;
+                       rdfs:range [ owl:intersectionOf ( :Manifestation
+                                                         [ rdf:type owl:Class ;
+                                                           owl:complementOf :FirstManifestation
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+                       rdfs:comment "The relationship between the FirstManifestation and all subsequent Manifestations." .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyProperty
 <http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyProperty> rdf:type owl:ObjectProperty ;
-                                                                <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the Time Ontology." .
+                                                                 <http://purl.org/dc/elements/1.1/description> "Property added for organizational purposes, to identify properties defined in the Time Ontology." .
 
 
 ###  http://www.w3.org/2006/time#after
@@ -500,24 +508,13 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
                                        rdfs:label "temporal unit type"@en .
 
 
-###  http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept
-<http://www.wurvoc.org/vocabularies/om-1.8/sameTimeVaryingConcept> rdf:type owl:ObjectProperty ;
-                                                                   rdfs:subPropertyOf :ChangeOntologyProperty ;
-                                                                   rdf:type owl:ReflexiveProperty ;
-                                                                   owl:propertyChainAxiom ( :manifestationOf
-                                                                                            [ owl:inverseOf :manifestationOf
-                                                                                            ]
-                                                                                          ) ;
-                                                                   rdfs:comment "Indicates that an object is a manifestationOf the sameTimeVaryingConcept as another object." .
-
-
 #################################################################
 #    Data properties
 #################################################################
 
 ###  http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyDataProperty
 <http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyDataProperty> rdf:type owl:DatatypeProperty ;
-                                                                    <http://purl.org/dc/elements/1.1/description> "Data property added for organizational purposes, to identify data properties defined in the Time Ontology." .
+                                                                     <http://purl.org/dc/elements/1.1/description> "Data property added for organizational purposes, to identify data properties defined in the Time Ontology." .
 
 
 ###  http://www.w3.org/2006/time#day
@@ -769,76 +766,46 @@ The range of this property is not specified, so can be replaced by any specific 
                      rdfs:comment "Added for organizational purposes to group the classes defined in the Change Ontology." .
 
 
+###  http://ontology.eil.utoronto.ca/5087/Change/FirstManifestation
+:FirstManifestation rdf:type owl:Class ;
+                    rdfs:subClassOf :Manifestation ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :precedesManifestation ;
+                                      owl:allValuesFrom [ owl:intersectionOf ( :Manifestation
+                                                                               [ rdf:type owl:Class ;
+                                                                                 owl:complementOf :FirstManifestation
+                                                                               ]
+                                                                             ) ;
+                                                          rdf:type owl:Class
+                                                        ]
+                                    ] ;
+                    rdfs:comment """A FirstManifestation represents the first instance in a series of Manifestations corresponding to a particular object.
+
+•	precedesManifestation: identifies all subsequent Manifestations that follow a particular First Manifestation.""" .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Change/Manifestation
 :Manifestation rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                            owl:onProperty :manifestationOf ;
-                                                            owl:someValuesFrom :TimeVaryingConcept
-                                                          ]
-                                                          [ rdf:type owl:Restriction ;
-                                                            owl:onProperty :manifestationOf ;
-                                                            owl:allValuesFrom :TimeVaryingConcept
-                                                          ]
-                                                        ) ;
-                                     rdf:type owl:Class
-                                   ] ;
                rdfs:subClassOf :ChangeOntologyThing ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :manifestationOf ;
-                                 owl:allValuesFrom :TimeVaryingConcept
-                               ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :existsAt ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasNextManifestation ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Manifestation
                                ] ;
-               owl:disjointWith [ owl:intersectionOf ( :TimeVaryingConcept
-                                                       <http://www.w3.org/2006/time#TemporalEntity>
-                                                     ) ;
-                                  rdf:type owl:Class
-                                ] ;
-               <http://purl.org/dc/terms/description> """A Manifestation of some TimeVaryingConcept at a particular point/interval in time.
-A Manifestation exists at some Instant.
-The class of Manifestations is equivalent to the class of things that are manifestations of some TimeVaryingConcept - and only time varying concents - in the manifestationOf relation.""" .
+               rdfs:comment """Manifestations may be interpreted as “snapshots” of an object at some point in time. This enables the representation of changing attributes of an object, without losing information about its past values/relationships. The properties of the class must then be identified as properties that are (and aren't) subject to change, in order to distinguish between the static and dynamic aspects of a particular entity.
 
-
-###  http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept
-:TimeVaryingConcept rdf:type owl:Class ;
-                    owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty :hasManifestation ;
-                                                                 owl:someValuesFrom :Manifestation
-                                                               ]
-                                                               [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty :hasManifestation ;
-                                                                 owl:allValuesFrom :Manifestation
-                                                               ]
-                                                             ) ;
-                                          rdf:type owl:Class
-                                        ] ;
-                    rdfs:subClassOf :ChangeOntologyThing ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :existsAt ;
-                                      owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasManifestation ;
-                                      owl:allValuesFrom :Manifestation
-                                    ] ;
-                    owl:disjointWith [ owl:intersectionOf ( :Manifestation
-                                                            <http://www.w3.org/2006/time#TemporalEntity>
-                                                          ) ;
-                                       rdf:type owl:Class
-                                     ] ;
-                    <http://purl.org/dc/terms/description> """A class that is subject to change is defined as a type of TimeVaryingConcept (e.g. Vehicle may be a subclass of TimeVaryingConcept). The TimeVaryingConcept itself is invariant and defined by properties that do not change over time. As per (Krieger, 2008), we view TimeVaryingConcepts as perdurants (things that occur over time, i.e. processes).
-A TimeVaryingConcept has Manifestations that demonstrate their changing (variant) properties over time.
-Different types (subclasses) of TimeVaryingConcept may be defined based on the Manifestations that are part of them. For example, VehiclePD s have manifestations that are Vehicles.
-A TimeVaryingConcept exists at some Interval.
-The class of TimeVaryingConcepts is equivalent to the class of things that have some Manifestations - and only Manifestations - in the hasManifestation relation.""" .
+•	existsAt: identifies the TemporalEntity that reflects the Instant of Interval in time during which the snapshot of the object holds (is valid). 
+•	hasNextManifestation: identifies the immediate successive Manifestation (i.e. the subsequent snapshot of the object)."""@en .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyThing
 <http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyThing> rdf:type owl:Class ;
-                                                             <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the Time Ontology." .
+                                                              <http://purl.org/dc/elements/1.1/description> "Class added for organizational purposes, to identify classes defined in the Time Ontology." .
 
 
 ###  http://www.w3.org/2006/time#DateTimeDescription
@@ -1298,11 +1265,6 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                    "年"@zh .
 
 
-###  http://www.w3.org/2006/time#generalYear
-<http://www.w3.org/2006/time#generalYear> rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Time/TimeOntologyThing> ,
-                                                          rdfs:Resource .
-
-
 #################################################################
 #    Individuals
 #################################################################
@@ -1598,23 +1560,13 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                        "一年"@zh .
 
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
 ] .
+
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+ ] .
 
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
- ] .
-
-#################################################################
-#    Annotations
-#################################################################
-
-<http://www.w3.org/2006/time#generalYear> rdfs:comment """Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
-Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
-                                           rdfs:label "Generalized year"@en ;
-                                           <http://www.w3.org/2004/02/skos/core#definition> "Year number - generalization of xsd:gYear, formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear. Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."@en .
-
-
-###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/
