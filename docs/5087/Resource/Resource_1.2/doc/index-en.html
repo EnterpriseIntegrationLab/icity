@@ -7,7 +7,7 @@
 
 <!-- SCHEMA.ORG METADATA -->
 <script type="application/ld+json">{"@context":"http://schema.org","@type":"TechArticle","url":"http://ontology.eil.utoronto.ca/5087/Resource/","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://ontology.eil.utoronto.ca/5087/Resource/","name":"iCity Resource Ontology", "headline":"This ontology provides a generic representation of resources that contain core properties generic across all transportation uses. We take the view presented in the TOVE model (Fadel, Fox, and Gruninger, 1994) that "...being a resource is not an innate property of an object but a property that is derived from the role the object plays with respect to an activity". The definition of  a resource is dependent on its participation in an activity occurrence, so the Resource ontology is in fact an extension of the Activity ontology. In this sense, Resources are a class of manifestations, so that rather than have a specialized Resource-perdurant (PD) class, a Resource is a manifestation of some other perdurant class in the ontology. For example, an instance of a Vehicle that is a manifestation of some VehiclePD may also be an instance of a resource, whereas some other instance of a Vehicle that is some later manifestation of the same VehiclePD may not be a Resource, or it may be a different Resource. 
-		", "datePublished":"Thu Apr 16 13:03:55 EDT 2020", "version":"1.2", "license":"http://creativecommons.org/licenses/by/3.0/", "author":[{"@type":"Person","name":"Megan Katsumi"}]}</script>
+		", "datePublished":"Wed Jan 06 08:49:48 EST 2021", "version":"1.2", "license":"http://creativecommons.org/licenses/by/3.0/", "author":[{"@type":"Person","name":"Megan Katsumi"}]}</script>
 
 <script src="resources/jquery.js"></script> 
 <script src="resources/marked.min.js"></script> 
@@ -29,7 +29,7 @@ function loadTOC(){
 				t+='</ul>';
 				j=0;
 			}
-			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).text()+'</a></li>';
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
 			i++;
 		}
 		if(jQuery(this).is('h3')){
@@ -37,14 +37,15 @@ function loadTOC(){
 				t+='<ul>';
 			}
 			j++;
-			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).text()+'</a></li>';
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
 		}
-		t = t.replace(' back to ToC','');
 	  });
 	  t+='</ul>';
 	  $("#toc").html(t); 
 }
-    $(function(){
+ $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ };    $(function(){
       $("#abstract").load("sections/abstract-en.html"); 
       $("#introduction").load("sections/introduction-en.html"); 
       $("#overview").load("sections/overview-en.html"); 
@@ -73,10 +74,12 @@ function loadTOC(){
 <dd>Megan Katsumi</dd>
 
 <dt>Imported Ontologies:</dt>
-<dd><a href="http://ontology.eil.utoronto.ca/ISO21972/iso21972">iso21972</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Activity/">&lt;http://ontology.eil.utoronto.ca/5087/Activity/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Change/">&lt;http://ontology.eil.utoronto.ca/5087/Change/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Mereology/">&lt;http://ontology.eil.utoronto.ca/5087/Mereology/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/OM/">&lt;http://ontology.eil.utoronto.ca/5087/OM/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/SpatialLoc/">&lt;http://ontology.eil.utoronto.ca/5087/SpatialLoc/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Time/">&lt;http://ontology.eil.utoronto.ca/5087/Time/&gt;</a></dd><dd><a href="http://www.opengis.net/ont/geosparql">geosparql</a></dd><dd><a href="http://www.opengis.net/ont/gml">gml</a></dd><dd><a href="http://www.opengis.net/ont/sf">sf</a></dd><dd><a href="http://www.w3.org/2004/02/skos/core">core</a></dd><dd><a href="http://www.w3.org/2006/time">time</a></dd>
+<dd><a href="http://ontology.eil.utoronto.ca/5087/Activity/">&lt;http://ontology.eil.utoronto.ca/5087/Activity/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Change/">&lt;http://ontology.eil.utoronto.ca/5087/Change/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Mereology/">&lt;http://ontology.eil.utoronto.ca/5087/Mereology/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/OM/">&lt;http://ontology.eil.utoronto.ca/5087/OM/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/SpatialLoc/">&lt;http://ontology.eil.utoronto.ca/5087/SpatialLoc/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/5087/Time/">&lt;http://ontology.eil.utoronto.ca/5087/Time/&gt;</a></dd><dd><a href="http://ontology.eil.utoronto.ca/ISO21972/iso21972">iso21972</a></dd><dd><a href="http://www.opengis.net/ont/geosparql">geosparql</a></dd><dd><a href="http://www.opengis.net/ont/gml">gml</a></dd><dd><a href="http://www.opengis.net/ont/sf">sf</a></dd><dd><a href="http://www.w3.org/2004/02/skos/core">core</a></dd><dd><a href="http://www.w3.org/2006/time">time</a></dd>
 
 <dt>Download serialization:</dt><dd><span><a href="ontology.json" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.xml" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://creativecommons.org/licenses/by/3.0/" target="_blank"><img src="https://img.shields.io/badge/License-http://creativecommons.org/licenses/by/3.0/-blue.svg" alt="http://creativecommons.org/licenses/by/3.0/" /></a>
 </dd><dt>Visualization:</dt><dd><a href="webvowl/index.html#" target="_blank"><img src="https://img.shields.io/badge/Visualize_with-WebVowl-blue.svg" alt="Visualize with WebVowl" /></a></dd>
+<!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/OOPSeval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --><dt>Cite as:</dt>
+<dd>Megan Katsumi. iCity Resource Ontology. Revision: 1.2. Retrieved from: http://ontology.eil.utoronto.ca/5087/Resource/1.2/</dd>
 </dl>
 
 <a href="provenance/provenance-en.html" target="_blank">Provenance of this page</a><hr/>
@@ -97,6 +100,7 @@ function loadTOC(){
 <p>
 The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
 </div>
+
 
 </div>
 </body>

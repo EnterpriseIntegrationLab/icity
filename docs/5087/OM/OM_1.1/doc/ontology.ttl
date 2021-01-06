@@ -7,24 +7,24 @@
 @base <http://ontology.eil.utoronto.ca/5087/OM/> .
 
 <http://ontology.eil.utoronto.ca/5087/OM/> rdf:type owl:Ontology ;
-                                           owl:versionIRI <http://ontology.eil.utoronto.ca/5087/OM/1.1/> ;
-                                           owl:imports <http://ontology.eil.utoronto.ca/icity/Time/1.0/> ;
-                                           <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
-                                           <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
-                                           <http://purl.org/dc/elements/1.1/description> """Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as \"10 m\", with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure's numerical value is given in (e.g. metres).
+                                            owl:versionIRI <http://ontology.eil.utoronto.ca/5087/OM/1.1/> ;
+                                            owl:imports <http://ontology.eil.utoronto.ca/icity/Time/1.0/> ;
+                                            <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
+                                            <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
+                                            <http://purl.org/dc/elements/1.1/description> """Ontology to capture concepts related to measurements in order to provide a structured vocabulary to describe, among other things, the different values (measures) that we associate to given quantities. This allows us to provide greater detail regarding specific measurements that are defined in the ontology. Rather than simply have a simple data property to describe the length of some road segment as \"10 m\", with the units of measure ontology we are able to describe the nature of the quantity (i.e. length), its value as a Measure (10 m), and also describe the unit that the measure's numerical value is given in (e.g. metres).
 		The iCity-OM Ontology reuses a small subset of the entire Units of Measure (OM) ontology.""" ;
-                                           <http://purl.org/dc/elements/1.1/issued> "November 8, 2017" ;
-                                           <http://purl.org/dc/elements/1.1/title> "The Ontology of Units of Measure" ;
-                                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-om" ;
-                                           rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
+                                            <http://purl.org/dc/elements/1.1/issued> "November 8, 2017" ;
+                                            <http://purl.org/dc/elements/1.1/title> "The Ontology of Units of Measure" ;
+                                            <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-om" ;
+                                            rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-OM Ontology is designed to capture concepts related to units of measure.
 		Copyright @ 2016 Megan Katsumi, iCity Research Group
 
 Changes from previous version:
 -combined with MonetaryValue ontology
 -added units required for network representation (lane capacity, etc).""" ;
-                                           owl:priorVersion "http://ontology.eil.utoronto.ca/5087/OM/1.0/" ;
-                                           owl:versionInfo 1.1 ;
-                                           <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
+                                            owl:priorVersion "http://ontology.eil.utoronto.ca/5087/OM/1.0/" ;
+                                            owl:versionInfo 1.1 ;
+                                            <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
 
 #################################################################
 #    Annotation properties
@@ -404,6 +404,16 @@ above the local reference ellipsoid).""" ;
 #    Data properties
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty
+:OMOntologyDataProperty rdf:type owl:DatatypeProperty ;
+                        <http://purl.org/dc/elements/1.1/description> "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OM/hasRelativeYear
+:hasRelativeYear rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :OMOntologyDataProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent
 <http://ontology.eil.utoronto.ca/ISO21972/iso21972#exponent> rdf:type owl:DatatypeProperty ;
                                                              rdfs:subPropertyOf :OMOntologyDataProperty .
@@ -422,16 +432,6 @@ above the local reference ellipsoid).""" ;
 ###  http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank
 <http://ontology.eil.utoronto.ca/ISO21972/iso21972#rank> rdf:type owl:DatatypeProperty ;
                                                          rdfs:subPropertyOf :OMOntologyDataProperty .
-
-
-###  http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty
-:OMOntologyDataProperty rdf:type owl:DatatypeProperty ;
-                        <http://purl.org/dc/elements/1.1/description> "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology." .
-
-
-###  http://ontology.eil.utoronto.ca/5087/OM/hasRelativeYear
-:hasRelativeYear rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :OMOntologyDataProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Time/TimeOntologyDataProperty
@@ -556,19 +556,6 @@ above the local reference ellipsoid).""" ;
 #    Classes
 #################################################################
 
-###  http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity
-<http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> ,
-                                                                             [ rdf:type owl:Restriction ;
-                                                                               owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> ;
-                                                                               owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure>
-                                                                             ] ,
-                                                                             [ rdf:type owl:Restriction ;
-                                                                               owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/value> ;
-                                                                               owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Measure>
-                                                                             ] .
-
-
 ###  http://ontology.eil.utoronto.ca/5087/OM/LaneCapacity_unit
 :LaneCapacity_unit rdf:type owl:Class ;
                    rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
@@ -601,6 +588,19 @@ A Monetary Value is measured with some currency.""" .
 :Position_unit rdf:type owl:Class ;
                rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure> ;
                rdfs:comment "Reference systems to indicate geographic position." .
+
+
+###  http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity
+<http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <http://www.wurvoc.org/vocabularies/om-1.8/OMThing> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/unit_of_measure_or_measurement_scale> ;
+                                                                               owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://www.wurvoc.org/vocabularies/om-1.8/value> ;
+                                                                               owl:allValuesFrom <http://www.wurvoc.org/vocabularies/om-1.8/Measure>
+                                                                             ] .
 
 
 ###  http://ontology.eil.utoronto.ca/icity/Time/CalendarPeriod
@@ -841,4 +841,4 @@ basic geo vocab
                                                    rdfs:label "lat/long" .
 
 
-###  Generated by the OWL API (version 5.1.7) https://github.com/owlcs/owlapi/
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/
