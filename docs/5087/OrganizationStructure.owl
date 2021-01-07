@@ -15,6 +15,7 @@
      xmlns:terms="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/1.1/"/>
         <dc:description xml:lang="en">An Organization “represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it. An organization may itself be able to act as an agent.” In this document we include only concepts and properties that focus on the structure of the organization.</dc:description>
         <dc:issued>January 6, 2021</dc:issued>
         <dc:title>Organization Structure Pattern</dc:title>
@@ -242,7 +243,26 @@
     <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasPost"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasSubOrganization"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -257,6 +277,19 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#heldBy"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#postIn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
 </rdf:RDF>
 
