@@ -12,9 +12,11 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:terms="http://purl.org/dc/terms/">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/Agent">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/1.1/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/1.2/"/>
         <dc:description>An Agent is defined in the context of an Activity that it affects or is affected by, or their role within an Organization.  An Agent can be a Person, Organization, Software or Mechanical device.</dc:description>
         <dc:issued>January 6, 2021</dc:issued>
         <dc:title>Agent Pattern</dc:title>
@@ -180,6 +182,22 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Agent/Agent -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Agent/Agent">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/resourceOf"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>An Agent may be a Person or Organization. This is captured in the Person and Ontology patterns.  An Agent can also perform an Activity. 
+We do not include Software or Mechanical Device (at this time). An Agent can be a member of an organization and hold zero or more posts in an organization.</rdfs:comment>
+    </owl:Class>
     
 
 
