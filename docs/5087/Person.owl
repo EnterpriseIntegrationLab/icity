@@ -26,6 +26,7 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/Person/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/1.2/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/1.2/"/>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
@@ -223,6 +224,7 @@ Changes from previous version:
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -240,6 +242,7 @@ Changes from previous version:
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/hasSex">
         <owl:equivalentProperty rdf:resource="http://schema.org/gender"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -257,6 +260,7 @@ Changes from previous version:
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://schema.org/birthDate"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -315,6 +319,14 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/issuedBy -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/issuedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://schema.org/parent -->
 
     <owl:ObjectProperty rdf:about="http://schema.org/parent">
@@ -358,6 +370,12 @@ Changes from previous version:
     
 
 
+    <!-- http://schema.org/identifier -->
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/identifier"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -384,26 +402,31 @@ Changes from previous version:
     <!-- http://ontology.eil.utoronto.ca/5087/Person/Person -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/Person">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasIncome"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasQualification"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Qualification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSkill"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Skill"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -440,6 +463,27 @@ Changes from previous version:
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSex"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Sex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
@@ -464,6 +508,20 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonId">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/issuedBy"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -472,63 +530,6 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing">
         <dc:description>Added for organizational purposes, to identify classes defined in the Person ontology.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Person/PersonPD -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonPD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Person"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Person"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonId"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSex"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Sex"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Person changes over time, the entire entity of a Person is captured by the PersonPD (&quot;person perdurant&quot;) class.</dc:description>
     </owl:Class>
     
 
