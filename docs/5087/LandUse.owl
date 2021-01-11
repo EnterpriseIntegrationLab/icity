@@ -28,26 +28,18 @@
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/1.1/"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCS/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCSv2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/"/>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator>Megan Katsumi</dc:creator>
-        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The iCity-LandUse Ontology captures concepts related to land use and cover over time. The ontology reuses and extends the Land Based Classification Standards (LBCS) Ontology  presented by (Montenegro, Gomes, Urbano, and Duarte, 2011) for this purpose.
-
-		Copyright @ 2016 Megan Katsumi, iCity Research Group
-
-Changes from prior version:
-- revised foundational ontologies
-- added CLUMP and AAFC land use classifications
-- imported GCI-Foundation ontology to capture population information</dc:description>
-        <dc:issued>November 7, 2017</dc:issued>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Land Use Pattern captures concepts related to land use and cover over time. 
+Land Use Classifications provide a means of describing the land cover/use in a standard way. Various classification systems are used to identify types of land use. Currently, we include LBCS, CLUMP, and AAFC.
+The ontology reuses and extends the Land Based Classification Standards (LBCS) Ontology  presented by (Montenegro, Gomes, Urbano, and Duarte, 2011) for this purpose.</dc:description>
+        <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#string">January 11, 2021</dc:issued>
         <dc:title>Land Use Ontology</dc:title>
-        <vann:preferredNamespacePrefix>icity-landuse</vann:preferredNamespacePrefix>
-        <rdfs:comment>Developed as part of the overall iCity ontology effort, the iCity-LandUse Ontology is designed to capture concepts related to land use.</rdfs:comment>
-        <owl:priorVersion>http://ontology.eil.utoronto.ca/5087/LandUse/1.1/</owl:priorVersion>
+        <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">landuse</vann:preferredNamespacePrefix>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
-        <adms:relatedDocumentation>Under development. See report on iCity Ontology v1.</adms:relatedDocumentation>
+        <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under development. Refer to latest version of ISO 5087-1.</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -248,14 +240,6 @@ Changes from prior version:
     <!-- http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/LandUse/hasParcelSize -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/hasParcelSize">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -547,7 +531,9 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
 
     <!-- http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing"/>
+    </owl:Class>
     
 
 
@@ -729,23 +715,15 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/5087/LandUse/Parcel -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/Parcel">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/ParcelPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/ParcelPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/parcelHasLocation"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/associatedArea"/>
@@ -771,50 +749,6 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/LandUse/ParcelPD -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/ParcelPD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/parcelHasLocation"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/hasParcelSize"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/Area"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A parcel may change over time, ParcelPD captures the entire entity of a parcel, i.e. the parcel perdurant.</dc:description>
     </owl:Class>
     
 
@@ -910,43 +844,7 @@ TBD: should this be the same as the CLUMPWater class?</rdfs:comment>
     <!-- http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZonePD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZonePD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/Parcel"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZonePD -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZonePD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/ParcelPD"/>
     </owl:Class>
     
 
