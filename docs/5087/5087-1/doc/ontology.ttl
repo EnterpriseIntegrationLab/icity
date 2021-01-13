@@ -9,9 +9,12 @@
 <http://ontology.eil.utoronto.ca/5087/5087-1/> rdf:type owl:Ontology ;
                                                 owl:versionIRI <http://ontology.eil.utoronto.ca/5087/5087-1/0.1/> ;
                                                 owl:imports <http://ontology.eil.utoronto.ca/5087/Activity/1.2/> ,
+                                                            <http://ontology.eil.utoronto.ca/5087/Agent/1.0/> ,
+                                                            <http://ontology.eil.utoronto.ca/5087/Agreement/1.0/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/Change/1.1/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/Mereology/1.0/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/OM/1.2/> ,
+                                                            <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/1.0/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/RecurringEvent/1.0/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/Resource/1.2/> ,
                                                             <http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/> ,
@@ -501,6 +504,70 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                             rdfs:range <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> .
 
 
+###  http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyObjectProperty
+<http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyObjectProperty> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty
+<http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn
+<http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> ;
+                                                                 owl:inverseOf <http://ontology.eil.utoronto.ca/5087/Agreement/involvesAgent> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/commitsToActivity
+<http://ontology.eil.utoronto.ca/5087/Agreement/commitsToActivity> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/establishedOn
+<http://ontology.eil.utoronto.ca/5087/Agreement/establishedOn> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/hasAgreementDecomp
+<http://ontology.eil.utoronto.ca/5087/Agreement/hasAgreementDecomp> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/hasClaim
+<http://ontology.eil.utoronto.ca/5087/Agreement/hasClaim> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/hasDuty
+<http://ontology.eil.utoronto.ca/5087/Agreement/hasDuty> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/hasNoClaim
+<http://ontology.eil.utoronto.ca/5087/Agreement/hasNoClaim> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/hasPrivilege
+<http://ontology.eil.utoronto.ca/5087/Agreement/hasPrivilege> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/agentInvolvedIn> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/involvesAgent
+<http://ontology.eil.utoronto.ca/5087/Agreement/involvesAgent> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/validFor
+<http://ontology.eil.utoronto.ca/5087/Agreement/validFor> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/validInLocation
+<http://ontology.eil.utoronto.ca/5087/Agreement/validInLocation> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyObjectProperty> .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyProperty
 <http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                      rdfs:comment "Added for organizational purposes to group properties defined in the Change Ontology." .
@@ -617,6 +684,10 @@ Proper parthood is dense and so there exist no immediate proper parts; in other 
                                                                rdfs:subPropertyOf <http://www.wurvoc.org/vocabularies/om-1.8/OMProperty> ;
                                                                rdfs:domain <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity> ;
                                                                rdfs:range <http://ontology.eil.utoronto.ca/5087/OM/Function> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> rdf:type owl:ObjectProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/RecurringEvent/beginsRecurring
@@ -1347,6 +1418,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#hasMember
 <http://www.w3.org/ns/org#hasMember> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                      owl:inverseOf <http://www.w3.org/ns/org#memberOf> ;
                                      rdfs:domain <http://www.w3.org/ns/org#Organization> ;
                                      rdfs:range <http://xmlns.com/foaf/0.1/Agent> ;
@@ -1380,6 +1452,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#hasPost
 <http://www.w3.org/ns/org#hasPost> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                    rdfs:domain <http://www.w3.org/ns/org#Organization> ;
                                    rdfs:range <http://www.w3.org/ns/org#Post> ;
                                    rdfs:comment "Indica il Post che è presente in una Organization."@it ,
@@ -1446,6 +1519,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#hasSubOrganization
 <http://www.w3.org/ns/org#hasSubOrganization> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                               owl:inverseOf <http://www.w3.org/ns/org#subOrganizationOf> ;
                                               rdfs:domain <http://www.w3.org/ns/org#Organization> ;
                                               rdfs:range <http://www.w3.org/ns/org#Organization> ;
@@ -1498,6 +1572,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#heldBy
 <http://www.w3.org/ns/org#heldBy> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                   rdfs:domain <http://www.w3.org/ns/org#Post> ;
                                   rdfs:range <http://xmlns.com/foaf/0.1/Agent> ;
                                   rdfs:comment "Agente que ocupa un puesto."@es ,
@@ -1514,6 +1589,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#holds
 <http://www.w3.org/ns/org#holds> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                  owl:inverseOf <http://www.w3.org/ns/org#heldBy> ;
                                  rdfs:domain <http://xmlns.com/foaf/0.1/Agent> ;
                                  rdfs:range <http://www.w3.org/ns/org#Post> ;
@@ -1581,6 +1657,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#memberOf
 <http://www.w3.org/ns/org#memberOf> rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                     rdfs:domain <http://xmlns.com/foaf/0.1/Agent> ;
                                     rdfs:range <http://www.w3.org/ns/org#Organization> ;
                                     rdfs:comment "Indica che una persona è membro di una Organization senza una precisa indicazione sulla natura di questa appartenenza e sul suo ruolo. Si noti che la scelta del nome di questa proprietà non intende limitarla alla sola  rappresentazione formalmente di un'appartenenza. La proprietà può coprire anche altri coinvolgimenti nell'organizzazione. Questa proprietà può essere specializzata per indicare ruoli all'interno organizzazione o relazioni di diverse tipologie. Ha `org:hasmember` come proprietà inversa opzionale."@it ,
@@ -1632,6 +1709,7 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 
 ###  http://www.w3.org/ns/org#postIn
 <http://www.w3.org/ns/org#postIn> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> ;
                                   owl:inverseOf <http://www.w3.org/ns/org#hasPost> ;
                                   rdfs:domain <http://www.w3.org/ns/org#Post> ;
                                   rdfs:range <http://www.w3.org/ns/org#Organization> ;
@@ -1857,6 +1935,14 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 #    Data properties
 #################################################################
 
+###  http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty
 <http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty> rdf:type owl:DatatypeProperty ;
                                                                  <http://purl.org/dc/elements/1.1/description> "Data property introduced for organization purposes, to identify data properties defined in the Units of Measure Ontology." .
@@ -1865,6 +1951,10 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
 ###  http://ontology.eil.utoronto.ca/5087/OM/hasRelativeYear
 <http://ontology.eil.utoronto.ca/5087/OM/hasRelativeYear> rdf:type owl:DatatypeProperty ;
                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OM/OMOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty> rdf:type owl:DatatypeProperty .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/RecurringEvent/dayOfMonth
@@ -2489,6 +2579,99 @@ A state  cannot be both non-terminal and terminal.
                                                                          ] .
 
 
+###  http://ontology.eil.utoronto.ca/5087/Agent/Agent
+<http://ontology.eil.utoronto.ca/5087/Agent/Agent> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyThing> ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Activity/resourceOf> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Activity/Activity>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasClaim> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasDuty> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasNoClaim> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasPrivilege> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement>
+                                                                   ] ;
+                                                   rdfs:comment """An Agent may be a Person or Organization. This is captured in the Person and Ontology patterns.  An Agent can also perform an Activity. 
+We do not include Software or Mechanical Device (at this time). An Agent can be a member of an organization and hold zero or more posts in an organization.""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Agent/AgentOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/Agreement
+<http://ontology.eil.utoronto.ca/5087/Agreement/Agreement> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyThing> ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/establishedOn> ;
+                                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Instant>
+                                                                           ] ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/validFor> ;
+                                                                             owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
+                                                                           ] ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/validInLocation> ;
+                                                                             owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                           ] ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/involvesAgent> ;
+                                                                             owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                             owl:onClass <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Agreement/AgreementOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement
+<http://ontology.eil.utoronto.ca/5087/Agreement/AtomicAgreement> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agreement/Agreement> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/commitsToActivity> ;
+                                                                                   owl:someValuesFrom <http://ontology.eil.utoronto.ca/5087/Activity/Activity>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasAgreementDecomp> ;
+                                                                                   owl:qualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                   owl:onClass <http://ontology.eil.utoronto.ca/5087/Agreement/Agreement>
+                                                                                 ] ;
+                                                                 owl:disjointWith <http://ontology.eil.utoronto.ca/5087/Agreement/ComplexAgreement> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/ComplexAgreement
+<http://ontology.eil.utoronto.ca/5087/Agreement/ComplexAgreement> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agreement/Agreement> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/5087/Agreement/hasAgreementDecomp> ;
+                                                                                    owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                    owl:onClass <http://ontology.eil.utoronto.ca/5087/Agreement/Agreement>
+                                                                                  ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/ConjunctiveAgreement
+<http://ontology.eil.utoronto.ca/5087/Agreement/ConjunctiveAgreement> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agreement/ComplexAgreement> ;
+                                                                      owl:disjointWith <http://ontology.eil.utoronto.ca/5087/Agreement/DisjunctiveAgreement> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Agreement/DisjunctiveAgreement
+<http://ontology.eil.utoronto.ca/5087/Agreement/DisjunctiveAgreement> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agreement/ComplexAgreement> .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyThing
 <http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyThing> rdf:type owl:Class ;
                                                                   rdfs:comment "Added for organizational purposes to group the classes defined in the Change Ontology." .
@@ -2803,6 +2986,42 @@ A Monetary Value is measured with some currency.""" .
 <http://ontology.eil.utoronto.ca/5087/OM/VolumeUnit> rdf:type owl:Class ;
                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure> ;
                                                      rdfs:label "volume unit" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agent/Agent> ,
+                                                                                          <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasMember> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasPost> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasSubOrganization> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization>
+                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.w3.org/ns/org#heldBy> ;
+                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.w3.org/ns/org#postIn> ;
+                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                    owl:onClass <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization>
+                                                                                  ] .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/RecurringEvent/DailyRecurringEvent
@@ -4231,38 +4450,38 @@ It is deprecated in this edition of OWL-Time. """ ;
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-_:genid251 <http://ontology.eil.utoronto.ca/5087/RecurringEvent/AnnotationProperty> "" ;
+_:genid268 <http://ontology.eil.utoronto.ca/5087/RecurringEvent/AnnotationProperty> "" ;
+            <http://ontology.eil.utoronto.ca/5087/RecurringEvent/Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
+
+_:genid269 <http://ontology.eil.utoronto.ca/5087/RecurringEvent/AnnotationProperty> "" ;
             <http://ontology.eil.utoronto.ca/5087/RecurringEvent/Literal> """Mark S. Fox
 http://eil.utoronto.ca""" .
 
-_:genid252 <http://ontology.eil.utoronto.ca/5087/RecurringEvent/AnnotationProperty> "" ;
-            <http://ontology.eil.utoronto.ca/5087/RecurringEvent/Literal> "City of Toronto Integrated Subject and Service Ontology: Recurring Event Sub-Ontology" .
-
-_:genid253 <http://xmlns.com/foaf/0.1/mbox> "antonio.maccioni@agid.gov.it" ;
-            <http://xmlns.com/foaf/0.1/name> "Antonio Maccioni" .
-
-_:genid254 <http://xmlns.com/foaf/0.1/mbox> "mpoveda@fi.upm.es" ;
-            <http://xmlns.com/foaf/0.1/name> "María Poveda Villalón" .
-
-_:genid255 <http://xmlns.com/foaf/0.1/mbox> "emontiel@fi.upm.es" ;
-            <http://xmlns.com/foaf/0.1/name> "Elena Montiel Ponsoda" .
-
-_:genid256 <http://xmlns.com/foaf/0.1/mbox> "giorgia.lodi@agid.gov.it" ;
-            <http://xmlns.com/foaf/0.1/name> "Giorgia Lodi" .
-
-_:genid257 <http://xmlns.com/foaf/0.1/mbox> "dave@epimorphics.com" ;
-            <http://xmlns.com/foaf/0.1/name> "Dave Reynolds" .
-
-_:genid258 <http://xmlns.com/foaf/0.1/mbox> "ogiraldo@fi.upm.es" ;
-            <http://xmlns.com/foaf/0.1/name> "Olga Ximena Giraldo" .
-
-_:genid259 <http://xmlns.com/foaf/0.1/homepage> <http://www.asahi-net.or.jp/~ax2s-kmtn/> ;
+_:genid270 <http://xmlns.com/foaf/0.1/homepage> <http://www.asahi-net.or.jp/~ax2s-kmtn/> ;
             <http://xmlns.com/foaf/0.1/name> "Shuji Kamitsuna" .
 
-_:genid260 <http://xmlns.com/foaf/0.1/mbox> "dguardiola@quinode.fr" ;
+_:genid271 <http://xmlns.com/foaf/0.1/mbox> "antonio.maccioni@agid.gov.it" ;
+            <http://xmlns.com/foaf/0.1/name> "Antonio Maccioni" .
+
+_:genid272 <http://xmlns.com/foaf/0.1/mbox> "mpoveda@fi.upm.es" ;
+            <http://xmlns.com/foaf/0.1/name> "María Poveda Villalón" .
+
+_:genid273 <http://xmlns.com/foaf/0.1/mbox> "emontiel@fi.upm.es" ;
+            <http://xmlns.com/foaf/0.1/name> "Elena Montiel Ponsoda" .
+
+_:genid274 <http://xmlns.com/foaf/0.1/mbox> "giorgia.lodi@agid.gov.it" ;
+            <http://xmlns.com/foaf/0.1/name> "Giorgia Lodi" .
+
+_:genid275 <http://xmlns.com/foaf/0.1/mbox> "dave@epimorphics.com" ;
+            <http://xmlns.com/foaf/0.1/name> "Dave Reynolds" .
+
+_:genid276 <http://xmlns.com/foaf/0.1/mbox> "ogiraldo@fi.upm.es" ;
+            <http://xmlns.com/foaf/0.1/name> "Olga Ximena Giraldo" .
+
+_:genid277 <http://xmlns.com/foaf/0.1/mbox> "dguardiola@quinode.fr" ;
             <http://xmlns.com/foaf/0.1/name> "Dominique Guardiola" .
 
-_:genid261 <http://xmlns.com/foaf/0.1/mbox> "lupe@fi.upm.es" ;
+_:genid278 <http://xmlns.com/foaf/0.1/mbox> "lupe@fi.upm.es" ;
             <http://xmlns.com/foaf/0.1/name> "Guadalupe Aguado de Cea" .
 
 #################################################################

@@ -11,28 +11,21 @@
                                                       owl:imports <http://ontology.eil.utoronto.ca/5087/Activity/1.2/> ,
                                                                   <http://ontology.eil.utoronto.ca/5087/Change/1.1/> ,
                                                                   <http://ontology.eil.utoronto.ca/5087/Contact/1.0/> ,
+                                                                  <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/1.0/> ,
                                                                   <http://ontology.eil.utoronto.ca/5087/Person/1.2/> ,
                                                                   <http://ontology.eil.utoronto.ca/5087/Resource/1.2/> ,
                                                                   <http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/> ;
-                                                      <http://creativecommons.org/ns#license> "http://creativecommons.org/licenses/by/3.0/" ;
-                                                      <http://purl.org/dc/elements/1.1/creator> "Megan Katsumi" ;
                                                       <http://purl.org/dc/elements/1.1/description> """An organization may be a company or other sort of group of individuals in the urban system with some goal(s).
 An Organization may own Property, including different types of Buildings.
 An Organization may have an address.
 An Organization has at least 2 members.
 An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups' responsibilities.
 An Organization may be divided into Divisions.""" ;
-                                                      <http://purl.org/dc/elements/1.1/issued> "November 7, 2017" ;
                                                       <http://purl.org/dc/elements/1.1/title> "Organization Ontology" ;
-                                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "icity-org" ;
-                                                      rdfs:comment """Developed as part of the overall iCity ontology effort, the iCity-Organization Ontology is designed to capture concepts related to organizations.
-		This ontology reuses the TOVE Organization ontology , as originally presented by (Fox, Barbuceanu, Gruninger, and Lin, 1998) with modifications to account for the difference in our representation of states, where a Goal is a subclass of StateType, and where Activities are enabled/caused by state types.
-This modification also results in the removal of the StateEmpowerment class. Note that it is possible to introduce a similar concept if required, however this would likely take the form of a property that relates an organization agent to some state-types (where the states they are empowered to take an object to, and the object itself, are described by the state type).
-
-		Copyright """@2016 megan katsumi, icity research group  changes from previous version: - updated foundational ontologies ;
+                                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "org" ;
                                                       owl:priorVersion "http://ontology.eil.utoronto.ca/5087/Organization/1.1/" ;
                                                       owl:versionInfo 1.2 ;
-                                                      <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Please see report on iCity Ontology v1." .
+                                                      <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Refer to latest version of ISO 5087-2." .
 
 #################################################################
 #    Annotation properties
@@ -459,11 +452,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
               rdfs:subPropertyOf :OrgOntologyProperty .
 
 
-###  http://ontology.eil.utoronto.ca/5087/Organization/hasBusinessId
-:hasBusinessId rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf :OrgOntologyProperty .
-
-
 ###  http://ontology.eil.utoronto.ca/5087/Organization/hasEmployee
 :hasEmployee rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :OrgOntologyProperty .
@@ -561,6 +549,10 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
          rdfs:subPropertyOf :OrgOntologyProperty .
 
 
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> rdf:type owl:ObjectProperty .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty
 <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> rdf:type owl:ObjectProperty ;
                                                                      <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
@@ -583,7 +575,8 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/hasPersonID
 <http://ontology.eil.utoronto.ca/5087/Person/hasPersonID> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ;
+                                                          <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/hasQualification
@@ -594,7 +587,8 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/5087/Person/hasSex
 <http://ontology.eil.utoronto.ca/5087/Person/hasSex> rdf:type owl:ObjectProperty ;
                                                      owl:equivalentProperty <http://schema.org/gender> ;
-                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ;
+                                                     <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/hasSkill
@@ -605,7 +599,8 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate
 <http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate> rdf:type owl:ObjectProperty ;
                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ,
-                                                                                    <http://schema.org/birthDate> .
+                                                                                    <http://schema.org/birthDate> ;
+                                                                 <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate
@@ -725,6 +720,11 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://schema.org/gender> rdf:type owl:ObjectProperty ;
                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
                            <http://purl.org/dc/elements/1.1/description> "Gender of the person." .
+
+
+###  http://schema.org/issuedBy
+<http://schema.org/issuedBy> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
 
 
 ###  http://schema.org/parent
@@ -862,6 +862,41 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 <http://www.w3.org/2004/02/skos/core#semanticRelation> rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialLocOntologyProperty> .
 
 
+###  http://www.w3.org/ns/org#hasMember
+<http://www.w3.org/ns/org#hasMember> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#hasPost
+<http://www.w3.org/ns/org#hasPost> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#hasSubOrganization
+<http://www.w3.org/ns/org#hasSubOrganization> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#heldBy
+<http://www.w3.org/ns/org#heldBy> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#holds
+<http://www.w3.org/ns/org#holds> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#memberOf
+<http://www.w3.org/ns/org#memberOf> rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
+###  http://www.w3.org/ns/org#postIn
+<http://www.w3.org/ns/org#postIn> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty> .
+
+
 ###  http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt
 <http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt> rdf:type owl:ObjectProperty ;
                                                                   rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Activity/achievedAt> ;
@@ -884,6 +919,10 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyDataProperty
 <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyDataProperty> rdf:type owl:DatatypeProperty .
@@ -909,6 +948,10 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasSerialization
 <http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasSerialization> rdf:type owl:DatatypeProperty ;
                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialLocOntologyDataProperty> .
+
+
+###  http://schema.org/identifier
+<http://schema.org/identifier> rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGML
@@ -1249,17 +1292,6 @@ A state  cannot be both non-terminal and terminal.
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment
 :BusinessEstablishment rdf:type owl:Class ;
-                       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                                    owl:someValuesFrom :BusinessEstablishmentPD
-                                                                  ]
-                                                                  [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                                    owl:allValuesFrom :BusinessEstablishmentPD
-                                                                  ]
-                                                                ) ;
-                                             rdf:type owl:Class
-                                           ] ;
                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
                                        :OrgOntologyThing ,
                                        [ rdf:type owl:Restriction ;
@@ -1278,33 +1310,6 @@ A state  cannot be both non-terminal and terminal.
                                        ] ;
                        <http://purl.org/dc/elements/1.1/description> """Business Establishment: A Business establishment is a physical location where a Firm conducts business.
 A Business Establishment has a Location and may have an address.""" .
-
-
-###  http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishmentPD
-:BusinessEstablishmentPD rdf:type owl:Class ;
-                         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                                      owl:someValuesFrom :BusinessEstablishment
-                                                                    ]
-                                                                    [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                                      owl:allValuesFrom :BusinessEstablishment
-                                                                    ]
-                                                                  ) ;
-                                               rdf:type owl:Class
-                                             ] ;
-                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept> ,
-                                         :OrgOntologyThing ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :hasBusinessId ;
-                                           owl:allValuesFrom :BusinessId
-                                         ] ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
-                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                           owl:onClass <http://www.w3.org/2006/time#Interval>
-                                         ] ;
-                         <http://purl.org/dc/elements/1.1/description> "Businesses change over time. BusinessEstablishmentPD captures the entire entity of a particular business establishment's \"process\"." .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/BusinessId
@@ -1351,17 +1356,6 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/Firm
 :Firm rdf:type owl:Class ;
-      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                   owl:someValuesFrom :FirmPD
-                                                 ]
-                                                 [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                   owl:allValuesFrom :FirmPD
-                                                 ]
-                                               ) ;
-                            rdf:type owl:Class
-                          ] ;
       rdfs:subClassOf :OrgOntologyThing ,
                       :Organization ,
                       [ rdf:type owl:Restriction ;
@@ -1382,26 +1376,9 @@ A Firm has an address and an industry type, and some Employees.
 A Firm may have a Business Establishment(s).""" .
 
 
-###  http://ontology.eil.utoronto.ca/5087/Organization/FirmPD
-:FirmPD rdf:type owl:Class ;
-        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                     owl:someValuesFrom :Firm
-                                                   ]
-                                                   [ rdf:type owl:Restriction ;
-                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                     owl:allValuesFrom :Firm
-                                                   ]
-                                                 ) ;
-                              rdf:type owl:Class
-                            ] ;
-        rdfs:subClassOf :OrgOntologyThing ,
-                        :OrganizationPD ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
-                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onClass <http://www.w3.org/2006/time#Interval>
-                        ] .
+###  http://ontology.eil.utoronto.ca/5087/Organization/ForProfitOrganization
+:ForProfitOrganization rdf:type owl:Class ;
+                       rdfs:subClassOf :Organization .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/FullTimeEmployee
@@ -1438,6 +1415,11 @@ A Firm may have a Business Establishment(s).""" .
       <http://purl.org/dc/elements/1.1/description> "A goal represents some state or complex states, and allows for the representation of various groups' responsibilities." .
 
 
+###  http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization
+:GovernmentOrganization rdf:type owl:Class ;
+                        rdfs:subClassOf :Organization .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Organization/IndustryType
 :IndustryType rdf:type owl:Class ;
               rdfs:subClassOf :OrgOntologyThing .
@@ -1445,12 +1427,17 @@ A Firm may have a Business Establishment(s).""" .
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/Municipality
 :Municipality rdf:type owl:Class ;
-              rdfs:subClassOf :Organization ,
+              rdfs:subClassOf :GovernmentOrganization ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasJurisdiction ;
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
                               ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/NonProfitOrganization
+:NonProfitOrganization rdf:type owl:Class ;
+                       rdfs:subClassOf :Organization .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/Occupation
@@ -1467,17 +1454,6 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/Organization
 :Organization rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                           owl:someValuesFrom :OrganizationPD
-                                                         ]
-                                                         [ rdf:type owl:Restriction ;
-                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                           owl:allValuesFrom :OrganizationPD
-                                                         ]
-                                                       ) ;
-                                    rdf:type owl:Class
-                                  ] ;
               rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
                               :OrgOntologyThing ,
                               [ rdf:type owl:Restriction ;
@@ -1506,18 +1482,6 @@ An Occupation has a type (e.g. sales, skilled trades)""" .
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
                               ] .
-
-
-###  http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD
-:OrganizationPD rdf:type owl:Class ;
-                rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept> ,
-                                :OrgOntologyThing ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass <http://www.w3.org/2006/time#Interval>
-                                ] ;
-                <http://purl.org/dc/elements/1.1/description> "Organizations change over time. OrganizationPD captures the entire entity of a particular organization's \"process\"." .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Organization/PartTimeEmployee
@@ -1625,24 +1589,62 @@ A Role has some authority, requires some skill, and may also have some associate
                       ] .
 
 
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agent/Agent> ,
+                                                                                          <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasMember> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasPost> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.w3.org/ns/org#hasSubOrganization> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization>
+                                                                                          ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post
+<http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.w3.org/ns/org#heldBy> ;
+                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.w3.org/ns/org#postIn> ;
+                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                    owl:onClass <http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization>
+                                                                                  ] .
+
+
 ###  http://ontology.eil.utoronto.ca/5087/Person/Person
 <http://ontology.eil.utoronto.ca/5087/Person/Person> rdf:type owl:Class ;
-                                                     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                                                                  owl:someValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/PersonPD>
-                                                                                                ]
-                                                                                                [ rdf:type owl:Restriction ;
-                                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> ;
-                                                                                                  owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/PersonPD>
-                                                                                                ]
-                                                                                              ) ;
-                                                                           rdf:type owl:Class
-                                                                         ] ;
-                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
+                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agent/Agent> ,
+                                                                     <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
                                                                      <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasIncome> ;
                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasPersonID> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/PersonId>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasQualification> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Qualification>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasSkill> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Skill>
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <http://schema.org/children> ;
@@ -1667,6 +1669,21 @@ A Role has some authority, requires some skill, and may also have some associate
                                                                        owl:onClass <http://ontology.eil.utoronto.ca/5087/OM/Duration>
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasSex> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://ontology.eil.utoronto.ca/5087/Person/Sex>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver> ;
                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                        owl:onDataRange xsd:boolean
@@ -1686,53 +1703,22 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/PersonId
 <http://ontology.eil.utoronto.ca/5087/Person/PersonId> rdf:type owl:Class ;
-                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> .
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://schema.org/issuedBy> ;
+                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onClass <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://schema.org/identifier> ;
+                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
+                                                                       ] .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing
 <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> rdf:type owl:Class ;
                                                                   <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Person ontology." .
-
-
-###  http://ontology.eil.utoronto.ca/5087/Person/PersonPD
-<http://ontology.eil.utoronto.ca/5087/Person/PersonPD> rdf:type owl:Class ;
-                                                       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                                                                    owl:someValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Person>
-                                                                                                  ]
-                                                                                                  [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> ;
-                                                                                                    owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Person>
-                                                                                                  ]
-                                                                                                ) ;
-                                                                             rdf:type owl:Class
-                                                                           ] ;
-                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept> ,
-                                                                       <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
-                                                                         owl:allValuesFrom <http://www.w3.org/2006/time#Interval>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasPersonID> ;
-                                                                         owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/PersonId>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasSex> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                         owl:onClass <http://ontology.eil.utoronto.ca/5087/Person/Sex>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate> ;
-                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                         owl:onClass <http://www.w3.org/2006/time#Instant>
-                                                                       ] ,
-                                                                       [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate> ;
-                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                         owl:onClass <http://www.w3.org/2006/time#Instant>
-                                                                       ] ;
-                                                       <http://purl.org/dc/elements/1.1/description> "A Person changes over time, the entire entity of a Person is captured by the PersonPD (\"person perdurant\") class." .
 
 
 ###  http://ontology.eil.utoronto.ca/5087/Person/Qualification
