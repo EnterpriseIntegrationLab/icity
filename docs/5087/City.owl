@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/5087/City/"
      xml:base="http://ontology.eil.utoronto.ca/5087/City/"
+     xmlns:OM="http://ontology.eil.utoronto.ca/5087/OM/"
+     xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -8,7 +10,9 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
@@ -17,6 +21,7 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/City">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/City/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/LandUse/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/"/>
         <dc:description>The City pattern captures basic information about the geospatial aspects of the city.  In particular it represents the different ways in which the city is administratively divided.</dc:description>
@@ -144,6 +149,39 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty"/>
+    
+
+
+    <!-- http://schema.org/legalName -->
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/legalName">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://schema.org/name -->
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/name">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -156,6 +194,27 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/City/City">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/City/CityDivision"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/legalName"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -164,6 +223,32 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/City/CityDivision">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/properPartOf"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/City/CityDivision"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/name"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
