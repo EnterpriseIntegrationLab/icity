@@ -27,28 +27,21 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/1.1/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/1.0/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/"/>
-        <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
-        <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>An organization may be a company or other sort of group of individuals in the urban system with some goal(s).
 An Organization may own Property, including different types of Buildings.
 An Organization may have an address.
 An Organization has at least 2 members.
 An Organization has some Goal(s); this represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.
 An Organization may be divided into Divisions.</dc:description>
-        <dc:issued>November 7, 2017</dc:issued>
         <dc:title>Organization Ontology</dc:title>
-        <vann:preferredNamespacePrefix>icity-org</vann:preferredNamespacePrefix>
-        <rdfs:comment xml:lang="2016 megan katsumi, icity research group  changes from previous version: - updated foundational ontologies">Developed as part of the overall iCity ontology effort, the iCity-Organization Ontology is designed to capture concepts related to organizations.
-		This ontology reuses the TOVE Organization ontology , as originally presented by (Fox, Barbuceanu, Gruninger, and Lin, 1998) with modifications to account for the difference in our representation of states, where a Goal is a subclass of StateType, and where Activities are enabled/caused by state types.
-This modification also results in the removal of the StateEmpowerment class. Note that it is possible to introduce a similar concept if required, however this would likely take the form of a property that relates an organization agent to some state-types (where the states they are empowered to take an object to, and the object itself, are described by the state type).
-
-		Copyright </rdfs:comment>
+        <vann:preferredNamespacePrefix>org</vann:preferredNamespacePrefix>
         <owl:priorVersion>http://ontology.eil.utoronto.ca/5087/Organization/1.1/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
-        <adms:relatedDocumentation>Under development. Please see report on iCity Ontology v1.</adms:relatedDocumentation>
+        <adms:relatedDocumentation>Under development. Refer to latest version of ISO 5087-2.</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -781,15 +774,6 @@ This modification also results in the removal of the StateEmpowerment class. Not
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/Organization/hasBusinessId -->
-
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/hasBusinessId">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/Organization/hasEmployee -->
 
 
@@ -963,6 +947,13 @@ This modification also results in the removal of the StateEmpowerment class. Not
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty -->
+
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty -->
 
 
@@ -1004,6 +995,7 @@ This modification also results in the removal of the StateEmpowerment class. Not
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -1023,6 +1015,7 @@ This modification also results in the removal of the StateEmpowerment class. Not
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/hasSex">
         <owl:equivalentProperty rdf:resource="http://schema.org/gender"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -1042,6 +1035,7 @@ This modification also results in the removal of the StateEmpowerment class. Not
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://schema.org/birthDate"/>
+        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
     </owl:ObjectProperty>
     
 
@@ -1243,6 +1237,15 @@ This modification also results in the removal of the StateEmpowerment class. Not
     <owl:ObjectProperty rdf:about="http://schema.org/gender">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty"/>
         <dc:description>Gender of the person.</dc:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://schema.org/issuedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://schema.org/issuedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -1540,6 +1543,69 @@ This modification also results in the removal of the StateEmpowerment class. Not
     
 
 
+    <!-- http://www.w3.org/ns/org#hasMember -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasMember">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#hasPost -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasPost">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#hasSubOrganization -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasSubOrganization">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#heldBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#heldBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#holds -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#holds">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#memberOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#memberOf">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#postIn -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#postIn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.wurvoc.org/vocabularies/om-1.8/conjunctiveAchievedAt -->
 
 
@@ -1580,6 +1646,13 @@ This modification also results in the removal of the StateEmpowerment class. Not
      -->
 
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyDataProperty"/>
     
 
 
@@ -1625,6 +1698,13 @@ This modification also results in the removal of the StateEmpowerment class. Not
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasSerialization">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/SpatialLocOntologyDataProperty"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://schema.org/identifier -->
+
+
+    <owl:DatatypeProperty rdf:about="http://schema.org/identifier"/>
     
 
 
@@ -2167,20 +2247,6 @@ A state  cannot be both non-terminal and terminal.
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishmentPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishmentPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf>
@@ -2205,44 +2271,6 @@ A state  cannot be both non-terminal and terminal.
         </rdfs:subClassOf>
         <dc:description>Business Establishment: A Business establishment is a physical location where a Firm conducts business.
 A Business Establishment has a Location and may have an address.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishmentPD -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishmentPD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/hasBusinessId"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/BusinessId"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>Businesses change over time. BusinessEstablishmentPD captures the entire entity of a particular business establishment&apos;s &quot;process&quot;.</dc:description>
     </owl:Class>
     
 
@@ -2317,20 +2345,6 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/Firm">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/FirmPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/FirmPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Organization"/>
         <rdfs:subClassOf>
@@ -2359,33 +2373,11 @@ A Firm may have a Business Establishment(s).</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/Organization/FirmPD -->
+    <!-- http://ontology.eil.utoronto.ca/5087/Organization/ForProfitOrganization -->
 
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/FirmPD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Firm"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Firm"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/ForProfitOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Organization"/>
     </owl:Class>
     
 
@@ -2448,6 +2440,15 @@ A Firm may have a Business Establishment(s).</dc:description>
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Organization"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Organization/IndustryType -->
 
 
@@ -2461,7 +2462,7 @@ A Firm may have a Business Establishment(s).</dc:description>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/Municipality">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Organization"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/hasJurisdiction"/>
@@ -2469,6 +2470,15 @@ A Firm may have a Business Establishment(s).</dc:description>
                 <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Organization/NonProfitOrganization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/NonProfitOrganization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/Organization"/>
     </owl:Class>
     
 
@@ -2497,20 +2507,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/Organization">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
         <rdfs:subClassOf>
@@ -2551,24 +2547,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Organization/OrganizationPD">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>Organizations change over time. OrganizationPD captures the entire entity of a particular organization&apos;s &quot;process&quot;.</dc:description>
     </owl:Class>
     
 
@@ -2744,30 +2722,92 @@ A Role has some authority, requires some skill, and may also have some associate
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasPost"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#hasSubOrganization"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post -->
+
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Post">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/OrganizationStructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#heldBy"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#postIn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/OrganizationStructure/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Person/Person -->
 
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/Person">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonPD"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/manifestationOf"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonPD"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasIncome"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonId"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasQualification"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Qualification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSkill"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Skill"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2804,6 +2844,27 @@ A Role has some authority, requires some skill, and may also have some associate
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSex"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Sex"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
@@ -2829,6 +2890,20 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonId">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/issuedBy"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Agent/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2838,64 +2913,6 @@ Note that some properties are not defined in the Person ontology, but in an exte
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing">
         <dc:description>Added for organizational purposes, to identify classes defined in the Person ontology.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Person/PersonPD -->
-
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Person/PersonPD">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Person"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasManifestation"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Person"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#Interval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasPersonID"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/PersonId"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/hasSex"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/Sex"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Person changes over time, the entire entity of a Person is captured by the PersonPD (&quot;person perdurant&quot;) class.</dc:description>
     </owl:Class>
     
 

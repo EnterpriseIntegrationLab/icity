@@ -1,0 +1,1890 @@
+@prefix : <http://ontology.eil.utoronto.ca/5087/Bylaw#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://ontology.eil.utoronto.ca/5087/Bylaw> .
+
+<http://ontology.eil.utoronto.ca/5087/Bylaw> rdf:type owl:Ontology ;
+                                              owl:versionIRI <http://ontology.eil.utoronto.ca/5087/Bylaw/1.0/> ;
+                                              owl:imports <http://ontology.eil.utoronto.ca/5087/City/1.0/> ,
+                                                          <http://ontology.eil.utoronto.ca/5087/LandUse/1.2/> ,
+                                                          <http://ontology.eil.utoronto.ca/5087/Organization/1.2/> ,
+                                                          <http://ontology.eil.utoronto.ca/5087/Person/1.2/> ;
+                                              <http://purl.org/dc/elements/1.1/description> """“Municipal by-laws are public regulatory laws which apply in a certain area. The main difference between a by-law and a law passed by a national/federal or regional/state body is that a by-law is made by a non-sovereign body, which derives its authority from another governing body, and can only be made on a limited range of matters. A local council or municipal government derives its power to pass laws through a law of the national or regional government which specifies what things the town or city may regulate through by-laws. It is therefore a form of delegated legislation.” (Wikipedia, 2020)
+“A municipal by-law is no different than any other law of the land, and can be enforced with penalties, challenged in court and must comply with higher levels of law. Municipal bylaws are often enforceable through the public justice system, and offenders can be charged with a criminal offence for breach of a bylaw.” (Alberta, 2017)
+The intent of the Bylaw ontology is to capture the major components of a city bylaw, such as dates, geographic areas of application, penalties, etc. It is not intended to provide a legal semantics with which to codify a particular bylaw. The following three types of bylaws are represented in the Bylaw Ontology (Alberta, 2017): 
+1.	Main bylaws; 
+2.	Amending bylaws, which reflect material changes, in principle or substance, to an existing bylaw; and 
+3.	Revision bylaws, which reflect limited changes to an existing bylaw.""" ;
+                                              <http://purl.org/dc/elements/1.1/title> "Bylaw Pattern" ;
+                                              <http://purl.org/vocab/vann/preferredNamespacePrefix> "bylaw" ;
+                                              owl:versionInfo 1.0 ;
+                                              <http://www.w3.org/ns/adms#relatedDocumentation> "Under development. Refer to latest draft of ISO 5087-2." .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://creativecommons.org/ns#license
+<http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/issued
+<http://purl.org/dc/elements/1.1/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+<http://purl.org/dc/terms/rights> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/adms#relatedDocumentation
+<http://www.w3.org/ns/adms#relatedDocumentation> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasClause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasClause> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasDefinition
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasDefinition> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasPenaltyClause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasPenaltyClause> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasRepealClause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasRepealClause> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasSchedule
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasSchedule> rdf:type owl:ObjectProperty ;
+                                                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasSeveranceClause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasSeveranceClause> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasTransitionClause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasTransitionClause> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/hasType
+<http://ontology.eil.utoronto.ca/5087/Bylaw/hasType> rdf:type owl:ObjectProperty ;
+                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/impacts
+<http://ontology.eil.utoronto.ca/5087/Bylaw/impacts> rdf:type owl:ObjectProperty ;
+                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/existsAt
+<http://ontology.eil.utoronto.ca/5087/Change/existsAt> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/hasManifestation
+<http://ontology.eil.utoronto.ca/5087/Change/hasManifestation> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/manifestationOf
+<http://ontology.eil.utoronto.ca/5087/Change/manifestationOf> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/activityDimension
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/activityDimension> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/functionDimension
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/functionDimension> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/ownershipDimension
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/ownershipDimension> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/siteDimension
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/siteDimension> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/structureDimension
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/structureDimension> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty
+<http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                       <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify all properties defined in the Land Use ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/associatedArea
+<http://ontology.eil.utoronto.ca/5087/LandUse/associatedArea> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasCardinality
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasCardinality> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> ;
+                                                              owl:inverseOf <http://ontology.eil.utoronto.ca/ISO21972/iso21972#cardinality_of> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasEmployedPopulation
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasEmployedPopulation> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasResidentPopulation> ;
+                                                                     rdfs:range <http://ontology.eil.utoronto.ca/5087/LandUse/EmployedPopulation> ;
+                                                                     rdfs:comment "A Parcel may have a number of employed residents that is subject to change over time." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasPopulation
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasPopulation> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> ;
+                                                             rdfs:comment "A Parcel may have some population that is subject to change over time." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasResidentPopulation
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasResidentPopulation> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/hasPopulation> ;
+                                                                     rdfs:range <http://ontology.eil.utoronto.ca/5087/LandUse/ResidentPopulation> ;
+                                                                     rdfs:comment "A parcel may have some population of residents at a given point in time." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/parcelHasLocation
+<http://ontology.eil.utoronto.ca/5087/LandUse/parcelHasLocation> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyProperty> ,
+                                                                                    <http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation> ;
+                                                                 <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty
+<http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                        <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the iCity-Organization ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/consistsOf
+<http://ontology.eil.utoronto.ca/5087/Organization/consistsOf> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/employedAs
+<http://ontology.eil.utoronto.ca/5087/Organization/employedAs> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/employedBy
+<http://ontology.eil.utoronto.ca/5087/Organization/employedBy> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/enrolledIn
+<http://ontology.eil.utoronto.ca/5087/Organization/enrolledIn> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> ;
+                                                               rdfs:domain <http://ontology.eil.utoronto.ca/5087/Organization/Student> ;
+                                                               rdfs:range <http://ontology.eil.utoronto.ca/5087/Organization/EducationalInstitution> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasAnnualPay
+<http://ontology.eil.utoronto.ca/5087/Organization/hasAnnualPay> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasAuthority
+<http://ontology.eil.utoronto.ca/5087/Organization/hasAuthority> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/hasEmployee> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasEmploymentStatus
+<http://ontology.eil.utoronto.ca/5087/Organization/hasEmploymentStatus> rdf:type owl:ObjectProperty ;
+                                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> ;
+                                                                        rdfs:domain <http://ontology.eil.utoronto.ca/5087/Organization/Employee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasEstablishment
+<http://ontology.eil.utoronto.ca/5087/Organization/hasEstablishment> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasFirmId
+<http://ontology.eil.utoronto.ca/5087/Organization/hasFirmId> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasGoal
+<http://ontology.eil.utoronto.ca/5087/Organization/hasGoal> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasIndustryType
+<http://ontology.eil.utoronto.ca/5087/Organization/hasIndustryType> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasJurisdiction
+<http://ontology.eil.utoronto.ca/5087/Organization/hasJurisdiction> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasOccupationType
+<http://ontology.eil.utoronto.ca/5087/Organization/hasOccupationType> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasOrgMember
+<http://ontology.eil.utoronto.ca/5087/Organization/hasOrgMember> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> ,
+                                                                                    <http://ontology.eil.utoronto.ca/organization.owl#hasMember> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasPay
+<http://ontology.eil.utoronto.ca/5087/Organization/hasPay> rdf:type owl:ObjectProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasProcess
+<http://ontology.eil.utoronto.ca/5087/Organization/hasProcess> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hasResource
+<http://ontology.eil.utoronto.ca/5087/Organization/hasResource> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/hourlyPay
+<http://ontology.eil.utoronto.ca/5087/Organization/hourlyPay> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/memberOfDivision
+<http://ontology.eil.utoronto.ca/5087/Organization/memberOfDivision> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/overtimePay
+<http://ontology.eil.utoronto.ca/5087/Organization/overtimePay> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/performedBy
+<http://ontology.eil.utoronto.ca/5087/Organization/performedBy> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/playsRole
+<http://ontology.eil.utoronto.ca/5087/Organization/playsRole> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/requiresSkill
+<http://ontology.eil.utoronto.ca/5087/Organization/requiresSkill> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/worksAt
+<http://ontology.eil.utoronto.ca/5087/Organization/worksAt> rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty
+<http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> rdf:type owl:ObjectProperty ;
+                                                                     <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify properties defined in the Person ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty
+<http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> rdf:type owl:ObjectProperty ;
+                                                                <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the properties reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasAge
+<http://ontology.eil.utoronto.ca/5087/Person/hasAge> rdf:type owl:ObjectProperty ;
+                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasIncome
+<http://ontology.eil.utoronto.ca/5087/Person/hasIncome> rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasPersonID
+<http://ontology.eil.utoronto.ca/5087/Person/hasPersonID> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ;
+                                                          <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasQualification
+<http://ontology.eil.utoronto.ca/5087/Person/hasQualification> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasSex
+<http://ontology.eil.utoronto.ca/5087/Person/hasSex> rdf:type owl:ObjectProperty ;
+                                                     owl:equivalentProperty <http://schema.org/gender> ;
+                                                     rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ;
+                                                     <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/hasSkill
+<http://ontology.eil.utoronto.ca/5087/Person/hasSkill> rdf:type owl:ObjectProperty ;
+                                                       rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate
+<http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ,
+                                                                                    <http://schema.org/birthDate> ;
+                                                                 <http://ontology.eil.utoronto.ca/5087/Change/isInvariant> "true"^^xsd:boolean .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate
+<http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> ,
+                                                                                    <http://schema.org/deathDate> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation
+<http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#hasAuthority
+<http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> rdf:type owl:ObjectProperty .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#hasMember
+<http://ontology.eil.utoronto.ca/organization.owl#hasMember> rdf:type owl:ObjectProperty .
+
+
+###  http://schema.org/address
+<http://schema.org/address> rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                            <http://purl.org/dc/elements/1.1/description> "Physical address of the item." .
+
+
+###  http://schema.org/birthDate
+<http://schema.org/birthDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of birth." .
+
+
+###  http://schema.org/children
+<http://schema.org/children> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                             <http://purl.org/dc/elements/1.1/description> "A child of the person." .
+
+
+###  http://schema.org/deathDate
+<http://schema.org/deathDate> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                              <http://purl.org/dc/elements/1.1/description> "Date of death." .
+
+
+###  http://schema.org/gender
+<http://schema.org/gender> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "Gender of the person." .
+
+
+###  http://schema.org/issuedBy
+<http://schema.org/issuedBy> rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyProperty> .
+
+
+###  http://schema.org/legislationJurisdiction
+<http://schema.org/legislationJurisdiction> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://schema.org/legislationLegalForce
+<http://schema.org/legislationLegalForce> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://schema.org/legislationType
+<http://schema.org/legislationType> rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> .
+
+
+###  http://schema.org/parent
+<http://schema.org/parent> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "A parent of this person. Supersedes parents." .
+
+
+###  http://schema.org/spouse
+<http://schema.org/spouse> rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgProperty> ;
+                           <http://purl.org/dc/elements/1.1/description> "The person's spouse." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/dateInEffect
+<http://ontology.eil.utoronto.ca/5087/Bylaw/dateInEffect> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> rdf:type owl:DatatypeProperty ;
+                                                           rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyDataProperty> ;
+                                                           rdfs:domain <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode
+<http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> rdf:type owl:DatatypeProperty ;
+                                                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyDataProperty> ;
+                                                            rdfs:domain <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                            rdfs:range xsd:string .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyDataProperty
+<http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyDataProperty> rdf:type owl:DatatypeProperty .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver
+<http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver> rdf:type owl:DatatypeProperty ;
+                                                               rdfs:range xsd:boolean .
+
+
+###  http://schema.org/abstract
+<http://schema.org/abstract> rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/datePublished
+<http://schema.org/datePublished> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/description
+<http://schema.org/description> rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/expires
+<http://schema.org/expires> rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/identifier
+<http://schema.org/identifier> rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/keywords
+<http://schema.org/keywords> rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/legalName
+<http://schema.org/legalName> rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty> .
+
+
+###  http://schema.org/legislationDate
+<http://schema.org/legislationDate> rdf:type owl:DatatypeProperty ;
+                                    rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/legislationIdentifier
+<http://schema.org/legislationIdentifier> rdf:type owl:DatatypeProperty ;
+                                          rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> .
+
+
+###  http://schema.org/name
+<http://schema.org/name> rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyDataProperty> ,
+                                            <http://ontology.eil.utoronto.ca/5087/City/CityOntologyDataProperty> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ontology.eil.utoronto.ca/5087/Activity/Activity
+<http://ontology.eil.utoronto.ca/5087/Activity/Activity> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Activity/State
+<http://ontology.eil.utoronto.ca/5087/Activity/State> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/AmendingBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/AmendingBylaw> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw> ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://schema.org/legislationType> ;
+                                                                             owl:hasValue <http://ontology.eil.utoronto.ca/5087/Bylaw/amendingBylaw>
+                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasClause> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasDefinition> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Definition>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasPenaltyClause> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasRepealClause> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasSchedule> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Schedule>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasSeveranceClause> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasTransitionClause> ;
+                                                                     owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/impacts> ;
+                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                         owl:unionOf ( <http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Organization/Organization>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Person/Person>
+                                                                                                     )
+                                                                                       ]
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/legislationLegalForce> ;
+                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                         owl:oneOf ( <http://schema.org/InForce>
+                                                                                                     <http://schema.org/NotInForce>
+                                                                                                     <http://schema.org/PartiallyInForce>
+                                                                                                   )
+                                                                                       ]
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/legislationType> ;
+                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                         owl:oneOf ( <http://ontology.eil.utoronto.ca/5087/Bylaw/amendingBylaw>
+                                                                                                     <http://ontology.eil.utoronto.ca/5087/Bylaw/mainBylaw>
+                                                                                                     <http://ontology.eil.utoronto.ca/5087/Bylaw/revisionBylaw>
+                                                                                                   )
+                                                                                       ]
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/legislationJurisdiction> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onClass <http://ontology.eil.utoronto.ca/5087/City/City>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/keywords> ;
+                                                                     owl:allValuesFrom xsd:string
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/dateInEffect> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:dateTime
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/abstract> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:string
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/datePublished> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:dateTime
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/expires> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:dateTime
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/legislationDate> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:dateTime
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://schema.org/legislationIdentifier> ;
+                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                     owl:onDataRange xsd:string
+                                                                   ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/Clause
+<http://ontology.eil.utoronto.ca/5087/Bylaw/Clause> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasType> ;
+                                                                      owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                           owl:oneOf ( <http://ontology.eil.utoronto.ca/5087/Bylaw/bylaw>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Bylaw/penalty>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Bylaw/repeal>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Bylaw/schedule>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Bylaw/severance>
+                                                                                                       <http://ontology.eil.utoronto.ca/5087/Bylaw/transition>
+                                                                                                     )
+                                                                                         ]
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasClause> ;
+                                                                      owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/Mereology/properPartOf> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onClass [ rdf:type owl:Class ;
+                                                                                    owl:unionOf ( <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw>
+                                                                                                  <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                                                )
+                                                                                  ]
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://schema.org/description> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:string
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://schema.org/identifier> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:string
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://schema.org/name> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:string
+                                                                    ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/Definition
+<http://ontology.eil.utoronto.ca/5087/Bylaw/Definition> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://ontology.eil.utoronto.ca/5087/Mereology/properPartOf> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/description> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onDataRange xsd:string
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://schema.org/name> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onDataRange xsd:string
+                                                                        ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/MainBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/MainBylaw> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://schema.org/legislationType> ;
+                                                                         owl:hasValue <http://ontology.eil.utoronto.ca/5087/Bylaw/mainBylaw>
+                                                                       ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/RevisionBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/RevisionBylaw> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw> ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://schema.org/legislationType> ;
+                                                                             owl:hasValue <http://ontology.eil.utoronto.ca/5087/Bylaw/revisionBylaw>
+                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/Schedule
+<http://ontology.eil.utoronto.ca/5087/Bylaw/Schedule> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Bylaw/BylawOntologyThing> ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/Bylaw/hasClause> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Bylaw/Clause>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/Mereology/properPartOf> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://ontology.eil.utoronto.ca/5087/Bylaw/Bylaw>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/description> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onDataRange xsd:string
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/identifier> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onDataRange xsd:string
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://schema.org/name> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onDataRange xsd:string
+                                                                      ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/Manifestation
+<http://ontology.eil.utoronto.ca/5087/Change/Manifestation> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept
+<http://ontology.eil.utoronto.ca/5087/Change/TimeVaryingConcept> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/City/City
+<http://ontology.eil.utoronto.ca/5087/City/City> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing> ,
+                                                                 <http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart> ;
+                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/City/CityDivision>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://schema.org/legalName> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onDataRange xsd:string
+                                                                 ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/City/CityDivision
+<http://ontology.eil.utoronto.ca/5087/City/CityDivision> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Mereology/properPartOf> ;
+                                                                           owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                               owl:unionOf ( <http://ontology.eil.utoronto.ca/5087/City/CityDivision>
+                                                                                                             <http://ontology.eil.utoronto.ca/ISO21972/iso21972#City>
+                                                                                                           )
+                                                                                             ]
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://schema.org/name> ;
+                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onDataRange xsd:string
+                                                                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing
+<http://ontology.eil.utoronto.ca/5087/City/CityOntologyThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing
+<http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Activity
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Activity> rdf:type owl:Class ;
+                                                       owl:equivalentClass <http://ontology.eil.utoronto.ca/5087/LandUse/ActivityClassification> ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Function
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Function> rdf:type owl:Class ;
+                                                       owl:equivalentClass <http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification> ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Ownership
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Ownership> rdf:type owl:Class ;
+                                                        owl:equivalentClass <http://ontology.eil.utoronto.ca/5087/LandUse/OwnershipClassification> ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel> rdf:type owl:Class ;
+                                                     <http://purl.org/dc/elements/1.1/description> """A Parcel is a way of defining some area in an urban system.
+A Parcel has a Location.
+A Parcel may be classified as having some type of Land Use.
+There may be other types (subclasses) of Parcel, defined in more precise or different ways, such as a Zone.""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Site
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Site> rdf:type owl:Class ;
+                                                   owl:equivalentClass <http://ontology.eil.utoronto.ca/5087/LandUse/SiteClassification> ;
+                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LBCSv2/Structure
+<http://ontology.eil.utoronto.ca/5087/LBCSv2/Structure> rdf:type owl:Class ;
+                                                        owl:equivalentClass <http://ontology.eil.utoronto.ca/5087/LandUse/StructureClassification> ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LBCS/LBCSThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification> ;
+                                                                  rdfs:comment "Agriculture and Agri-Foods Canada Classification is a type (subclass of) land use classification. The codes are based on the IPCC (International Panel on Climate Change) protocol." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/AAFCCropland
+<http://ontology.eil.utoronto.ca/5087/LandUse/AAFCCropland> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                  owl:hasValue "51"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                            rdfs:comment """Annual and perennial
+TBD: Should this be the same as the CLUMPCropland class?""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/AAFCWater
+<http://ontology.eil.utoronto.ca/5087/LandUse/AAFCWater> rdf:type owl:Class ;
+                                                         owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                               owl:hasValue "31"
+                                                                             ] ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                         rdfs:comment """Natural and human-made.
+TBD: should this be the same as the CLUMPWater class?""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/ActivityClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/ActivityClassification> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPCropland
+<http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPCropland> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                   owl:hasValue "A"
+                                                                                 ] ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                             <http://purl.org/dc/elements/1.1/description> "A - Cropland " ;
+                                                             rdfs:comment "'A' Cropland - Land used for annual field crops such as grain, oilseeds, sugar beets, tobacco, potatoes, field vegetables and canning crops. Associated fallow, and land being cleared for field crops are also included. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPWater
+<http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPWater> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                owl:hasValue "Z"
+                                                                              ] ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                          <http://purl.org/dc/elements/1.1/description> "Z - Water areas " ;
+                                                          rdfs:comment "'Z' Additional code added during data integration for water areas based on the CLI shoreline maps. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/EmployedPopulation
+<http://ontology.eil.utoronto.ca/5087/LandUse/EmployedPopulation> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/ResidentPopulation> ;
+                                                                  rdfs:comment "The population of employed residents in a given area (Parcel)" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Forest
+<http://ontology.eil.utoronto.ca/5087/LandUse/Forest> rdf:type owl:Class ;
+                                                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                            owl:hasValue "41"
+                                                                          ] ;
+                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                      rdfs:comment "Treed areas >1 ha in size" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/ForestWetland
+<http://ontology.eil.utoronto.ca/5087/LandUse/ForestWetland> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                   owl:hasValue "42"
+                                                                                 ] ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                             rdfs:comment "Wetland with forest cover" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/FunctionClassification> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/GrasslandManaged
+<http://ontology.eil.utoronto.ca/5087/LandUse/GrasslandManaged> rdf:type owl:Class ;
+                                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                      owl:hasValue "61"
+                                                                                    ] ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                                rdfs:comment "Natural grass and shrubs used for cattle grazing" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/GrasslandUnmanaged
+<http://ontology.eil.utoronto.ca/5087/LandUse/GrasslandUnmanaged> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                        owl:hasValue "62"
+                                                                                      ] ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                                  rdfs:comment "Natural grass and shrubs with no apparent use (forest openings, alpine meadows, tundra, etc.)" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Horticulture
+<http://ontology.eil.utoronto.ca/5087/LandUse/Horticulture> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                  owl:hasValue "H"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                            <http://purl.org/dc/elements/1.1/description> "H - Horticulture" ;
+                                                            rdfs:comment "'H' Horticulture, poultry and fur operations. Land used for intensive cultivation of vegetables and small fruits, includes market gardens, nurseries, flower and bulb farms and sod farms. Large scale commercial fur and poultry farms are also included because of their specialized agricultural nature. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/ImprovedPasture
+<http://ontology.eil.utoronto.ca/5087/LandUse/ImprovedPasture> rdf:type owl:Class ;
+                                                               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                     owl:hasValue "P"
+                                                                                   ] ;
+                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                               <http://purl.org/dc/elements/1.1/description> "P - Improved pasture and forage crops " ;
+                                                               rdfs:comment "'P' Improved pasture and forage crops.- Land used for improved pasture or for the production of hay and other cultivated fodder crops, including land being cleared for these purposes. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification> ;
+                                                                  rdfs:comment "The LBCS recognizes different dimensions of Land Use: Activity, Function, Structure, Site, and Ownership Classifications. Each dimension is further defined by a taxonomy of specialized classifications. For each dimension, we introduce an equivalent class name for disambiguation, e.g. to distinguish between the Activity dimension of land use (we refer to this as ActivityClassification) and the notion of an Activity in icity." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing> ;
+                                                                     rdfs:comment "Land Use Classifications provide a means of describing the land cover/use in a standard way. Various classification systems are used to identify types of land use. Currently, we include LBCS, CLUMP, and AAFC." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing
+<http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing> rdf:type owl:Class ;
+                                                                    rdfs:comment "Added for organizational purposes, to identify all classes defined in the Land Use ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/MinesQuarriesSandGravelPits
+<http://ontology.eil.utoronto.ca/5087/LandUse/MinesQuarriesSandGravelPits> rdf:type owl:Class ;
+                                                                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                                 owl:hasValue "E"
+                                                                                               ] ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                           <http://purl.org/dc/elements/1.1/description> "E - Mines, quarries, sand and gravel pits " ;
+                                                                           rdfs:comment "'E' Mines, quarries, sand and gravel pits, open excavations. Land used in the past or present for the extraction of earth materials. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/NonProductiveWoodland
+<http://ontology.eil.utoronto.ca/5087/LandUse/NonProductiveWoodland> rdf:type owl:Class ;
+                                                                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                           owl:hasValue "U"
+                                                                                         ] ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                     <http://purl.org/dc/elements/1.1/description> "U - Non-productive woodland " ;
+                                                                     rdfs:comment "'U' Non-productive woodland. Land covered by scrub growth. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/OrchardsVineyards
+<http://ontology.eil.utoronto.ca/5087/LandUse/OrchardsVineyards> rdf:type owl:Class ;
+                                                                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                       owl:hasValue "G"
+                                                                                     ] ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                 <http://purl.org/dc/elements/1.1/description> "G - Orchards and vineyards " ;
+                                                                 rdfs:comment "'G' Orchards and vineyards. Land used for the production of tree fruits, hops and grapes. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/OtherLand
+<http://ontology.eil.utoronto.ca/5087/LandUse/OtherLand> rdf:type owl:Class ;
+                                                         owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                               owl:hasValue "91"
+                                                                             ] ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                         rdfs:comment "Rock, beaches, ice, barren land" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/OutdoorRecreation
+<http://ontology.eil.utoronto.ca/5087/LandUse/OutdoorRecreation> rdf:type owl:Class ;
+                                                                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                       owl:hasValue "O"
+                                                                                     ] ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                 <http://purl.org/dc/elements/1.1/description> "O - Outdoor recreation " ;
+                                                                 rdfs:comment "'O' Outdoor recreation - Land used for private or public outdoor recreational purposes. Some examples are: golf courses, parks, beaches, summer cottage areas, game preserves and historic sites. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/OwnershipClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/OwnershipClassification> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Parcel
+<http://ontology.eil.utoronto.ca/5087/LandUse/Parcel> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
+                                                                      <http://ontology.eil.utoronto.ca/5087/LBCSv2/Parcel> ,
+                                                                      <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing> ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/parcelHasLocation> ;
+                                                                        owl:someValuesFrom <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Feature>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/associatedArea> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OM/Area>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasLandUse> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseClassification>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasPopulation> ;
+                                                                        owl:allValuesFrom <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population>
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                      ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/ProductiveWoodland
+<http://ontology.eil.utoronto.ca/5087/LandUse/ProductiveWoodland> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                        owl:hasValue "T"
+                                                                                      ] ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                  <http://purl.org/dc/elements/1.1/description> "T - Productive woodland " ;
+                                                                  rdfs:comment "'T' Productive woodland.Wooded land with trees having over 25% canopy cover and being over 20 feet in height approximately. Artificially restocked areas, or plantations are included regardless of age. Much cut-over and burned-over land is included. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/ResidentPopulation
+<http://ontology.eil.utoronto.ca/5087/LandUse/ResidentPopulation> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LandUseOntologyThing> ,
+                                                                                  <http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population> ;
+                                                                  rdfs:comment "The population that resides within a given area (Parcel)" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Roads
+<http://ontology.eil.utoronto.ca/5087/LandUse/Roads> rdf:type owl:Class ;
+                                                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                           owl:hasValue "25"
+                                                                         ] ;
+                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                     rdfs:comment "Primary, secondary and tertiary" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Settlement
+<http://ontology.eil.utoronto.ca/5087/LandUse/Settlement> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                owl:hasValue "21"
+                                                                              ] ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                          rdfs:comment "Built-up and urban" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/SiteClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/SiteClassification> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/StructureClassification
+<http://ontology.eil.utoronto.ca/5087/LandUse/StructureClassification> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/LBCSClassification> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/SwampMarshBog
+<http://ontology.eil.utoronto.ca/5087/LandUse/SwampMarshBog> rdf:type owl:Class ;
+                                                             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                   owl:hasValue "M"
+                                                                                 ] ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                             <http://purl.org/dc/elements/1.1/description> "M - Swamp, marsh or bog " ;
+                                                             rdfs:comment "'M' Swamp, marsh, or bog. Open wetlands except those which frequently dry up or show evidence of grazing or hay cutting. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone
+<http://ontology.eil.utoronto.ca/5087/LandUse/TrafficZone> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/Parcel> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/TreedWetland
+<http://ontology.eil.utoronto.ca/5087/LandUse/TreedWetland> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                  owl:hasValue "46"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                            rdfs:comment "Wetland with tree cover" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Trees
+<http://ontology.eil.utoronto.ca/5087/LandUse/Trees> rdf:type owl:Class ;
+                                                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                           owl:hasValue "45"
+                                                                         ] ;
+                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                     rdfs:comment "Treed areas <1 ha in size" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Unclassified
+<http://ontology.eil.utoronto.ca/5087/LandUse/Unclassified> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                  owl:hasValue "11"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                            rdfs:comment "Areas not classified due to clouds." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/UnimprovedPasture
+<http://ontology.eil.utoronto.ca/5087/LandUse/UnimprovedPasture> rdf:type owl:Class ;
+                                                                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                       owl:hasValue "K"
+                                                                                     ] ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                 <http://purl.org/dc/elements/1.1/description> "K - Unimproved pasture and range land " ;
+                                                                 rdfs:comment "'K' Rough grazing and range land. Areas of natural grasslands, sedges, herbaceous plants and abandoned farmland whether used for grazing or not. Bushes and trees may cover up to 25% of the area. Intermittently wet hay lands (sloughs or meadows) are included as long as the land is utilized. Within some grassy, open woodlands, bushes and trees may exceed 25% cover if the area is actively grazed and no other use dominates. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Unmapped
+<http://ontology.eil.utoronto.ca/5087/LandUse/Unmapped> rdf:type owl:Class ;
+                                                        owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                              owl:hasValue "8"
+                                                                            ] ;
+                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                        <http://purl.org/dc/elements/1.1/description> "8 - Unmapped areas " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/UnproductiveRock
+<http://ontology.eil.utoronto.ca/5087/LandUse/UnproductiveRock> rdf:type owl:Class ;
+                                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                      owl:hasValue "L"
+                                                                                    ] ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                <http://purl.org/dc/elements/1.1/description> "L - Unproductive land - rock " ;
+                                                                rdfs:comment "'L' Rock and other unvegetated surfaces - rock barrens, badlands, alkaline flats, gravel bars, eroded river banks, mine dumps. Unproductive land which does not support vegetation. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/UnproductiveSand
+<http://ontology.eil.utoronto.ca/5087/LandUse/UnproductiveSand> rdf:type owl:Class ;
+                                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                      owl:hasValue "S"
+                                                                                    ] ;
+                                                                rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                                <http://purl.org/dc/elements/1.1/description> "S - Unproductive land - sand " ;
+                                                                rdfs:comment "'S' Sand, sand bars, sand flats, dunes and beaches - Unproductive unconsolidated land which does not support vegetation. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/UrbanBuiltUp
+<http://ontology.eil.utoronto.ca/5087/LandUse/UrbanBuiltUp> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasCLUMPCode> ;
+                                                                                  owl:hasValue "B"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/CLUMPClassification> ;
+                                                            <http://purl.org/dc/elements/1.1/description> "B - Urban built-up area " ;
+                                                            rdfs:comment "'B' Built-up area. Land occupied by cities, towns, and villages, or by isolated units away from settlements such as manufacturing plants, rail yards, and military camps. Parks and other open spaces within built-up areas are also included. " .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/Wetland
+<http://ontology.eil.utoronto.ca/5087/LandUse/Wetland> rdf:type owl:Class ;
+                                                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                             owl:hasValue "71"
+                                                                           ] ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                       rdfs:comment "Undifferentiated wetland" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/WetlandHerb
+<http://ontology.eil.utoronto.ca/5087/LandUse/WetlandHerb> rdf:type owl:Class ;
+                                                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                 owl:hasValue "74"
+                                                                               ] ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                           rdfs:comment "Wetland with grass cover" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/LandUse/WetlandShrub
+<http://ontology.eil.utoronto.ca/5087/LandUse/WetlandShrub> rdf:type owl:Class ;
+                                                            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://ontology.eil.utoronto.ca/5087/LandUse/hasAAFCCode> ;
+                                                                                  owl:hasValue "73"
+                                                                                ] ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/LandUse/AAFCClassification> ;
+                                                            rdfs:comment "Wetland with shrub cover" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue
+<http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Authority
+<http://ontology.eil.utoronto.ca/5087/Organization/Authority> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment
+<http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
+                                                                                          <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
+                                                                                            owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Contact/Address>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                          ] ;
+                                                                          <http://purl.org/dc/elements/1.1/description> """Business Establishment: A Business establishment is a physical location where a Firm conducts business.
+A Business Establishment has a Location and may have an address.""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/BusinessId
+<http://ontology.eil.utoronto.ca/5087/Organization/BusinessId> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Division
+<http://ontology.eil.utoronto.ca/5087/Organization/Division> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/EducationalInstitution
+<http://ontology.eil.utoronto.ca/5087/Organization/EducationalInstitution> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Organization> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Employee
+<http://ontology.eil.utoronto.ca/5087/Organization/Employee> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                             <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/employedAs> ;
+                                                                               owl:someValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Occupation>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasPay> ;
+                                                                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                    owl:unionOf ( <http://ontology.eil.utoronto.ca/5087/Organization/Salary>
+                                                                                                                  <http://ontology.eil.utoronto.ca/5087/Organization/Wage>
+                                                                                                                )
+                                                                                                  ]
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/worksAt> ;
+                                                                               owl:someValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                             ] ;
+                                                             <http://purl.org/dc/elements/1.1/description> """Employee: An Firm has some Employees, whom it employs for some Occupation.
+An Employee is a type of Organization Agent.
+An Employee may be employed at a particular Business Establishment.
+An Employee may be responsible for one or more Roles within the Organization.
+An Employee is employed by some Organization, unless the Person is self-employed.
+An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Firm
+<http://ontology.eil.utoronto.ca/5087/Organization/Firm> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                         <http://ontology.eil.utoronto.ca/5087/Organization/Organization> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasEstablishment> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/BusinessEstablishment>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasIndustryType> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/IndustryType>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
+                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                         ] ;
+                                                         <http://purl.org/dc/elements/1.1/description> """Firm: A Firm is a type of organization.
+A Firm has an address and an industry type, and some Employees.
+A Firm may have a Business Establishment(s).""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/ForProfitOrganization
+<http://ontology.eil.utoronto.ca/5087/Organization/ForProfitOrganization> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Organization> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/FullTimeEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/FullTimeEmployee> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Employee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/FullTimeHomeEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/FullTimeHomeEmployee> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/FullTimeEmployee> ;
+                                                                         owl:disjointWith <http://ontology.eil.utoronto.ca/5087/Organization/FullTimeRegEmployee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/FullTimeRegEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/FullTimeRegEmployee> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/FullTimeEmployee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/FullTimeStudent
+<http://ontology.eil.utoronto.ca/5087/Organization/FullTimeStudent> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Student> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/GeneralOffice
+<http://ontology.eil.utoronto.ca/5087/Organization/GeneralOffice> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Occupation> ;
+                                                                  rdfs:comment "General Office / Clerical" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Goal
+<http://ontology.eil.utoronto.ca/5087/Organization/Goal> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Activity/State> ,
+                                                                         <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ;
+                                                         <http://purl.org/dc/elements/1.1/description> "A goal represents some state or complex states, and allows for the representation of various groups' responsibilities." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization
+<http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Organization> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/IndustryType
+<http://ontology.eil.utoronto.ca/5087/Organization/IndustryType> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Municipality
+<http://ontology.eil.utoronto.ca/5087/Organization/Municipality> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/GovernmentOrganization> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasJurisdiction> ;
+                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                   owl:onClass <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                 ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/NonProfitOrganization
+<http://ontology.eil.utoronto.ca/5087/Organization/NonProfitOrganization> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Organization> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Occupation
+<http://ontology.eil.utoronto.ca/5087/Organization/Occupation> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ;
+                                                               <http://purl.org/dc/elements/1.1/description> """Occupation: An Occupation is performed by some Person.
+An Occupation has a type (e.g. sales, skilled trades)""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> rdf:type owl:Class ;
+                                                                     <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the iCity-Organization ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Organization
+<http://ontology.eil.utoronto.ca/5087/Organization/Organization> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
+                                                                                 <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/icontact.owl#hasAddress> ;
+                                                                                   owl:someValuesFrom <http://ontology.eil.utoronto.ca/5087/Contact/Address>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/consistsOf> ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Division>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasGoal> ;
+                                                                                   owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Goal>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/SpatialLoc/associatedLocation> ;
+                                                                                   owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Feature>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasOrgMember> ;
+                                                                                   owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                   owl:onClass <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent>
+                                                                                 ] ,
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
+                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                   owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                                 ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/PartTimeEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/PartTimeEmployee> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Employee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/PartTimeHomeEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/PartTimeHomeEmployee> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/PartTimeEmployee> ;
+                                                                         owl:disjointWith <http://ontology.eil.utoronto.ca/5087/Organization/PartTimeRegEmployee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/PartTimeRegEmployee
+<http://ontology.eil.utoronto.ca/5087/Organization/PartTimeRegEmployee> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/PartTimeEmployee> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/PartTimeStudent
+<http://ontology.eil.utoronto.ca/5087/Organization/PartTimeStudent> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Student> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Professional
+<http://ontology.eil.utoronto.ca/5087/Organization/Professional> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Occupation> ;
+                                                                 rdfs:comment "Professional / Management / Technical" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Role
+<http://ontology.eil.utoronto.ca/5087/Organization/Role> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasAuthority> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Authority>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasGoal> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Goal>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasProcess> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Activity/Activity>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasResource> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Resource/Resource>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/requiresSkill> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Skill>
+                                                                         ] ;
+                                                         <http://purl.org/dc/elements/1.1/description> """Role: A Role has a single (possibly complex) Goal.
+A Role has some authority, requires some skill, and may also have some associated processes.""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Salary
+<http://ontology.eil.utoronto.ca/5087/Organization/Salary> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasAnnualPay> ;
+                                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                             owl:onClass <http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue>
+                                                                           ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Sales
+<http://ontology.eil.utoronto.ca/5087/Organization/Sales> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Occupation> ;
+                                                          rdfs:comment "Retail Sales and Service" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Skill
+<http://ontology.eil.utoronto.ca/5087/Organization/Skill> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Student
+<http://ontology.eil.utoronto.ca/5087/Organization/Student> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/enrolledIn> ;
+                                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://ontology.eil.utoronto.ca/5087/Organization/EducationalInstitution>
+                                                                            ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Trades
+<http://ontology.eil.utoronto.ca/5087/Organization/Trades> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/Occupation> ;
+                                                           rdfs:comment "Manufacturing / Construction / Trades" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Organization/Wage
+<http://ontology.eil.utoronto.ca/5087/Organization/Wage> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/overtimePay> ;
+                                                                           owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hourlyPay> ;
+                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue>
+                                                                         ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/Person
+<http://ontology.eil.utoronto.ca/5087/Person/Person> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Agent/Agent> ,
+                                                                     <http://ontology.eil.utoronto.ca/5087/Change/Manifestation> ,
+                                                                     <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasIncome> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/OM/MonetaryValue>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasPersonID> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/PersonId>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasQualification> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Qualification>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasSkill> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Skill>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://schema.org/children> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Person>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://schema.org/parent> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Person>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://schema.org/spouse> ;
+                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Person/Person>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Change/existsAt> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#TemporalEntity>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasAge> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://ontology.eil.utoronto.ca/5087/OM/Duration>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/hasSex> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://ontology.eil.utoronto.ca/5087/Person/Sex>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasBirthDate> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/personHasDeathDate> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.w3.org/2006/time#Instant>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Person/isLicensedDriver> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onDataRange xsd:boolean
+                                                                     ] ;
+                                                     <http://purl.org/dc/elements/1.1/description> """A Person may have a unique identifier.
+A Person has a date of birth, and may have a date of death.
+A Person may be a member of a Family and/or a Household.
+A Person has a mother and father, and may have a spouse and/or child(ren). Note that we define the parent relation as the legal relation as opposed to biological. This property may be specialized and restricted, for example hasBiologicalMother: exactly 1 Person.
+A Person may have some Job and associated Income.
+A Person may have access to some Vehicle.
+A Person may have access to some Bicycle.
+A Person may have some TransitPass.
+A Person has an address of residence and may have other contact information such as E-mail, phone number, etcetera.
+A Person has a Schedule for a given point (period) in time.
+Note that some properties are not defined in the Person ontology, but in an extension of the Person ontology that captures the interaction between iCity domain ontologies (e.g. Persons and their Vehicles)""" .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/PersonId
+<http://ontology.eil.utoronto.ca/5087/Person/PersonId> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://schema.org/issuedBy> ;
+                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onClass <http://ontology.eil.utoronto.ca/5087/Agent/Agent>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://schema.org/identifier> ;
+                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onDataRange xsd:string
+                                                                       ] .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing
+<http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> rdf:type owl:Class ;
+                                                                  <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to identify classes defined in the Person ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/Qualification
+<http://ontology.eil.utoronto.ca/5087/Person/Qualification> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ;
+                                                            <http://purl.org/dc/elements/1.1/description> "A Qualification captures some official degree of accomplishment. It may be required for something and/or possessed by some Person." ;
+                                                            rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgThing
+<http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgThing> rdf:type owl:Class ;
+                                                             <http://purl.org/dc/elements/1.1/description> "Added for organizational purposes, to capture the classes reused from Schema.org. Notice that since we cannot import schema.org we must manually reference the individual IRIs." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/Sex
+<http://ontology.eil.utoronto.ca/5087/Person/Sex> rdf:type owl:Class ;
+                                                  owl:equivalentClass [ rdf:type owl:Class ;
+                                                                        owl:oneOf ( <http://ontology.eil.utoronto.ca/5087/Person/female>
+                                                                                    <http://ontology.eil.utoronto.ca/5087/Person/male>
+                                                                                  )
+                                                                      ] ;
+                                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/Skill
+<http://ontology.eil.utoronto.ca/5087/Person/Skill> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/PersonOntologyThing> ;
+                                                    <http://purl.org/dc/elements/1.1/description> "A Skill captures an ability to perfom some activity or set of activities." ;
+                                                    rdfs:comment "To be defined in greater detail in future versions. Likely to be defined in a separate ontology." .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Resource/Resource
+<http://ontology.eil.utoronto.ca/5087/Resource/Resource> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population
+<http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#Authority
+<http://ontology.eil.utoronto.ca/organization.owl#Authority> rdf:type owl:Class .
+
+
+###  http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent
+<http://ontology.eil.utoronto.ca/organization.owl#OrganizationAgent> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Organization/OrgOntologyThing> ,
+                                                                                     <http://ontology.eil.utoronto.ca/5087/Person/Person> ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/hasGoal> ;
+                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Goal>
+                                                                                     ] ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/memberOfDivision> ;
+                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Division>
+                                                                                     ] ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/5087/Organization/playsRole> ;
+                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/5087/Organization/Role>
+                                                                                     ] ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <http://ontology.eil.utoronto.ca/organization.owl#hasAuthority> ;
+                                                                                       owl:allValuesFrom <http://ontology.eil.utoronto.ca/organization.owl#Authority>
+                                                                                     ] ;
+                                                                     <http://purl.org/dc/elements/1.1/description> """Organization Agent: Members of an organization.
+Organization Agents have goals, authority, and may be members of some team.
+An Organization Agent plays a Role within the Organization.""" .
+
+
+###  http://schema.org/PostalAddress
+<http://schema.org/PostalAddress> rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://ontology.eil.utoronto.ca/5087/Person/SchemaOrgThing> .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+<http://www.opengis.net/ont/geosparql#Feature> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Interval
+<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#TemporalEntity
+<http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/amendingBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/amendingBylaw> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/bylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/bylaw> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/mainBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/mainBylaw> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/penalty
+<http://ontology.eil.utoronto.ca/5087/Bylaw/penalty> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/repeal
+<http://ontology.eil.utoronto.ca/5087/Bylaw/repeal> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/revisionBylaw
+<http://ontology.eil.utoronto.ca/5087/Bylaw/revisionBylaw> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/schedule
+<http://ontology.eil.utoronto.ca/5087/Bylaw/schedule> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/severance
+<http://ontology.eil.utoronto.ca/5087/Bylaw/severance> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Bylaw/transition
+<http://ontology.eil.utoronto.ca/5087/Bylaw/transition> rdf:type owl:NamedIndividual .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/female
+<http://ontology.eil.utoronto.ca/5087/Person/female> rdf:type owl:NamedIndividual ,
+                                                              <http://ontology.eil.utoronto.ca/5087/Person/Sex> .
+
+
+###  http://ontology.eil.utoronto.ca/5087/Person/male
+<http://ontology.eil.utoronto.ca/5087/Person/male> rdf:type owl:NamedIndividual ,
+                                                            <http://ontology.eil.utoronto.ca/5087/Person/Sex> .
+
+
+###  http://schema.org/InForce
+<http://schema.org/InForce> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/NotInForce
+<http://schema.org/NotInForce> rdf:type owl:NamedIndividual .
+
+
+###  http://schema.org/PartiallyInForce
+<http://schema.org/PartiallyInForce> rdf:type owl:NamedIndividual .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/
