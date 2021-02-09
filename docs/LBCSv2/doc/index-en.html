@@ -6,7 +6,7 @@
 
 
 <!-- SCHEMA.ORG METADATA -->
-<script type="application/ld+json">{"@context":"http://schema.org","@type":"TechArticle","url":"http://ontology.eil.utoronto.ca/icity/LBCSv2/","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://ontology.eil.utoronto.ca/icity/LBCSv2/","name":"http://ontology.eil.utoronto.ca/icity/LBCSv2/", "headline":"Document describing the ontology http://ontology.eil.utoronto.ca/icity/LBCSv2/", "datePublished":"Thu Jun 04 15:46:00 EDT 2020"}</script>
+<script type="application/ld+json">{"@context":"http://schema.org","@type":"TechArticle","url":"http://ontology.eil.utoronto.ca/icity/LBCSv2/","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://ontology.eil.utoronto.ca/icity/LBCSv2/","name":"http://ontology.eil.utoronto.ca/icity/LBCSv2/", "headline":"Document describing the ontology http://ontology.eil.utoronto.ca/icity/LBCSv2/", "datePublished":"Sat Feb 06 17:49:20 EST 2021"}</script>
 
 <script src="resources/jquery.js"></script> 
 <script src="resources/marked.min.js"></script> 
@@ -28,7 +28,7 @@ function loadTOC(){
 				t+='</ul>';
 				j=0;
 			}
-			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).text()+'</a></li>';
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
 			i++;
 		}
 		if(jQuery(this).is('h3')){
@@ -36,14 +36,15 @@ function loadTOC(){
 				t+='<ul>';
 			}
 			j++;
-			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).text()+'</a></li>';
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
 		}
-		t = t.replace(' back to ToC','');
 	  });
 	  t+='</ul>';
 	  $("#toc").html(t); 
 }
-    $(function(){
+ $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ };    $(function(){
       $("#abstract").load("sections/abstract-en.html"); 
       $("#introduction").load("sections/introduction-en.html"); 
       $("#overview").load("sections/overview-en.html"); 
@@ -63,7 +64,7 @@ function loadTOC(){
 <dl>
 <dt>Download serialization:</dt><dd><span><a href="ontology.json" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.xml" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
 </dd><dt>Visualization:</dt><dd><a href="webvowl/index.html#" target="_blank"><img src="https://img.shields.io/badge/Visualize_with-WebVowl-blue.svg" alt="Visualize with WebVowl" /></a></dd>
-</dl>
+<!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/OOPSeval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --></dl>
 
 <a href="provenance/provenance-en.html" target="_blank">Provenance of this page</a><hr/>
 </div>
@@ -82,6 +83,7 @@ function loadTOC(){
 <p>
 The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
 </div>
+
 
 </div>
 </body>
