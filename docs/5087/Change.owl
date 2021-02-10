@@ -192,6 +192,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/Change/hasLastManifestation -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Change/hasLastManifestation">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/ChangeOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Change/hasNextManifestation -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Change/hasNextManifestation">
@@ -291,7 +299,14 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasFirstManifestation"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/hasLastManifestation"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -312,7 +327,11 @@
         <rdfs:comment xml:lang="en">Manifestations may be interpreted as “snapshots” of an object at some point in time. This enables the representation of changing attributes of an object, without losing information about its past values/relationships. The properties of the class must then be identified as properties that are (and aren&apos;t) subject to change, in order to distinguish between the static and dynamic aspects of a particular entity.
 
 •	existsAt: identifies the TemporalEntity that reflects the Instant of Interval in time during which the snapshot of the object holds (is valid). 
-•	hasNextManifestation: identifies the immediate successive Manifestation (i.e. the subsequent snapshot of the object).</rdfs:comment>
+•	hasNextManifestation: identifies the immediate successive Manifestation (i.e. the subsequent snapshot of the object).
+•	hasPreviousManifestation: identifies the immediate previous Manifestation (i.e., the prior snapshot of the object).
+•	precedesManifestation: identifies all subsequent Manifestations that follow a particular First Manifestation. In other words, the First Manifestation is related to each and every subsequent manifestation via the precedesManifestation.
+•	hasFirstManifestation: identifies the First Manifestation that is related to a particular Manifestation (i.e., for some snapshot of an object, it identifies the first such snapshot of the object).
+•	hastLastManifestation: identifies the most recent Manifestation that is related to a particular Manifestation (i.e., for some snapshot of an object, it identifies the most recent snapshot of the object).</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
