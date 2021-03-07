@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.eil.utoronto.ca/5087/CityService#"
-     xml:base="http://ontology.eil.utoronto.ca/5087/CityService"
+<rdf:RDF xmlns="http://ontology.eil.utoronto.ca/5087/CityService/"
+     xml:base="http://ontology.eil.utoronto.ca/5087/CityService/"
      xmlns:OM="http://ontology.eil.utoronto.ca/5087/OM/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -19,7 +19,9 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:Change="http://ontology.eil.utoronto.ca/5087/Change/"
      xmlns:schema="http://schema.org/"
+     xmlns:CityUnits="http://ontology.eil.utoronto.ca/5087/CityUnits/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:CityService="http://ontology.eil.utoronto.ca/5087/CityService/"
      xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/5087/RecurringEvent/#"
      xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/5087/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/CityService">
@@ -80,6 +82,38 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService#forActivity -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService#forActivity">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService#hasActualAmount -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService#hasActualAmount">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService#hasPlannedAmount -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService#hasPlannedAmount">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService#usedByIndicator -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService#usedByIndicator">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
     
 
 
@@ -177,6 +211,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService/hasProgram -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/hasProgram">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/CityService/hasService -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/hasService">
@@ -193,9 +235,9 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/CityService/performs -->
+    <!-- http://ontology.eil.utoronto.ca/5087/CityService/perform -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/performs">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/perform">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyObjectProperty"/>
     </owl:ObjectProperty>
     
@@ -270,26 +312,73 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/CityService/Impact -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/Impact">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyThing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/CityService/ImpactModel -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/ImpactModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyThing"/>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/CityService/Input -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/Input">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#forActivity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/hasContributingStakeholder"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/Stakeholder"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#for_time_interval"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#DateTimeInterval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/hasResource"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Resource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#hasActualAmount"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#hasPlannedAmount"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/description"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/name"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description>Input defines the resources and the stakeholders that contribute them that are input to an Activity:
+•	inputFor: The Program or Service or Activity this is an input for.
+•	hasContributingStakeholder: The Stakeholders that contribute the resources as input.
+•	hasType: Specifies the input Resource.
+•	hasPlannedAmount: Specifies the amount of the input Resource
+•	hasActualAmount: Specifies actual amount of input Resource used.
+•	i72:for_time_interval: Specifies the time interval over which the input is used.
+•	sch:name: Name for the Input.
+•	sch:description: Description for the Input.</dc:description>
+        <rdfs:label xml:lang="en">Input</rdfs:label>
     </owl:Class>
     
 
@@ -300,20 +389,14 @@
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/hasImpact"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/Impact"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/forStakeholder"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/fromPerspectiveOf"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/Stakeholder"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/fromPerspectiveOf"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/hasBeneficialStakeholder"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/Stakeholder"/>
             </owl:Restriction>
@@ -355,6 +438,14 @@
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <dc:description xml:lang="en">Outcome’s “are what stakeholders experience as a result of a city Programs and/or Services.  They can be positive or negative, intended or unintended.” Outcome contains the following properties:
+•	hasBeneficialStakeholder: Identifies the Stakeholder affected.
+•	hasIndicator: Identifies the set of Indicators the organization assigns to the Outcome.
+•	schema:description: A general description of the Outcome as a string.
+•	fromPerspectiveOf: Identifies the Stakeholder who is determining the importance of the Impact.
+•	hasImportance: Specifies how important the Impact is (high, medium, low).
+•	intendedImpact: Identifies the intended direction of the change.</dc:description>
+        <rdfs:label xml:lang="en">Outcome</rdfs:label>
     </owl:Class>
     
 
@@ -363,6 +454,60 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/CityService/Output">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#forActivity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#usedByIndicator"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Indicator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#hasActualAmount"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService#hasPlannedAmount"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Organization/hasResource"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Resource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/description"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/name"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description xml:lang="en">Output is a quantitative summary of an activity. For example, if the activity is ‘we provide training’ and the output is ‘we trained 50 people to NVQ level 3’. Or a production output could produce 100 meals for the homeless. Basic to these outputs is “what” has been produced and the quantity.
+•	forActivity: Identifies the Activity or Service that produces the Output.
+•	hasPlannedAmount: Specifies the amount of the output Resource
+•	hasActualAmount: Specifies actual amount of output Resource produced.
+•	hasResource: Identifies the Resource that is produced such as a skill, or a type of Meal.
+•	usedByIndicator: Identifies the Indicators that use this Output in determining the value of the Indicator.</dc:description>
+        <rdfs:label xml:lang="en">Output</rdfs:label>
     </owl:Class>
     
 
@@ -422,6 +567,14 @@
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <dc:description xml:lang="en">A Program defines a set of services that focus on a shared set of Outcomes. For example, a “poverty reduction program” can be made up of a set of Services such as mobiles services that provides food and clothing to those that live on the street, and a training service that provides basic skills for those living on the street. A Program has a set of Stakeholders that may contribute or benefit. The following are the Program properties:
+•	hasService: Identifies the Services that make up the Program.
+•	hasOutcome: Identifies the Outcomes that the program is trying to achieve.
+•	hasContributingStakeholder: Identifies the stakeholders that contribute to the Program.
+•	hasBeneficialStakeholder: Identifies the stakeholders that benefit from the Program.
+•	hasInput: Identifies the Inputs to the Program.
+•	hasOutput: Identifies the Outputs of the Program.</dc:description>
+        <rdfs:label xml:lang="en">Program</rdfs:label>
     </owl:Class>
     
 
@@ -475,6 +628,14 @@
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <dc:description xml:lang="en">A Program is composed of one or more Services.  As described in the Program description, a poverty reduction program can have many services with each service comprised of different activities, Inputs, Outputs and Outcomes. The following are the Service properties:
+•	iso5087-1:hasSubActivity: Identifies the Activities that make that comprise the Service.
+•	hasInput: Identifies the Inputs to the Service.
+•	hasOutput: Identifies the Outputs of the Service.
+•	hasOutcome: Identifies the Outcomes that are specific to the Service.
+•	hasContributingStakeholder: Identifies the stakeholders that contribute to the Service.
+•	hasBeneficialStakeholder: Identifies the stakeholders that benefit from the Service.</dc:description>
+        <rdfs:label xml:lang="en">Service</rdfs:label>
     </owl:Class>
     
 
@@ -493,7 +654,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/performs"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/perform"/>
                 <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -501,6 +662,13 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/hasCatchmentArea"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/CityService/CatchmentArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://schema.org/description"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -592,5 +760,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.18.2020-10-27T15:06:34Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
