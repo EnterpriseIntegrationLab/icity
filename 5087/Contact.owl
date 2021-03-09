@@ -1,1724 +1,1463 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rdf:RDF
-	xmlns="http://ontology.eil.utoronto.ca/5087/Contact/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:ns="http://creativecommons.org/ns#"
-	xmlns:owl="http://www.w3.org/2002/07/owl#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-	xmlns:adms="http://www.w3.org/ns/adms#"
-	xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-	xmlns:time="http://www.w3.org/2006/time#"
-	xmlns:vann="http://purl.org/vocab/vann/"
-	xmlns:terms="http://purl.org/dc/terms/"
-	xmlns:Change="http://ontology.eil.utoronto.ca/5087/Change/"
-	xmlns:schema="http://schema.org/"
-	xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-	xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/5087/RecurringEvent/#"
-	xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/5087/RecurringEvent/">
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://ontology.eil.utoronto.ca/5087/Contact/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://ontology.eil.utoronto.ca/5087/Contact/">
+    <Prefix name="" IRI="http://ontology.eil.utoronto.ca/tove/icontact"/>
+    <Prefix name="cc" IRI="http://creativecommons.org/ns#"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="sc" IRI="http://schema.org/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="adms" IRI="http://www.w3.org/ns/adms#"/>
+    <Prefix name="foaf" IRI="http://xmlns.com/foaf/0.1/"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="vann" IRI="http://purl.org/vocab/vann/"/>
+    <Prefix name="vcard" IRI="http://www.w3.org/2006/vcard/ns#"/>
+    <Prefix name="wgs84" IRI="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+    <Prefix name="contact" IRI="http://ontology.eil.utoronto.ca/5087/Contact/"/>
+    <Prefix name="spatialLoc" IRI="http://ontology.eil.utoronto.ca/5087/SpatialLoc/"/>
+    <Import>http://ontology.eil.utoronto.ca/5087/RecurringEvent/1.0/</Import>
+    <Import>http://ontology.eil.utoronto.ca/5087/SpatialLoc/1.2/</Import>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="cc:license"/>
+        <Literal>http://creativecommons.org/licenses/by/3.0/</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:creator"/>
+        <Literal xml:lang="en">Mark S. Fox, http://eil.utoronto.ca/profiles/foxpro.html
+Enterprise Integration Laboratory, http://eil.utoronto.ca
+University of Toronto, 
+msf@eil.utoronto.ca</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <Literal xml:lang="en">International Contact Ontology: 
+
+http://ontology.eil.utoronto.ca/icontact.html
+
+This ontology provides basic classes and more detailed properties for  representating international street addresses, phone numbers and emails.  Rather than using existing ontologies, such as vcard, it was decided to create a new one as the vcard and foaf ignore the details of international addresses, phone numbers, etc.
+
+The important part of the ontology are the object and data properties used to describe addresses primarily and phone numbers.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:modified"/>
+        <Literal xml:lang="en">30 January 2021: Made telephone, address and operation hours properties Functional
+
+29 December 2020: Made address properties functional
+
+25 May 2020: changed hasEmail to a data property
+
+14 April 2020: changed restriction on hasStreetNumber to xsd:string to allow for street numbers that include letters
+
+8 Nov 2019: changed range of lat and long to decimal
+
+6 Dec 2018: added hasPostalBox data property
+
+29 Oct 2018:changed days of week individuals to lower case
+        - added hasAddressType to Address (left out in error)
+        - renamed directions to lower case (north, south, east, west)
+        - changed Address properties to max 1
+
+28 Oct 2018: changed range of hasOpeningTime and hasClosingTime within the class HoursOfOperation to be xsd:time (originally xsd:dateTime)
+
+16 April 2015</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <Literal xml:lang="en">International Contact (Address) Ontology: Addresses, phone numbers and emails.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="vann:preferredNamespacePrefix"/>
+        <Literal>ic</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="vann:preferredNamespaceUri"/>
+        <Literal>http://ontology.eil.utoronto.ca/tove/icontact#</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="adms:relatedDocumentation"/>
+        <Literal>http://ontology.eil.utoronto.ca/icontact.html</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="Address"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AddressType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="CellNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ContactThing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="CottageAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="DaysOfWeek"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="FaxNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="HomeAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="HomeNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="HoursOfOperation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PhoneNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PhoneType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SchemaOrgThing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="StreetDirection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="StreetType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="TollFreeNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="WorkAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="WorkNumber"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="sc:City"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="sc:Country"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="sc:GeoCoordinates"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="sc:State"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="OperatingProperty"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="addressProperty"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="dayofWeek"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasAddress"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasAddressType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasCity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasCountry"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasGeoCoordinates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasOperatingHours"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasPhoneType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasState"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasStreetDirection"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasStreetType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="hasTelephone"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="addressDataProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="contactDataProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasAreaCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasBuilding"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasCityS"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasCitySection"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasClosingTime"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasCountryCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasDate"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasEmail"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasLocation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasOpeningTime"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasPersonalEmail"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasPhoneNumber"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasPostalBox"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasPostalCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasStreet"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasStreetNumber"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasUnitNumber"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasWebSite"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasWorkEmail"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="operatingDataProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="telephoneDataProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="wgs84:lat"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="wgs84:long"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Avenue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Boulevard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CellPhone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Circle"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Cottage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Crescent"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Drive"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#FaxPhone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Friday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Home"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HomePhone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Monday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Road"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Saturday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Street"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sunday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Thursday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TollFreePhone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Tuesday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Wednesday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Work"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WorkPhone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#east"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#friday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#monday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#north"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#saturday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#south"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#sunday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#thursday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#tuesday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wednesday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#west"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="cc:license"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:creator"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:modified"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="vann:preferredNamespacePrefix"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="vann:preferredNamespaceUri"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="adms:relatedDocumentation"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:time"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="AddressType"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#Cottage"/>
+            <NamedIndividual IRI="#Home"/>
+            <NamedIndividual IRI="#Work"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="DaysOfWeek"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#friday"/>
+            <NamedIndividual IRI="#monday"/>
+            <NamedIndividual IRI="#saturday"/>
+            <NamedIndividual IRI="#sunday"/>
+            <NamedIndividual IRI="#thursday"/>
+            <NamedIndividual IRI="#tuesday"/>
+            <NamedIndividual IRI="#wednesday"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="PhoneType"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#CellPhone"/>
+            <NamedIndividual IRI="#FaxPhone"/>
+            <NamedIndividual IRI="#HomePhone"/>
+            <NamedIndividual IRI="#TollFreePhone"/>
+            <NamedIndividual IRI="#WorkPhone"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="StreetDirection"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#east"/>
+            <NamedIndividual IRI="#north"/>
+            <NamedIndividual IRI="#south"/>
+            <NamedIndividual IRI="#west"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="StreetType"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#Avenue"/>
+            <NamedIndividual IRI="#Boulevard"/>
+            <NamedIndividual IRI="#Circle"/>
+            <NamedIndividual IRI="#Crescent"/>
+            <NamedIndividual IRI="#Drive"/>
+            <NamedIndividual IRI="#Road"/>
+            <NamedIndividual IRI="#Street"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="hasAddressType"/>
+            <Class IRI="AddressType"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="spatialLoc:hasLocation"/>
+            <Class IRI="http://www.opengis.net/ont/geosparql#Feature"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="hasCity"/>
+            <Class abbreviatedIRI="sc:City"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="hasCountry"/>
+            <Class abbreviatedIRI="sc:Country"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="hasState"/>
+            <Class abbreviatedIRI="sc:State"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="hasStreetDirection"/>
+            <Class IRI="StreetDirection"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="hasStreetType"/>
+            <Class IRI="StreetType"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasCityS"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasBuilding"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasCitySection"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasPostalCode"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasStreet"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasStreetNumber"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="hasUnitNumber"/>
+            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty abbreviatedIRI="wgs84:lat"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Address"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty abbreviatedIRI="wgs84:long"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AddressType"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CellNumber"/>
+        <Class IRI="PhoneNumber"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CellNumber"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasPhoneType"/>
+            <NamedIndividual IRI="#CellPhone"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CottageAddress"/>
+        <Class IRI="Address"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CottageAddress"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasAddressType"/>
+            <NamedIndividual IRI="#Cottage"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="DaysOfWeek"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="FaxNumber"/>
+        <Class IRI="PhoneNumber"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="FaxNumber"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasPhoneType"/>
+            <NamedIndividual IRI="#FaxPhone"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HomeAddress"/>
+        <Class IRI="Address"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HomeAddress"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasAddressType"/>
+            <NamedIndividual IRI="#Home"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HomeNumber"/>
+        <Class IRI="PhoneNumber"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HomeNumber"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasPhoneType"/>
+            <NamedIndividual IRI="#HomePhone"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HoursOfOperation"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HoursOfOperation"/>
+        <Class IRI="http://ontology.eil.utoronto.ca/5087/RecurringEvent/RecurringEvent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HoursOfOperation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="dayofWeek"/>
+            <Class IRI="DaysOfWeek"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HoursOfOperation"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasClosingTime"/>
+            <Datatype abbreviatedIRI="xsd:time"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HoursOfOperation"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasOpeningTime"/>
+            <Datatype abbreviatedIRI="xsd:time"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneNumber"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="hasPhoneType"/>
+            <Class IRI="PhoneType"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneNumber"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasAreaCode"/>
+            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneNumber"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasCountryCode"/>
+            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneNumber"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hasPhoneNumber"/>
+            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PhoneType"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="StreetDirection"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="StreetType"/>
+        <Class IRI="ContactThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="TollFreeNumber"/>
+        <Class IRI="PhoneNumber"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="TollFreeNumber"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasPhoneType"/>
+            <NamedIndividual IRI="#TollFreePhone"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="WorkAddress"/>
+        <Class IRI="Address"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="WorkAddress"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasAddressType"/>
+            <NamedIndividual IRI="#Work"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="WorkNumber"/>
+        <Class IRI="PhoneNumber"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="WorkNumber"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="hasPhoneType"/>
+            <NamedIndividual IRI="#WorkPhone"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="sc:City"/>
+        <Class IRI="SchemaOrgThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="sc:Country"/>
+        <Class IRI="SchemaOrgThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="sc:GeoCoordinates"/>
+        <Class IRI="SchemaOrgThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="sc:State"/>
+        <Class IRI="SchemaOrgThing"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="Address"/>
+        <Class IRI="AddressType"/>
+        <Class IRI="DaysOfWeek"/>
+        <Class IRI="HoursOfOperation"/>
+        <Class IRI="PhoneNumber"/>
+        <Class IRI="PhoneType"/>
+        <Class IRI="StreetDirection"/>
+        <Class IRI="StreetType"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="OperatingProperty"/>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="addressProperty"/>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="dayofWeek"/>
+        <ObjectProperty IRI="OperatingProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasAddress"/>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasAddressType"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasCity"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasCountry"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasGeoCoordinates"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasOperatingHours"/>
+        <ObjectProperty IRI="OperatingProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasPhoneType"/>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasState"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasStreetDirection"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasStreetType"/>
+        <ObjectProperty IRI="addressProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="hasTelephone"/>
+        <ObjectProperty IRI="contactObjectProperty"/>
+    </SubObjectPropertyOf>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="addressProperty"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="hasCity"/>
+    </FunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="addressProperty"/>
+        <Class IRI="Address"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="hasStreetDirection"/>
+        <Class IRI="Address"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="hasStreetType"/>
+        <Class IRI="Address"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="dayofWeek"/>
+        <Class IRI="DaysOfWeek"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasAddress"/>
+        <Class IRI="Address"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasAddressType"/>
+        <Class IRI="AddressType"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasOperatingHours"/>
+        <Class IRI="HoursOfOperation"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasPhoneType"/>
+        <Class IRI="PhoneType"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasStreetDirection"/>
+        <Class IRI="StreetDirection"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="hasStreetType"/>
+        <Class IRI="StreetType"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="addressDataProperty"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasAreaCode"/>
+        <DataProperty IRI="telephoneDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasBuilding"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasCityS"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasCitySection"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasClosingTime"/>
+        <DataProperty IRI="operatingDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasCountryCode"/>
+        <DataProperty IRI="telephoneDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasDate"/>
+        <DataProperty IRI="operatingDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasEmail"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasLocation"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasOpeningTime"/>
+        <DataProperty IRI="operatingDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasPersonalEmail"/>
+        <DataProperty IRI="hasEmail"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasPhoneNumber"/>
+        <DataProperty IRI="telephoneDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasPostalBox"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasPostalCode"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasStreet"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasStreetNumber"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasUnitNumber"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasWebSite"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasWorkEmail"/>
+        <DataProperty IRI="hasEmail"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="operatingDataProperty"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="telephoneDataProperty"/>
+        <DataProperty IRI="contactDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty abbreviatedIRI="wgs84:lat"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty abbreviatedIRI="wgs84:long"/>
+        <DataProperty IRI="addressDataProperty"/>
+    </SubDataPropertyOf>
+    <FunctionalDataProperty>
+        <DataProperty IRI="addressDataProperty"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasAreaCode"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasBuilding"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasCityS"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasCitySection"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasClosingTime"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasCountryCode"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasDate"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasOpeningTime"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasPhoneNumber"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasPostalBox"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasPostalCode"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasStreet"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasStreetNumber"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="hasUnitNumber"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="telephoneDataProperty"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="wgs84:lat"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="wgs84:long"/>
+    </FunctionalDataProperty>
+    <DataPropertyRange>
+        <DataProperty IRI="hasClosingTime"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasDate"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasLocation"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasOpeningTime"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasWebSite"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="wgs84:lat"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="wgs84:long"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>Address</IRI>
+        <Literal xml:lang="en">Address is the main concept for a contact.  It has been designed to represent any type of address in the world, including India and the UK.  For example, the property hasBuilding is important in many UK and Indian addresses to further identify the person or business location.
+
+Street information is divided into separate properties to fully indentify direction (hasStreetDirection), Type (hasStreetType), etc.  See the associated list of properties for more.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Address</IRI>
+        <Literal xml:lang="en">Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>AddressType</IRI>
+        <Literal xml:lang="en">Different type for home, office, cottage, etc.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AddressType</IRI>
+        <Literal xml:lang="en">Address Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CellNumber</IRI>
+        <Literal xml:lang="en">Mobile Telephone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CottageAddress</IRI>
+        <Literal xml:lang="en">Cottage Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DaysOfWeek</IRI>
+        <Literal xml:lang="en">Days of the Week</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>FaxNumber</IRI>
+        <Literal xml:lang="en">Fax Telephone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HomeAddress</IRI>
+        <Literal xml:lang="en">Home Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HomeNumber</IRI>
+        <Literal xml:lang="en">Home Telephone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>HoursOfOperation</IRI>
+        <Literal xml:lang="en">HoursOfOperation class provides the ability to define when the contact &quot;opens&quot; and &quot;closes&quot;. Used for businesses.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>OperatingProperty</IRI>
+        <Literal xml:lang="en">Properties that define the hours of operation of the contact.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>PhoneNumber</IRI>
+        <Literal xml:lang="en">PhoneNumber is another core class. It is divided into country code, and phone number.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PhoneNumber</IRI>
+        <Literal xml:lang="en">Phone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>PhoneType</IRI>
+        <Literal xml:lang="en">Types of phoned include home, cell, work, etc.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PhoneType</IRI>
+        <Literal xml:lang="en">Phone Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>StreetDirection</IRI>
+        <Literal xml:lang="en">Street Direction</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>StreetType</IRI>
+        <Literal xml:lang="en">Street Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>TollFreeNumber</IRI>
+        <Literal xml:lang="en">Toll  Free Telephone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>WorkAddress</IRI>
+        <Literal xml:lang="en">Work Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>WorkNumber</IRI>
+        <Literal xml:lang="en">Work Telephone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>dayofWeek</IRI>
+        <Literal xml:lang="en">Specifies the day of the week, e.g., Monday, that the times apply to.  This is the default for that day and can be overidden by the &quot;hasDate&quot; property.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>hasAddress</IRI>
+        <Literal xml:lang="en">hasAddress links any class to the Address class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasAddressType</IRI>
+        <Literal xml:lang="en">has Address Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasAreaCode</IRI>
+        <Literal xml:lang="en">has Area Code</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasBuilding</IRI>
+        <Literal xml:lang="en">The building where the address is located.  Often used in countries like England, India and Japan.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasBuilding</IRI>
+        <Literal xml:lang="en">has Building</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasCity</IRI>
+        <Literal xml:lang="en">has City</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasCitySection</IRI>
+        <Literal xml:lang="en">The section of the city where the address is located.  Often used in countries like England, India and Japan.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasCitySection</IRI>
+        <Literal xml:lang="en">has City Section</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasClosingTime</IRI>
+        <Literal xml:lang="en">has Closing Time</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasCountry</IRI>
+        <Literal xml:lang="en">has Country</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasCountryCode</IRI>
+        <Literal xml:lang="en">has Country Code</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasDate</IRI>
+        <Literal xml:lang="en">Specifies the opening and closing times for a specific date.  For example, used to provide times for a holiday which deviates from the norm.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasDate</IRI>
+        <Literal xml:lang="en">has Date</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasGeoCoordinates</IRI>
+        <Literal xml:lang="en">has Geo Coordinates</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasLocation</IRI>
+        <Literal xml:lang="en">Closet street intersection for the organization.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasLocation</IRI>
+        <Literal xml:lang="en">has Location</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasOpeningTime</IRI>
+        <Literal xml:lang="en">has Opening Time</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasOperatingHours</IRI>
+        <Literal xml:lang="en">has Operating Hours</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasPersonalEmail</IRI>
+        <Literal xml:lang="en">has Personal Email</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasPhoneNumber</IRI>
+        <Literal xml:lang="en">has Phone Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasPhoneType</IRI>
+        <Literal xml:lang="en">has Phone Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>hasPostalBox</IRI>
+        <Literal xml:lang="en">An address can have a postal box associated with it.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasPostalBox</IRI>
+        <Literal xml:lang="en">has Postal Box</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasPostalCode</IRI>
+        <Literal xml:lang="en">has Postal Code</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasState</IRI>
+        <Literal xml:lang="en">has State</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasStreet</IRI>
+        <Literal xml:lang="en">has Street</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasStreetDirection</IRI>
+        <Literal xml:lang="en">has Street Direction</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasStreetNumber</IRI>
+        <Literal xml:lang="en">has Street Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasStreetType</IRI>
+        <Literal xml:lang="en">has Street Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasTelephone</IRI>
+        <Literal xml:lang="en">has Telephone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasUnitNumber</IRI>
+        <Literal xml:lang="en">has Unit Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasWebSite</IRI>
+        <Literal xml:lang="en">has Web Site</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasWorkEmail</IRI>
+        <Literal xml:lang="en">has Work Email</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Avenue</IRI>
+        <Literal xml:lang="en">Avenue</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Boulevard</IRI>
+        <Literal xml:lang="en">Boulevard</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CellPhone</IRI>
+        <Literal xml:lang="en">Cell Phone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Circle</IRI>
+        <Literal xml:lang="en">Circle</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cottage</IRI>
+        <Literal xml:lang="en">Cottage Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Crescent</IRI>
+        <Literal xml:lang="en">Crescent</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Drive</IRI>
+        <Literal xml:lang="en">Drive</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#FaxPhone</IRI>
+        <Literal xml:lang="en">Fax Line</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Friday</IRI>
+        <Literal xml:lang="en">Friday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Home</IRI>
+        <Literal xml:lang="en">Home Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#HomePhone</IRI>
+        <Literal xml:lang="en">Home Phone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Monday</IRI>
+        <Literal xml:lang="en">Monday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Road</IRI>
+        <Literal xml:lang="en">Road</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Saturday</IRI>
+        <Literal xml:lang="en">Saturday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Street</IRI>
+        <Literal xml:lang="en">Street</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Sunday</IRI>
+        <Literal xml:lang="en">Sunday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Thursday</IRI>
+        <Literal xml:lang="en">Thursday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#TollFreePhone</IRI>
+        <Literal xml:lang="en">Toll Free Number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Tuesday</IRI>
+        <Literal xml:lang="en">Tuesday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Wednesday</IRI>
+        <Literal xml:lang="en">Wednesday</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Work</IRI>
+        <Literal xml:lang="en">WorkAddress</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#WorkPhone</IRI>
+        <Literal xml:lang="en">Work Phone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#east</IRI>
+        <Literal xml:lang="en">East</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#north</IRI>
+        <Literal xml:lang="en">North</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#south</IRI>
+        <Literal xml:lang="en">South</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#west</IRI>
+        <Literal xml:lang="en">West</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>wgs84:lat</AbbreviatedIRI>
+        <Literal xml:lang="en">lattitude</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>wgs84:long</AbbreviatedIRI>
+        <Literal xml:lang="en">longitude</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-	<owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/1.0/"/>
-	<owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/RecurringEvent.owl"/>
-	<owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc.owl"/>
-	<dc:creator>Mark Fox</dc:creator>
-	<dc:creator>Megan Katsumi</dc:creator>
-	<dc:description>Ontology to capture concepts related to contact information (addresses, phone numbers). Reuses the iContact Ontology developed by the Enterprise Integration Lab in Toronto. The iContact ontology is extended to introduce a specialized definition of Hours of Operation, defined as a subclass of both the iContact definition of hours of operation, and a subclass of the Recurring Event class defined in the iCity Recurring Event ontology.
-The Contact ontology also extends the definition of address to include an associated location.</dc:description>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Annotation properties -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://creativecommons.org/ns#license -->
-
-<rdf:Description rdf:about="http://creativecommons.org/ns#license">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/elements/1.1/creator -->
-
-<rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/elements/1.1/date -->
-
-<rdf:Description rdf:about="http://purl.org/dc/elements/1.1/date">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/elements/1.1/description -->
-
-<rdf:Description rdf:about="http://purl.org/dc/elements/1.1/description">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/elements/1.1/issued -->
-
-<rdf:Description rdf:about="http://purl.org/dc/elements/1.1/issued">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/elements/1.1/title -->
-
-<rdf:Description rdf:about="http://purl.org/dc/elements/1.1/title">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/created -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/created">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/creator -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/creator">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/description -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/description">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/issued -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/issued">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/license -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/license">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/modified -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/modified">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/rights -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/rights">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/dc/terms/title -->
-
-<rdf:Description rdf:about="http://purl.org/dc/terms/title">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
-
-<rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://purl.org/vocab/vann/preferredNamespaceUri -->
-
-<rdf:Description rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/domainIncludes -->
-
-<rdf:Description rdf:about="http://schema.org/domainIncludes">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/rangeIncludes -->
-
-<rdf:Description rdf:about="http://schema.org/rangeIncludes">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#pattern -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#pattern">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2002/07/owl#versionInfo -->
-
-<rdf:Description rdf:about="http://www.w3.org/2002/07/owl#versionInfo">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#changeNote -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#changeNote">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#definition -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#definition">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#editorialNote -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#editorialNote">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#example -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#example">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#historyNote -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#historyNote">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#note -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#note">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
-
-<rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/ns/adms#relatedDocumentation -->
-
-<rdf:Description rdf:about="http://www.w3.org/ns/adms#relatedDocumentation">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://xmlns.com/foaf/0.1/name -->
-
-<rdf:Description rdf:about="http://xmlns.com/foaf/0.1/name">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Datatypes -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#date -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#date">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#duration -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#duration">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#gDay -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#gDay">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#gMonth -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#gMonth">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#gYear -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#gYear">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#gYearMonth -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#gYearMonth">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2001/XMLSchema#time -->
-
-<rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#time">
-	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Object Properties -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/OperatingProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/OperatingProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty"/>
-	<terms:description xml:lang="en">Properties that define the hours of operation of the contact.</terms:description>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/addressProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty"/>
-	<rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/dayofWeek -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/dayofWeek">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/OperatingProperty"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek"/>
-	<rdfs:comment xml:lang="en">Specifies the day of the week, e.g., Monday, that the times apply to.  This is the default for that day and can be overidden by the "hasDate" property.</rdfs:comment>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasAddress -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasAddress">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:comment xml:lang="en">hasAddress links any class to the Address class.</rdfs:comment>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/AddressType"/>
-	<rdfs:label xml:lang="en">has Address Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasCity -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasCity">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<terms:description xml:lang="en">has City</terms:description>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasCountry -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasCountry">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:label xml:lang="en">has Country</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasGeoCoordinates -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasGeoCoordinates">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:label xml:lang="en">has Geo Coordinates</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasOperatingHours -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasOperatingHours">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/OperatingProperty"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation"/>
-	<rdfs:label xml:lang="en">has Operating Hours</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneType"/>
-	<rdfs:label xml:lang="en">has Phone Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasState -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasState">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:label xml:lang="en">has State</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasStreetDirection -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetDirection">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection"/>
-	<rdfs:label xml:lang="en">has Street Direction</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasStreetType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressProperty"/>
-	<rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetType"/>
-	<rdfs:label xml:lang="en">has Street Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasTelephone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasTelephone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyProperty"/>
-	<rdfs:label xml:lang="en">has Telephone</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Data properties -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasAreaCode -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasAreaCode">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/telephoneDataProperty"/>
-	<rdfs:label xml:lang="en">has Area Code</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasBuilding -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasBuilding">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<terms:description xml:lang="en">The building where the address is located.  Often used in countries like England, India and Japan.</terms:description>
-	<rdfs:label xml:lang="en">has Building</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasCitySection -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasCitySection">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<terms:description xml:lang="en">The section of the city where the address is located.  Often used in countries like England, India and Japan.</terms:description>
-	<rdfs:label xml:lang="en">has City Section</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasClosingTime -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasClosingTime">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/operatingDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-	<rdfs:label xml:lang="en">has Closing Time</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasCountryCode -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasCountryCode">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/telephoneDataProperty"/>
-	<rdfs:label xml:lang="en">has Country Code</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasDate -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasDate">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/operatingDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-	<terms:description xml:lang="en">Specifies the opening and closing times for a specific date.  For example, used to provide times for a holiday which deviates from the norm.</terms:description>
-	<rdfs:label xml:lang="en">has Date</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasEmail -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasEmail">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasLocation -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasLocation">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<terms:description xml:lang="en">Closet street intersection for the organization.</terms:description>
-	<rdfs:label xml:lang="en">has Location</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasOpeningTime -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasOpeningTime">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/operatingDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-	<rdfs:label xml:lang="en">has Opening Time</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasPersonalEmail -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasPersonalEmail">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasEmail"/>
-	<rdfs:label xml:lang="en">has Personal Email</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/telephoneDataProperty"/>
-	<rdfs:label xml:lang="en">has Phone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasPostalBox -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasPostalBox">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<terms:description xml:lang="en">An address can have a postal box associated with it.</terms:description>
-	<rdfs:label xml:lang="en">has Postal Box</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasPostalCode -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasPostalCode">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:label xml:lang="en">has Postal Code</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasStreet -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasStreet">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:label xml:lang="en">has Street</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasStreetNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:label xml:lang="en">has Street Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasUnitNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasUnitNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:label xml:lang="en">has Unit Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasWebSite -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasWebSite">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<rdfs:label xml:lang="en">has Web Site</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/hasWorkEmail -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/hasWorkEmail">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasEmail"/>
-	<rdfs:label xml:lang="en">has Work Email</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/operatingDataProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/operatingDataProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/telephoneDataProperty -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/telephoneDataProperty">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasContactDataProperty"/>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat -->
-
-<rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-	<rdfs:label xml:lang="en">lattitude</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://www.w3.org/2003/01/geo/wgs84_pos#long -->
-
-<rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#long">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-	<rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/addressDataProperty"/>
-	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-	<rdfs:label xml:lang="en">longitude</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Classes -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Address -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:subClassOf rdf:nodeID="genid1"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid1">
-	<owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/AddressType"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid2"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid2">
-	<owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid3"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid3">
-	<owl:onClass rdf:resource="http://schema.org/City"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasCity"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid4"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid4">
-	<owl:onClass rdf:resource="http://schema.org/Country"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasCountry"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid5"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid5">
-	<owl:onClass rdf:resource="http://schema.org/State"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasState"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid6"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid6">
-	<owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetDirection"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid7"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid7">
-	<owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetType"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid8"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid8">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasBuilding"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid9"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid9">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasCitySection"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid10"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid10">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPostalCode"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid11"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid11">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasStreet"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid12"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid12">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasStreetNumber"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid13"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid13">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasUnitNumber"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid14"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid14">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#lat"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<rdfs:subClassOf rdf:nodeID="genid15"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid15">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	<owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-	<owl:onProperty rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#long"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Address">
-	<terms:description xml:lang="en">Address is the main concept for a contact.  It has been designed to represent any type of address in the world, including India and the UK.  For example, the property hasBuilding is important in many UK and Indian addresses to further identify the person or business location.
-
-Street information is divided into separate properties to fully indentify direction (hasStreetDirection), Type (hasStreetType), etc.  See the associated list of properties for more.</terms:description>
-	<rdfs:label xml:lang="en">Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/AddressType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/AddressType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<owl:equivalentClass rdf:nodeID="genid16"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid16">
-	<owl:oneOf rdf:nodeID="genid19"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid19">
-	<rdf:rest rdf:nodeID="genid18"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid18">
-	<rdf:rest rdf:nodeID="genid17"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid17">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Work"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid18">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Home"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid19">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Cottage"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid16">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/AddressType">
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<terms:description xml:lang="en">Different type for home, office, cottage, etc.</terms:description>
-	<rdfs:label xml:lang="en">Address Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/CellNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/CellNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdfs:subClassOf rdf:nodeID="genid20"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid20">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/CellPhone"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/CellNumber">
-	<rdfs:label xml:lang="en">Mobile Telephone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/CottageAddress -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/CottageAddress">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:subClassOf rdf:nodeID="genid21"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid21">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Cottage"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/CottageAddress">
-	<rdfs:label xml:lang="en">Cottage Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<owl:equivalentClass rdf:nodeID="genid22"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid22">
-	<owl:oneOf rdf:nodeID="genid29"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid29">
-	<rdf:rest rdf:nodeID="genid28"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid28">
-	<rdf:rest rdf:nodeID="genid27"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid27">
-	<rdf:rest rdf:nodeID="genid26"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid26">
-	<rdf:rest rdf:nodeID="genid25"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid25">
-	<rdf:rest rdf:nodeID="genid24"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid24">
-	<rdf:rest rdf:nodeID="genid23"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid23">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/wednesday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid24">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/tuesday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid25">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/thursday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid26">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/sunday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid27">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/saturday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid28">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/monday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid29">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/friday"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid22">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek">
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:label xml:lang="en">Days of the Week</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/FaxNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/FaxNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdfs:subClassOf rdf:nodeID="genid30"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid30">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/FaxPhone"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/FaxNumber">
-	<rdfs:label xml:lang="en">Fax Telephone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/HomeAddress -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HomeAddress">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:subClassOf rdf:nodeID="genid31"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid31">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Home"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HomeAddress">
-	<rdfs:label xml:lang="en">Home Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/HomeNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HomeNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdfs:subClassOf rdf:nodeID="genid32"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid32">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/HomePhone"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HomeNumber">
-	<rdfs:label xml:lang="en">Home Telephone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/RecurringEvent/RecurringEvent"/>
-	<rdfs:subClassOf rdf:nodeID="genid33"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid33">
-	<owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/dayofWeek"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation">
-	<rdfs:subClassOf rdf:nodeID="genid34"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid34">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasClosingTime"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation">
-	<rdfs:subClassOf rdf:nodeID="genid35"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid35">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasOpeningTime"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation">
-	<terms:description xml:lang="en">HoursOfOperation class provides the ability to define when the contact "opens" and "closes". Used for businesses.</terms:description>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:subClassOf rdf:nodeID="genid36"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid36">
-	<owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneType"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber">
-	<rdfs:subClassOf rdf:nodeID="genid37"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid37">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasAreaCode"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber">
-	<rdfs:subClassOf rdf:nodeID="genid38"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid38">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasCountryCode"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber">
-	<rdfs:subClassOf rdf:nodeID="genid39"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid39">
-	<owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-	<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneNumber"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber">
-	<terms:description xml:lang="en">PhoneNumber is another core class. It is divided into country code, and phone number.</terms:description>
-	<rdfs:label xml:lang="en">Phone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/PhoneType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<owl:equivalentClass rdf:nodeID="genid40"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid40">
-	<owl:oneOf rdf:nodeID="genid45"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid45">
-	<rdf:rest rdf:nodeID="genid44"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid44">
-	<rdf:rest rdf:nodeID="genid43"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid43">
-	<rdf:rest rdf:nodeID="genid42"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid42">
-	<rdf:rest rdf:nodeID="genid41"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid41">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/WorkPhone"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid42">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/TollFreePhone"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid43">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/HomePhone"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid44">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/FaxPhone"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid45">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/CellPhone"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid40">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/PhoneType">
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<terms:description xml:lang="en">Types of phoned include home, cell, work, etc.</terms:description>
-	<rdfs:label xml:lang="en">Phone Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<owl:equivalentClass rdf:nodeID="genid46"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid46">
-	<owl:oneOf rdf:nodeID="genid50"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid50">
-	<rdf:rest rdf:nodeID="genid49"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid49">
-	<rdf:rest rdf:nodeID="genid48"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid48">
-	<rdf:rest rdf:nodeID="genid47"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid47">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/west"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid48">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/south"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid49">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/north"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid50">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/east"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid46">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection">
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:label xml:lang="en">Street Direction</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/StreetType -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/StreetType">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<owl:equivalentClass rdf:nodeID="genid51"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid51">
-	<owl:oneOf rdf:nodeID="genid58"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid58">
-	<rdf:rest rdf:nodeID="genid57"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid57">
-	<rdf:rest rdf:nodeID="genid56"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid56">
-	<rdf:rest rdf:nodeID="genid55"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid55">
-	<rdf:rest rdf:nodeID="genid54"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid54">
-	<rdf:rest rdf:nodeID="genid53"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid53">
-	<rdf:rest rdf:nodeID="genid52"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid52">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Street"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid53">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Road"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid54">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Drive"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid55">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Crescent"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid56">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Circle"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid57">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Boulevard"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid58">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Avenue"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid51">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/StreetType">
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/ContactOntologyThing"/>
-	<rdfs:label xml:lang="en">Street Type</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/TollFreeNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/TollFreeNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdfs:subClassOf rdf:nodeID="genid59"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid59">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/TollFreePhone"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/TollFreeNumber">
-	<rdfs:label xml:lang="en">Toll  Free Telephone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/WorkAddress -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/WorkAddress">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdfs:subClassOf rdf:nodeID="genid60"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid60">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Work"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasAddressType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/WorkAddress">
-	<rdfs:label xml:lang="en">Work Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/WorkNumber -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/WorkNumber">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdfs:subClassOf rdf:nodeID="genid61"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid61">
-	<owl:hasValue rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/WorkPhone"/>
-	<owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/hasPhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/WorkNumber">
-	<rdfs:label xml:lang="en">Work Telephone Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/RecurringEvent/RecurringEvent -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/RecurringEvent/RecurringEvent">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/City -->
-
-<rdf:Description rdf:about="http://schema.org/City">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/Country -->
-
-<rdf:Description rdf:about="http://schema.org/Country">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/GeoCoordinates -->
-
-<rdf:Description rdf:about="http://schema.org/GeoCoordinates">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing"/>
-</rdf:Description>
-<!--  -->
-<!-- http://schema.org/State -->
-
-<rdf:Description rdf:about="http://schema.org/State">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	<rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/SchemaOrgThing"/>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    Individuals -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Avenue -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Avenue">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Avenue</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Boulevard -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Boulevard">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Boulevard</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/CellPhone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/CellPhone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Cell Phone</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Circle -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Circle">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Circle</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Cottage -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Cottage">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Cottage Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Crescent -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Crescent">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Crescent</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Drive -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Drive">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Drive</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/FaxPhone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/FaxPhone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Fax Line</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Friday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Friday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Friday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Home -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Home">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Home Address</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/HomePhone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/HomePhone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Home Phone</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Monday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Monday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Monday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Road -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Road">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Road</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Saturday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Saturday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Saturday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Street -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Street">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Street</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Sunday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Sunday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Sunday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Thursday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Thursday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Thursday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/TollFreePhone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/TollFreePhone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Toll Free Number</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Tuesday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Tuesday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Tuesday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Wednesday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Wednesday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Wednesday</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/Work -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/Work">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">WorkAddress</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/WorkPhone -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/WorkPhone">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">Work Phone</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/east -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/east">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">East</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/friday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/friday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/monday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/monday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/north -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/north">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">North</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/saturday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/saturday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/south -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/south">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">South</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/sunday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/sunday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/thursday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/thursday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/tuesday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/tuesday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/wednesday -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/wednesday">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</rdf:Description>
-<!--  -->
-<!-- http://ontology.eil.utoronto.ca/5087/Contact/west -->
-
-<rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/Contact/west">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-	<rdfs:label xml:lang="en">West</rdfs:label>
-</rdf:Description>
-<!--  -->
-<!--  -->
-<!--  -->
-<!-- ################################################################# -->
-<!-- # -->
-<!-- #    General axioms -->
-<!-- # -->
-<!-- ################################################################# -->
-<!--  -->
-<!--  -->
-
-<rdf:Description rdf:nodeID="genid62">
-	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-	<owl:members rdf:nodeID="genid70"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid70">
-	<rdf:rest rdf:nodeID="genid69"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid69">
-	<rdf:rest rdf:nodeID="genid68"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid68">
-	<rdf:rest rdf:nodeID="genid67"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid67">
-	<rdf:rest rdf:nodeID="genid66"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid66">
-	<rdf:rest rdf:nodeID="genid65"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid65">
-	<rdf:rest rdf:nodeID="genid64"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid64">
-	<rdf:rest rdf:nodeID="genid63"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid63">
-	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetType"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid64">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/StreetDirection"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid65">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneType"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid66">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/PhoneNumber"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid67">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/HoursOfOperation"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid68">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/DaysOfWeek"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid69">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/AddressType"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-
-<rdf:Description rdf:nodeID="genid70">
-	<rdf:first rdf:resource="http://ontology.eil.utoronto.ca/5087/Contact/Address"/>
-	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-</rdf:Description>
-<!--  -->
-<!-- Generated by the OWL API (version 4.5.18.2020-10-27T15:06:34Z) https://github.com/owlcs/owlapi -->
-
-</rdf:RDF>
