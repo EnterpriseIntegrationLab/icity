@@ -17,6 +17,7 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure">
         <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/1.0/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure.owl"/>
         <dc:description>The Transportation Infrastructure pattern defines the concepts that are relevant in describing the physical transportation infrastructure and their characteristics. This includes the concepts of a Road, Bridge, and Tunnel. The Infrastructure Pattern is reused here, as these transportation structures are all defined as types of (subclasses) Infrastructure Elements.</dc:description>
         <dc:issued>May 3, 2021</dc:issued>
         <dc:title>Transportation Infrastructure Pattern</dc:title>
@@ -150,9 +151,26 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/InfrastructureOntologyObjectProperty -->
+    <!-- http://ontology.eil.utoronto.ca/5087/Mereology/contains -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/InfrastructureOntologyObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Mereology/contains"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName"/>
     
 
 
@@ -167,9 +185,203 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/InfrastructureOntologyThing -->
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Bridge -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/InfrastructureOntologyThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Bridge">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/contains"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLineSegment"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RoadSegment"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/BridgeSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/BridgeSegment -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/BridgeSegment">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLine -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLine">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLineSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLineSegment -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLineSegment">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Road -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Road">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RoadSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RoadSegment -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RoadSegment">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Tunnel -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/Tunnel">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/contains"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RailLineSegment"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/RoadSegment"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Mereology/hasProperPart"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TunnelSegment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/hasName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TunnelSegment -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TunnelSegment">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Infrastructure/InfrastructureElement"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/TransportationInfrastructure/TransportationInfrastructureOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
 </rdf:RDF>
 
 
