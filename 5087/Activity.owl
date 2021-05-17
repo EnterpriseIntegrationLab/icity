@@ -25,7 +25,6 @@
      xmlns:Activity="http://ontology.eil.utoronto.ca/5087/Activity/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/">
-        <owl:versionIRI rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/1.2/"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/Change.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc.owl"/>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
@@ -34,18 +33,8 @@
         <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">November 6, 2017</dc:issued>
         <dc:title>ISO/IEC 5087-1 Activity Ontology</dc:title>
         <vann:preferredNamespacePrefix>activity</vann:preferredNamespacePrefix>
-        <rdfs:comment xml:lang="2016 megan katsumi, icity research group">Developed as part of the overall iCity ontology effort, the iCity-Activity ontology is designed to capture concepts related to activities.
-		Changes from previous version:
-		-imported revised ontology of change (iCity-Change).
-		-revised representation of activities, removed ActivityOccurrence class
-		-added beginOf and endOf properties
-		-added axioms for preconditionOf, effectOf, and achievedAt properties
-		Copyright </rdfs:comment>
         <owl:priorVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#date">http://ontology.eil.utoronto.ca/5087/Activity/</owl:priorVersion>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2</owl:versionInfo>
-        <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Version 1. under development. 
-Please refer to report on iCity Ontology v1, 
-Also 2017 WOP Submssion &quot;A Design Pattern for Representing Preconditions and Effects in OWL&quot;</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -701,6 +690,13 @@ decomp_of(x,y) -&gt; substate(x,y)</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/hasStatus"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/StateStatus"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
