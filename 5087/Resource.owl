@@ -269,9 +269,9 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/Resource/hasResourceType -->
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/hasResource -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/hasResourceType">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/hasResource">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/ResourceOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -280,6 +280,14 @@
     <!-- http://ontology.eil.utoronto.ca/5087/Resource/ownedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/ownedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/ResourceOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/resourceOf -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/resourceOf">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/ResourceOntologyProperty"/>
     </owl:ObjectProperty>
     
@@ -390,16 +398,18 @@ Note that Allocation is a Manifestation as the allocation may change over time.<
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/ConsumeState -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/ConsumeState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState"/>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/Resource/DivisibleResource -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/DivisibleResource">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Resource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/hasAvailableCapacity"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/OM/CapacitySize"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/NonDivisibleResource"/>
     </owl:Class>
     
@@ -409,13 +419,22 @@ Note that Allocation is a Manifestation as the allocation may change over time.<
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/NonDivisibleResource">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Resource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/usedBy"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/ProduceState -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/ProduceState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/ReleaseState -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/ReleaseState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState"/>
     </owl:Class>
     
 
@@ -427,7 +446,7 @@ Note that Allocation is a Manifestation as the allocation may change over time.<
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/hasAllocation"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/State"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Allocation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -483,6 +502,41 @@ A Resource may have some associated location. This property captures an approxim
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/ResourceOntologyThing">
         <dc:description>Added for organizational purposes, to identify all classes defined in the Resource ontology.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/TerminalState"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/ResourceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/hasQuantity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/iso21972#Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/hasAllocation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Allocation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/hasResource"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/Resource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/Resource/UseState -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Resource/UseState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Resource/TerminalResourceState"/>
     </owl:Class>
     
 
