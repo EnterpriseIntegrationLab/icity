@@ -10,7 +10,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:Time="http://ontology.eil.utoronto.ca/5087/Time/"
+     xmlns:Time="http://ontology.eil.utoronto.ca/5087/1/Time/"
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -20,13 +20,13 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:otime="http://www.w3.org/2006/time#"
      xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:Change="http://ontology.eil.utoronto.ca/5087/Change/"
-     xmlns:Activity="http://ontology.eil.utoronto.ca/5087/Activity/"
-     xmlns:Resource="http://ontology.eil.utoronto.ca/5087/Resource/"
+     xmlns:Change="http://ontology.eil.utoronto.ca/5087/1/Change/"
+     xmlns:Activity="http://ontology.eil.utoronto.ca/5087/1/Activity/"
+     xmlns:Resource="http://ontology.eil.utoronto.ca/5087/1/Resource/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/">
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/GenericProperties.owl"/>
-		<owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
         <ns:license>http://creativecommons.org/licenses/by/3.0/</ns:license>
         <dc:creator>Megan Katsumi</dc:creator>
         <dc:description>This ontology provides a generic representation of resources that contain core properties generic across all transportation uses. We take the view presented in the TOVE model (Fadel, Fox, and Gruninger, 1994) that &quot;...being a resource is not an innate property of an object but a property that is derived from the role the object plays with respect to an activity&quot;. The definition of  a resource is dependent on its participation in an activity occurrence, so the Resource ontology is in fact an extension of the Activity ontology. In this sense, Resources are a class of manifestations, so that rather than have a specialized Resource-perdurant (PD) class, a Resource is a manifestation of some other perdurant class in the ontology. For example, an instance of a Vehicle that is a manifestation of some VehiclePD may also be an instance of a resource, whereas some other instance of a Vehicle that is some later manifestation of the same VehiclePD may not be a Resource, or it may be a different Resource. 
@@ -59,12 +59,6 @@
     <!-- http://creativecommons.org/ns#license -->
 
     <owl:AnnotationProperty rdf:about="http://creativecommons.org/ns#license"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Change/isInvariant -->
-
-    <owl:AnnotationProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Change/isInvariant"/>
     
 
 
@@ -134,6 +128,18 @@
     
 
 
+    <!-- http://www.w3.org/2002/07/owl#minQualifiedCardinality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#minQualifiedCardinality"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#qualifiedCardinality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#qualifiedCardinality"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#versionInfo -->
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
@@ -191,8 +197,8 @@
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/consumedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/consumedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/preconditionOf"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf"/>
     </owl:ObjectProperty>
     
 
@@ -257,6 +263,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/hasQuantity -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/hasQuantity">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/hasResource -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/hasResource">
@@ -274,6 +288,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/participatesIn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/participatesIn">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/resourceOf -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/resourceOf">
@@ -285,39 +307,9 @@
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/usedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/usedBy">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/preconditionOf"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/hasQuantity -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/hasQuantity"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/participatesIn -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/participatesIn"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/preconditionOf"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Change/existsAt -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/Change/existsAt"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
     
 
 
@@ -335,8 +327,8 @@
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/Allocation -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/Allocation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/forResource"/>
@@ -348,12 +340,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/forState"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/State"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/State"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/hasQuantity"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/hasQuantity"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/iso21972#Quantity"/>
             </owl:Restriction>
@@ -379,16 +371,16 @@ Note that Allocation is a Manifestation as the allocation may change over time.<
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/Asset -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/Asset">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/Feature"/>
+                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <Change:isInvariant rdf:resource="http://ontology.eil.utoronto.ca/5087/SpatialLoc/hasLocation"/>
+        <Change:isInvariant rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
     </owl:Class>
     
 
@@ -446,9 +438,9 @@ Note that Allocation is a Manifestation as the allocation may change over time.<
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/participatesIn"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/participatesIn"/>
                 <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/Activity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -498,8 +490,14 @@ A Resource may have some associated location. This property captures an approxim
     <!-- http://ontology.eil.utoronto.ca/5087/1/Resource/TerminalResourceState -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Resource/TerminalResourceState">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/TerminalState"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/ResourceOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/TerminalState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/hasQuantity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/iso21972#Quantity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/hasAllocation"/>
@@ -510,12 +508,6 @@ A Resource may have some associated location. This property captures an approxim
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/hasResource"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/Resource"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/Activity/hasQuantity"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/iso21972#Quantity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -530,57 +522,15 @@ A Resource may have some associated location. This property captures an approxim
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/Activity -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/Activity"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/State -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/State"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Activity/TerminalState -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Activity/TerminalState"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/Change/Manifestation -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/Change/Manifestation"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/OM/CapacitySize -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/OM/CapacitySize"/>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/SpatialLoc/Feature -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/SpatialLoc/Feature"/>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/iso21972#Quantity -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/iso21972#Quantity"/>
-    
-
-
-    <!-- http://www.opengis.net/ont/geosparql#Feature -->
-
-    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature"/>
-    
-
-
-    <!-- http://www.w3.org/2006/time#TemporalEntity -->
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#TemporalEntity"/>
+    <rdf:Description>
+        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+    </rdf:Description>
+    <rdf:Description>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </rdf:Description>
     
 
 
@@ -594,10 +544,10 @@ A Resource may have some associated location. This property captures an approxim
 
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#">
         <dc:date>$Date: 2009/04/20 15:00:30 $</dc:date>
+        <rdfs:label>geo</rdfs:label>
         <dc:description>A vocabulary for representing latitude, longitude and 
  altitude information in the WGS84 geodetic reference datum. 
  Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.</dc:description>
-        <dc:title>WGS84 Geo Positioning: an RDF vocabulary</dc:title>
         <rdfs:comment>
 Recent changes to this namespace:
 $Log: wgs84_pos.rdf,v $
@@ -682,7 +632,7 @@ date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
 basic geo vocab
 
 </rdfs:comment>
-        <rdfs:label>geo</rdfs:label>
+        <dc:title>WGS84 Geo Positioning: an RDF vocabulary</dc:title>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
         <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
@@ -692,5 +642,5 @@ basic geo vocab
 
 
 
-<!-- Generated by the OWL API (version 4.5.18.2020-10-27T15:06:34Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
