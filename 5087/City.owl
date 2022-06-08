@@ -13,6 +13,7 @@
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
@@ -26,12 +27,12 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:Organization="http://ontology.eil.utoronto.ca/5087/2/Organization/"
      xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/5087/1/RecurringEvent/">
-    <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/City">
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse.owl"/>
+    <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/">
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse.owl"/>
         <dc:description>The City pattern captures basic information about the geospatial aspects of the city.  In particular it represents the different ways in which the city is administratively divided.</dc:description>
         <dc:title>City Pattern</dc:title>
         <vann:preferredNamespacePrefix>city</vann:preferredNamespacePrefix>
@@ -171,6 +172,23 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/2/City/hasGovernment -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/hasGovernment">
@@ -193,6 +211,14 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyDataProperty -->
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyDataProperty"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -226,11 +252,18 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/City/City -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/City">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/hasBylaw"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/Bylaw"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -247,8 +280,9 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology/hasProperPart"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityDivision"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -268,14 +302,15 @@ A City has the following properties:
 •	hasLandArea: identifies the spatial areas occupied by the city.
 •	hasGovernment: identifies the GovernmentOrganization that manages the city.
 •	hasBylaw: identifies the bylaws in existence in the city.
-•	5087-1:hasProperPart:: identifies spatial subdivisions of a city. They do not have to be distinct and can be hierarchical. A CityDivision can be specialized for use by a City to reflect its unique subdivisions such as Districts, Wards, Neighbourhoods, Prefectures, etc.</rdfs:comment>
+•	5087-1:hasProperPart:: identifies spatial subdivisions of a city. They do not have to be distinct and can be hierarchical. A CityAdministrativeArea can be specialized for use by a City to reflect its unique subdivisions such as Districts, Wards, Neighbourhoods, Prefectures, etc.</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/City/CityDivision -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityDivision">
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -297,23 +332,30 @@ A City has the following properties:
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology/hasProperPart"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityDivision"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology/properPartOf"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/City"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityDivision"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:onClass>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -323,13 +365,15 @@ A City has the following properties:
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">A City Division is similar in properties to a City:
+        <rdfs:comment xml:lang="en">A CityAdministrativeArea is an area that has the authority and the power to make administrative or policy decisions. It can be specialized for use by a City to reflect its unique areas such as Districts, Wards, Neighbourhoods, Prefectures, etc.
+
+A CityAdministrativeAreais similar in properties to a City:
 •	schema:name: The name of the city division
 •	hasLandArea: identifies the spatial areas occupied by the city division.
 •	hasGovernment: identifies the GovernmentOrganization that manages the city division, if any.
 •	sBylaw: identifies the bylaws in existence in the city division.
 •	5087-1:hasProperPart: identifies spatial subdivisions of the city division. 
-•	5087-1:properPartOf: identifies the City or CityDivision it is part of.</rdfs:comment>
+•	5087-1:properPartOf: identifies the City or CityAdministrativeArea it is part of.</rdfs:comment>
     </owl:Class>
     
 
