@@ -5,6 +5,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:ns5="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:org="http://www.w3.org/ns/org#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -29,6 +30,7 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person.owl"/>
         <dc:description>The Household ontology defines the classes: Household, Family, and DwellingUnit. These definitions serve as a basis which may be extended for more specific applications such as a surveys and simulations.</dc:description>
@@ -167,31 +169,12 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/dwellingUnitOccupiedBy -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/dwellingUnitOccupiedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/hasDwellingAddress -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/hasDwellingAddress">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://schema.org/address"/>
-        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Household/hasFamilyMember -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/hasFamilyMember">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology/hasComponent"/>
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyProperty"/>
         <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/isMemberOfFamily"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/Family"/>
         <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
     </owl:ObjectProperty>
     
@@ -280,57 +263,6 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/DwellingUnit -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/DwellingUnit">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/BuildingUnit"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/hasDwellingAddress"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/hasValue"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits/MonetaryValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/tenureType"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/Tenure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A Dwelling Unit is occupied by a Household.
-A Dwelling Unit has a market value.
-A Dwelling Unit is located in some Building (e.g. House, Apartment,...)
-A Dwelling Unit has some Location.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/Family -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/Family">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change/Manifestation"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/hasFamilyMember"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>A family has members who are Persons, and who are related via the has-spouse or has-child properties.
-We may define different types of Family (e.g. Immediate, Extended). Here, we simply make the commitment that it is a group of people who are connected via the has-spouse or has-child properties. From these, we can derive grandparents, aunts, uncles, etcetera.
-One question to consider is to what degree the general/extended Family concept makes sense or is useful. After a few generations the concept of a family will become quite large and confusing, with Persons belonging to many different Families. At a certain point it may be more useful to consider a relatedTo property between Persons, or only defining restricted subclasses of Family.</dc:description>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Household/Household -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/Household">
@@ -354,7 +286,7 @@ One question to consider is to what degree the general/extended Family concept m
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/householdOccupies"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/DwellingUnit"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/Residence"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>A Household has one or more Persons as members.
@@ -386,6 +318,33 @@ To be defined in greater detail (if required) in future versions.</rdfs:comment>
     <!-- http://schema.org/PostalAddress -->
 
     <owl:Class rdf:about="http://schema.org/PostalAddress"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/own -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/own">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/Tenure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Household/rent -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/rent">
+        <rdf:type rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/Tenure"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
