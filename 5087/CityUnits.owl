@@ -2,7 +2,6 @@
 <rdf:RDF xmlns="http://ontology.eil.utoronto.ca/5087/1/CityUnits/"
      xml:base="http://ontology.eil.utoronto.ca/5087/1/CityUnits/"
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
-     xmlns:cu="http://ontology.eil.utoronto.ca/5087/1/CityUnits/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
      xmlns:i72="http://ontology.eil.utoronto.ca/ISO21972/iso21972#"
@@ -378,6 +377,12 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/1/cityUnitsProperty -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/cityUnitsProperty"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/1/CityUnits/aggregateOf -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/CityUnits/aggregateOf">
@@ -486,12 +491,6 @@
         <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
         <rdfs:label>has value</rdfs:label>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/1/cityUnitsProperty -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/cityUnitsProperty"/>
     
 
 
@@ -747,7 +746,19 @@
     <!-- http://ontology.eil.utoronto.ca/5087/1/CityUnits/Duration -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/CityUnits/Duration">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits/Time"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#TemporalDuration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
+                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits/TimeUnit"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label>duration</rdfs:label>
     </owl:Class>
     
@@ -894,26 +905,6 @@ A Monetary Value is measured with some currency.</rdfs:comment>
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/CityUnits/SpeedUnit">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Unit_of_measure"/>
         <rdfs:label>speed unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/1/CityUnits/Time -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/CityUnits/Time">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Quantity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#value"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#unit_of_measure"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits/TimeUnit"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>time</rdfs:label>
     </owl:Class>
     
 
