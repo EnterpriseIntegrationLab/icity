@@ -18,9 +18,9 @@
      xmlns:Agreement="http://ontology.eil.utoronto.ca/5087/1/Agreement/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agreement">
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/GenericProperties.owl"/>
-		<owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/GenericProperties.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Time.owl"/>
         <dc:description xml:lang="en">An agreement exists between 2 or more agents. It is established at some point in time and it may be considered valid only in some Location and/or for some interval in time. An agreement may be defined at varying levels of detail, this is supported with the introduction of the ComplexAgreement and AtomicAgreement class. A complex agreement may be decomposed into sub-agreements, whereas an atomic agreement cannot. Similar to the approach taken for the representation of activities, a complex agreement may be decomposed into disjunctive or conjunctive sub-agreements. This allows for the representation of both types of agreement composition. At their most simple level, the AtomicAgreement describes a commitment to some activity; this is captured with the commitsToActivity property.  Finally, agreements involve some specification of rights or commitments of the involved parties. This is represented as a relationship between the involved Agent and a particular activity. The precise nature of the relationship indicates the type of agreement. The possible relationships are defined according to the elements of the primary rules of the Hohfeldian analytical system, (and their opposites): claim and privilege.</dc:description>
@@ -208,9 +208,11 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/1/Agent/Agent -->
+    <!-- http://ontology.eil.utoronto.ca/5087/1/Agreement/Agent -->
 
-    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/Agent">
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agreement/Agent">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/Agent"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agreement/AgreementOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agreement/hasClaim"/>
@@ -235,7 +237,7 @@
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agreement/AtomicAgreement"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </rdf:Description>
+    </owl:Class>
     
 
 
