@@ -197,20 +197,10 @@ This ontology was created to organize the reuse of the geoSPARQL vocabulary in t
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasGeometry -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasGeometry">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialLocOntologyProperty"/>
-        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Geometry"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialLocOntologyProperty"/>
-        <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
         <rdfs:comment>A property intended to relate non-spatial objects (e.g. activities) to a location(s) in space.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -598,13 +588,7 @@ This ontology was created to organize the reuse of the geoSPARQL vocabulary in t
     <!-- http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location">
-        <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasGeometry"/>
-                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Geometry"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#Geometry"/>
     </owl:Class>
     
 
@@ -613,20 +597,6 @@ This ontology was created to organize the reuse of the geoSPARQL vocabulary in t
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialLocOntologyThing">
         <rdfs:comment>Created for organizational purposes, to identify the classes imported from geoSPARQL.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialObject -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialObject">
-        <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -668,22 +638,6 @@ This ontology was created to organize the reuse of the geoSPARQL vocabulary in t
     <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialLocOntologyThing"/>
     </rdf:Description>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // General axioms
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
-        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/SpatialObject"/>
-    </owl:Restriction>
 </rdf:RDF>
 
 
