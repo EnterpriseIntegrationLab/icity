@@ -8,11 +8,12 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:adms="http://www.w3.org/ns/adms#"
-     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:foaf="http://xmlns.com/foaf/spec/#term"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:Agent="http://ontology.eil.utoronto.ca/5087/1/Agent/"
+     xmlns:foaf1="http://xmlns.com/foaf/0.1/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:Change="http://ontology.eil.utoronto.ca/5087/1/Change/"
      xmlns:Change1="http://ontology.eil.utoronto.ca/5087/Change/"
@@ -151,6 +152,7 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
+
     
 
 
@@ -160,19 +162,20 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/1/Agent/perform -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/perform">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/performedBy"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/1/Agent/performedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/performedBy">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/performs"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/1/Agent/performs -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/performs">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
     </owl:ObjectProperty>
     
 
@@ -215,9 +218,10 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/Agent">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/spec/#term_Agent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/perform"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent/performs"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/Activity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -225,6 +229,13 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource/resourceOf"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity/Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/GenericProperties/hasName"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>An Agent may be a Person or Organization. This is captured in the Person and Ontology patterns.  An Agent can also perform an Activity. 
@@ -236,6 +247,12 @@ We do not include Software or Mechanical Device (at this time). An Agent can be 
     <!-- http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyThing -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/1/Agent/AgentOntologyThing"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/spec/#term_Agent -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/spec/#term_Agent"/>
 </rdf:RDF>
 
 
