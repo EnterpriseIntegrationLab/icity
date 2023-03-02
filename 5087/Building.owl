@@ -170,16 +170,6 @@ There may be many different types (subclasses) of buildings, such as House, Apar
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Building/buildingUnitHasAddress -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/buildingUnitHasAddress">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/BuildingOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://schema.org/address"/>
-        <Change:isInvariant rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</Change:isInvariant>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Building/hasBuildingFacility -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/hasBuildingFacility">
@@ -314,17 +304,17 @@ There may be many different types (subclasses) of buildings, such as House, Apar
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Building/hasNumberOfRooms -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Building/numFloors -->
 
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/hasNumberOfRooms">
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/numFloors">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/BuildingOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Building/numFloors -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Building/numberOfRooms -->
 
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/numFloors">
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/numberOfRooms">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/BuildingOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
@@ -412,7 +402,7 @@ There may be many different types (subclasses) of buildings, such as House, Apar
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/numFloors"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Building: A Building is a structure with some location in the urban system. The location of the Building in space may change due to construction, but the Parcel/Lot of land it is located on cannot.
@@ -467,12 +457,6 @@ A Building contains one or many units.</dc:description>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/Manifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/buildingUnitHasAddress"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/hasBuildingFacility"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/BuildingFacility"/>
             </owl:Restriction>
@@ -487,6 +471,12 @@ A Building contains one or many units.</dc:description>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/hasUnitSize"/>
                 <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/Area"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -511,7 +501,7 @@ A Building contains one or many units.</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/hasNumberOfRooms"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building/numberOfRooms"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
