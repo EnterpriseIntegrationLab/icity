@@ -25,8 +25,8 @@
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/Person/">
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Agent.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/"/>
-        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Code.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
         <dc:description>Ontology to capture concepts related to Persons.</dc:description>
         <dc:title>Person Ontology</dc:title>
         <vann:preferredNamespacePrefix>person</vann:preferredNamespacePrefix>
@@ -156,6 +156,18 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Contact/hasTelephone -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Contact/hasTelephone"/>
     
 
 
@@ -378,6 +390,12 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Contact/email -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Contact/email"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/2/Person/PersonOntologyDataProperty -->
 
     <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Person/PersonOntologyDataProperty"/>
@@ -427,13 +445,26 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Contact/PhoneNumber -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Contact/PhoneNumber"/>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/2/Person/Citizenship -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Person/Citizenship">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/PersonOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTime"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/forCountry"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//Country"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/validityPeriod"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
             </owl:Restriction>
@@ -509,12 +540,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/birthplace"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/children"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
             </owl:Restriction>
@@ -545,12 +570,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/hasQualification"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Qualification"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/hasSkill"/>
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Skill"/>
             </owl:Restriction>
@@ -575,16 +594,16 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/hasAge"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/Duration"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/birthDate"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/birthDate"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/birthplace"/>
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#Instant"/>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -617,7 +636,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/hasEmail"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/email"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -649,7 +668,7 @@ Note that some properties are not defined in the Person ontology, but in an exte
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/issuedBy"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Agent/Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
