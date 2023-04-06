@@ -31,7 +31,6 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse.owl"/>
         <dc:description>The City pattern captures basic information about the geospatial aspects of the city.  In particular it represents the different ways in which the city is administratively divided.</dc:description>
         <dc:title>City Pattern</dc:title>
@@ -172,18 +171,18 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/administrativeArea -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/administrativeArea">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
+        <owl:inverseOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityObjectProperty"/>
     </owl:ObjectProperty>
     
@@ -194,6 +193,18 @@
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/hasGovernment">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityObjectProperty"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/LandUse/hasLandArea -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/LandUse/hasLandArea"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/LandUse/residentPopulation -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/LandUse/residentPopulation"/>
     
 
 
@@ -222,9 +233,9 @@
     
 
 
-    <!-- http://schema.org/legalName -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/legalName -->
 
-    <owl:DatatypeProperty rdf:about="http://schema.org/legalName">
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/legalName">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyDataProperty"/>
     </owl:DatatypeProperty>
     
@@ -253,35 +264,10 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/City">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/hasBylaw"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/Bylaw"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/hasLandArea"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/legalName"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/legalName"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
@@ -305,58 +291,11 @@ A City has the following properties:
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/Manifestation"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/hasBylaw"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/Bylaw"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasGovernment"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/hasLandArea"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/City"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:onClass>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasAdministrativeArea"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityAdministrativeArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasPopulationSize"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A CityAdministrativeArea is an area that has the authority and the power to make administrative or policy decisions. It can be specialized for use by a City to reflect its unique areas such as Districts, Wards, Neighbourhoods, Prefectures, etc.
@@ -375,6 +314,82 @@ A CityAdministrativeAreais similar in properties to a City:
     <!-- http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/hasBylaw"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Bylaw/Bylaw"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/administrativeArea"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/administrativeAreaOf"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/hasGovernment"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/hasLandArea"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse/residentPopulation"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/CityOntologyThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#City -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Population"/>
 </rdf:RDF>
 
 
