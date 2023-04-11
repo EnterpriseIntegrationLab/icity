@@ -4,6 +4,7 @@
      xmlns:WV="http://www.wurvoc.org/vocabularies/WV/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:org="http://www.w3.org/ns/org#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -18,6 +19,7 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:Change="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/"
      xmlns:schema="http://schema.org/"
+     xmlns:CityUnits="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:RecurringEvent="http://ontology.eil.utoronto.ca/5087/RecurringEvent/#"
      xmlns:RecurringEvent1="http://ontology.eil.utoronto.ca/5087/RecurringEvent/">
@@ -28,6 +30,7 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/LandUse.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/"/>
         <dc:description>As different cities have different definitions of who is that city’s Resident, the City Resident Pattern must contain the properties required by each.  Central to all of the definitions is the concept of residing. Variously referred to as a home or domicile in which the resident spends significant amounts of time.  They may own it, rent it or just stay in it.  Legally, “reside means to dwell permanently or continuously. It expresses an idea that a person keeps or returns to a particular dwelling place as his fixed, settled, or legal abode. The meaning of reside implies a continuous arrangement” ; reside has both a temporal and spatial dimension. The city of Toronto’s definition of a city resident includes the concept of owning property or owning or operating a business in the city. For Beijing, nationality is a unique aspect.</dc:description>
         <dc:title>City Resident Pattern</dc:title>
         <vann:preferredNamespacePrefix>Under development. Refer to latest version of ISO 5087-2.</vann:preferredNamespacePrefix>
@@ -89,14 +92,6 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/citizenOf -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/citizenOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyObjectProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/entity -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/entity">
@@ -108,14 +103,6 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/forCity -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/forCity">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyObjectProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/forCountry -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/forCountry">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyObjectProperty"/>
     </owl:ObjectProperty>
     
@@ -161,6 +148,39 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/residentOf -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/residentOf">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/cityResidentDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/cityResidentDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/percentOwnership -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/percentOwnership">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/cityResidentDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -172,39 +192,11 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/Citizenship -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/Citizenship">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/forCountry"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/Country"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTime"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResident -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResident">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/citizenOf"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/Citizenship"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/hasResidence"/>
@@ -214,20 +206,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/operates"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/ControlledEntity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOperation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/owns"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/ControlledEntity"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOwnership"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/hasResidence"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/Residence"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/residentOf"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -247,22 +238,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/entity"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/Building"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/LandUse/Parcel"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:onClass>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTime"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -270,10 +252,47 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/Country -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOperation -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/Country">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOperation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/ControlledEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/entity"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOwnership -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/EntityOwnership">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/ControlledEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/entity"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/Building/Building"/>
+                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/LandUse/LandArea"/>
+                            <rdf:Description rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/OrganizationStructure/Organization"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:onClass>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/percentOwnership"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -281,19 +300,13 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/HomeType -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/HomeType">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/apartment"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/condominium"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/hotel"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/house"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/openLand"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/shelter"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -304,20 +317,6 @@
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/forCity"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/City"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/hasHomeType"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/HomeType"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/hasResidentialRelationship"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/ResidentialRelationship"/>
@@ -325,15 +324,29 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/address"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/forCity"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#City"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/hasHomeType"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/HomeType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//hasAddress"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTime"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -344,18 +357,13 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityResident/ResidentialRelationship -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/ResidentialRelationship">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/freeload"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/lease"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/own"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/rent"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityResident/rent-to-own"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/CityResidentOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -438,5 +446,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.18.2020-10-27T15:06:34Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
