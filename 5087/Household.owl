@@ -25,14 +25,9 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:RecurringEvent="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/">
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Change.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/CityUnits.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Building.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person.owl"/>
+        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/OrganizationStructure/"/>
         <dc:description>The Household ontology defines the classes: Household, Family, and DwellingUnit. These definitions serve as a basis which may be extended for more specific applications such as a surveys and simulations.</dc:description>
         <dc:title>Household Pattern</dc:title>
         <vann:preferredNamespacePrefix>household</vann:preferredNamespacePrefix>
@@ -274,30 +269,28 @@
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Household/Household">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/HouseholdOntologyThing"/>
         <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/hasHouseholdMember"/>
-                        <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/hasHouseholdMember"/>
-                        <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTime"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2006/time#ProperInterval"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Household/householdOccupies"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityResident/Residence"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment>A Household has one or more Persons as members.
-A Household occupies a particular Dwelling, according to some tenure type. It is defined by this location, so that if the members move (even collectively), the new residence constitutes a new Household.
-We do not make any commitment regarding the identity of the Persons, and in fact a Person may belong to more than one Household.
-Note that a Household, and likely many other classes may have different definitions in different contexts/applications. To address this we may be required to introduce specializations of the class (e.g. ILUTE_Household, TTS_Household) in future extensions.</rdfs:comment>
+        <rdfs:comment>A Household refers to a collection of persons occupying a shared place of residence. Households may or may not be comprised of family members. Different, more precise definitions of Household may be adopted as required for different contexts and applications through extensions to this class. A Household has the following key properties:
+•	householdOccupies: identifies the cityresident:Residence that it occupies, i.e. the residence that is shared by its members. A Household is defined by this residence, such that if the members move (even collectively), the new residence constitutes a new Household.
+•	org_s:hasMember: identifies a person:Person who is a member of the Household.
+•	time:hasTime: specifies the time interval the household exists in its current configuration.</rdfs:comment>
     </owl:Class>
     
 
