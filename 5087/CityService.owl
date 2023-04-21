@@ -11,6 +11,7 @@
      xmlns:adms="http://www.w3.org/ns/adms#"
      xmlns:bibo="http://purl.org/ontology/bibo/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:om-1="http://www.wurvoc.org/vocabularies/om-1.8/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:vann="http://purl.org/vocab/vann/"
@@ -19,6 +20,7 @@
      xmlns:schema="http://schema.org/"
      xmlns:CityUnits="http://ontology.eil.utoronto.ca/5087/CityUnits/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:CityUnits1="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/"
      xmlns:CityService="http://ontology.eil.utoronto.ca/5087/2/CityService/"
      xmlns:RecurringEvent="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService">
@@ -26,6 +28,8 @@
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Mereology.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person.owl"/>
+        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/"/>
+        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/"/>
         <dc:description>Cities provide a variety of services to residents and businesses, including health and social services. The city service ontology, is based on the Canadian Government Reference Model (CGRM). See Wiseman, R. (2015). Canadian Governments Reference Models. In Service Systems Science (pp. 109-128). Springer, Tokyo.</dc:description>
         <dc:title>City Service Pattern</dc:title>
         <vann:preferredNamespacePrefix>Under development. Refer to latest version of ISO 5087-2.</vann:preferredNamespacePrefix>
@@ -151,6 +155,14 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/hasCatchmentAreaType -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/hasCatchmentAreaType">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/hasContributingStakeholder -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/hasContributingStakeholder">
@@ -231,44 +243,11 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/perform -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/performs -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/perform">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/performs">
         <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyObjectProperty"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyDataProperty -->
-
-    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyDataProperty"/>
-    
-
-
-    <!-- http://schema.org/description -->
-
-    <owl:DatatypeProperty rdf:about="http://schema.org/description">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://schema.org/name -->
-
-    <owl:DatatypeProperty rdf:about="http://schema.org/name">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyDataProperty"/>
-    </owl:DatatypeProperty>
     
 
 
@@ -283,21 +262,16 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentArea -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentAreaType -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentArea">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/global-catchmentArea"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/local-catchmentArea"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/multinational-catchmentArea"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/national-catchmentArea"/>
-                    <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/provincial-catchmentArea"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentAreaType">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -308,16 +282,39 @@
     
 
 
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/ImpactDirection -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/ImpactDirection">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/Importance -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/Importance">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/Input -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/Input">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#forActivity"/>
-                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/TerminalResourceState"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasContributingStakeholder"/>
@@ -332,36 +329,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/hasResource"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/Resource"/>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#hasActualAmount"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#hasPlannedAmount"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -385,6 +360,12 @@
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasIndicator"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Indicator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/fromPerspectiveOf"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/Stakeholder"/>
@@ -400,37 +381,21 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasImportance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/high"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/low"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/medium"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:onClass>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/Importance"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/intendedImpact"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/negative"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/neutral"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/positive"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:onClass>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/ImpactDirection"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -450,12 +415,7 @@
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/Output">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#forActivity"/>
-                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/TerminalResourceState"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#usedByIndicator"/>
@@ -464,36 +424,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#hasActualAmount"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService#hasPlannedAmount"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/ISO21972/iso21972#Measure"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/hasResource"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/Resource"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -511,8 +449,8 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/Program -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/Program">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasBeneficialStakeholder"/>
@@ -551,15 +489,15 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -578,8 +516,8 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/CityService/Service -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/CityService/Service">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CityServiceOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasBeneficialStakeholder"/>
@@ -612,15 +550,15 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -650,27 +588,32 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/perform"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/performs"/>
                 <owl:someValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/Activity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasCatchmentArea"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentArea"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/description"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/hasCatchmentAreaType"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityService/CatchmentAreaType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://schema.org/name"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasDescription"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/GenericProperties/hasName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>

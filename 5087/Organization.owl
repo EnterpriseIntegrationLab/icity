@@ -22,14 +22,17 @@
      xmlns:Change="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/"
      xmlns:schema="http://schema.org/"
      xmlns:CityUnits="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:RecurringEvent="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/#"
+     xmlns:RecurringEvent1="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/">
     <owl:Ontology rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/">
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/OrganizationStructure.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person.owl"/>
+        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/"/>
+        <owl:imports rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/"/>
         <dc:title>City Organization Ontology</dc:title>
         <vann:preferredNamespacePrefix>org</vann:preferredNamespacePrefix>
         <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under development. Refer to latest version of ISO 5087-2.</adms:relatedDocumentation>
@@ -155,18 +158,24 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty">
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty">
         <dc:description>Added for organizational purposes, to identify properties defined in the iCity-Organization ontology.</dc:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/consistsOf -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/annualPay -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/consistsOf">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/annualPay">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay"/>
     </owl:ObjectProperty>
     
 
@@ -174,7 +183,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/employedAs -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/employedAs">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -182,41 +191,23 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/employedBy -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/employedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/enrolledIn -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasCompensation -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/enrolledIn">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Student"/>
-        <rdfs:range rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/EducationalInstitution"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasCompensation">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasAnnualPay -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmployment -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasAnnualPay">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasAuthority -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasAuthority">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmployee -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmployee">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmployment">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -224,8 +215,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmploymentStatus -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmploymentStatus">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-        <rdfs:domain rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Employee"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -233,15 +223,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasEstablishment -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEstablishment">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasFirmId -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasFirmId">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -249,7 +231,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasGoal -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasGoal">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -257,15 +239,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasIndustryType -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasIndustryType">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasJurisdiction -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasJurisdiction">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -276,27 +250,10 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasOccupationType -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasOccupationType">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasOrgMember -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasOrgMember">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasMember"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -304,7 +261,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasProcess -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasProcess">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -312,7 +269,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hasResource -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hasResource">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
     
 
@@ -320,15 +277,35 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/hourlyPay -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/hourlyPay">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/memberOfDivision -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/jurisdiction -->
 
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/memberOfDivision">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/jurisdiction">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/operatingHours -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/operatingHours">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/orgAddress -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/orgAddress">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.w3.org/ns/org#hasSite"/>
+            <rdf:Description rdf:about="http://www.w3.org/ns/org#siteAddress"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -336,15 +313,7 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/overtimePay -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/overtimePay">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/performedBy -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/performedBy">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay"/>
     </owl:ObjectProperty>
     
 
@@ -352,30 +321,8 @@
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/playsRole -->
 
     <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/playsRole">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyProperty"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/requiresSkill -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/requiresSkill">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/worksAt -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/worksAt">
-        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/icontact.owl#hasAddress -->
-
-    <owl:ObjectProperty rdf:about="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
     
 
 
@@ -400,6 +347,41 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrganizationDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrganizationDataProperty"/>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/closingTime -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/closingTime">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrganizationDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/endTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/openingTime -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/openingTime">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrganizationDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/startTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -414,37 +396,21 @@
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Authority -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Authority">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/BusinessEstablishment -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/BusinessEstablishment">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/hasAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Business Establishment: A Business establishment is a physical location where a Firm conducts business.
@@ -459,66 +425,78 @@ A Business Establishment has a Location and may have an address.</dc:description
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Division -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Division">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing">
+        <dc:description>Added for organizational purposes, to identify classes defined in the iCity-Organization ontology.</dc:description>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/EducationalInstitution -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Compensation -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/EducationalInstitution">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Employee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Employee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrganizationAgent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/employedAs"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Compensation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasPay"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Salary"/>
-                            <rdf:Description rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Wage"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/worksAt"/>
-                <owl:someValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>Employee: An Firm has some Employees, whom it employs for some Occupation.
-An Employee is a type of Organization Agent.
-An Employee may be employed at a particular Business Establishment.
-An Employee may be responsible for one or more Roles within the Organization.
-An Employee is employed by some Organization, unless the Person is self-employed.
-An Employee has a Wage/Salary and may work at some Location (this may be the location of the Firm, an alternate Location, or a Location that is subject to change).</dc:description>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Firm -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Employment -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Firm">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Employment">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/employedBy"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasCompensation"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Compensation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/employedAs"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmploymentStatus"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/EmploymentStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/EmploymentStatus -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/EmploymentStatus">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/ForProfitOrganization -->
+
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/ForProfitOrganization">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -532,66 +510,6 @@ An Employee has a Wage/Salary and may work at some Location (this may be the loc
                 <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/IndustryType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:description>Firm: A Firm is a type of organization.
-A Firm has an address and an industry type, and some Employees.
-A Firm may have a Business Establishment(s).</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/ForProfitOrganization -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/ForProfitOrganization">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Employee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeHomeEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeHomeEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeEmployee"/>
-        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeRegEmployee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeRegEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeRegEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeEmployee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeStudent -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/FullTimeStudent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Student"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/GeneralOffice -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/GeneralOffice">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
-        <rdfs:comment>General Office / Clerical</rdfs:comment>
     </owl:Class>
     
 
@@ -599,7 +517,7 @@ A Firm may have a Business Establishment(s).</dc:description>
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Goal -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Goal">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/State"/>
         <dc:description>A goal represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
     </owl:Class>
@@ -610,6 +528,12 @@ A Firm may have a Business Establishment(s).</dc:description>
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization">
         <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/jurisdiction"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/City/JurisdictionalArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -617,20 +541,11 @@ A Firm may have a Business Establishment(s).</dc:description>
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/IndustryType -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/IndustryType">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Municipality -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Municipality">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/GovernmentOrganization"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasJurisdiction"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -648,17 +563,38 @@ A Firm may have a Business Establishment(s).</dc:description>
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/hasCode"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Code/Code"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <dc:description>Occupation: An Occupation is performed by some Person.
 An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     </owl:Class>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing -->
+    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Operation -->
 
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing">
-        <dc:description>Added for organizational purposes, to identify classes defined in the iCity-Organization ontology.</dc:description>
+    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Operation">
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/RecurringEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/closingTime"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/openingTime"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -666,24 +602,18 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Organization -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/Manifestation"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/OrganizationStructure/Organization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/icontact.owl#hasAddress"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact/Address"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/hasLocation"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/Location"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc/associatedLocation"/>
-                <owl:allValuesFrom rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/consistsOf"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Division"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//hasTelephone"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//PhoneNumber"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -694,16 +624,14 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasOrgMember"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrganizationAgent"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/operatingHours"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Operation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/existsAt"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/orgAddress"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact//Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -713,12 +641,12 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/OrganizationAgent -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/OrganizationAgent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Person/Person"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Agent/Agent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasAuthority"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Authority"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasEmployment"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Employment"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -729,14 +657,14 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/memberOfDivision"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Division"/>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/playsRole"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Role"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/playsRole"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Role"/>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#memberOf"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Organization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <dc:description>Organization Agent: Members of an organization.
@@ -746,58 +674,11 @@ An Organization Agent plays a Role within the Organization.</dc:description>
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Employee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeHomeEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeHomeEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeEmployee"/>
-        <owl:disjointWith rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeRegEmployee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeRegEmployee -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeRegEmployee">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeEmployee"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeStudent -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/PartTimeStudent">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Student"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Professional -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Professional">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
-        <rdfs:comment>Professional / Management / Technical</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Role -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Role">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasAuthority"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Authority"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Role"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasGoal"/>
@@ -816,12 +697,6 @@ An Organization Agent plays a Role within the Organization.</dc:description>
                 <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Resource/Resource"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/requiresSkill"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Skill"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <dc:description>Role: A Role has a single (possibly complex) Goal.
 A Role has some authority, requires some skill, and may also have some associated processes.</dc:description>
     </owl:Class>
@@ -831,11 +706,11 @@ A Role has some authority, requires some skill, and may also have some associate
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Salary -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Salary">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Compensation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hasAnnualPay"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/annualPay"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityUnits/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -843,61 +718,20 @@ A Role has some authority, requires some skill, and may also have some associate
     
 
 
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Sales -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Sales">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
-        <rdfs:comment>Retail Sales and Service</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Skill -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Skill">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Student -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Student">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrganizationAgent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/enrolledIn"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/EducationalInstitution"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Trades -->
-
-    <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Trades">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Occupation"/>
-        <rdfs:comment>Manufacturing / Construction / Trades</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://ontology.eil.utoronto.ca/5087/2/Organization/Wage -->
 
     <owl:Class rdf:about="http://ontology.eil.utoronto.ca/5087/2/Organization/Wage">
-        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/OrgOntologyThing"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/Compensation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/overtimePay"/>
-                <owl:allValuesFrom rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityUnits/MonetaryValue"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Organization/hourlyPay"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onClass rdf:resource="http://ontology.eil.utoronto.ca/5087/2/CityUnits/MonetaryValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -908,6 +742,12 @@ A Role has some authority, requires some skill, and may also have some associate
     <!-- http://schema.org/PostalAddress -->
 
     <owl:Class rdf:about="http://schema.org/PostalAddress"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue"/>
 </rdf:RDF>
 
 
