@@ -24,17 +24,18 @@
      xmlns:CityUnits="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:RecurringEvent="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/"
-    <owl:Ontology rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/">
+     xmlns:RecurringEvent1="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/#">
+    <owl:Ontology rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization">
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Activity.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/OrganizationStructure.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/RecurringEvent.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/Resource.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/SpatialLoc.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
-        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/1/RecurringEvent.owl"/>
         <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Code.owl"/>
+        <owl:imports rdf:resource="http://ontology.eil.utoronto.ca/5087/2/Contact.owl"/>
         <dc:title>City Organization Ontology</dc:title>
         <vann:preferredNamespacePrefix>org</vann:preferredNamespacePrefix>
-        <adms:relatedDocumentation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under development. Refer to latest version of ISO 5087-2.</adms:relatedDocumentation>
+        <adms:relatedDocumentation>Under development. Refer to latest version of ISO 5087-2.</adms:relatedDocumentation>
     </owl:Ontology>
     
 
@@ -151,6 +152,24 @@
     
 
 
+    <!-- http://schema.org/address -->
+
+    <owl:ObjectProperty rdf:about="http://schema.org/address"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/hasManifestation -->
+
+    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/hasManifestation"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/manifestationOf -->
+
+    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/manifestationOf"/>
+    
+
+
     <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/SpatialLoc/hasLocation -->
 
     <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/SpatialLoc/hasLocation"/>
@@ -160,6 +179,12 @@
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact/hasAddress -->
 
     <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact/hasAddress"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//hasTelephone -->
+
+    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//hasTelephone"/>
     
 
 
@@ -265,6 +290,14 @@
     
 
 
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasProgram -->
+
+    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasProgram">
+        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasResource -->
 
     <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasResource">
@@ -325,24 +358,6 @@
     
 
 
-    <!-- http://schema.org/address -->
-
-    <owl:ObjectProperty rdf:about="http://schema.org/address"/>
-    
-
-
-    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/hasManifestation -->
-
-    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/hasManifestation"/>
-    
-
-
-    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/manifestationOf -->
-
-    <owl:ObjectProperty rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Change/manifestationOf"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -363,8 +378,8 @@
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/closingTime -->
 
     <owl:DatatypeProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/closingTime">
-        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrganizationDataProperty"/>
         <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/endTime"/>
+        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrganizationDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -372,8 +387,8 @@
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/openingTime -->
 
     <owl:DatatypeProperty rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/openingTime">
-        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrganizationDataProperty"/>
         <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/startTime"/>
+        <rdfs:subPropertyOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrganizationDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -389,9 +404,45 @@
     
 
 
+    <!-- http://schema.org/PostalAddress -->
+
+    <owl:Class rdf:about="http://schema.org/PostalAddress"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/City/JurisdictionalArea -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/City/JurisdictionalArea"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityService/Program -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityService/Program"/>
+    
+
+
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityUnits/MonetaryValue -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityUnits/MonetaryValue"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//Address -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//Address"/>
+    
+
+
+    <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//PhoneNumber -->
+
+    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Contact//PhoneNumber"/>
     
 
 
@@ -516,8 +567,8 @@ A Business Establishment has a Location and may have an address.</dc:description
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Goal -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Goal">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Activity/State"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <dc:description>A goal represents some state or complex states, and allows for the representation of various groups&apos; responsibilities.</dc:description>
     </owl:Class>
     
@@ -527,6 +578,12 @@ A Business Establishment has a Location and may have an address.</dc:description
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/GovernmentOrganization">
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasProgram"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityService/Program"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/jurisdiction"/>
@@ -555,6 +612,12 @@ A Business Establishment has a Location and may have an address.</dc:description
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/NonProfitOrganization">
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasProgram"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/CityService/Program"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -578,8 +641,8 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Operation -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Operation">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/RecurringEvent/RecurringEvent"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/closingTime"/>
@@ -601,8 +664,8 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/OrganizationStructure/Organization"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/SpatialLoc/hasLocation"/>
@@ -640,8 +703,14 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/OrganizationAgent -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/OrganizationAgent">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/Agent/Agent"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#memberOf"/>
+                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasEmployment"/>
@@ -660,12 +729,6 @@ An Occupation has a type (e.g. sales, skilled trades)</dc:description>
                 <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Role"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#memberOf"/>
-                <owl:allValuesFrom rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Organization"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <dc:description>Organization Agent: Members of an organization.
 Organization Agents have goals, authority, and may be members of some team.
 An Organization Agent plays a Role within the Organization.</dc:description>
@@ -676,8 +739,8 @@ An Organization Agent plays a Role within the Organization.</dc:description>
     <!-- https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Role -->
 
     <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/Role">
-        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Role"/>
+        <rdfs:subClassOf rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/CityOrgOntologyThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://standards.iso.org/iso-iec/5087/-2/ed-1/en/ontology/Organization/hasGoal"/>
@@ -735,21 +798,9 @@ A Role has some authority, requires some skill, and may also have some associate
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    
-
-
-    <!-- http://schema.org/PostalAddress -->
-
-    <owl:Class rdf:about="http://schema.org/PostalAddress"/>
-    
-
-
-    <!-- https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue -->
-
-    <owl:Class rdf:about="https://standards.iso.org/iso-iec/5087/-1/ed-1/en/ontology/CityUnits/MonetaryValue"/>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
 
